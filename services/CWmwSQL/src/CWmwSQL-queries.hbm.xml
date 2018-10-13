@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="qryGetPatientByPatientNo">
+        <![CDATA[
+        select * from ptdetail where patient_no = :t_patientno
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPatientByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select * from ptdetail where patient_no = :t_patientno) wmTempTable
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryUpdatePatient">
+        <![CDATA[
+        update ptdetail set title = :t_title, given = :t_given, surname = :t_surname, address1 = :t_address1, suburb=:t_suburb, postcode=:t_postcode, state = :t_state, phone_ah=:t_phone_ah, phone_bh=:t_phone_bh, mobile=:t_mobile, dob = :t_dob, medicareno = :t_medicareno, member_no=:t_member_no, email = :t_email where patient_no = :t_patient_no
+        ]]>
+    <query-param name="t_title" type="java.lang.String"/>
+    <query-param name="t_given" type="java.lang.String"/>
+    <query-param name="t_surname" type="java.lang.String"/>
+    <query-param name="t_address1" type="java.lang.String"/>
+    <query-param name="t_suburb" type="java.lang.String"/>
+    <query-param name="t_postcode" type="java.lang.String"/>
+    <query-param name="t_state" type="java.lang.String"/>
+    <query-param name="t_phone_ah" type="java.lang.String"/>
+    <query-param name="t_phone_bh" type="java.lang.String"/>
+    <query-param name="t_mobile" type="java.lang.String"/>
+    <query-param name="t_dob" type="java.sql.Date"/>
+    <query-param name="t_medicareno" type="java.lang.String"/>
+    <query-param name="t_member_no" type="java.lang.String"/>
+    <query-param name="t_email" type="java.lang.String"/>
+    <query-param name="t_patient_no" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetUserAuth">
+        <![CDATA[
+        select patient_no from  x0152578 where userid = :t_userid and password = :t_pass and dob = :t_dob
+        ]]>
+    <query-param name="t_userid" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
+    <query-param name="t_dob" type="java.sql.Date"/>
+    </sql-query>
+
+    <sql-query name="qryGetUserAuth__count">
+        <![CDATA[
+        select count(*) from (select patient_no from  x0152578 where userid = :t_userid and password = :t_pass and dob = :t_dob) wmTempTable
+        ]]>
+    <query-param name="t_userid" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
+    <query-param name="t_dob" type="java.sql.Date"/>
+    </sql-query>
+</hibernate-mapping>

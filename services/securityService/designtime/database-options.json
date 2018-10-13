@@ -1,0 +1,19 @@
+{
+  "modelName" : "CWmwSQL",
+  "entityName" : "X0152578",
+  "tableName" : "x0152578",
+  "unamePropertyName" : "userid",
+  "unameColumnName" : "userid",
+  "uidPropertyName" : "idno",
+  "uidColumnName" : "idno",
+  "pwPropertyName" : "password",
+  "pwColumnName" : "password",
+  "rolePropertyName" : "",
+  "roleColumnName" : "",
+  "useRolesQuery" : false,
+  "rolesByUsernameQuery" : "",
+  "tenantIdField" : null,
+  "defTenantId" : 0,
+  "tenantIdPropertyName" : null,
+  "queryType" : "HQL"
+}

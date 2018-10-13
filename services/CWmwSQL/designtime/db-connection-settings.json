@@ -1,0 +1,37 @@
+{
+  "username" : "sa",
+  "password" : "7b6a43524a0b0b5f5d63263247560b145b2a4c475c4a446070477c612a43",
+  "url" : "jdbc:sqlserver://13.236.178.62:1433;databaseName=CWmwSQL;instanceName=SRV-DB01",
+  "driverClass" : "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+  "dialect" : "com.wavemaker.runtime.data.dialect.WMSQLServerDialect",
+  "serviceId" : "CWmwSQL",
+  "packageName" : "com.restwiz.cwmwsql",
+  "dbType" : "SQLServer",
+  "host" : "13.236.178.62",
+  "dbName" : "CWmwSQL",
+  "port" : "1433",
+  "schemaName" : "dbo",
+  "tableFilter" : [ {
+    "table" : "ptdetail",
+    "schema" : "dbo"
+  }, {
+    "table" : "x0152578",
+    "schema" : "dbo"
+  } ],
+  "schemaFilter" : [ "dbo" ],
+  "impersonateUser" : false,
+  "activeDirectoryDomain" : null,
+  "hbm2ddl" : "none",
+  "maxPageSize" : 100,
+  "minPoolSize" : 2,
+  "maxPoolSize" : 4,
+  "transactionTimeout" : 30,
+  "dataSourceType" : "WM_MANAGED_DATASOURCE",
+  "jndiName" : "",
+  "reloadInfo" : {
+    "reload" : false,
+    "reason" : null,
+    "message" : null
+  },
+  "readOnly" : false
+}
