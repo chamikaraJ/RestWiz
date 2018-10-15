@@ -8,6 +8,7 @@ package com.restwiz.cwmwsql.models.query;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -28,6 +29,9 @@ public class QryUpdatePatientRequest implements Serializable {
 
     @JsonProperty("t_address1")
     private String taddress1;
+
+    @JsonProperty("t_address2")
+    private String taddress2;
 
     @JsonProperty("t_suburb")
     private String tsuburb;
@@ -58,6 +62,30 @@ public class QryUpdatePatientRequest implements Serializable {
 
     @JsonProperty("t_email")
     private String temail;
+
+    @JsonProperty("t_fundcode")
+    private String tfundcode;
+
+    @JsonProperty("t_birthplace")
+    private String tbirthplace;
+
+    @JsonProperty("t_vetafno")
+    private String tvetafno;
+
+    @JsonProperty("t_refRalSrc")
+    private String trefRalSrc;
+
+    @JsonProperty("t_medExpiry")
+    private LocalDateTime tmedExpiry;
+
+    @JsonProperty("t_mcareRefNo")
+    private String tmcareRefNo;
+
+    @JsonProperty("t_claimDetails")
+    private String tclaimDetails;
+
+    @JsonProperty("t_nextofkin")
+    private String tnextofkin;
 
     @JsonProperty("t_patient_no")
     @NotNull
@@ -93,6 +121,14 @@ public class QryUpdatePatientRequest implements Serializable {
 
     public void setTaddress1(String taddress1) {
         this.taddress1 = taddress1;
+    }
+
+    public String getTaddress2() {
+        return this.taddress2;
+    }
+
+    public void setTaddress2(String taddress2) {
+        this.taddress2 = taddress2;
     }
 
     public String getTsuburb() {
@@ -175,6 +211,70 @@ public class QryUpdatePatientRequest implements Serializable {
         this.temail = temail;
     }
 
+    public String getTfundcode() {
+        return this.tfundcode;
+    }
+
+    public void setTfundcode(String tfundcode) {
+        this.tfundcode = tfundcode;
+    }
+
+    public String getTbirthplace() {
+        return this.tbirthplace;
+    }
+
+    public void setTbirthplace(String tbirthplace) {
+        this.tbirthplace = tbirthplace;
+    }
+
+    public String getTvetafno() {
+        return this.tvetafno;
+    }
+
+    public void setTvetafno(String tvetafno) {
+        this.tvetafno = tvetafno;
+    }
+
+    public String getTrefRalSrc() {
+        return this.trefRalSrc;
+    }
+
+    public void setTrefRalSrc(String trefRalSrc) {
+        this.trefRalSrc = trefRalSrc;
+    }
+
+    public LocalDateTime getTmedExpiry() {
+        return this.tmedExpiry;
+    }
+
+    public void setTmedExpiry(LocalDateTime tmedExpiry) {
+        this.tmedExpiry = tmedExpiry;
+    }
+
+    public String getTmcareRefNo() {
+        return this.tmcareRefNo;
+    }
+
+    public void setTmcareRefNo(String tmcareRefNo) {
+        this.tmcareRefNo = tmcareRefNo;
+    }
+
+    public String getTclaimDetails() {
+        return this.tclaimDetails;
+    }
+
+    public void setTclaimDetails(String tclaimDetails) {
+        this.tclaimDetails = tclaimDetails;
+    }
+
+    public String getTnextofkin() {
+        return this.tnextofkin;
+    }
+
+    public void setTnextofkin(String tnextofkin) {
+        this.tnextofkin = tnextofkin;
+    }
+
     public String getTpatientNo() {
         return this.tpatientNo;
     }
@@ -192,6 +292,7 @@ public class QryUpdatePatientRequest implements Serializable {
                 Objects.equals(getTgiven(), qryUpdatePatientRequest.getTgiven()) &&
                 Objects.equals(getTsurname(), qryUpdatePatientRequest.getTsurname()) &&
                 Objects.equals(getTaddress1(), qryUpdatePatientRequest.getTaddress1()) &&
+                Objects.equals(getTaddress2(), qryUpdatePatientRequest.getTaddress2()) &&
                 Objects.equals(getTsuburb(), qryUpdatePatientRequest.getTsuburb()) &&
                 Objects.equals(getTpostcode(), qryUpdatePatientRequest.getTpostcode()) &&
                 Objects.equals(getTstate(), qryUpdatePatientRequest.getTstate()) &&
@@ -202,6 +303,14 @@ public class QryUpdatePatientRequest implements Serializable {
                 Objects.equals(getTmedicareno(), qryUpdatePatientRequest.getTmedicareno()) &&
                 Objects.equals(getTmemberNo(), qryUpdatePatientRequest.getTmemberNo()) &&
                 Objects.equals(getTemail(), qryUpdatePatientRequest.getTemail()) &&
+                Objects.equals(getTfundcode(), qryUpdatePatientRequest.getTfundcode()) &&
+                Objects.equals(getTbirthplace(), qryUpdatePatientRequest.getTbirthplace()) &&
+                Objects.equals(getTvetafno(), qryUpdatePatientRequest.getTvetafno()) &&
+                Objects.equals(getTrefRalSrc(), qryUpdatePatientRequest.getTrefRalSrc()) &&
+                Objects.equals(getTmedExpiry(), qryUpdatePatientRequest.getTmedExpiry()) &&
+                Objects.equals(getTmcareRefNo(), qryUpdatePatientRequest.getTmcareRefNo()) &&
+                Objects.equals(getTclaimDetails(), qryUpdatePatientRequest.getTclaimDetails()) &&
+                Objects.equals(getTnextofkin(), qryUpdatePatientRequest.getTnextofkin()) &&
                 Objects.equals(getTpatientNo(), qryUpdatePatientRequest.getTpatientNo());
     }
 
@@ -211,6 +320,7 @@ public class QryUpdatePatientRequest implements Serializable {
                 getTgiven(),
                 getTsurname(),
                 getTaddress1(),
+                getTaddress2(),
                 getTsuburb(),
                 getTpostcode(),
                 getTstate(),
@@ -221,6 +331,14 @@ public class QryUpdatePatientRequest implements Serializable {
                 getTmedicareno(),
                 getTmemberNo(),
                 getTemail(),
+                getTfundcode(),
+                getTbirthplace(),
+                getTvetafno(),
+                getTrefRalSrc(),
+                getTmedExpiry(),
+                getTmcareRefNo(),
+                getTclaimDetails(),
+                getTnextofkin(),
                 getTpatientNo());
     }
 }

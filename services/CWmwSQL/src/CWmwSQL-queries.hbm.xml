@@ -18,12 +18,13 @@
 
     <sql-query name="qryUpdatePatient">
         <![CDATA[
-        update ptdetail set title = :t_title, given = :t_given, surname = :t_surname, address1 = :t_address1, suburb=:t_suburb, postcode=:t_postcode, state = :t_state, phone_ah=:t_phone_ah, phone_bh=:t_phone_bh, mobile=:t_mobile, dob = :t_dob, medicareno = :t_medicareno, member_no=:t_member_no, email = :t_email where patient_no = :t_patient_no
+        update ptdetail set title = :t_title, given = :t_given, surname = :t_surname, address1 = :t_address1, address2 = :t_address2, suburb=:t_suburb, postcode=:t_postcode, state = :t_state, phone_ah=:t_phone_ah, phone_bh=:t_phone_bh, mobile=:t_mobile, dob = :t_dob, medicareno = :t_medicareno, member_no=:t_member_no, email = :t_email, fundcode = :t_fundcode, birthplace=:t_birthplace,vetaffno=:t_vetafno, referalsrc=:t_refRalSrc, mediexpry=:t_medExpiry, mcare_refn=:t_mcareRefNo, claimdtls=:t_claimDetails, nextofkin=:t_nextofkin  where patient_no = :t_patient_no
         ]]>
     <query-param name="t_title" type="java.lang.String"/>
     <query-param name="t_given" type="java.lang.String"/>
     <query-param name="t_surname" type="java.lang.String"/>
     <query-param name="t_address1" type="java.lang.String"/>
+    <query-param name="t_address2" type="java.lang.String"/>
     <query-param name="t_suburb" type="java.lang.String"/>
     <query-param name="t_postcode" type="java.lang.String"/>
     <query-param name="t_state" type="java.lang.String"/>
@@ -34,6 +35,14 @@
     <query-param name="t_medicareno" type="java.lang.String"/>
     <query-param name="t_member_no" type="java.lang.String"/>
     <query-param name="t_email" type="java.lang.String"/>
+    <query-param name="t_fundcode" type="java.lang.String"/>
+    <query-param name="t_birthplace" type="java.lang.String"/>
+    <query-param name="t_vetafno" type="java.lang.String"/>
+    <query-param name="t_refRalSrc" type="java.lang.String"/>
+    <query-param name="t_medExpiry" type="java.time.LocalDateTime"/>
+    <query-param name="t_mcareRefNo" type="java.lang.String"/>
+    <query-param name="t_claimDetails" type="java.lang.String"/>
+    <query-param name="t_nextofkin" type="java.lang.String"/>
     <query-param name="t_patient_no" type="java.lang.String"/>
     </sql-query>
 

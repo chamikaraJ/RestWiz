@@ -59,12 +59,13 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest) {
-        Map<String, Object> params = new HashMap<>(15);
+        Map<String, Object> params = new HashMap<>(24);
 
         params.put("t_title", qryUpdatePatientRequest.getTtitle());
         params.put("t_given", qryUpdatePatientRequest.getTgiven());
         params.put("t_surname", qryUpdatePatientRequest.getTsurname());
         params.put("t_address1", qryUpdatePatientRequest.getTaddress1());
+        params.put("t_address2", qryUpdatePatientRequest.getTaddress2());
         params.put("t_suburb", qryUpdatePatientRequest.getTsuburb());
         params.put("t_postcode", qryUpdatePatientRequest.getTpostcode());
         params.put("t_state", qryUpdatePatientRequest.getTstate());
@@ -75,6 +76,14 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_medicareno", qryUpdatePatientRequest.getTmedicareno());
         params.put("t_member_no", qryUpdatePatientRequest.getTmemberNo());
         params.put("t_email", qryUpdatePatientRequest.getTemail());
+        params.put("t_fundcode", qryUpdatePatientRequest.getTfundcode());
+        params.put("t_birthplace", qryUpdatePatientRequest.getTbirthplace());
+        params.put("t_vetafno", qryUpdatePatientRequest.getTvetafno());
+        params.put("t_refRalSrc", qryUpdatePatientRequest.getTrefRalSrc());
+        params.put("t_medExpiry", qryUpdatePatientRequest.getTmedExpiry());
+        params.put("t_mcareRefNo", qryUpdatePatientRequest.getTmcareRefNo());
+        params.put("t_claimDetails", qryUpdatePatientRequest.getTclaimDetails());
+        params.put("t_nextofkin", qryUpdatePatientRequest.getTnextofkin());
         params.put("t_patient_no", qryUpdatePatientRequest.getTpatientNo());
 
         return queryExecutor.executeNamedQueryForUpdate("qryUpdatePatient", params);
