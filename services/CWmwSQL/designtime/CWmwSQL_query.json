@@ -1062,7 +1062,7 @@
     "name" : "qryUpdatePatient",
     "description" : "Update Patient Details",
     "version" : "V2",
-    "queryString" : "update ptdetail set title = :t_title, given = :t_given, surname = :t_surname, address1 = :t_address1, address2 = :t_address2, suburb=:t_suburb, postcode=:t_postcode, state = :t_state, phone_ah=:t_phone_ah, phone_bh=:t_phone_bh, mobile=:t_mobile, dob = :t_dob, medicareno = :t_medicareno, member_no=:t_member_no, email = :t_email, fundcode = :t_fundcode, birthplace=:t_birthplace,vetaffno=:t_vetafno, referalsrc=:t_refRalSrc, mediexpry=:t_medExpiry, mcare_refn=:t_mcareRefNo, claimdtls=:t_claimDetails, nextofkin=:t_nextofkin  where patient_no = :t_patient_no",
+    "queryString" : "update ptdetail set title = :t_title, given = :t_given, surname = :t_surname, address1 = :t_address1, address2 = :t_address2, suburb=:t_suburb, postcode=:t_postcode, state = :t_state, phone_ah=:t_phone_ah, phone_bh=:t_phone_bh, mobile=:t_mobile, dob = :t_dob, medicareno = :t_medicareno, member_no=:t_member_no, email = :t_email, fundcode = :t_fundcode, birthplace=:t_birthplace,vetaffno=:t_vetafno, referalsrc=:t_refRalSrc,mediexpry=:t_medExpiry,mcare_refn=:t_mcareRefNo, claimdtls=:t_claimDetails, nextofkin=:t_nextofkin where patient_no = :t_patient_no",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -1097,7 +1097,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "a",
       "required" : false
     }, {
       "name" : "t_address2",
@@ -1105,7 +1105,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "a",
       "required" : false
     }, {
       "name" : "t_suburb",
@@ -1113,7 +1113,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "a",
       "required" : false
     }, {
       "name" : "t_postcode",
@@ -1121,7 +1121,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "a",
       "required" : false
     }, {
       "name" : "t_state",
@@ -1129,7 +1129,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "a",
       "required" : false
     }, {
       "name" : "t_phone_ah",
@@ -1137,7 +1137,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "a",
       "required" : false
     }, {
       "name" : "t_phone_bh",
@@ -1145,7 +1145,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "a",
       "required" : false
     }, {
       "name" : "t_mobile",
@@ -1153,7 +1153,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "a",
       "required" : false
     }, {
       "name" : "t_dob",
@@ -1169,7 +1169,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "b",
       "required" : false
     }, {
       "name" : "t_member_no",
@@ -1177,7 +1177,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "b",
       "required" : false
     }, {
       "name" : "t_email",
@@ -1185,7 +1185,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "chamikara@medicalwizard.com.au",
+      "testValue" : "b",
       "required" : false
     }, {
       "name" : "t_fundcode",
@@ -1193,7 +1193,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "c",
       "required" : false
     }, {
       "name" : "t_birthplace",
@@ -1201,7 +1201,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "c",
       "required" : false
     }, {
       "name" : "t_vetafno",
@@ -1209,7 +1209,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "c",
       "required" : false
     }, {
       "name" : "t_refRalSrc",
@@ -1217,15 +1217,15 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "c",
       "required" : false
     }, {
       "name" : "t_medExpiry",
-      "type" : "datetime",
+      "type" : "date",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "2018-10-15T16:39:01",
+      "testValue" : "2018-10-16",
       "required" : false
     }, {
       "name" : "t_mcareRefNo",
@@ -1233,7 +1233,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "d",
       "required" : false
     }, {
       "name" : "t_claimDetails",
@@ -1241,7 +1241,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "d",
       "required" : false
     }, {
       "name" : "t_nextofkin",
@@ -1249,7 +1249,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "''",
+      "testValue" : "d",
       "required" : false
     }, {
       "name" : "t_patient_no",

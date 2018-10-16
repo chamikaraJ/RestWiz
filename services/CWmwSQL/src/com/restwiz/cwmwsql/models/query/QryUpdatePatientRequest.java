@@ -8,7 +8,6 @@ package com.restwiz.cwmwsql.models.query;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -76,7 +75,7 @@ public class QryUpdatePatientRequest implements Serializable {
     private String trefRalSrc;
 
     @JsonProperty("t_medExpiry")
-    private LocalDateTime tmedExpiry;
+    private Date tmedExpiry;
 
     @JsonProperty("t_mcareRefNo")
     private String tmcareRefNo;
@@ -243,11 +242,11 @@ public class QryUpdatePatientRequest implements Serializable {
         this.trefRalSrc = trefRalSrc;
     }
 
-    public LocalDateTime getTmedExpiry() {
+    public Date getTmedExpiry() {
         return this.tmedExpiry;
     }
 
-    public void setTmedExpiry(LocalDateTime tmedExpiry) {
+    public void setTmedExpiry(Date tmedExpiry) {
         this.tmedExpiry = tmedExpiry;
     }
 
