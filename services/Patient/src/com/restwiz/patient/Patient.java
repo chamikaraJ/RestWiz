@@ -15,6 +15,9 @@ import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import com.wavemaker.runtime.service.annotations.HideFromClient;
 
+import com.restwiz.cwmwsql.service.CWmwSQLQueryExecutorService;
+import com.restwiz.cwmwsql.models.query.QryGetPatientByPatientNoResponse;
+
 //import com.restwiz.patient.model.*;
 
 /**
@@ -34,6 +37,10 @@ public class Patient {
 
     @Autowired
     private SecurityService securityService;
+    
+    	@Autowired
+	private CWmwSQLQueryExecutorService cWmwSQLQueryExecutorService;
+    // CWmwSQLQueryExecutorService
 
     /**
      * This is sample java operation that accepts an input from the caller and responds with "Hello".
@@ -59,6 +66,12 @@ public class Patient {
     
     public void checkPatient(String patienData){
         System.out.println(patienData);
+          
+        // String tuserid = patienData["t_userid"];
+        // String tpass = patienData["t_pass"];
+        // String tdob = patienData["t_dob"];
+        
+        // cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid,tpass,tdob);
     }
 
 }
