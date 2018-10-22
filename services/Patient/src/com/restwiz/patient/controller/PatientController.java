@@ -31,6 +31,8 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/generatePatientNumber", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public void generatePatientNumber(Pageable pageable) {
         patient.generatePatientNumber(pageable);
     }

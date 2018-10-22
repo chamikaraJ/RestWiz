@@ -114,6 +114,8 @@ public class Patient {
     public void generatePatientNumber(Pageable pageable){
         
         Page<QryGetMaxPatientNoResponse> res = cWmwSQLQueryExecutorService.executeQryGetMaxPatientNo(pageable);
+        String maxId = res.getContent().get(0).getMaxPtId();
+        
         
     }
 
