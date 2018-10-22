@@ -5,6 +5,7 @@ package com.restwiz.patient.controller;
 
 import com.restwiz.patient.Patient;
 import java.lang.String;
+import org.springframework.data.domain.Pageable;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
@@ -22,11 +23,16 @@ public class PatientController {
     @Autowired
     private Patient patient;
 
-    @RequestMapping(value = "/checkPatient", method = RequestMethod.POST)
+    @RequestMapping(value = "/checkPatient", produces = "application/json", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void checkPatient(@RequestBody String patienData) {
-        patient.checkPatient(patienData);
+    public String checkPatient(@RequestBody String patienData, Pageable pageable) {
+        return patient.checkPatient(patienData, pageable);
+    }
+
+    @RequestMapping(value = "/generatePatientNumber", method = RequestMethod.GET)
+    public void generatePatientNumber(Pageable pageable) {
+        patient.generatePatientNumber(pageable);
     }
 
     @RequestMapping(value = "/sampleJavaOperation", produces = "application/json", method = RequestMethod.GET)

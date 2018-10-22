@@ -1,4 +1,36 @@
 {
+  "qryGetMaxPatientNo" : {
+    "name" : "qryGetMaxPatientNo",
+    "description" : "get Max patient Number",
+    "version" : "V2",
+    "queryString" : "select MAX(patient_no) as maxPtId from ptdetail",
+    "countQueryString" : "select count(*) from (select MAX(patient_no) as maxPtId from ptdetail) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetMaxPatientNoResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "maxPtId",
+        "fieldName" : "maxPtId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetPatientByPatientNo" : {
     "name" : "qryGetPatientByPatientNo",
     "description" : "get Patient by patient No",

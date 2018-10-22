@@ -17,6 +17,10 @@ import com.restwiz.cwmwsql.models.query.*;
 
 public interface CWmwSQLQueryExecutorService {
 
+    Page<QryGetMaxPatientNoResponse> executeQryGetMaxPatientNo(Pageable pageable);
+
+    void exportQryGetMaxPatientNo(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetPatientByPatientNoResponse> executeQryGetPatientByPatientNo(String tpatientno, Pageable pageable);
 
     void exportQryGetPatientByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);

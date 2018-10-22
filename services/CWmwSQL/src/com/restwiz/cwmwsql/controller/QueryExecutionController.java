@@ -46,6 +46,34 @@ public class QueryExecutionController {
     @Autowired
 	private ExportedFileManager exportedFileManager;
 
+    @RequestMapping(value = "/queries/qryGetMaxPatientNo", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get Max patient Number")
+    public Page<QryGetMaxPatientNoResponse> executeQryGetMaxPatientNo(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetMaxPatientNo");
+        Page<QryGetMaxPatientNoResponse> _result = queryService.executeQryGetMaxPatientNo(pageable);
+        LOGGER.debug("got the result for named query: qryGetMaxPatientNo, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetMaxPatientNo")
+    @RequestMapping(value = "/queries/qryGetMaxPatientNo/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetMaxPatientNo(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetMaxPatientNo");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetMaxPatientNo";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetMaxPatientNo( exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryGetPatientByPatientNo", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get Patient by patient No")

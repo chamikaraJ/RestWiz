@@ -16,11 +16,19 @@ import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import com.wavemaker.runtime.service.annotations.HideFromClient;
 
 import com.restwiz.cwmwsql.service.CWmwSQLQueryExecutorService;
-import com.restwiz.cwmwsql.models.query.QryGetPatientByPatientNoResponse;
+// import com.restwiz.cwmwsql.models.query.QryGetPatientByPatientNoResponse;
+import com.restwiz.cwmwsql.models.query.QryGetUserAuthResponse;
+import com.restwiz.cwmwsql.models.query.QryGetMaxPatientNoResponse;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.sql.Date;
+
 
 //import com.restwiz.patient.model.*;
 
@@ -68,22 +76,45 @@ public class Patient {
         return result;
     }
     
-    public void checkPatient(String patienData){
-        System.out.println(patienData);
-          
-        // String tuserid = patienData["t_userid"];
-        // String tpass = patienData["t_pass"];
-        // String tdob = patienData["t_dob"];
-        
-        // cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid,tpass,tdob);
+    public String checkPatient(String patienData,Pageable pageable){
+  
+        String patientNo = "patient not found";
         
         JSONParser parser = new JSONParser(); 
         try {
           JSONObject json = (JSONObject) parser.parse(patienData);  
+          
+          String tuserid = (String) json.get("t_userid");
+        String tpass = (String) json.get("t_pass");
+        String tdob =(String) json.get("t_dob");
+        
+         System.out.println(tuserid);
+            System.out.println(tpass);
+            System.out.println(tdob);
+        
+        
+        Date dateOfBirth = Date.valueOf(tdob);
+        
+        Page<QryGetUserAuthResponse> res =  cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid,tpass,dateOfBirth,pageable);
+ 
+        
+        if(res.getContent().size()>0){
+          patientNo = res.getContent().get(0).getPatientNo();
+        }else{
+            
+        }
+          
         } catch(ParseException e) {
         } 
         
+        return patientNo;
 
+    }
+    
+    public void generatePatientNumber(Pageable pageable){
+        
+        Page<QryGetMaxPatientNoResponse> res = cWmwSQLQueryExecutorService.executeQryGetMaxPatientNo(pageable);
+        
     }
 
 }
