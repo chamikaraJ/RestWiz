@@ -18,6 +18,10 @@ import com.wavemaker.runtime.service.annotations.HideFromClient;
 import com.restwiz.cwmwsql.service.CWmwSQLQueryExecutorService;
 import com.restwiz.cwmwsql.models.query.QryGetPatientByPatientNoResponse;
 
+import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+
 //import com.restwiz.patient.model.*;
 
 /**
@@ -72,6 +76,14 @@ public class Patient {
         // String tdob = patienData["t_dob"];
         
         // cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid,tpass,tdob);
+        
+        JSONParser parser = new JSONParser(); 
+        try {
+          JSONObject json = (JSONObject) parser.parse(patienData);  
+        } catch(ParseException e) {
+        } 
+        
+
     }
 
 }
