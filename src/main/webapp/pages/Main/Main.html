@@ -3,7 +3,22 @@
     <wm-top-nav name="topnav" content="topnav"></wm-top-nav>
     <wm-content name="content">
         <wm-left-panel columnwidth="2" name="leftpanel" content="leftnav"></wm-left-panel>
-        <wm-page-content columnwidth="8" paddingleft="15" paddingright="15" name="mainContent">
+        <wm-page-content columnwidth="8" name="mainContent" padding="unset 15px">
+            <wm-form errormessage="" captionposition="top" title="Form" enctype="application/x-www-form-urlencoded" method="get" dataset="bind:Variables.PatientRegSchedularRegisterNewPatient.dataSet" captionalign="left" name="registerNewPatientForm1">
+                <wm-layoutgrid columns="1" name="layoutgrid1">
+                    <wm-gridrow name="gridrow1">
+                        <wm-gridcolumn name="gridcolumn1" horizontalalign="left">
+                            <wm-composite name="composite1">
+                                <wm-label class="col-md-3 control-label" caption="Service Output" name="label1"></wm-label>
+                                <wm-container class="col-md-9" name="container1">
+                                    <wm-text tabindex="1" placeholder="Enter Name" name="text1" datavalue="bind:Variables.PatientRegSchedularRegisterNewPatient.dataSet.value"></wm-text>
+                                </wm-container>
+                            </wm-composite>
+                            <wm-button class="btn-default" caption="Trigger Patient Registration Service" type="button" margin="unset 0.5em" name="button4" on-click="Variables.PatientRegSchedularRegisterNewPatient.invoke()"></wm-button>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+            </wm-form>
         </wm-page-content>
         <wm-right-panel columnwidth="2" name="rightpanel" content="rightnav"></wm-right-panel>
     </wm-content>

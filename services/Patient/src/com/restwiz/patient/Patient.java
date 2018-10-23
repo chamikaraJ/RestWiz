@@ -17,8 +17,7 @@ import com.wavemaker.runtime.service.annotations.HideFromClient;
 
 import com.restwiz.cwmwsql.service.CWmwSQLQueryExecutorService;
 // import com.restwiz.cwmwsql.models.query.QryGetPatientByPatientNoResponse;
-import com.restwiz.cwmwsql.models.query.QryGetUserAuthResponse;
-import com.restwiz.cwmwsql.models.query.QryGetMaxPatientNoResponse;
+import com.restwiz.cwmwsql.models.query.*;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
@@ -111,12 +110,9 @@ public class Patient {
 
     }
     
-    public void generatePatientNumber(Pageable pageable){
-        
-        Page<QryGetMaxPatientNoResponse> res = cWmwSQLQueryExecutorService.executeQryGetMaxPatientNo(pageable);
-        String maxId = res.getContent().get(0).getMaxPtId();
-        
-        
+    public String generatePatientNumber(Pageable pageable){
+        Page<QryGetNextPatientNoResponse> res = cWmwSQLQueryExecutorService.executeQryGetNextPatientNo(pageable);
+        return res.getContent().get(0).getNumValue().toString();
     }
 
 }

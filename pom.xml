@@ -27,6 +27,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/PatientRegSchedular/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/securityService/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -117,6 +124,7 @@
                             <sources>
                                 <source>services/CWmwSQL/src</source>
                                 <source>services/Patient/src</source>
+                                <source>services/PatientRegSchedular/src</source>
                                 <source>services/securityService/src</source>
                             </sources>
                         </configuration>
@@ -292,13 +300,11 @@
             <scope>system</scope>
             <systemPath>${project.lib.directory}/sqljdbc42.jar</systemPath>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-<dependency>
-    <groupId>com.googlecode.json-simple</groupId>
-    <artifactId>json-simple</artifactId>
-    <version>1.1</version>
-</dependency>
-
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>

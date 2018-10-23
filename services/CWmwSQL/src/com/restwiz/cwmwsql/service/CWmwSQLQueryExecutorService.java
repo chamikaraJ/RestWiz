@@ -17,18 +17,26 @@ import com.restwiz.cwmwsql.models.query.*;
 
 public interface CWmwSQLQueryExecutorService {
 
-    Page<QryGetMaxPatientNoResponse> executeQryGetMaxPatientNo(Pageable pageable);
+    Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest);
 
-    void exportQryGetMaxPatientNo(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+    Integer executeQryDeleteptDetailRegByIdno(Integer idno);
 
     Page<QryGetPatientByPatientNoResponse> executeQryGetPatientByPatientNo(String tpatientno, Pageable pageable);
 
     void exportQryGetPatientByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
-    Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest);
+    Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(Pageable pageable);
+
+    void exportQryGetNextPatientNo(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest);
 
     Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, String tpass, Date tdob, Pageable pageable);
 
     void exportQryGetUserAuth(String tuserid, String tpass, Date tdob, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Page<QryGetVerifiedPatientsResponse> executeQryGetVerifiedPatients(Pageable pageable);
+
+    void exportQryGetVerifiedPatients(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
 }

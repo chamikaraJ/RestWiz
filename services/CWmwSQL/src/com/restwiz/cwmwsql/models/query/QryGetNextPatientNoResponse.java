@@ -11,30 +11,30 @@ import java.util.Objects;
 
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class QryGetMaxPatientNoResponse implements Serializable {
+public class QryGetNextPatientNoResponse implements Serializable {
 
 
-    @ColumnAlias("maxPtId")
-    private String maxPtId;
+    @ColumnAlias("numValue")
+    private Long numValue;
 
-    public String getMaxPtId() {
-        return this.maxPtId;
+    public Long getNumValue() {
+        return this.numValue;
     }
 
-    public void setMaxPtId(String maxPtId) {
-        this.maxPtId = maxPtId;
+    public void setNumValue(Long numValue) {
+        this.numValue = numValue;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof QryGetMaxPatientNoResponse)) return false;
-        final QryGetMaxPatientNoResponse qryGetMaxPatientNoResponse = (QryGetMaxPatientNoResponse) o;
-        return Objects.equals(getMaxPtId(), qryGetMaxPatientNoResponse.getMaxPtId());
+        if (!(o instanceof QryGetNextPatientNoResponse)) return false;
+        final QryGetNextPatientNoResponse qryGetNextPatientNoResponse = (QryGetNextPatientNoResponse) o;
+        return Objects.equals(getNumValue(), qryGetNextPatientNoResponse.getNumValue());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMaxPtId());
+        return Objects.hash(getNumValue());
     }
 }

@@ -2,32 +2,6 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <sql-query name="qryGetMaxPatientNo">
-        <![CDATA[
-        select MAX(patient_no) as maxPtId from ptdetail
-        ]]>
-    </sql-query>
-
-    <sql-query name="qryGetMaxPatientNo__count">
-        <![CDATA[
-        select count(*) from (select MAX(patient_no) as maxPtId from ptdetail) wmTempTable
-        ]]>
-    </sql-query>
-
-    <sql-query name="qryGetPatientByPatientNo">
-        <![CDATA[
-        select * from ptdetail where patient_no = :t_patientno
-        ]]>
-    <query-param name="t_patientno" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetPatientByPatientNo__count">
-        <![CDATA[
-        select count(*) from (select * from ptdetail where patient_no = :t_patientno) wmTempTable
-        ]]>
-    <query-param name="t_patientno" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="qryUpdatePatient">
         <![CDATA[
         update ptdetail set title = :t_title, given = :t_given, surname = :t_surname, address1 = :t_address1, address2 = :t_address2, suburb=:t_suburb, postcode=:t_postcode, state = :t_state, phone_ah=:t_phone_ah, phone_bh=:t_phone_bh, mobile=:t_mobile, dob = :t_dob, medicareno = :t_medicareno, member_no=:t_member_no, email = :t_email, fundcode = :t_fundcode, birthplace=:t_birthplace,vetaffno=:t_vetafno, referalsrc=:t_refRalSrc,mediexpry=:t_medExpiry,mcare_refn=:t_mcareRefNo, claimdtls=:t_claimDetails, nextofkin=:t_nextofkin where patient_no = :t_patient_no
@@ -58,6 +32,51 @@
     <query-param name="t_patient_no" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryDeleteptDetailRegByIdno">
+        <![CDATA[
+        delete from ptdetail_reg where idno = :idno
+        ]]>
+    <query-param name="idno" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="qryGetPatientByPatientNo">
+        <![CDATA[
+        select * from ptdetail where patient_no = :t_patientno
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPatientByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select * from ptdetail where patient_no = :t_patientno) wmTempTable
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetNextPatientNo">
+        <![CDATA[
+        select numValue from NoGenCon where idCode = 'PATNO'
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetNextPatientNo__count">
+        <![CDATA[
+        select count(*) from (select numValue from NoGenCon where idCode = 'PATNO') wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryInsertPatientDetails">
+        <![CDATA[
+        insert into ptdetail(patient_no,given,surname,email,medicareno,dob) values(:patient_no,:given,:surname,:email,:medicareno,:dob)
+        ]]>
+    <query-param name="patient_no" type="java.lang.String"/>
+    <query-param name="given" type="java.lang.String"/>
+    <query-param name="surname" type="java.lang.String"/>
+    <query-param name="email" type="java.lang.String"/>
+    <query-param name="medicareno" type="java.lang.String"/>
+    <query-param name="dob" type="java.sql.Date"/>
+    </sql-query>
+
     <sql-query name="qryGetUserAuth">
         <![CDATA[
         select patient_no from  x0152578 where userid = :t_userid and password = :t_pass and dob = :t_dob
@@ -74,5 +93,17 @@
     <query-param name="t_userid" type="java.lang.String"/>
     <query-param name="t_pass" type="java.lang.String"/>
     <query-param name="t_dob" type="java.sql.Date"/>
+    </sql-query>
+
+    <sql-query name="qryGetVerifiedPatients">
+        <![CDATA[
+        select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED'
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetVerifiedPatients__count">
+        <![CDATA[
+        select count(*) from (select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED') wmTempTable
+        ]]>
     </sql-query>
 </hibernate-mapping>

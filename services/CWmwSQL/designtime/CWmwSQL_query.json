@@ -1,10 +1,40 @@
 {
-  "qryGetMaxPatientNo" : {
-    "name" : "qryGetMaxPatientNo",
-    "description" : "get Max patient Number",
+  "qryDeleteptDetailRegByIdno" : {
+    "name" : "qryDeleteptDetailRegByIdno",
+    "description" : "delete saved patient from reg file",
     "version" : "V2",
-    "queryString" : "select MAX(patient_no) as maxPtId from ptdetail",
-    "countQueryString" : "select count(*) from (select MAX(patient_no) as maxPtId from ptdetail) wmTempTable",
+    "queryString" : "delete from ptdetail_reg where idno = :idno",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "DELETE",
+    "parameters" : [ {
+      "name" : "idno",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "21",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "DELETE"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "qryGetNextPatientNo" : {
+    "name" : "qryGetNextPatientNo",
+    "description" : "Get next patient No",
+    "version" : "V2",
+    "queryString" : "select numValue from NoGenCon where idCode = 'PATNO'",
+    "countQueryString" : "select count(*) from (select numValue from NoGenCon where idCode = 'PATNO') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -16,16 +46,16 @@
     },
     "identifiers" : [ ],
     "response" : {
-      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetMaxPatientNoResponse",
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetNextPatientNoResponse",
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "maxPtId",
-        "fieldName" : "maxPtId",
+        "name" : "numValue",
+        "fieldName" : "numValue",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
+          "typeRef" : "java.lang.Long",
           "list" : false
         }
       } ]
@@ -1088,6 +1118,162 @@
           "list" : false
         }
       } ]
+    }
+  },
+  "qryGetVerifiedPatients" : {
+    "name" : "qryGetVerifiedPatients",
+    "description" : "get verified patients",
+    "version" : "V2",
+    "queryString" : "select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED'",
+    "countQueryString" : "select count(*) from (select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED') wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetVerifiedPatientsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "idno",
+        "fieldName" : "idno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "given",
+        "fieldName" : "given",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "surname",
+        "fieldName" : "surname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "medicareno",
+        "fieldName" : "medicareno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "dob",
+        "fieldName" : "dob",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Date",
+          "list" : false
+        }
+      }, {
+        "name" : "ptStatus",
+        "fieldName" : "ptStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "qryInsertPatientDetails" : {
+    "name" : "qryInsertPatientDetails",
+    "description" : "Insert patient details to ptdetail",
+    "version" : "V2",
+    "queryString" : "insert into ptdetail(patient_no,given,surname,email,medicareno,dob) values(:patient_no,:given,:surname,:email,:medicareno,:dob)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "patient_no",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80089",
+      "required" : false
+    }, {
+      "name" : "given",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Saman",
+      "required" : false
+    }, {
+      "name" : "surname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Kumara",
+      "required" : false
+    }, {
+      "name" : "email",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "saman@abc.com",
+      "required" : false
+    }, {
+      "name" : "medicareno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "123456789",
+      "required" : false
+    }, {
+      "name" : "dob",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2000-01-01",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryInsertPatientDetailsRequest",
+      "method" : "POST"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
     }
   },
   "qryUpdatePatient" : {

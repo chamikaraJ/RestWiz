@@ -1,1 +1,25 @@
-{ }
+{
+  "PatientRegSchedularRegisterNewPatient" : {
+    "_id" : "wm-PatientRegSchedularRegisterNewPatient-wm.ServiceVariable-1540287924665",
+    "name" : "PatientRegSchedularRegisterNewPatient",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "string",
+    "service" : "PatientRegSchedular",
+    "operation" : "registerNewPatient",
+    "operationId" : "PatientRegSchedularController_registerNewPatient",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "PatientRegSchedular"
+  }
+}

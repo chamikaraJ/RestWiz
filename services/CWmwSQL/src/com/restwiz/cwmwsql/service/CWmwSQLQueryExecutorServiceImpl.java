@@ -34,48 +34,6 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
     @Qualifier("CWmwSQLWMQueryExecutor")
     private WMQueryExecutor queryExecutor;
 
-    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
-    @Override
-    public Page<QryGetMaxPatientNoResponse> executeQryGetMaxPatientNo(Pageable pageable) {
-        Map<String, Object> params = new HashMap<>(0);
-
-
-        return queryExecutor.executeNamedQuery("qryGetMaxPatientNo", params, QryGetMaxPatientNoResponse.class, pageable);
-    }
-
-    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
-    @Override
-    public void exportQryGetMaxPatientNo(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
-        Map<String, Object> params = new HashMap<>(0);
-
-
-        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetMaxPatientNo", params, QryGetMaxPatientNoResponse.class);
-
-        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
-    }
-
-    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
-    @Override
-    public Page<QryGetPatientByPatientNoResponse> executeQryGetPatientByPatientNo(String tpatientno, Pageable pageable) {
-        Map<String, Object> params = new HashMap<>(1);
-
-        params.put("t_patientno", tpatientno);
-
-        return queryExecutor.executeNamedQuery("qryGetPatientByPatientNo", params, QryGetPatientByPatientNoResponse.class, pageable);
-    }
-
-    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
-    @Override
-    public void exportQryGetPatientByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
-        Map<String, Object> params = new HashMap<>(1);
-
-        params.put("t_patientno", tpatientno);
-
-        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetPatientByPatientNo", params, QryGetPatientByPatientNoResponse.class);
-
-        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
-    }
-
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest) {
@@ -109,6 +67,73 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("qryUpdatePatient", params);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryDeleteptDetailRegByIdno(Integer idno) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("idno", idno);
+
+        return queryExecutor.executeNamedQueryForUpdate("qryDeleteptDetailRegByIdno", params);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetPatientByPatientNoResponse> executeQryGetPatientByPatientNo(String tpatientno, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_patientno", tpatientno);
+
+        return queryExecutor.executeNamedQuery("qryGetPatientByPatientNo", params, QryGetPatientByPatientNoResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetPatientByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_patientno", tpatientno);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetPatientByPatientNo", params, QryGetPatientByPatientNoResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        return queryExecutor.executeNamedQuery("qryGetNextPatientNo", params, QryGetNextPatientNoResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetNextPatientNo(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetNextPatientNo", params, QryGetNextPatientNoResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest) {
+        Map<String, Object> params = new HashMap<>(6);
+
+        params.put("patient_no", qryInsertPatientDetailsRequest.getPatientNo());
+        params.put("given", qryInsertPatientDetailsRequest.getGiven());
+        params.put("surname", qryInsertPatientDetailsRequest.getSurname());
+        params.put("email", qryInsertPatientDetailsRequest.getEmail());
+        params.put("medicareno", qryInsertPatientDetailsRequest.getMedicareno());
+        params.put("dob", qryInsertPatientDetailsRequest.getDob());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryInsertPatientDetails", params);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
     public Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, String tpass, Date tdob, Pageable pageable) {
@@ -131,6 +156,26 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_dob", tdob);
 
         QueryProcedureInput queryInput = new QueryProcedureInput("qryGetUserAuth", params, QryGetUserAuthResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetVerifiedPatientsResponse> executeQryGetVerifiedPatients(Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        return queryExecutor.executeNamedQuery("qryGetVerifiedPatients", params, QryGetVerifiedPatientsResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetVerifiedPatients(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetVerifiedPatients", params, QryGetVerifiedPatientsResponse.class);
 
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }

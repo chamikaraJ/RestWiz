@@ -15,6 +15,9 @@
     "table" : "ptdetail",
     "schema" : "dbo"
   }, {
+    "table" : "ptdetail_reg",
+    "schema" : "dbo"
+  }, {
     "table" : "x0152578",
     "schema" : "dbo"
   } ],

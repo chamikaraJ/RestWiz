@@ -30,11 +30,11 @@ public class PatientController {
         return patient.checkPatient(patienData, pageable);
     }
 
-    @RequestMapping(value = "/generatePatientNumber", method = RequestMethod.GET)
+    @RequestMapping(value = "/generatePatientNumber", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void generatePatientNumber(Pageable pageable) {
-        patient.generatePatientNumber(pageable);
+    public String generatePatientNumber(Pageable pageable) {
+        return patient.generatePatientNumber(pageable);
     }
 
     @RequestMapping(value = "/sampleJavaOperation", produces = "application/json", method = RequestMethod.GET)
