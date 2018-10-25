@@ -160,7 +160,7 @@ public class PatientRegSchedular {
         //Convert preFix string to arrayList
         ArrayList<String> prefixList = new ArrayList<>(prefixString.chars().mapToObj(e -> Character.toString((char)e)).collect(Collectors.toList()));
 
-        if(currentPrefix!=null && currentPrefix !="") {
+        if(currentPrefix!=null && currentPrefix !="" && !currentPrefix.isEmpty()) {
             //Extract first two characters
             digit1 = currentPrefix.substring(0, 1);
             digit2 = currentPrefix.substring(1, 2);
@@ -170,7 +170,7 @@ public class PatientRegSchedular {
         if(digit1 =="" && digit2==""){
 
             if(currentNo<99999){
-                nextNo = currentNo++;
+                nextNo = currentNo+1;
                 message = "Numeric value increased";
             }else if(currentNo==99999){
                 nextNo = new Long(0);
