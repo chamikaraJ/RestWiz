@@ -4,7 +4,10 @@
 package com.restwiz.patientregschedular.controller;
 
 import com.restwiz.patientregschedular.PatientRegSchedular;
+import com.restwiz.cwmwsql.models.query.QryGetNextPatientNoResponse;
 import java.lang.String;
+import java.util.Map;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,20 @@ public class PatientRegSchedularController {
 
     @Autowired
     private PatientRegSchedular patientRegSchedular;
+
+    @RequestMapping(value = "/generatePatientNo", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Map<String, String> generatePatientNo(@RequestBody QryGetNextPatientNoResponse genCode) {
+        return patientRegSchedular.generatePatientNo(genCode);
+    }
+
+    @RequestMapping(value = "/nextPatientNumber", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public String nextPatientNumber(Pageable pageable) {
+        return patientRegSchedular.nextPatientNumber(pageable);
+    }
 
     @RequestMapping(value = "/registerNewPatient", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

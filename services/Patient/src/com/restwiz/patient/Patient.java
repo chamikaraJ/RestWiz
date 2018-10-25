@@ -67,19 +67,7 @@ public class Patient {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
-    public String sampleJavaOperation(String name, HttpServletRequest request) {
-        logger.debug("Starting sample operation with request url " + request.getRequestURL().toString());
-        
-        String result = null;
-        if (securityService.isAuthenticated()) {
-            result = "Hello " + name + ", You are logged in as "+  securityService.getLoggedInUser().getUserName();
-        } else {
-            result = "Hello " + name + ", You are not authenticated yet!";
-        }
-        logger.debug("Returning {}", result);
-        return result;
-    }
-    
+
     public String checkPatient(String patienData,Pageable pageable){
   
         String patientNo = "patient not found";

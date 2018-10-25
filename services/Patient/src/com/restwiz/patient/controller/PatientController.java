@@ -8,7 +8,6 @@ import java.lang.String;
 import org.springframework.data.domain.Pageable;
 import com.restwiz.cwmwsql.models.query.QryGetNextPatientNoResponse;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +43,5 @@ public class PatientController {
     @ApiOperation(value = "")
     public String nextPatientNumber(Pageable pageable) {
         return patient.nextPatientNumber(pageable);
-    }
-
-    @RequestMapping(value = "/sampleJavaOperation", produces = "application/json", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public String sampleJavaOperation(@RequestParam(value = "name", required = false) String name, HttpServletRequest request) {
-        return patient.sampleJavaOperation(name, request);
     }
 }
