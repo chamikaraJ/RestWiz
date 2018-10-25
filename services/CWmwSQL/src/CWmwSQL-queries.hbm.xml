@@ -67,9 +67,10 @@
 
     <sql-query name="qryUpdateNextPtGenCode">
         <![CDATA[
-        update NoGenCon set NumValue = :nextNo where idCode = 'PATNO'
+        update NoGenCon set NumValue = :nextNo, CurPreFix = :prefix where idCode = 'PATNO'
         ]]>
     <query-param name="nextNo" type="java.lang.String"/>
+    <query-param name="prefix" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryInsertPatientDetails">

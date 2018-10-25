@@ -21,6 +21,10 @@ public class QryUpdateNextPtGenCodeRequest implements Serializable {
     @NotNull
     private String nextNo;
 
+    @JsonProperty("prefix")
+    @NotNull
+    private String prefix;
+
     public String getNextNo() {
         return this.nextNo;
     }
@@ -29,16 +33,26 @@ public class QryUpdateNextPtGenCodeRequest implements Serializable {
         this.nextNo = nextNo;
     }
 
+    public String getPrefix() {
+        return this.prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof QryUpdateNextPtGenCodeRequest)) return false;
         final QryUpdateNextPtGenCodeRequest qryUpdateNextPtGenCodeRequest = (QryUpdateNextPtGenCodeRequest) o;
-        return Objects.equals(getNextNo(), qryUpdateNextPtGenCodeRequest.getNextNo());
+        return Objects.equals(getNextNo(), qryUpdateNextPtGenCodeRequest.getNextNo()) &&
+                Objects.equals(getPrefix(), qryUpdateNextPtGenCodeRequest.getPrefix());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNextNo());
+        return Objects.hash(getNextNo(),
+                getPrefix());
     }
 }

@@ -30,6 +30,8 @@ import java.sql.Date;
 import org.apache.commons.lang3.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 
 //import com.restwiz.patient.model.*;
@@ -113,58 +115,72 @@ public class Patient {
 
     }
     
-    public String nextPatientNumber(Pageable pageable){
-        String nextPatientNo = "Patient No. not found";
-        Page<QryGetNextPatientNoResponse> res = cWmwSQLQueryExecutorService.executeQryGetNextPatientNo(pageable);
-        
-        if(res.getContent().size()>0){
-           Long numVal = res.getContent().get(0).getNumValue();
-           String prefix = res.getContent().get(0).getCurPreFix();
-            if(prefix==null || prefix==""){
-                nextPatientNo = StringUtils.leftPad(numVal+"",5,"0");
-            }else{
-                nextPatientNo = prefix.trim()+StringUtils.leftPad(numVal+"",3,"0");
-            }
-           
-           String nextNumberToSave = generatePatientNo(res.getContent().get(0),pageable);
-           
-           QryUpdateNextPtGenCodeRequest updateReq = new QryUpdateNextPtGenCodeRequest();
-           updateReq.setNextNo(nextNumberToSave);
-           int i = cWmwSQLQueryExecutorService.executeQryUpdateNextPtGenCode(updateReq);
-        }
-        return nextPatientNo;
-    }
+     public String nextPatientNumber(Pageable pageable){
+            String nextPatientNo = "Patient No. not found";
+            Page<QryGetNextPatientNoResponse> res = cWmwSQLQueryExecutorService.executeQryGetNextPatientNo(pageable);
     
-    public String generatePatientNo(QryGetNextPatientNoResponse genCode, Pageable pageable){
-        
-        String nextNo = "";
+            if(res.getContent().size()>0){
+               Long numVal = res.getContent().get(0).getNumValue();
+               String prefix = res.getContent().get(0).getCurPreFix();
+                if(prefix==null || prefix==""){
+                    nextPatientNo = StringUtils.leftPad(numVal+"",5,"0");
+                }else{
+                    nextPatientNo = prefix.trim()+StringUtils.leftPad(numVal+"",3,"0");
+                }
+    
+                Map<String,String> nextNumberToSave = generatePatientNo(res.getContent().get(0));
+    
+               QryUpdateNextPtGenCodeRequest updateReq = new QryUpdateNextPtGenCodeRequest();
+               updateReq.setNextNo(nextNumberToSave.get("nextNo"));
+               updateReq.setPrefix(nextNumberToSave.get("prefix"));
+               int i = cWmwSQLQueryExecutorService.executeQryUpdateNextPtGenCode(updateReq);
+            }
+            return nextPatientNo;
+        }
+    
+  public Map<String,String> generatePatientNo(QryGetNextPatientNoResponse genCode){
+
+        Map<String,String> generatedValue = new HashMap();
+        Long nextNo = new Long(0);
+        String nextPrefix = "";
+        String digit1 = "";
+        String digit2 = "";
+        String message = "";
+
         //Get current number
-        String currentNo = genCode.getNumValue().toString();
+        Long currentNo = genCode.getNumValue();
+        String currentPrefix = genCode.getCurPreFix();
+
         String prefixString = genCode.getPreFixList();
-        
         //Convert preFix string to arrayList
         ArrayList<String> prefixList = new ArrayList<>(prefixString.chars().mapToObj(e -> Character.toString((char)e)).collect(Collectors.toList()));
 
+        if(currentPrefix!=null && currentPrefix !="") {
+            //Extract first two characters
+            digit1 = currentPrefix.substring(0, 1);
+            digit2 = currentPrefix.substring(1, 2);
 
-        //Extract first two characters
-        String digit1 = currentNo.substring(0,1);
-        String digit2 = currentNo.substring(1,2);
+        }
 
-        if(StringUtils.isNumeric(digit1) && StringUtils.isNumeric(digit2)){
-            int num = Integer.parseInt(currentNo);
-            if(num<99999){
-                int nextNum = num+1;
-                nextNo = StringUtils.leftPad(nextNum+"",5,"0");
-            }else if(num==99999){
-                nextNo = ""+prefixList.get(0)+prefixList.get(0) +"000";
+        if(digit1 =="" && digit2==""){
+
+            if(currentNo<99999){
+                nextNo = currentNo++;
+                message = "Numeric value increased";
+            }else if(currentNo==99999){
+                nextNo = new Long(0);
+                nextPrefix = ""+prefixList.get(0)+prefixList.get(0);
+                message = "Reset the Numeric value, Prefix "+nextPrefix+" Added";
             }
         }else{
             //Extract last 3 numbers
-            int num = Integer.parseInt(currentNo.substring(2,currentNo.length()));
-            if(num<999){
-                int nextNum = num+1;
-                nextNo = digit1+digit2+StringUtils.leftPad(nextNum+"",3,"0");
-            }else if(num==999){
+            if(currentNo<999){
+                nextNo = currentNo+1;
+                nextPrefix = digit1+digit2;
+                message = "Numeric value increased, Prefix not changed";
+            }else if(currentNo==999){
+
+                nextNo = new Long(0);
 
                 int digit1Index = prefixList.indexOf(digit1);
                 int digit2Index = prefixList.indexOf(digit2);
@@ -172,18 +188,24 @@ public class Patient {
                 if(prefixList.size()>digit1Index+1){
                     if(prefixList.size()>digit2Index+1){
                         String nextDigit2 = prefixList.get(digit2Index+1);
-                        nextNo = digit1+nextDigit2+"000";
+                        nextPrefix = digit1+nextDigit2;
+                        message = "Reset the Numeric value, Second character of Prefix changed : "+ nextPrefix;
                     }else{
                         String nextDigit1 = prefixList.get(digit1Index+1);
-                        nextNo = nextDigit1+prefixList.get(0)+"000";
+                        nextPrefix = nextDigit1+prefixList.get(0);
+                        message = "Reset the Numeric value, First character of Prefix changed : "+ nextPrefix;
                     }
                 }else{
-                    nextNo = "Oops You have run out of all the patient numbers, Please contact Medical Wizard" ;
+                    message = "Oops You have run out of all the patient numbers, Please contact Medical Wizard" ;
                 }
             }
         }
-        
-        return nextNo;
+
+        generatedValue.put("prefix",nextPrefix);
+        generatedValue.put("nextNo",nextNo+"");
+        generatedValue.put("message",message);
+
+        return generatedValue;
         
     }
 
