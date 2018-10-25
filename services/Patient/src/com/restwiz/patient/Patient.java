@@ -28,6 +28,8 @@ import org.springframework.data.domain.Pageable;
 
 import java.sql.Date;
 import org.apache.commons.lang3.*;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 
 //import com.restwiz.patient.model.*;
@@ -125,19 +127,10 @@ public class Patient {
         String nextNo = "";
         
         String currentNo = genCode.getNumValue().toString();
-        char[] prefix = genCode.getPreFixList().toCharArray();
+        String prefixString = genCode.getPreFixList();
         
-//         String big_data = "big-data";
-// ArrayList<Character> chars
-//         = new ArrayList<>(
-//                  big_data.chars()
-//                 .mapToObj(e -> (char) e)
-//                 .collect(
-//                         Collectors.toList()
-//                 )
-//         );
+        ArrayList<Character> prefixList = new ArrayList<>(prefixString.chars().mapToObj(e -> (char) e).collect(Collectors.toList()));
         
-        // char[] stringToCharArray = prefix.toCharArray();
         
         String digit1 = currentNo.substring(0,1);
         String digit2 = currentNo.substring(1,2);
@@ -147,7 +140,7 @@ public class Patient {
                 if(num<99999){
                     nextNo = num+1+"";
                 }else if(num==99999){
-                    nextNo = ""+prefix[0]+prefix[0] +"000";
+                    nextNo = ""+prefixList.get(0)+prefixList.get(0) +"000";
                 }
         }else{
             int num = Integer.parseInt(currentNo.substring(2,currentNo.length()));
@@ -155,9 +148,20 @@ public class Patient {
                 nextNo = num+1+"";
             }else if(num==999){
                 
+                int digit1Index = prefixList.indexOf(digit1);
+                int digit2Index = prefixList.indexOf(digit2);
+                
+                if(prefixList.size()>digit1Index){
+                    if(prefixList.size()>digit2Index){
+                        char nextDigit2 = prefixList.get(digit2Index+1);
+                        nextNo = digit1+nextDigit2+"000";
+                    }else{
+                       char nextDigit1 = prefixList.get(digit1Index+1);
+                       nextNo = nextDigit1+prefixList.get(0)+"000";
+                    }
+                }
             }
         }
-        
         
         return nextNo;
         
