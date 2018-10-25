@@ -125,27 +125,32 @@ public class Patient {
     
     public String generatePatientNo(QryGetNextPatientNoResponse genCode, Pageable pageable){
         String nextNo = "";
-        
+        //Get current number
         String currentNo = genCode.getNumValue().toString();
         String prefixString = genCode.getPreFixList();
         
+        //Convert preFix string to arrayList
         ArrayList<Character> prefixList = new ArrayList<>(prefixString.chars().mapToObj(e -> (char) e).collect(Collectors.toList()));
         
         
+        //Extract first two characters
         String digit1 = currentNo.substring(0,1);
         String digit2 = currentNo.substring(1,2);
         
         if(StringUtils.isNumeric(digit1) && StringUtils.isNumeric(digit2)){
                 int num = Integer.parseInt(currentNo);
                 if(num<99999){
-                    nextNo = num+1+"";
+                    int nextNum = num+1;
+                    nextNo = nextNum+"";
                 }else if(num==99999){
-                    nextNo = ""+prefixList.get(0)+prefixList.get(0) +"000";
+                    nextNo = prefixList.get(0)+prefixList.get(0) +"000";
                 }
         }else{
+            //Extract last 3 numbers
             int num = Integer.parseInt(currentNo.substring(2,currentNo.length()));
             if(num<999){
-                nextNo = num+1+"";
+                int nextNum = num+1;
+                nextNo = digit1+digit2+nextNum;
             }else if(num==999){
                 
                 int digit1Index = prefixList.indexOf(digit1);
