@@ -33,8 +33,8 @@
     "name" : "qryGetNextPatientNo",
     "description" : "Get next patient No",
     "version" : "V2",
-    "queryString" : "select numValue from NoGenCon where idCode = 'PATNO'",
-    "countQueryString" : "select count(*) from (select numValue from NoGenCon where idCode = 'PATNO') wmTempTable",
+    "queryString" : "select * from NoGenCon where idCode = 'PATNO'",
+    "countQueryString" : "select count(*) from (select * from NoGenCon where idCode = 'PATNO') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -50,8 +50,98 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "numValue",
+        "name" : "IdCode",
+        "fieldName" : "idCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PreFixList",
+        "fieldName" : "preFixList",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "CurPreFix",
+        "fieldName" : "curPreFix",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "NumValue",
         "fieldName" : "numValue",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Long",
+          "list" : false
+        }
+      }, {
+        "name" : "GenNumLen",
+        "fieldName" : "genNumLen",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "GenType",
+        "fieldName" : "genType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Details",
+        "fieldName" : "details",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "TableName",
+        "fieldName" : "tableName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "FieldName",
+        "fieldName" : "fieldName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "InitType",
+        "fieldName" : "initType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "IdNo",
+        "fieldName" : "idNo",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",

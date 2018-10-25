@@ -71,15 +71,18 @@ public class PatientRegSchedular {
     
     public String registerNewPatient(Pageable pageable){
         String result = null;
+        int succesCount = 0;
+        int failedCount = 0;
         try {
-            logger.warn("Starting sample operation");
-            result = "HELLO SERVICE!";
-            logger.warn("Returning {}", result);
+            logger.warn("Starting patient resistration service");
+            // result = "HELLO SERVICE!";
+            // logger.warn("Returning {}", result);
             
             //Get Patient list to be save
             Page<QryGetVerifiedPatientsResponse> resultSet =  queryExecutorService.executeQryGetVerifiedPatients(pageable);
             
             if(resultSet.getContent().size()>0){
+                logger.warn(resultSet.getContent().size()+ " Patient found");
                 //Iterate the patient List
                 for(QryGetVerifiedPatientsResponse res: resultSet.getContent()){
                     Integer idno = res.getIdno();
@@ -91,7 +94,7 @@ public class PatientRegSchedular {
                   
                     //Get Next Patient No
                     Patient pt = new Patient();
-                    String patientNo = pt.generatePatientNumber(pageable);
+                    String patientNo = pt.nextPatientNumber(pageable);
                     
                     QryInsertPatientDetailsRequest newPatient = new QryInsertPatientDetailsRequest();
                     
@@ -111,17 +114,19 @@ public class PatientRegSchedular {
                        int j =  queryExecutorService.executeQryDeleteptDetailRegByIdno(idno);
                        if(j==1){
                             logger.warn("Patient deleted from paDetail_reg : "+ given+" "+surname);
+                            succesCount++;
                        }else{
-                           logger.warn("Patient deleted from paDetail_reg failed : "+ given+" "+surname);
+                           logger.warn("Patient deleting from paDetail_reg failed : "+ given+" "+surname);
                        }
                        
                        //Need to update last patient No to NoGenCo table
                     }else{
-                         logger.warn("Patient Inserted into paDetail failed : "+ given+" "+surname);
+                         logger.warn("Patient Inserting into paDetail failed : "+ given+" "+surname);
+                         failedCount++;
                     }
                 }
                 
-                  
+                 result = succesCount+" patient succesfuly added, "+ failedCount + "failed to add.";
             }
             
             return result;

@@ -55,13 +55,13 @@
 
     <sql-query name="qryGetNextPatientNo">
         <![CDATA[
-        select numValue from NoGenCon where idCode = 'PATNO'
+        select * from NoGenCon where idCode = 'PATNO'
         ]]>
     </sql-query>
 
     <sql-query name="qryGetNextPatientNo__count">
         <![CDATA[
-        select count(*) from (select numValue from NoGenCon where idCode = 'PATNO') wmTempTable
+        select count(*) from (select * from NoGenCon where idCode = 'PATNO') wmTempTable
         ]]>
     </sql-query>
 

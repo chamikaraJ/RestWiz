@@ -27,6 +27,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.sql.Date;
+import org.apache.commons.lang3.*;
 
 
 //import com.restwiz.patient.model.*;
@@ -83,11 +84,11 @@ public class Patient {
         try {
           JSONObject json = (JSONObject) parser.parse(patienData);  
           
-          String tuserid = (String) json.get("t_userid");
-        String tpass = (String) json.get("t_pass");
-        String tdob =(String) json.get("t_dob");
+            String tuserid = (String) json.get("t_userid");
+            String tpass = (String) json.get("t_pass");
+            String tdob =(String) json.get("t_dob");
         
-         System.out.println(tuserid);
+            System.out.println(tuserid);
             System.out.println(tpass);
             System.out.println(tdob);
         
@@ -110,9 +111,56 @@ public class Patient {
 
     }
     
-    public String generatePatientNumber(Pageable pageable){
+    public String nextPatientNumber(Pageable pageable){
+        String nextPatientNo = "Patient No: not found";
         Page<QryGetNextPatientNoResponse> res = cWmwSQLQueryExecutorService.executeQryGetNextPatientNo(pageable);
-        return res.getContent().get(0).getNumValue().toString();
+        
+        if(res.getContent().size()>0){
+           nextPatientNo = res.getContent().get(0).getNumValue().toString(); 
+        }
+        return nextPatientNo;
+    }
+    
+    public String generatePatientNo(QryGetNextPatientNoResponse genCode, Pageable pageable){
+        String nextNo = "";
+        
+        String currentNo = genCode.getNumValue().toString();
+        char[] prefix = genCode.getPreFixList().toCharArray();
+        
+//         String big_data = "big-data";
+// ArrayList<Character> chars
+//         = new ArrayList<>(
+//                  big_data.chars()
+//                 .mapToObj(e -> (char) e)
+//                 .collect(
+//                         Collectors.toList()
+//                 )
+//         );
+        
+        // char[] stringToCharArray = prefix.toCharArray();
+        
+        String digit1 = currentNo.substring(0,1);
+        String digit2 = currentNo.substring(1,2);
+        
+        if(StringUtils.isNumeric(digit1) && StringUtils.isNumeric(digit2)){
+                int num = Integer.parseInt(currentNo);
+                if(num<99999){
+                    nextNo = num+1+"";
+                }else if(num==99999){
+                    nextNo = ""+prefix[0]+prefix[0] +"000";
+                }
+        }else{
+            int num = Integer.parseInt(currentNo.substring(2,currentNo.length()));
+            if(num<999){
+                nextNo = num+1+"";
+            }else if(num==999){
+                
+            }
+        }
+        
+        
+        return nextNo;
+        
     }
 
 }
