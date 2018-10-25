@@ -17,6 +17,7 @@ import com.wavemaker.runtime.service.annotations.HideFromClient;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 
 import com.restwiz.cwmwsql.service.CWmwSQLQueryExecutorService;
 import com.restwiz.cwmwsql.models.query.*;
@@ -47,36 +48,15 @@ public class PatientRegSchedular {
     @Autowired
     private CWmwSQLQueryExecutorService queryExecutorService;
 
-    /**
-     * This is sample java operation that accepts an input from the caller and responds with "Hello".
-     *
-     * SecurityService that is Autowired will provide access to the security context of the caller. It has methods like isAuthenticated(),
-     * getUserName() and getUserId() etc which returns the information based on the caller context.
-     *
-     * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
-     * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
-     */
-    // public String sampleJavaOperation(String name, HttpServletRequest request) {
-    //     logger.debug("Starting sample operation with request url " + request.getRequestURL().toString());
+    public String registerNewPatient(){
+        Pageable pageable = new PageRequest(0,10);
         
-    //     String result = null;
-    //     if (securityService.isAuthenticated()) {
-    //         result = "Hello " + name + ", You are logged in as "+  securityService.getLoggedInUser().getUserName();
-    //     } else {
-    //         result = "Hello " + name + ", You are not authenticated yet!";
-    //     }
-    //     logger.debug("Returning {}", result);
-    //     return result;
-    // }
-    
-    public String registerNewPatient(Pageable pageable){
         String result = null;
         int succesCount = 0;
         int failedCount = 0;
         try {
             logger.warn("Starting patient resistration service");
-            // result = "HELLO SERVICE!";
-            // logger.warn("Returning {}", result);
+        
             
             //Get Patient list to be save
             Page<QryGetVerifiedPatientsResponse> resultSet =  queryExecutorService.executeQryGetVerifiedPatients(pageable);
@@ -111,15 +91,15 @@ public class PatientRegSchedular {
                     //delete from reg file if successfuly inserted to ptdetail
                     if(i==1){
                         logger.warn("Patient Inserted into paDetail : "+ given+" "+surname);
-                       int j =  queryExecutorService.executeQryDeleteptDetailRegByIdno(idno);
-                       if(j==1){
+                      int j =  queryExecutorService.executeQryDeleteptDetailRegByIdno(idno);
+                      if(j==1){
                             logger.warn("Patient deleted from paDetail_reg : "+ given+" "+surname);
                             succesCount++;
-                       }else{
-                           logger.warn("Patient deleting from paDetail_reg failed : "+ given+" "+surname);
-                       }
+                      }else{
+                          logger.warn("Patient deleting from paDetail_reg failed : "+ given+" "+surname);
+                      }
                        
-                       //Need to update last patient No to NoGenCo table
+                      //Need to update last patient No to NoGenCo table
                     }else{
                          logger.warn("Patient Inserting into paDetail failed : "+ given+" "+surname);
                          failedCount++;

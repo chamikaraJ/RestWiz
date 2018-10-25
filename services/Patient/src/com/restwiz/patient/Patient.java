@@ -204,6 +204,8 @@ public class Patient {
         generatedValue.put("prefix",nextPrefix);
         generatedValue.put("nextNo",nextNo+"");
         generatedValue.put("message",message);
+        
+        logger.warn(message);
 
         return generatedValue;
         

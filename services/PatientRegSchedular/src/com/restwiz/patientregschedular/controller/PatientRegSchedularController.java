@@ -4,7 +4,6 @@
 package com.restwiz.patientregschedular.controller;
 
 import com.restwiz.patientregschedular.PatientRegSchedular;
-import org.springframework.data.domain.Pageable;
 import java.lang.String;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
@@ -25,7 +24,7 @@ public class PatientRegSchedularController {
     @RequestMapping(value = "/registerNewPatient", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String registerNewPatient(Pageable pageable) {
-        return patientRegSchedular.registerNewPatient(pageable);
+    public String registerNewPatient() {
+        return patientRegSchedular.registerNewPatient();
     }
 }
