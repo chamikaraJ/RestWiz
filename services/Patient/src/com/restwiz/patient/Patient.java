@@ -114,56 +114,71 @@ public class Patient {
     }
     
     public String nextPatientNumber(Pageable pageable){
-        String nextPatientNo = "Patient No: not found";
+        String nextPatientNo = "Patient No. not found";
         Page<QryGetNextPatientNoResponse> res = cWmwSQLQueryExecutorService.executeQryGetNextPatientNo(pageable);
         
         if(res.getContent().size()>0){
-           nextPatientNo = res.getContent().get(0).getNumValue().toString(); 
+           Long numVal = res.getContent().get(0).getNumValue();
+           String prefix = res.getContent().get(0).getCurPreFix();
+            if(prefix==null || prefix==""){
+                nextPatientNo = StringUtils.leftPad(numVal+"",5,"0");
+            }else{
+                nextPatientNo = prefix.trim()+StringUtils.leftPad(numVal+"",3,"0");
+            }
+           
+           String nextNumberToSave = generatePatientNo(res.getContent().get(0),pageable);
+           
+           QryUpdateNextPtGenCodeRequest updateReq = new QryUpdateNextPtGenCodeRequest();
+           updateReq.setNextNo(nextNumberToSave);
+           int i = cWmwSQLQueryExecutorService.executeQryUpdateNextPtGenCode(updateReq);
         }
         return nextPatientNo;
     }
     
     public String generatePatientNo(QryGetNextPatientNoResponse genCode, Pageable pageable){
+        
         String nextNo = "";
         //Get current number
         String currentNo = genCode.getNumValue().toString();
         String prefixString = genCode.getPreFixList();
         
         //Convert preFix string to arrayList
-        ArrayList<Character> prefixList = new ArrayList<>(prefixString.chars().mapToObj(e -> (char) e).collect(Collectors.toList()));
-        
-        
+        ArrayList<String> prefixList = new ArrayList<>(prefixString.chars().mapToObj(e -> Character.toString((char)e)).collect(Collectors.toList()));
+
+
         //Extract first two characters
         String digit1 = currentNo.substring(0,1);
         String digit2 = currentNo.substring(1,2);
-        
+
         if(StringUtils.isNumeric(digit1) && StringUtils.isNumeric(digit2)){
-                int num = Integer.parseInt(currentNo);
-                if(num<99999){
-                    int nextNum = num+1;
-                    nextNo = nextNum+"";
-                }else if(num==99999){
-                    nextNo = prefixList.get(0)+prefixList.get(0) +"000";
-                }
+            int num = Integer.parseInt(currentNo);
+            if(num<99999){
+                int nextNum = num+1;
+                nextNo = StringUtils.leftPad(nextNum+"",5,"0");
+            }else if(num==99999){
+                nextNo = ""+prefixList.get(0)+prefixList.get(0) +"000";
+            }
         }else{
             //Extract last 3 numbers
             int num = Integer.parseInt(currentNo.substring(2,currentNo.length()));
             if(num<999){
                 int nextNum = num+1;
-                nextNo = digit1+digit2+nextNum;
+                nextNo = digit1+digit2+StringUtils.leftPad(nextNum+"",3,"0");
             }else if(num==999){
-                
+
                 int digit1Index = prefixList.indexOf(digit1);
                 int digit2Index = prefixList.indexOf(digit2);
-                
-                if(prefixList.size()>digit1Index){
-                    if(prefixList.size()>digit2Index){
-                        char nextDigit2 = prefixList.get(digit2Index+1);
+
+                if(prefixList.size()>digit1Index+1){
+                    if(prefixList.size()>digit2Index+1){
+                        String nextDigit2 = prefixList.get(digit2Index+1);
                         nextNo = digit1+nextDigit2+"000";
                     }else{
-                       char nextDigit1 = prefixList.get(digit1Index+1);
-                       nextNo = nextDigit1+prefixList.get(0)+"000";
+                        String nextDigit1 = prefixList.get(digit1Index+1);
+                        nextNo = nextDigit1+prefixList.get(0)+"000";
                     }
+                }else{
+                    nextNo = "Oops You have run out of all the patient numbers, Please contact Medical Wizard" ;
                 }
             }
         }

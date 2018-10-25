@@ -122,6 +122,16 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryUpdateNextPtGenCode", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "update next generated code for patient")
+    public IntegerWrapper executeQryUpdateNextPtGenCode(@Valid @RequestBody QryUpdateNextPtGenCodeRequest qryUpdateNextPtGenCodeRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryUpdateNextPtGenCode");
+        Integer _result = queryService.executeQryUpdateNextPtGenCode(qryUpdateNextPtGenCodeRequest);
+        LOGGER.debug("got the result for named query: qryUpdateNextPtGenCode, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/qryInsertPatientDetails", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Insert patient details to ptdetail")

@@ -29,6 +29,8 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetNextPatientNo(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Integer executeQryUpdateNextPtGenCode(QryUpdateNextPtGenCodeRequest qryUpdateNextPtGenCodeRequest);
+
     Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest);
 
     Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, String tpass, Date tdob, Pageable pageable);

@@ -65,6 +65,13 @@
         ]]>
     </sql-query>
 
+    <sql-query name="qryUpdateNextPtGenCode">
+        <![CDATA[
+        update NoGenCon set NumValue = :nextNo where idCode = 'PATNO'
+        ]]>
+    <query-param name="nextNo" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryInsertPatientDetails">
         <![CDATA[
         insert into ptdetail(patient_no,given,surname,email,medicareno,dob) values(:patient_no,:given,:surname,:email,:medicareno,:dob)

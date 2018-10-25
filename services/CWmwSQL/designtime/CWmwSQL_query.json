@@ -1366,6 +1366,36 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryUpdateNextPtGenCode" : {
+    "name" : "qryUpdateNextPtGenCode",
+    "description" : "update next generated code for patient",
+    "version" : "V2",
+    "queryString" : "update NoGenCon set NumValue = :nextNo where idCode = 'PATNO'",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "nextNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80089",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdateNextPtGenCodeRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "qryUpdatePatient" : {
     "name" : "qryUpdatePatient",
     "description" : "Update Patient Details",
