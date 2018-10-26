@@ -1158,8 +1158,8 @@
     "name" : "qryGetUserAuth",
     "description" : "User Auth",
     "version" : "V2",
-    "queryString" : "select patient_no from  x0152578 where userid = :t_userid and password = :t_pass and dob = :t_dob",
-    "countQueryString" : "select count(*) from (select patient_no from  x0152578 where userid = :t_userid and password = :t_pass and dob = :t_dob) wmTempTable",
+    "queryString" : "select patient_no from  x0152578 where userid = :t_userid and password = :t_pass",
+    "countQueryString" : "select count(*) from (select patient_no from  x0152578 where userid = :t_userid and password = :t_pass) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -1178,14 +1178,6 @@
       "variableType" : "PROMPT",
       "variableName" : "",
       "testValue" : "Pleasechange@1",
-      "required" : true
-    }, {
-      "name" : "t_dob",
-      "type" : "date",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1986-01-01",
       "required" : true
     } ],
     "request" : {
@@ -1609,6 +1601,44 @@
     "request" : {
       "wrapped" : true,
       "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdatePatientRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "qryUpdatePatientNo" : {
+    "name" : "qryUpdatePatientNo",
+    "description" : "update patient number to login table",
+    "version" : "V2",
+    "queryString" : "update x0152578 set patient_no = :patientNo where userid = :email",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "patientNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80089",
+      "required" : true
+    }, {
+      "name" : "email",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "isuri@medicalwizard.com.au",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdatePatientNoRequest",
       "method" : "PUT"
     },
     "identifiers" : [ ],

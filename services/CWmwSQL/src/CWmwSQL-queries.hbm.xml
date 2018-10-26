@@ -73,6 +73,14 @@
     <query-param name="prefix" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryUpdatePatientNo">
+        <![CDATA[
+        update x0152578 set patient_no = :patientNo where userid = :email
+        ]]>
+    <query-param name="patientNo" type="java.lang.String"/>
+    <query-param name="email" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryInsertPatientDetails">
         <![CDATA[
         insert into ptdetail(patient_no,given,surname,email,medicareno,dob) values(:patient_no,:given,:surname,:email,:medicareno,:dob)
@@ -87,20 +95,18 @@
 
     <sql-query name="qryGetUserAuth">
         <![CDATA[
-        select patient_no from  x0152578 where userid = :t_userid and password = :t_pass and dob = :t_dob
+        select patient_no from  x0152578 where userid = :t_userid and password = :t_pass
         ]]>
     <query-param name="t_userid" type="java.lang.String"/>
     <query-param name="t_pass" type="java.lang.String"/>
-    <query-param name="t_dob" type="java.sql.Date"/>
     </sql-query>
 
     <sql-query name="qryGetUserAuth__count">
         <![CDATA[
-        select count(*) from (select patient_no from  x0152578 where userid = :t_userid and password = :t_pass and dob = :t_dob) wmTempTable
+        select count(*) from (select patient_no from  x0152578 where userid = :t_userid and password = :t_pass) wmTempTable
         ]]>
     <query-param name="t_userid" type="java.lang.String"/>
     <query-param name="t_pass" type="java.lang.String"/>
-    <query-param name="t_dob" type="java.sql.Date"/>
     </sql-query>
 
     <sql-query name="qryGetVerifiedPatients">

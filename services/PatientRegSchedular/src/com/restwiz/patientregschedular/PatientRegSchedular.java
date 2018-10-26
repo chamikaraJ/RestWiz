@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.HashMap;
 import java.util.Map;
-
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 //import com.restwiz.patientregschedular.model.*;
 
 /**
@@ -96,16 +96,28 @@ public class PatientRegSchedular {
                     if(i==1){
                         logger.warn("Patient Inserted into paDetail : "+ given+" "+surname);
                       int j =  queryExecutorService.executeQryDeleteptDetailRegByIdno(idno);
+                      
+                      //Update Patient number to Login details
+                      QryUpdatePatientNoRequest ptNoUpdate = new QryUpdatePatientNoRequest();
+                      ptNoUpdate.setPatientNo(patientNo);
+                      ptNoUpdate.setEmail(email);
+                      int k = queryExecutorService.executeQryUpdatePatientNo(ptNoUpdate);
+                      if(k==1){
+                          logger.warn("Patient no updated to login table : "+ patientNo);
+                      }else{
+                          logger.error("Patient no update failed to login table : "+ patientNo);
+                      }
+                      
                       if(j==1){
                             logger.warn("Patient deleted from paDetail_reg : "+ given+" "+surname);
                             succesCount++;
                       }else{
-                          logger.warn("Patient deleting from paDetail_reg failed : "+ given+" "+surname);
+                          logger.error("Patient deleting from paDetail_reg failed : "+ given+" "+surname);
                       }
                        
                       //Need to update last patient No to NoGenCo table
                     }else{
-                         logger.warn("Patient Inserting into paDetail failed : "+ given+" "+surname);
+                         logger.error("Patient Inserting into paDetail failed : "+ given+" "+surname);
                          failedCount++;
                     }
                 }
@@ -115,9 +127,13 @@ public class PatientRegSchedular {
             
             return result;
         } catch (Exception e) {
-            logger.error("Sample java service operation has failed", e);
-            throw e;
+            logger.error("Patient registration service operation has failed", e);
+            return "Patient registration service operation has failed";
         }
+        // catch (Exception e) {
+        //     logger.error("Patient registration service operation has failed", e);
+        //     throw e;
+        // }
     }
     
          public String nextPatientNumber(Pageable pageable){

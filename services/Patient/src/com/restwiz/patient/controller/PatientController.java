@@ -6,8 +6,6 @@ package com.restwiz.patient.controller;
 import com.restwiz.patient.Patient;
 import java.lang.String;
 import org.springframework.data.domain.Pageable;
-import com.restwiz.cwmwsql.models.query.QryGetNextPatientNoResponse;
-import java.util.Map;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,19 +27,5 @@ public class PatientController {
     @ApiOperation(value = "")
     public String checkPatient(@RequestBody String patienData, Pageable pageable) {
         return patient.checkPatient(patienData, pageable);
-    }
-
-    @RequestMapping(value = "/generatePatientNo", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public Map<String, String> generatePatientNo(@RequestBody QryGetNextPatientNoResponse genCode) {
-        return patient.generatePatientNo(genCode);
-    }
-
-    @RequestMapping(value = "/nextPatientNumber", produces = "application/json", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public String nextPatientNumber(Pageable pageable) {
-        return patient.nextPatientNumber(pageable);
     }
 }
