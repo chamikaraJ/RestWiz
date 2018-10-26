@@ -32,6 +32,20 @@
     <query-param name="t_patient_no" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetCountryCode">
+        <![CDATA[
+        select code,[desc] from country where [desc]  = :countryName
+        ]]>
+    <query-param name="countryName" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetCountryCode__count">
+        <![CDATA[
+        select count(*) from (select code,[desc] from country where [desc]  = :countryName) wmTempTable
+        ]]>
+    <query-param name="countryName" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryDeleteptDetailRegByIdno">
         <![CDATA[
         delete from ptdetail_reg where idno = :idno
@@ -107,6 +121,18 @@
         ]]>
     <query-param name="t_userid" type="java.lang.String"/>
     <query-param name="t_pass" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetReferralSrc">
+        <![CDATA[
+        select * from refrlsrc
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetReferralSrc__count">
+        <![CDATA[
+        select count(*) from (select * from refrlsrc) wmTempTable
+        ]]>
     </sql-query>
 
     <sql-query name="qryGetVerifiedPatients">

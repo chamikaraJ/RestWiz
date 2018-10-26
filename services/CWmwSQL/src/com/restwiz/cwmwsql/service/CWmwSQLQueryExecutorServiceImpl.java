@@ -66,6 +66,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("qryUpdatePatient", params);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetCountryCodeResponse> executeQryGetCountryCode(String countryName, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("countryName", countryName);
+
+        return queryExecutor.executeNamedQuery("qryGetCountryCode", params, QryGetCountryCodeResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetCountryCode(String countryName, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("countryName", countryName);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetCountryCode", params, QryGetCountryCodeResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryDeleteptDetailRegByIdno(Integer idno) {
@@ -175,6 +197,26 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_pass", tpass);
 
         QueryProcedureInput queryInput = new QueryProcedureInput("qryGetUserAuth", params, QryGetUserAuthResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        return queryExecutor.executeNamedQuery("qryGetReferralSrc", params, QryGetReferralSrcResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetReferralSrc(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetReferralSrc", params, QryGetReferralSrcResponse.class);
 
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }

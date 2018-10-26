@@ -29,6 +29,55 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryGetCountryCode" : {
+    "name" : "qryGetCountryCode",
+    "description" : "get Country code by country Name",
+    "version" : "V2",
+    "queryString" : "select code,[desc] from country where [desc]  = :countryName",
+    "countQueryString" : "select count(*) from (select code,[desc] from country where [desc]  = :countryName) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "countryName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "AUSTRALIA",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetCountryCodeResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "code",
+        "fieldName" : "code",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "desc",
+        "fieldName" : "_desc",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetNextPatientNo" : {
     "name" : "qryGetNextPatientNo",
     "description" : "Get next patient No",
@@ -1145,6 +1194,65 @@
       }, {
         "name" : "IdNo",
         "fieldName" : "idNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "qryGetReferralSrc" : {
+    "name" : "qryGetReferralSrc",
+    "description" : "get referral source",
+    "version" : "V2",
+    "queryString" : "select * from refrlsrc",
+    "countQueryString" : "select count(*) from (select * from refrlsrc) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetReferralSrcResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "refsrc_id",
+        "fieldName" : "refsrcId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refsrcdesc",
+        "fieldName" : "refsrcdesc",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "sortordr",
+        "fieldName" : "sortordr",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Float",
+          "list" : false
+        }
+      }, {
+        "name" : "Idno",
+        "fieldName" : "idno",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",

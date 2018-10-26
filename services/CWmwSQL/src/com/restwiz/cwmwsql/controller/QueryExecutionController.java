@@ -55,6 +55,34 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/qryGetCountryCode", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get Country code by country Name")
+    public Page<QryGetCountryCodeResponse> executeQryGetCountryCode(@RequestParam(value = "countryName") String countryName, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetCountryCode");
+        Page<QryGetCountryCodeResponse> _result = queryService.executeQryGetCountryCode(countryName, pageable);
+        LOGGER.debug("got the result for named query: qryGetCountryCode, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetCountryCode")
+    @RequestMapping(value = "/queries/qryGetCountryCode/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetCountryCode(@RequestParam(value = "countryName") String countryName, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetCountryCode");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetCountryCode";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetCountryCode(countryName,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryDeleteptDetailRegByIdno", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "delete saved patient from reg file")
@@ -175,6 +203,34 @@ public class QueryExecutionController {
 
         String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
                         outputStream -> queryService.exportQryGetUserAuth(tuserid, tpass,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
+    @RequestMapping(value = "/queries/qryGetReferralSrc", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get referral source")
+    public Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetReferralSrc");
+        Page<QryGetReferralSrcResponse> _result = queryService.executeQryGetReferralSrc(pageable);
+        LOGGER.debug("got the result for named query: qryGetReferralSrc, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetReferralSrc")
+    @RequestMapping(value = "/queries/qryGetReferralSrc/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetReferralSrc(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetReferralSrc");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetReferralSrc";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetReferralSrc( exportOptions, pageable, outputStream));
 
         return new StringWrapper(exportedUrl);
     }
