@@ -1203,6 +1203,63 @@
       } ]
     }
   },
+  "qryGetPatientNoAndRole" : {
+    "name" : "qryGetPatientNoAndRole",
+    "description" : "get Patient no and role",
+    "version" : "V2",
+    "queryString" : "select patient_no,role from  x0152578 where userid = :t_userid and password = :t_pass",
+    "countQueryString" : "select count(*) from (select patient_no,role from  x0152578 where userid = :t_userid and password = :t_pass) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "t_userid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "chamikara@medicalwizard.com.au",
+      "required" : true
+    }, {
+      "name" : "t_pass",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Pleasechange@1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetPatientNoAndRoleResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "patient_no",
+        "fieldName" : "patientNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "role",
+        "fieldName" : "role",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetReferralSrc" : {
     "name" : "qryGetReferralSrc",
     "description" : "get referral source",

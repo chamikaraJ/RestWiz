@@ -83,6 +83,34 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryGetPatientNoAndRole", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get Patient no and role")
+    public Page<QryGetPatientNoAndRoleResponse> executeQryGetPatientNoAndRole(@RequestParam(value = "t_userid") String tuserid, @RequestParam(value = "t_pass") String tpass, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetPatientNoAndRole");
+        Page<QryGetPatientNoAndRoleResponse> _result = queryService.executeQryGetPatientNoAndRole(tuserid, tpass, pageable);
+        LOGGER.debug("got the result for named query: qryGetPatientNoAndRole, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetPatientNoAndRole")
+    @RequestMapping(value = "/queries/qryGetPatientNoAndRole/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetPatientNoAndRole(@RequestParam(value = "t_userid") String tuserid, @RequestParam(value = "t_pass") String tpass, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetPatientNoAndRole");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetPatientNoAndRole";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetPatientNoAndRole(tuserid, tpass,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryDeleteptDetailRegByIdno", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "delete saved patient from reg file")
