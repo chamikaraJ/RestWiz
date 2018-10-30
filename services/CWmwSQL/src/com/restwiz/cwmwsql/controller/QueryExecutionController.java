@@ -210,9 +210,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/qryGetUserAuth", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "User Auth")
-    public Page<QryGetUserAuthResponse> executeQryGetUserAuth(@RequestParam(value = "t_userid") String tuserid, @RequestParam(value = "t_pass") String tpass, Pageable pageable, HttpServletRequest _request) {
+    public Page<QryGetUserAuthResponse> executeQryGetUserAuth(@RequestParam(value = "t_userid") String tuserid, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: qryGetUserAuth");
-        Page<QryGetUserAuthResponse> _result = queryService.executeQryGetUserAuth(tuserid, tpass, pageable);
+        Page<QryGetUserAuthResponse> _result = queryService.executeQryGetUserAuth(tuserid, pageable);
         LOGGER.debug("got the result for named query: qryGetUserAuth, result:{}", _result);
         return _result;
     }
@@ -220,7 +220,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file url for query qryGetUserAuth")
     @RequestMapping(value = "/queries/qryGetUserAuth/export", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public StringWrapper exportQryGetUserAuth(@RequestParam(value = "t_userid") String tuserid, @RequestParam(value = "t_pass") String tpass, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+    public StringWrapper exportQryGetUserAuth(@RequestParam(value = "t_userid") String tuserid, @RequestBody ExportOptions exportOptions, Pageable pageable) {
         LOGGER.debug("Exporting named query: qryGetUserAuth");
 
         String exportedFileName = exportOptions.getFileName();
@@ -230,7 +230,7 @@ public class QueryExecutionController {
         exportedFileName += exportOptions.getExportType().getExtension();
 
         String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
-                        outputStream -> queryService.exportQryGetUserAuth(tuserid, tpass,  exportOptions, pageable, outputStream));
+                        outputStream -> queryService.exportQryGetUserAuth(tuserid,  exportOptions, pageable, outputStream));
 
         return new StringWrapper(exportedUrl);
     }

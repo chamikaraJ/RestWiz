@@ -36,7 +36,7 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest) {
-        Map<String, Object> params = new HashMap<>(24);
+        Map<String, Object> params = new HashMap<>(26);
 
         params.put("t_title", qryUpdatePatientRequest.getTtitle());
         params.put("t_given", qryUpdatePatientRequest.getTgiven());
@@ -60,6 +60,8 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_medExpiry", qryUpdatePatientRequest.getTmedExpiry());
         params.put("t_mcareRefNo", qryUpdatePatientRequest.getTmcareRefNo());
         params.put("t_claimDetails", qryUpdatePatientRequest.getTclaimDetails());
+        params.put("t_feepositn", qryUpdatePatientRequest.getTfeepositn());
+        params.put("t_dateJoined", qryUpdatePatientRequest.getTdateJoined());
         params.put("t_nextofkin", qryUpdatePatientRequest.getTnextofkin());
         params.put("t_patient_no", qryUpdatePatientRequest.getTpatientNo());
 
@@ -203,22 +205,20 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
 
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
-    public Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, String tpass, Pageable pageable) {
-        Map<String, Object> params = new HashMap<>(2);
+    public Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
 
         params.put("t_userid", tuserid);
-        params.put("t_pass", tpass);
 
         return queryExecutor.executeNamedQuery("qryGetUserAuth", params, QryGetUserAuthResponse.class, pageable);
     }
 
     @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
     @Override
-    public void exportQryGetUserAuth(String tuserid, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
-        Map<String, Object> params = new HashMap<>(2);
+    public void exportQryGetUserAuth(String tuserid, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
 
         params.put("t_userid", tuserid);
-        params.put("t_pass", tpass);
 
         QueryProcedureInput queryInput = new QueryProcedureInput("qryGetUserAuth", params, QryGetUserAuthResponse.class);
 

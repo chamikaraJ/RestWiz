@@ -22,6 +22,13 @@ public class PatientController {
     @Autowired
     private Patient patient;
 
+    @RequestMapping(value = "/fieldData", produces = "application/json", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public String addFieldData(@RequestParam(value = "patienData", required = false) String patienData, Pageable pageable) {
+        return patient.addFieldData(patienData, pageable);
+    }
+
     @RequestMapping(value = "/checkPatient", produces = "application/json", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

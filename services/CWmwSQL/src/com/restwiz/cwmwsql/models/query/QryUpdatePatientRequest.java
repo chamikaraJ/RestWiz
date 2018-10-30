@@ -83,6 +83,12 @@ public class QryUpdatePatientRequest implements Serializable {
     @JsonProperty("t_claimDetails")
     private String tclaimDetails;
 
+    @JsonProperty("t_feepositn")
+    private String tfeepositn;
+
+    @JsonProperty("t_dateJoined")
+    private Date tdateJoined;
+
     @JsonProperty("t_nextofkin")
     private String tnextofkin;
 
@@ -266,6 +272,22 @@ public class QryUpdatePatientRequest implements Serializable {
         this.tclaimDetails = tclaimDetails;
     }
 
+    public String getTfeepositn() {
+        return this.tfeepositn;
+    }
+
+    public void setTfeepositn(String tfeepositn) {
+        this.tfeepositn = tfeepositn;
+    }
+
+    public Date getTdateJoined() {
+        return this.tdateJoined;
+    }
+
+    public void setTdateJoined(Date tdateJoined) {
+        this.tdateJoined = tdateJoined;
+    }
+
     public String getTnextofkin() {
         return this.tnextofkin;
     }
@@ -309,6 +331,8 @@ public class QryUpdatePatientRequest implements Serializable {
                 Objects.equals(getTmedExpiry(), qryUpdatePatientRequest.getTmedExpiry()) &&
                 Objects.equals(getTmcareRefNo(), qryUpdatePatientRequest.getTmcareRefNo()) &&
                 Objects.equals(getTclaimDetails(), qryUpdatePatientRequest.getTclaimDetails()) &&
+                Objects.equals(getTfeepositn(), qryUpdatePatientRequest.getTfeepositn()) &&
+                Objects.equals(getTdateJoined(), qryUpdatePatientRequest.getTdateJoined()) &&
                 Objects.equals(getTnextofkin(), qryUpdatePatientRequest.getTnextofkin()) &&
                 Objects.equals(getTpatientNo(), qryUpdatePatientRequest.getTpatientNo());
     }
@@ -337,6 +361,8 @@ public class QryUpdatePatientRequest implements Serializable {
                 getTmedExpiry(),
                 getTmcareRefNo(),
                 getTclaimDetails(),
+                getTfeepositn(),
+                getTdateJoined(),
                 getTnextofkin(),
                 getTpatientNo());
     }

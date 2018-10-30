@@ -1323,8 +1323,8 @@
     "name" : "qryGetUserAuth",
     "description" : "User Auth",
     "version" : "V2",
-    "queryString" : "select patient_no from  x0152578 where userid = :t_userid and password = :t_pass",
-    "countQueryString" : "select count(*) from (select patient_no from  x0152578 where userid = :t_userid and password = :t_pass) wmTempTable",
+    "queryString" : "select patient_no from  x0152578 where userid = :t_userid",
+    "countQueryString" : "select count(*) from (select patient_no from  x0152578 where userid = :t_userid) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -1334,15 +1334,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "chamikara@medicalwizard.com.au",
-      "required" : true
-    }, {
-      "name" : "t_pass",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "Pleasechange@1",
+      "testValue" : "cj",
       "required" : true
     } ],
     "request" : {
@@ -1565,7 +1557,7 @@
     "name" : "qryUpdatePatient",
     "description" : "Update Patient Details",
     "version" : "V2",
-    "queryString" : "update ptdetail set title = :t_title, given = :t_given, surname = :t_surname, address1 = :t_address1, address2 = :t_address2, suburb=:t_suburb, postcode=:t_postcode, state = :t_state, phone_ah=:t_phone_ah, phone_bh=:t_phone_bh, mobile=:t_mobile, dob = :t_dob, medicareno = :t_medicareno, member_no=:t_member_no, email = :t_email, fundcode = :t_fundcode, birthplace=:t_birthplace,vetaffno=:t_vetafno, referalsrc=:t_refRalSrc,mediexpry=:t_medExpiry,mcare_refn=:t_mcareRefNo, claimdtls=:t_claimDetails, nextofkin=:t_nextofkin where patient_no = :t_patient_no",
+    "queryString" : "update ptdetail set title = :t_title, \ngiven = :t_given, \nsurname = :t_surname, \naddress1 = :t_address1, \naddress2 = :t_address2, \nsuburb=:t_suburb, \npostcode=:t_postcode, \nstate = :t_state, \nphone_ah=:t_phone_ah, \nphone_bh=:t_phone_bh, \nmobile=rtrim(:t_mobile+' '), \ndob = :t_dob, \nmedicareno = :t_medicareno, \nmember_no=:t_member_no, \nemail = :t_email, \nfundcode = :t_fundcode, \nbirthplace=:t_birthplace,\nvetaffno=:t_vetafno, \nreferalsrc=:t_refRalSrc,\nmediexpry=:t_medExpiry,\nmcare_refn=:t_mcareRefNo, \nclaimdtls=:t_claimDetails, \nfeepositn =:t_feepositn,\ndatejoined=:t_dateJoined,\nnextofkin=:t_nextofkin where patient_no = :t_patient_no",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -1656,7 +1648,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "a",
+      "testValue" : "11",
       "required" : false
     }, {
       "name" : "t_dob",
@@ -1745,6 +1737,22 @@
       "variableType" : "PROMPT",
       "variableName" : "",
       "testValue" : "d",
+      "required" : false
+    }, {
+      "name" : "t_feepositn",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "t_dateJoined",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2018-01-01",
       "required" : false
     }, {
       "name" : "t_nextofkin",

@@ -20,6 +20,9 @@
   }, {
     "table" : "x0152578",
     "schema" : "dbo"
+  }, {
+    "table" : "ptdetail_field_data",
+    "schema" : "dbo"
   } ],
   "schemaFilter" : [ "dbo" ],
   "impersonateUser" : false,

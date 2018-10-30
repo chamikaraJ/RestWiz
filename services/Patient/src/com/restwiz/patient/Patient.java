@@ -28,10 +28,15 @@ import org.springframework.data.domain.Pageable;
 
 import java.sql.Date;
 import org.apache.commons.lang3.*;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.io.IOException;
+
+import com.restwiz.cwmwsql.PtdetailFieldData;
+import com.restwiz.cwmwsql.service.PtdetailFieldDataService;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 //import com.restwiz.patient.model.*;
@@ -72,36 +77,85 @@ public class Patient {
   
         String patientNo = "patient not found";
         
-        JSONParser parser = new JSONParser(); 
-        try {
-          JSONObject json = (JSONObject) parser.parse(patienData);  
+        // JSONParser parser = new JSONParser(); 
+        // try {
+        //   JSONObject json = (JSONObject) parser.parse(patienData);  
           
-            String tuserid = (String) json.get("t_userid");
-            String tpass = (String) json.get("t_pass");
-            // String tdob =(String) json.get("t_dob");
+        //     String tuserid = (String) json.get("t_userid");
+        //     String tpass = (String) json.get("t_pass");
+        //     // String tdob =(String) json.get("t_dob");
         
-            System.out.println(tuserid);
-            System.out.println(tpass);
-            // System.out.println(tdob);
+        //     System.out.println(tuserid);
+        //     System.out.println(tpass);
+        //     // System.out.println(tdob);
         
         
-        // Date dateOfBirth = Date.valueOf(tdob);
+        // // Date dateOfBirth = Date.valueOf(tdob);
         
-        // Page<QryGetUserAuthResponse> res =  cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid,tpass,dateOfBirth,pageable);
-        Page<QryGetUserAuthResponse> res =  cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid,tpass,pageable);
+        // // Page<QryGetUserAuthResponse> res =  cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid,tpass,dateOfBirth,pageable);
+        // Page<QryGetUserAuthResponse> res =  cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid,tpass,pageable);
  
         
-        if(res.getContent().size()>0){
-          patientNo = res.getContent().get(0).getPatientNo();
-        }else{
+        // if(res.getContent().size()>0){
+        //   patientNo = res.getContent().get(0).getPatientNo();
+        // }else{
             
-        }
+        // }
           
-        } catch(ParseException e) {
-        } 
+        // } catch(ParseException e) {
+        // } 
         
         return patientNo;
 
+    }
+    
+    public String addFieldData(String patienData,Pageable pageable){
+        
+        String fieldName = "";
+        String dataValue= "";
+        String patientNo= "";
+
+          JSONParser parser = new JSONParser(); 
+          
+          
+        try {
+          JSONObject json = (JSONObject) parser.parse(patienData);  
+          
+            fieldName = (String) json.get("t_userid");
+            dataValue = (String) json.get("t_pass");
+            patientNo = (String) json.get("t_pass");
+            
+            PtdetailFieldData fieledData = new PtdetailFieldData();
+            fieledData.setFieldName(fieldName);
+            fieledData.setDataValue(dataValue);
+            fieledData.setPatientNo(patientNo);
+            
+        } catch(ParseException e) {
+            
+        }
+        
+        
+        ObjectMapper mapper = new ObjectMapper();
+            try {
+                Map<String, Object> map = mapper.readValue(patienData, Map.class);
+                Object obj = map.get("content");
+
+                ArrayList list = (ArrayList) obj;
+                LinkedHashMap lhm = (LinkedHashMap) list.get(0);
+                String role = lhm.get("role").toString();
+                System.out.println("role is : " + role);
+
+
+                List roles = new ArrayList();
+                roles.add(role);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            
+            
+        
+        return "";
     }
     
  

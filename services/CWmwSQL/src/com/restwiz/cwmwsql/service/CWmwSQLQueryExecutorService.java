@@ -42,9 +42,9 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest);
 
-    Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, String tpass, Pageable pageable);
+    Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, Pageable pageable);
 
-    void exportQryGetUserAuth(String tuserid, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+    void exportQryGetUserAuth(String tuserid, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
     Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable);
 
