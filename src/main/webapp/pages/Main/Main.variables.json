@@ -28,9 +28,9 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "isList" : false,
-      "target" : "Object",
-      "value" : "bind:Widgets.textarea1.datavalue"
+      "target" : "patienData",
+      "value" : "bind:Widgets.textarea1.datavalue",
+      "type" : "string"
     } ],
     "type" : "com.restwiz.cwmwsql.Ptdetail",
     "service" : "Patient",
