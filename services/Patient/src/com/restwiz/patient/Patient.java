@@ -165,7 +165,7 @@ public class Patient {
         return "";
     }
     
-    public Ptdetail updatePatient(Object patienData,Pageable pageable ){
+    public Ptdetail updatePatient(String patienData,Pageable pageable ){
         
         Ptdetail pt = new Ptdetail();
         
