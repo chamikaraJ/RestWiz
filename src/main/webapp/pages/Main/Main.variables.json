@@ -21,5 +21,31 @@
     "saveInPhonegap" : false,
     "isDefault" : true,
     "controller" : "PatientRegSchedular"
+  },
+  "svUpdatePatient" : {
+    "_id" : "wm-svUpdatePatient-wm.ServiceVariable-1541152403707",
+    "name" : "svUpdatePatient",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "isList" : false,
+      "target" : "Object",
+      "value" : "bind:Widgets.textarea1.datavalue"
+    } ],
+    "type" : "com.restwiz.cwmwsql.Ptdetail",
+    "service" : "Patient",
+    "operation" : "updatePatient",
+    "operationId" : "PatientController_updatePatient",
+    "operationType" : "put",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Patient"
   }
 }

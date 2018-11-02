@@ -211,7 +211,7 @@ public class Patient {
             e.printStackTrace();
         }
         
-        ptdetailService.create(pt);
+        ptdetailService.update(pt);
         
         
         pt = ptdetailService.update(pt);
