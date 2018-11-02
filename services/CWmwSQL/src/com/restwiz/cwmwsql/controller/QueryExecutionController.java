@@ -45,6 +45,64 @@ public class QueryExecutionController {
     @Autowired
 	private ExportedFileManager exportedFileManager;
 
+    @RequestMapping(value = "/queries/qryUpdatePatientNo", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "update patient number to login table")
+    public IntegerWrapper executeQryUpdatePatientNo(@Valid @RequestBody QryUpdatePatientNoRequest qryUpdatePatientNoRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryUpdatePatientNo");
+        Integer _result = queryService.executeQryUpdatePatientNo(qryUpdatePatientNoRequest);
+        LOGGER.debug("got the result for named query: qryUpdatePatientNo, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
+    @RequestMapping(value = "/queries/qryInsertPatientDetails", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Insert patient details to ptdetail")
+    public IntegerWrapper executeQryInsertPatientDetails(@Valid @RequestBody QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryInsertPatientDetails");
+        Integer _result = queryService.executeQryInsertPatientDetails(qryInsertPatientDetailsRequest);
+        LOGGER.debug("got the result for named query: qryInsertPatientDetails, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
+    @RequestMapping(value = "/queries/qryGetReferralSrc", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get referral source")
+    public Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetReferralSrc");
+        Page<QryGetReferralSrcResponse> _result = queryService.executeQryGetReferralSrc(pageable);
+        LOGGER.debug("got the result for named query: qryGetReferralSrc, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetReferralSrc")
+    @RequestMapping(value = "/queries/qryGetReferralSrc/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetReferralSrc(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetReferralSrc");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetReferralSrc";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetReferralSrc( exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
+    @RequestMapping(value = "/queries/qryUpdatePtDetailRegStatus", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update ptdetailReg status")
+    public IntegerWrapper executeQryUpdatePtDetailRegStatus(@Valid @RequestBody QryUpdatePtDetailRegStatusRequest qryUpdatePtDetailRegStatusRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryUpdatePtDetailRegStatus");
+        Integer _result = queryService.executeQryUpdatePtDetailRegStatus(qryUpdatePtDetailRegStatusRequest);
+        LOGGER.debug("got the result for named query: qryUpdatePtDetailRegStatus, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/qryUpdatePatient", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Update Patient Details")
@@ -187,26 +245,6 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
-    @RequestMapping(value = "/queries/qryUpdatePatientNo", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "update patient number to login table")
-    public IntegerWrapper executeQryUpdatePatientNo(@Valid @RequestBody QryUpdatePatientNoRequest qryUpdatePatientNoRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: qryUpdatePatientNo");
-        Integer _result = queryService.executeQryUpdatePatientNo(qryUpdatePatientNoRequest);
-        LOGGER.debug("got the result for named query: qryUpdatePatientNo, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
-    @RequestMapping(value = "/queries/qryInsertPatientDetails", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Insert patient details to ptdetail")
-    public IntegerWrapper executeQryInsertPatientDetails(@Valid @RequestBody QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: qryInsertPatientDetails");
-        Integer _result = queryService.executeQryInsertPatientDetails(qryInsertPatientDetailsRequest);
-        LOGGER.debug("got the result for named query: qryInsertPatientDetails, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
     @RequestMapping(value = "/queries/qryGetUserAuth", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "User Auth")
@@ -231,34 +269,6 @@ public class QueryExecutionController {
 
         String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
                         outputStream -> queryService.exportQryGetUserAuth(tuserid,  exportOptions, pageable, outputStream));
-
-        return new StringWrapper(exportedUrl);
-    }
-
-    @RequestMapping(value = "/queries/qryGetReferralSrc", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "get referral source")
-    public Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: qryGetReferralSrc");
-        Page<QryGetReferralSrcResponse> _result = queryService.executeQryGetReferralSrc(pageable);
-        LOGGER.debug("got the result for named query: qryGetReferralSrc, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file url for query qryGetReferralSrc")
-    @RequestMapping(value = "/queries/qryGetReferralSrc/export", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public StringWrapper exportQryGetReferralSrc(@RequestBody ExportOptions exportOptions, Pageable pageable) {
-        LOGGER.debug("Exporting named query: qryGetReferralSrc");
-
-        String exportedFileName = exportOptions.getFileName();
-        if(exportedFileName == null || exportedFileName.isEmpty()) {
-            exportedFileName = "qryGetReferralSrc";
-        }
-        exportedFileName += exportOptions.getExportType().getExtension();
-
-        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
-                        outputStream -> queryService.exportQryGetReferralSrc( exportOptions, pageable, outputStream));
 
         return new StringWrapper(exportedUrl);
     }

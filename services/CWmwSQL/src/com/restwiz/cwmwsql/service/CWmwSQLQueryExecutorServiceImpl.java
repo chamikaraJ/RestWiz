@@ -35,6 +35,63 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
 
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
+    public Integer executeQryUpdatePatientNo(QryUpdatePatientNoRequest qryUpdatePatientNoRequest) {
+        Map<String, Object> params = new HashMap<>(2);
+
+        params.put("patientNo", qryUpdatePatientNoRequest.getPatientNo());
+        params.put("email", qryUpdatePatientNoRequest.getEmail());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryUpdatePatientNo", params);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest) {
+        Map<String, Object> params = new HashMap<>(6);
+
+        params.put("patient_no", qryInsertPatientDetailsRequest.getPatientNo());
+        params.put("given", qryInsertPatientDetailsRequest.getGiven());
+        params.put("surname", qryInsertPatientDetailsRequest.getSurname());
+        params.put("email", qryInsertPatientDetailsRequest.getEmail());
+        params.put("medicareno", qryInsertPatientDetailsRequest.getMedicareno());
+        params.put("dob", qryInsertPatientDetailsRequest.getDob());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryInsertPatientDetails", params);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        return queryExecutor.executeNamedQuery("qryGetReferralSrc", params, QryGetReferralSrcResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetReferralSrc(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetReferralSrc", params, QryGetReferralSrcResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryUpdatePtDetailRegStatus(QryUpdatePtDetailRegStatusRequest qryUpdatePtDetailRegStatusRequest) {
+        Map<String, Object> params = new HashMap<>(2);
+
+        params.put("t_ptdetailStatus", qryUpdatePtDetailRegStatusRequest.getTptdetailStatus());
+        params.put("t_idno", qryUpdatePtDetailRegStatusRequest.getTidno());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryUpdatePtDetailRegStatus", params);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
     public Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest) {
         Map<String, Object> params = new HashMap<>(26);
 
@@ -177,32 +234,6 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("qryUpdateNextPtGenCode", params);
     }
 
-    @Transactional(value = "CWmwSQLTransactionManager")
-    @Override
-    public Integer executeQryUpdatePatientNo(QryUpdatePatientNoRequest qryUpdatePatientNoRequest) {
-        Map<String, Object> params = new HashMap<>(2);
-
-        params.put("patientNo", qryUpdatePatientNoRequest.getPatientNo());
-        params.put("email", qryUpdatePatientNoRequest.getEmail());
-
-        return queryExecutor.executeNamedQueryForUpdate("qryUpdatePatientNo", params);
-    }
-
-    @Transactional(value = "CWmwSQLTransactionManager")
-    @Override
-    public Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest) {
-        Map<String, Object> params = new HashMap<>(6);
-
-        params.put("patient_no", qryInsertPatientDetailsRequest.getPatientNo());
-        params.put("given", qryInsertPatientDetailsRequest.getGiven());
-        params.put("surname", qryInsertPatientDetailsRequest.getSurname());
-        params.put("email", qryInsertPatientDetailsRequest.getEmail());
-        params.put("medicareno", qryInsertPatientDetailsRequest.getMedicareno());
-        params.put("dob", qryInsertPatientDetailsRequest.getDob());
-
-        return queryExecutor.executeNamedQueryForUpdate("qryInsertPatientDetails", params);
-    }
-
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
     public Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, Pageable pageable) {
@@ -221,26 +252,6 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_userid", tuserid);
 
         QueryProcedureInput queryInput = new QueryProcedureInput("qryGetUserAuth", params, QryGetUserAuthResponse.class);
-
-        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
-    }
-
-    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
-    @Override
-    public Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable) {
-        Map<String, Object> params = new HashMap<>(0);
-
-
-        return queryExecutor.executeNamedQuery("qryGetReferralSrc", params, QryGetReferralSrcResponse.class, pageable);
-    }
-
-    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
-    @Override
-    public void exportQryGetReferralSrc(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
-        Map<String, Object> params = new HashMap<>(0);
-
-
-        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetReferralSrc", params, QryGetReferralSrcResponse.class);
 
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }

@@ -16,6 +16,16 @@ import com.restwiz.cwmwsql.models.query.*;
 
 public interface CWmwSQLQueryExecutorService {
 
+    Integer executeQryUpdatePatientNo(QryUpdatePatientNoRequest qryUpdatePatientNoRequest);
+
+    Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest);
+
+    Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable);
+
+    void exportQryGetReferralSrc(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Integer executeQryUpdatePtDetailRegStatus(QryUpdatePtDetailRegStatusRequest qryUpdatePtDetailRegStatusRequest);
+
     Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest);
 
     Page<QryGetCountryCodeResponse> executeQryGetCountryCode(String countryName, Pageable pageable);
@@ -38,17 +48,9 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryUpdateNextPtGenCode(QryUpdateNextPtGenCodeRequest qryUpdateNextPtGenCodeRequest);
 
-    Integer executeQryUpdatePatientNo(QryUpdatePatientNoRequest qryUpdatePatientNoRequest);
-
-    Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest);
-
     Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, Pageable pageable);
 
     void exportQryGetUserAuth(String tuserid, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
-
-    Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable);
-
-    void exportQryGetReferralSrc(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
     Page<QryGetVerifiedPatientsResponse> executeQryGetVerifiedPatients(Pageable pageable);
 

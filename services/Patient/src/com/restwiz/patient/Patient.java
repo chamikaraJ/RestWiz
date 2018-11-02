@@ -158,6 +158,8 @@ public class Patient {
         return "";
     }
     
- 
+    private void updateRegData(){
+        
+    }
 
 }

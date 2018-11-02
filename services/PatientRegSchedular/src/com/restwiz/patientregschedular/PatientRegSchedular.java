@@ -60,13 +60,13 @@ public class PatientRegSchedular {
         int succesCount = 0;
         int failedCount = 0;
         try {
-            if(firstMsg){
-            logger.warn("Starting patient resistration service");
-                firstMsg = false;
-            }
+            // if(firstMsg){
+            // logger.warn("Starting patient resistration service");
+            //     firstMsg = false;
+            // }
         
             
-            //Get Patient list to be save
+            //Get Patient list to be saved
             Page<QryGetVerifiedPatientsResponse> resultSet =  queryExecutorService.executeQryGetVerifiedPatients(pageable);
             
             if(resultSet.getContent().size()>0){
@@ -95,10 +95,23 @@ public class PatientRegSchedular {
                     //Insert in to ptdetail    
                     int i = queryExecutorService.executeQryInsertPatientDetails(newPatient);
                     
-                    //delete from reg file if successfuly inserted to ptdetail
+                    
                     if(i==1){
                         logger.warn("Patient Inserted into paDetail : "+ given+" "+surname);
-                      int j =  queryExecutorService.executeQryDeleteptDetailRegByIdno(idno);
+                        //delete from reg file if successfuly inserted to ptdetail
+                    //   int j =  queryExecutorService.executeQryDeleteptDetailRegByIdno(idno);
+                    //   if(j==1){
+                    //         logger.warn("Patient deleted from paDetail_reg : "+ given+" "+surname);
+                    //         succesCount++;
+                    //   }else{
+                    //       logger.error("Patient deleting from paDetail_reg failed : "+ given+" "+surname);
+                    //   }
+                    int j = updatePtDetailStatus(idno);
+                    if(j==1){
+                        logger.warn("Patient detail status updated : "+ idno);
+                    }else{
+                        logger.error("Patient detail status update failed : "+ idno);
+                    }
                       
                       //Update Patient number to Login details
                       QryUpdatePatientNoRequest ptNoUpdate = new QryUpdatePatientNoRequest();
@@ -111,14 +124,8 @@ public class PatientRegSchedular {
                           logger.error("Patient no update failed to login table : "+ patientNo);
                       }
                       
-                      if(j==1){
-                            logger.warn("Patient deleted from paDetail_reg : "+ given+" "+surname);
-                            succesCount++;
-                      }else{
-                          logger.error("Patient deleting from paDetail_reg failed : "+ given+" "+surname);
-                      }
+                      
                        
-                      //Need to update last patient No to NoGenCo table
                     }else{
                          logger.error("Patient Inserting into paDetail failed : "+ given+" "+surname);
                          failedCount++;
@@ -140,6 +147,7 @@ public class PatientRegSchedular {
     }
     
          public String nextPatientNumber(Pageable pageable){
+             //When issue the next to be used  this will generate the next number also
             String nextPatientNo = "Patient No. not found";
             Page<QryGetNextPatientNoResponse> res = queryExecutorService.executeQryGetNextPatientNo(pageable);
     
@@ -233,6 +241,14 @@ public class PatientRegSchedular {
 
         return generatedValue;
         
+    }
+    
+    private  Integer updatePtDetailStatus(Integer idno){
+        QryUpdatePtDetailRegStatusRequest req = new QryUpdatePtDetailRegStatusRequest();
+        req.setTptdetailStatus("UPDATED_TO_PTDETAIL");
+        req.setTidno(idno);
+        Integer res = queryExecutorService.executeQryUpdatePtDetailRegStatus(req);
+        return res;
     }
 
 }

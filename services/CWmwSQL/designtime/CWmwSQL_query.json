@@ -1820,5 +1820,43 @@
       "returns" : "ENTITY",
       "responseType" : "SINGLE"
     }
+  },
+  "qryUpdatePtDetailRegStatus" : {
+    "name" : "qryUpdatePtDetailRegStatus",
+    "description" : "Update ptdetailReg status",
+    "version" : "V2",
+    "queryString" : "update ptdetail_reg set ptdetailStatus=:t_ptdetailStatus where idno =:t_idno",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "t_ptdetailStatus",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "DATA_UPDATED",
+      "required" : true
+    }, {
+      "name" : "t_idno",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "5",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdatePtDetailRegStatusRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
   }
 }

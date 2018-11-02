@@ -2,6 +2,46 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+    <sql-query name="qryUpdatePatientNo">
+        <![CDATA[
+        update x0152578 set patient_no = :patientNo where userid = :email
+        ]]>
+    <query-param name="patientNo" type="java.lang.String"/>
+    <query-param name="email" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryInsertPatientDetails">
+        <![CDATA[
+        insert into ptdetail(patient_no,given,surname,email,medicareno,dob) values(:patient_no,:given,:surname,:email,:medicareno,:dob)
+        ]]>
+    <query-param name="patient_no" type="java.lang.String"/>
+    <query-param name="given" type="java.lang.String"/>
+    <query-param name="surname" type="java.lang.String"/>
+    <query-param name="email" type="java.lang.String"/>
+    <query-param name="medicareno" type="java.lang.String"/>
+    <query-param name="dob" type="java.sql.Date"/>
+    </sql-query>
+
+    <sql-query name="qryGetReferralSrc">
+        <![CDATA[
+        select * from refrlsrc
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetReferralSrc__count">
+        <![CDATA[
+        select count(*) from (select * from refrlsrc) wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryUpdatePtDetailRegStatus">
+        <![CDATA[
+        update ptdetail_reg set ptdetailStatus=:t_ptdetailStatus where idno =:t_idno
+        ]]>
+    <query-param name="t_ptdetailStatus" type="java.lang.String"/>
+    <query-param name="t_idno" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="qryUpdatePatient">
         <![CDATA[
         update ptdetail set title = :t_title, 
@@ -129,26 +169,6 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
     <query-param name="prefix" type="java.lang.String"/>
     </sql-query>
 
-    <sql-query name="qryUpdatePatientNo">
-        <![CDATA[
-        update x0152578 set patient_no = :patientNo where userid = :email
-        ]]>
-    <query-param name="patientNo" type="java.lang.String"/>
-    <query-param name="email" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryInsertPatientDetails">
-        <![CDATA[
-        insert into ptdetail(patient_no,given,surname,email,medicareno,dob) values(:patient_no,:given,:surname,:email,:medicareno,:dob)
-        ]]>
-    <query-param name="patient_no" type="java.lang.String"/>
-    <query-param name="given" type="java.lang.String"/>
-    <query-param name="surname" type="java.lang.String"/>
-    <query-param name="email" type="java.lang.String"/>
-    <query-param name="medicareno" type="java.lang.String"/>
-    <query-param name="dob" type="java.sql.Date"/>
-    </sql-query>
-
     <sql-query name="qryGetUserAuth">
         <![CDATA[
         select patient_no from  x0152578 where userid = :t_userid
@@ -161,18 +181,6 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
         select count(*) from (select patient_no from  x0152578 where userid = :t_userid) wmTempTable
         ]]>
     <query-param name="t_userid" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetReferralSrc">
-        <![CDATA[
-        select * from refrlsrc
-        ]]>
-    </sql-query>
-
-    <sql-query name="qryGetReferralSrc__count">
-        <![CDATA[
-        select count(*) from (select * from refrlsrc) wmTempTable
-        ]]>
     </sql-query>
 
     <sql-query name="qryGetVerifiedPatients">

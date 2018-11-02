@@ -18,10 +18,13 @@
     "table" : "ptdetail_reg",
     "schema" : "dbo"
   }, {
-    "table" : "x0152578",
+    "table" : "ptcharacters",
     "schema" : "dbo"
   }, {
     "table" : "ptdetail_field_data",
+    "schema" : "dbo"
+  }, {
+    "table" : "x0152578",
     "schema" : "dbo"
   } ],
   "schemaFilter" : [ "dbo" ],
