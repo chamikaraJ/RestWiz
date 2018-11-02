@@ -60,10 +60,10 @@ public class PatientRegSchedular {
         int succesCount = 0;
         int failedCount = 0;
         try {
-            // if(firstMsg){
-            // logger.warn("Starting patient resistration service");
-            //     firstMsg = false;
-            // }
+            if(firstMsg){
+            logger.warn("Starting patient resistration service");
+                firstMsg = false;
+            }
         
             
             //Get Patient list to be saved
