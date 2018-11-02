@@ -38,6 +38,10 @@ import com.restwiz.cwmwsql.service.PtdetailFieldDataService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.restwiz.cwmwsql.Ptdetail;
+import com.restwiz.cwmwsql.service.PtdetailService;
+import java.time.LocalDateTime;
+
 
 //import com.restwiz.patient.model.*;
 
@@ -62,6 +66,9 @@ public class Patient {
     	@Autowired
 	private CWmwSQLQueryExecutorService cWmwSQLQueryExecutorService;
     // CWmwSQLQueryExecutorService
+    
+    @Autowired
+    private PtdetailService ptdetailService;
 
     /**
      * This is sample java operation that accepts an input from the caller and responds with "Hello".
@@ -158,8 +165,66 @@ public class Patient {
         return "";
     }
     
-    private void updateRegData(){
+    public Ptdetail updatePatient(Object patienData,Pageable pageable ){
         
+        Ptdetail pt = new Ptdetail();
+        
+        JSONParser parser = new JSONParser();
+          
+        try {
+          JSONObject json = (JSONObject) parser.parse(patienData.toString());  
+
+            pt.setPatientNo((String) json.get("t_patient_no"));
+            pt.setTitle((String) json.get("t_title"));
+            pt.setGiven((String) json.get("t_given"));
+            pt.setSurname((String) json.get("t_surname"));
+            pt.setAddress1((String) json.get("t_address1"));
+            pt.setAddress2((String) json.get("t_address2"));
+            pt.setSuburb((String) json.get("t_suburb"));
+            pt.setState((String) json.get("t_postcode"));
+            pt.setPostcode((String) json.get("t_state" ));
+            pt.setPhoneAh((String) json.get("t_phone_ah"));
+            pt.setPhoneBh((String) json.get("t_phone_bh" ));
+            pt.setMobile((String) json.get("t_mobile"));
+            String dob = (String) json.get("t_dob");
+            LocalDateTime ldob = getLocalDateTime(dob);
+            pt.setDob(ldob);
+            pt.setMedicareno((String) json.get("t_medicareno"));
+            pt.setMemberNo((String) json.get("t_member_no"));
+            pt.setEmail((String) json.get("t_email" ));
+            pt.setFundcode((String) json.get("t_fundcode" ));
+            pt.setBirthplace((String) json.get("t_birthplace"));
+            pt.setVetaffno((String) json.get("t_vetafno"));
+            pt.setReferalsrc((String) json.get("t_refRalSrc"));
+            String exp = (String) json.get("t_medExpiry");
+            LocalDateTime lexp = getLocalDateTime(exp);
+            pt.setMediexpry(lexp);
+            pt.setMcareRefn((String) json.get("t_mcareRefNo"));
+            pt.setClaimdtls((String) json.get("t_claimDetail"));
+            pt.setNextofkin((String) json.get("t_nextofkin"));
+            pt.setFeepositn((byte) json.get("t_feepositn"));
+            String joinDt = (String) json.get("t_dateJoined");
+            LocalDateTime ljoinDt = getLocalDateTime(joinDt);
+            pt.setDatejoined(ljoinDt);
+   
+        } catch(ParseException e) {
+            e.printStackTrace();
+        }
+        
+        ptdetailService.create(pt);
+        
+        
+        pt = ptdetailService.update(pt);
+        return pt;
+    }
+    
+     private LocalDateTime getLocalDateTime(String sdate){
+        int year = new Integer(sdate.substring(0,4));
+        int month = new Integer(sdate.substring(5,7));
+        int date = new Integer(sdate.substring(8,10));
+        int hh = new Integer(sdate.substring(11,13));
+        int mm = new Integer(sdate.substring(14,16));
+        return  LocalDateTime.of(year,month,date,hh,mm);
     }
 
 }

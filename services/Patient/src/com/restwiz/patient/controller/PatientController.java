@@ -6,6 +6,8 @@ package com.restwiz.patient.controller;
 import com.restwiz.patient.Patient;
 import java.lang.String;
 import org.springframework.data.domain.Pageable;
+import java.lang.Object;
+import com.restwiz.cwmwsql.Ptdetail;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +36,12 @@ public class PatientController {
     @ApiOperation(value = "")
     public String checkPatient(@RequestBody String patienData, Pageable pageable) {
         return patient.checkPatient(patienData, pageable);
+    }
+
+    @RequestMapping(value = "/patient", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Ptdetail updatePatient(@RequestBody Object patienData, Pageable pageable) {
+        return patient.updatePatient(patienData, pageable);
     }
 }
