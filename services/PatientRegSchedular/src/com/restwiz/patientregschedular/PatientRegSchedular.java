@@ -80,7 +80,7 @@ public class PatientRegSchedular {
                     String email = res.getEmail();
                     Date dob = res.getDob();
                   
-                    //Get Next Patient No
+                    //Get new Patient No
                     String patientNo = nextPatientNumber(pageable);
                     
                     QryInsertPatientDetailsRequest newPatient = new QryInsertPatientDetailsRequest();
@@ -106,7 +106,7 @@ public class PatientRegSchedular {
                     //   }else{
                     //       logger.error("Patient deleting from paDetail_reg failed : "+ given+" "+surname);
                     //   }
-                    int j = updatePtDetailStatus(idno);
+                    int j = updatePtDetailStatus(idno,patientNo);
                     if(j==1){
                         logger.warn("Patient detail status updated : "+ idno);
                     }else{
@@ -123,9 +123,6 @@ public class PatientRegSchedular {
                       }else{
                           logger.error("Patient no update failed to login table : "+ patientNo);
                       }
-                      
-                      
-                       
                     }else{
                          logger.error("Patient Inserting into paDetail failed : "+ given+" "+surname);
                          failedCount++;
@@ -243,9 +240,10 @@ public class PatientRegSchedular {
         
     }
     
-    private  Integer updatePtDetailStatus(Integer idno){
+    private  Integer updatePtDetailStatus(Integer idno,String patientNo){
         QryUpdatePtDetailRegStatusRequest req = new QryUpdatePtDetailRegStatusRequest();
         req.setTptdetailStatus("UPDATED_TO_PTDETAIL");
+        req.setTpatientno(patientNo);
         req.setTidno(idno);
         Integer res = queryExecutorService.executeQryUpdatePtDetailRegStatus(req);
         return res;

@@ -45,9 +45,10 @@
 
     <sql-query name="qryUpdatePtDetailRegStatus">
         <![CDATA[
-        update ptdetail_reg set ptdetailStatus=:t_ptdetailStatus where idno =:t_idno
+        update ptdetail_reg set ptdetailStatus=:t_ptdetailStatus,patient_no = :t_patientno where idno =:t_idno
         ]]>
     <query-param name="t_ptdetailStatus" type="java.lang.String"/>
+    <query-param name="t_patientno" type="java.lang.String"/>
     <query-param name="t_idno" type="java.lang.Integer"/>
     </sql-query>
 
@@ -249,13 +250,13 @@ where patient_no = :t_patientno
 
     <sql-query name="qryGetVerifiedPatients">
         <![CDATA[
-        select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED'
+        select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED' and ptdetailStatus is null
         ]]>
     </sql-query>
 
     <sql-query name="qryGetVerifiedPatients__count">
         <![CDATA[
-        select count(*) from (select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED') wmTempTable
+        select count(*) from (select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED' and ptdetailStatus is null) wmTempTable
         ]]>
     </sql-query>
 

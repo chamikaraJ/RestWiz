@@ -94,9 +94,10 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdatePtDetailRegStatus(QryUpdatePtDetailRegStatusRequest qryUpdatePtDetailRegStatusRequest) {
-        Map<String, Object> params = new HashMap<>(2);
+        Map<String, Object> params = new HashMap<>(3);
 
         params.put("t_ptdetailStatus", qryUpdatePtDetailRegStatusRequest.getTptdetailStatus());
+        params.put("t_patientno", qryUpdatePtDetailRegStatusRequest.getTpatientno());
         params.put("t_idno", qryUpdatePtDetailRegStatusRequest.getTidno());
 
         return queryExecutor.executeNamedQueryForUpdate("qryUpdatePtDetailRegStatus", params);

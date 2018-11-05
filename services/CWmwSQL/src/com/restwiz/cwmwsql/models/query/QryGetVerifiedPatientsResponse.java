@@ -36,6 +36,84 @@ public class QryGetVerifiedPatientsResponse implements Serializable {
     @ColumnAlias("ptStatus")
     private String ptStatus;
 
+    @ColumnAlias("famDrTitle")
+    private String famDrTitle;
+
+    @ColumnAlias("famDrGiven")
+    private String famDrGiven;
+
+    @ColumnAlias("famDrSurname")
+    private String famDrSurname;
+
+    @ColumnAlias("famDrProviderNo")
+    private String famDrProviderNo;
+
+    @ColumnAlias("famDrMedicareCenter")
+    private String famDrMedicareCenter;
+
+    @ColumnAlias("famDrAdr1")
+    private String famDrAdr1;
+
+    @ColumnAlias("famDrAdr2")
+    private String famDrAdr2;
+
+    @ColumnAlias("famDrSuburb")
+    private String famDrSuburb;
+
+    @ColumnAlias("famDrState")
+    private String famDrState;
+
+    @ColumnAlias("famDrPostCode")
+    private String famDrPostCode;
+
+    @ColumnAlias("refDrTitle")
+    private String refDrTitle;
+
+    @ColumnAlias("refDrGiven")
+    private String refDrGiven;
+
+    @ColumnAlias("refDrSurname")
+    private String refDrSurname;
+
+    @ColumnAlias("refDrProviderNo")
+    private String refDrProviderNo;
+
+    @ColumnAlias("refDrMedicareCenter")
+    private String refDrMedicareCenter;
+
+    @ColumnAlias("refDrAdr1")
+    private String refDrAdr1;
+
+    @ColumnAlias("refDrAdr2")
+    private String refDrAdr2;
+
+    @ColumnAlias("refDrSuburb")
+    private String refDrSuburb;
+
+    @ColumnAlias("refDrState")
+    private String refDrState;
+
+    @ColumnAlias("refDrPostCode")
+    private String refDrPostCode;
+
+    @ColumnAlias("nokGiven")
+    private String nokGiven;
+
+    @ColumnAlias("nokSUrname")
+    private String nokSurname;
+
+    @ColumnAlias("nokRelationship")
+    private String nokRelationship;
+
+    @ColumnAlias("nokContactNo")
+    private String nokContactNo;
+
+    @ColumnAlias("patient_no")
+    private String patientNo;
+
+    @ColumnAlias("ptdetailStatus")
+    private String ptdetailStatus;
+
     public Integer getIdno() {
         return this.idno;
     }
@@ -92,6 +170,214 @@ public class QryGetVerifiedPatientsResponse implements Serializable {
         this.ptStatus = ptStatus;
     }
 
+    public String getFamDrTitle() {
+        return this.famDrTitle;
+    }
+
+    public void setFamDrTitle(String famDrTitle) {
+        this.famDrTitle = famDrTitle;
+    }
+
+    public String getFamDrGiven() {
+        return this.famDrGiven;
+    }
+
+    public void setFamDrGiven(String famDrGiven) {
+        this.famDrGiven = famDrGiven;
+    }
+
+    public String getFamDrSurname() {
+        return this.famDrSurname;
+    }
+
+    public void setFamDrSurname(String famDrSurname) {
+        this.famDrSurname = famDrSurname;
+    }
+
+    public String getFamDrProviderNo() {
+        return this.famDrProviderNo;
+    }
+
+    public void setFamDrProviderNo(String famDrProviderNo) {
+        this.famDrProviderNo = famDrProviderNo;
+    }
+
+    public String getFamDrMedicareCenter() {
+        return this.famDrMedicareCenter;
+    }
+
+    public void setFamDrMedicareCenter(String famDrMedicareCenter) {
+        this.famDrMedicareCenter = famDrMedicareCenter;
+    }
+
+    public String getFamDrAdr1() {
+        return this.famDrAdr1;
+    }
+
+    public void setFamDrAdr1(String famDrAdr1) {
+        this.famDrAdr1 = famDrAdr1;
+    }
+
+    public String getFamDrAdr2() {
+        return this.famDrAdr2;
+    }
+
+    public void setFamDrAdr2(String famDrAdr2) {
+        this.famDrAdr2 = famDrAdr2;
+    }
+
+    public String getFamDrSuburb() {
+        return this.famDrSuburb;
+    }
+
+    public void setFamDrSuburb(String famDrSuburb) {
+        this.famDrSuburb = famDrSuburb;
+    }
+
+    public String getFamDrState() {
+        return this.famDrState;
+    }
+
+    public void setFamDrState(String famDrState) {
+        this.famDrState = famDrState;
+    }
+
+    public String getFamDrPostCode() {
+        return this.famDrPostCode;
+    }
+
+    public void setFamDrPostCode(String famDrPostCode) {
+        this.famDrPostCode = famDrPostCode;
+    }
+
+    public String getRefDrTitle() {
+        return this.refDrTitle;
+    }
+
+    public void setRefDrTitle(String refDrTitle) {
+        this.refDrTitle = refDrTitle;
+    }
+
+    public String getRefDrGiven() {
+        return this.refDrGiven;
+    }
+
+    public void setRefDrGiven(String refDrGiven) {
+        this.refDrGiven = refDrGiven;
+    }
+
+    public String getRefDrSurname() {
+        return this.refDrSurname;
+    }
+
+    public void setRefDrSurname(String refDrSurname) {
+        this.refDrSurname = refDrSurname;
+    }
+
+    public String getRefDrProviderNo() {
+        return this.refDrProviderNo;
+    }
+
+    public void setRefDrProviderNo(String refDrProviderNo) {
+        this.refDrProviderNo = refDrProviderNo;
+    }
+
+    public String getRefDrMedicareCenter() {
+        return this.refDrMedicareCenter;
+    }
+
+    public void setRefDrMedicareCenter(String refDrMedicareCenter) {
+        this.refDrMedicareCenter = refDrMedicareCenter;
+    }
+
+    public String getRefDrAdr1() {
+        return this.refDrAdr1;
+    }
+
+    public void setRefDrAdr1(String refDrAdr1) {
+        this.refDrAdr1 = refDrAdr1;
+    }
+
+    public String getRefDrAdr2() {
+        return this.refDrAdr2;
+    }
+
+    public void setRefDrAdr2(String refDrAdr2) {
+        this.refDrAdr2 = refDrAdr2;
+    }
+
+    public String getRefDrSuburb() {
+        return this.refDrSuburb;
+    }
+
+    public void setRefDrSuburb(String refDrSuburb) {
+        this.refDrSuburb = refDrSuburb;
+    }
+
+    public String getRefDrState() {
+        return this.refDrState;
+    }
+
+    public void setRefDrState(String refDrState) {
+        this.refDrState = refDrState;
+    }
+
+    public String getRefDrPostCode() {
+        return this.refDrPostCode;
+    }
+
+    public void setRefDrPostCode(String refDrPostCode) {
+        this.refDrPostCode = refDrPostCode;
+    }
+
+    public String getNokGiven() {
+        return this.nokGiven;
+    }
+
+    public void setNokGiven(String nokGiven) {
+        this.nokGiven = nokGiven;
+    }
+
+    public String getNokSurname() {
+        return this.nokSurname;
+    }
+
+    public void setNokSurname(String nokSurname) {
+        this.nokSurname = nokSurname;
+    }
+
+    public String getNokRelationship() {
+        return this.nokRelationship;
+    }
+
+    public void setNokRelationship(String nokRelationship) {
+        this.nokRelationship = nokRelationship;
+    }
+
+    public String getNokContactNo() {
+        return this.nokContactNo;
+    }
+
+    public void setNokContactNo(String nokContactNo) {
+        this.nokContactNo = nokContactNo;
+    }
+
+    public String getPatientNo() {
+        return this.patientNo;
+    }
+
+    public void setPatientNo(String patientNo) {
+        this.patientNo = patientNo;
+    }
+
+    public String getPtdetailStatus() {
+        return this.ptdetailStatus;
+    }
+
+    public void setPtdetailStatus(String ptdetailStatus) {
+        this.ptdetailStatus = ptdetailStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,7 +389,33 @@ public class QryGetVerifiedPatientsResponse implements Serializable {
                 Objects.equals(getMedicareno(), qryGetVerifiedPatientsResponse.getMedicareno()) &&
                 Objects.equals(getEmail(), qryGetVerifiedPatientsResponse.getEmail()) &&
                 Objects.equals(getDob(), qryGetVerifiedPatientsResponse.getDob()) &&
-                Objects.equals(getPtStatus(), qryGetVerifiedPatientsResponse.getPtStatus());
+                Objects.equals(getPtStatus(), qryGetVerifiedPatientsResponse.getPtStatus()) &&
+                Objects.equals(getFamDrTitle(), qryGetVerifiedPatientsResponse.getFamDrTitle()) &&
+                Objects.equals(getFamDrGiven(), qryGetVerifiedPatientsResponse.getFamDrGiven()) &&
+                Objects.equals(getFamDrSurname(), qryGetVerifiedPatientsResponse.getFamDrSurname()) &&
+                Objects.equals(getFamDrProviderNo(), qryGetVerifiedPatientsResponse.getFamDrProviderNo()) &&
+                Objects.equals(getFamDrMedicareCenter(), qryGetVerifiedPatientsResponse.getFamDrMedicareCenter()) &&
+                Objects.equals(getFamDrAdr1(), qryGetVerifiedPatientsResponse.getFamDrAdr1()) &&
+                Objects.equals(getFamDrAdr2(), qryGetVerifiedPatientsResponse.getFamDrAdr2()) &&
+                Objects.equals(getFamDrSuburb(), qryGetVerifiedPatientsResponse.getFamDrSuburb()) &&
+                Objects.equals(getFamDrState(), qryGetVerifiedPatientsResponse.getFamDrState()) &&
+                Objects.equals(getFamDrPostCode(), qryGetVerifiedPatientsResponse.getFamDrPostCode()) &&
+                Objects.equals(getRefDrTitle(), qryGetVerifiedPatientsResponse.getRefDrTitle()) &&
+                Objects.equals(getRefDrGiven(), qryGetVerifiedPatientsResponse.getRefDrGiven()) &&
+                Objects.equals(getRefDrSurname(), qryGetVerifiedPatientsResponse.getRefDrSurname()) &&
+                Objects.equals(getRefDrProviderNo(), qryGetVerifiedPatientsResponse.getRefDrProviderNo()) &&
+                Objects.equals(getRefDrMedicareCenter(), qryGetVerifiedPatientsResponse.getRefDrMedicareCenter()) &&
+                Objects.equals(getRefDrAdr1(), qryGetVerifiedPatientsResponse.getRefDrAdr1()) &&
+                Objects.equals(getRefDrAdr2(), qryGetVerifiedPatientsResponse.getRefDrAdr2()) &&
+                Objects.equals(getRefDrSuburb(), qryGetVerifiedPatientsResponse.getRefDrSuburb()) &&
+                Objects.equals(getRefDrState(), qryGetVerifiedPatientsResponse.getRefDrState()) &&
+                Objects.equals(getRefDrPostCode(), qryGetVerifiedPatientsResponse.getRefDrPostCode()) &&
+                Objects.equals(getNokGiven(), qryGetVerifiedPatientsResponse.getNokGiven()) &&
+                Objects.equals(getNokSurname(), qryGetVerifiedPatientsResponse.getNokSurname()) &&
+                Objects.equals(getNokRelationship(), qryGetVerifiedPatientsResponse.getNokRelationship()) &&
+                Objects.equals(getNokContactNo(), qryGetVerifiedPatientsResponse.getNokContactNo()) &&
+                Objects.equals(getPatientNo(), qryGetVerifiedPatientsResponse.getPatientNo()) &&
+                Objects.equals(getPtdetailStatus(), qryGetVerifiedPatientsResponse.getPtdetailStatus());
     }
 
     @Override
@@ -114,6 +426,32 @@ public class QryGetVerifiedPatientsResponse implements Serializable {
                 getMedicareno(),
                 getEmail(),
                 getDob(),
-                getPtStatus());
+                getPtStatus(),
+                getFamDrTitle(),
+                getFamDrGiven(),
+                getFamDrSurname(),
+                getFamDrProviderNo(),
+                getFamDrMedicareCenter(),
+                getFamDrAdr1(),
+                getFamDrAdr2(),
+                getFamDrSuburb(),
+                getFamDrState(),
+                getFamDrPostCode(),
+                getRefDrTitle(),
+                getRefDrGiven(),
+                getRefDrSurname(),
+                getRefDrProviderNo(),
+                getRefDrMedicareCenter(),
+                getRefDrAdr1(),
+                getRefDrAdr2(),
+                getRefDrSuburb(),
+                getRefDrState(),
+                getRefDrPostCode(),
+                getNokGiven(),
+                getNokSurname(),
+                getNokRelationship(),
+                getNokContactNo(),
+                getPatientNo(),
+                getPtdetailStatus());
     }
 }

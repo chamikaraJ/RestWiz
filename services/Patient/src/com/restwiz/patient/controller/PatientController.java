@@ -39,7 +39,7 @@ public class PatientController {
     @RequestMapping(value = "/patient", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void updatePatient(@RequestParam(value = "patienData", required = false) String patienData, Pageable pageable) {
-        patient.updatePatient(patienData, pageable);
+    public void updatePatient(@RequestBody String patienData) {
+        patient.updatePatient(patienData);
     }
 }

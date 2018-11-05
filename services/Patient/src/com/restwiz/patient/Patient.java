@@ -92,6 +92,7 @@ public class Patient {
   
         String patientNo = "patient not found";
         
+        
         // JSONParser parser = new JSONParser(); 
         // try {
         //   JSONObject json = (JSONObject) parser.parse(patienData);  
@@ -173,7 +174,9 @@ public class Patient {
         return "";
     }
     
-    public void updatePatient(String patienData,Pageable pageable ){
+    public void updatePatient(String patienData){
+        
+        // Pageable pageable = new PageRequest(0,10);
         
         Ptdetail pt = new Ptdetail();
         

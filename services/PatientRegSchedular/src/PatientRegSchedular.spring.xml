@@ -17,9 +17,9 @@ http://www.springframework.org/schema/security/spring-security.xsd"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <bean class="com.restwiz.patientregschedular.PatientRegSchedular" scope="singleton" lazy-init="true" id="PatientRegSchedular"/>
     <bean class="com.restwiz.patientregschedular.controller.PatientRegSchedularController" id="PatientRegSchedularController"/>
-    <!--<task:annotation-driven scheduler="taskScheduler" />-->
-    <!--<task:scheduler id="taskScheduler" pool-size="5" />-->
-    <!--<task:scheduled-tasks >-->
-    <!--    <task:scheduled cron="*/30 * * * * ?" method="registerNewPatient" ref="PatientRegSchedular"/>-->
-    <!--</task:scheduled-tasks>-->
+    <task:annotation-driven scheduler="taskScheduler" />
+    <task:scheduler id="taskScheduler" pool-size="5" />
+    <task:scheduled-tasks >
+        <task:scheduled cron="*/30 * * * * ?" method="registerNewPatient" ref="PatientRegSchedular"/>
+    </task:scheduled-tasks>
 </beans>

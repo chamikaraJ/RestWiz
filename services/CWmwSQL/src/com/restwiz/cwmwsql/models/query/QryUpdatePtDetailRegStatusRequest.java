@@ -21,6 +21,10 @@ public class QryUpdatePtDetailRegStatusRequest implements Serializable {
     @NotNull
     private String tptdetailStatus;
 
+    @JsonProperty("t_patientno")
+    @NotNull
+    private String tpatientno;
+
     @JsonProperty("t_idno")
     @NotNull
     private Integer tidno;
@@ -31,6 +35,14 @@ public class QryUpdatePtDetailRegStatusRequest implements Serializable {
 
     public void setTptdetailStatus(String tptdetailStatus) {
         this.tptdetailStatus = tptdetailStatus;
+    }
+
+    public String getTpatientno() {
+        return this.tpatientno;
+    }
+
+    public void setTpatientno(String tpatientno) {
+        this.tpatientno = tpatientno;
     }
 
     public Integer getTidno() {
@@ -47,12 +59,14 @@ public class QryUpdatePtDetailRegStatusRequest implements Serializable {
         if (!(o instanceof QryUpdatePtDetailRegStatusRequest)) return false;
         final QryUpdatePtDetailRegStatusRequest qryUpdatePtDetailRegStatusRequest = (QryUpdatePtDetailRegStatusRequest) o;
         return Objects.equals(getTptdetailStatus(), qryUpdatePtDetailRegStatusRequest.getTptdetailStatus()) &&
+                Objects.equals(getTpatientno(), qryUpdatePtDetailRegStatusRequest.getTpatientno()) &&
                 Objects.equals(getTidno(), qryUpdatePtDetailRegStatusRequest.getTidno());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getTptdetailStatus(),
+                getTpatientno(),
                 getTidno());
     }
 }
