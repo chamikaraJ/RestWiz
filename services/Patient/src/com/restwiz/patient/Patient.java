@@ -43,6 +43,9 @@ import com.restwiz.cwmwsql.service.PtdetailService;
 import java.time.LocalDateTime;
 import java.text.SimpleDateFormat;
 
+import com.restwiz.cwmwsql.Ptcharacters;
+import com.restwiz.cwmwsql.service.PtcharactersService;
+
 
 //import com.restwiz.patient.model.*;
 
@@ -70,6 +73,9 @@ public class Patient {
     
     @Autowired
     private PtdetailService ptdetailService;
+    
+    @Autowired
+    private PtcharactersService ptcharactersService;
 
     /**
      * This is sample java operation that accepts an input from the caller and responds with "Hello".
@@ -175,7 +181,7 @@ public class Patient {
         try {
           JSONObject json = (JSONObject) parser.parse(patienData.toString());  
           
-          QryUpdatePatientRequest req = new QryUpdatePatientRequest();
+            QryUpdatePatientRequest req = new QryUpdatePatientRequest();
             req.setTpatientNo((String) json.get("t_patient_no"));
             req.setTtitle((String) json.get("t_title"));
             req.setTgiven((String) json.get("t_given"));
@@ -200,11 +206,13 @@ public class Patient {
             String exp = (String) json.get("t_medExpiry");
             req.setTmedExpiry(getSqlDate(exp));
             req.setTmcareRefNo((String) json.get("t_mcareRefNo"));
-            req.setTclaimDetails((String) json.get("t_claimDetail"));
+            req.setTclaimDetails((String) json.get("t_claimDetails"));
             req.setTnextofkin((String) json.get("t_nextofkin"));
-            req.setTfeepositn((String) json.get("t_feepositn"));
+            Long feePos = (Long) json.get("t_feepositn");
+            req.setTfeepositn(feePos.toString());
             String joinDt = (String) json.get("t_dateJoined");
             req.setTdateJoined(getSqlDate(joinDt));
+
 
             cWmwSQLQueryExecutorService.executeQryUpdatePatient(req);
 
@@ -240,6 +248,17 @@ public class Patient {
             // String joinDt = (String) json.get("t_dateJoined");
             // LocalDateTime ljoinDt = getLocalDateTime(joinDt);
             // pt.setDatejoined(ljoinDt);
+            
+            Ptcharacters ptcharacters =  ptcharactersService.getById((String) json.get("t_patient_no"));
+           if(ptcharacters !=null){
+               ptcharacters.setAgiven((String) json.get("t_preferredName"));
+               ptcharactersService.update(ptcharacters);
+           }else{
+               ptcharacters = new Ptcharacters();
+               ptcharacters.setAgiven((String) json.get("t_preferredName"));
+               ptcharacters.setPatientNo((String) json.get("t_preferredName"));
+               ptcharactersService.create(ptcharacters);
+           }
    
         } catch(ParseException e) {
             e.printStackTrace();

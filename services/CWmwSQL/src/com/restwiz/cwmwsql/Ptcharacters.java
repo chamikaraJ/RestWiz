@@ -39,6 +39,7 @@ public class Ptcharacters implements Serializable {
     private float bmi = 0F;
     private String weight;
     private int idno;
+    private String midname;
 
     @Id
     @Column(name = "`patient_no`", nullable = false, length = 14)
@@ -210,6 +211,15 @@ public class Ptcharacters implements Serializable {
 
     public void setIdno(int idno) {
         this.idno = idno;
+    }
+
+    @Column(name = "`midname`", nullable = true, length = 50)
+    public String getMidname() {
+        return this.midname;
+    }
+
+    public void setMidname(String midname) {
+        this.midname = midname;
     }
 
 
