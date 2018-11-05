@@ -1950,5 +1950,227 @@
       "returns" : "ENTITY",
       "responseType" : "SINGLE"
     }
+  },
+  "qryUpdateptdetailReg" : {
+    "name" : "qryUpdateptdetailReg",
+    "description" : "update ptdetailreg table",
+    "version" : "V2",
+    "queryString" : "update ptdetail_reg set famDrTitle = :t_famdrtitle,\nfamDrGiven = :t_famdrgiven,\nfamDrSurname = :t_famdrSurname,\nfamDrProviderNo = :t_famdrProNo,\nfamDrMedicareCenter = :t_famdrMedCenter,\nfamDrAdr1 = :t_famdrAdd1,\nfamDrAdr2 = :t_famdrAdd2,\nfamDrSuburb = :t_famdrsuburb,\nfamDrState = :t_famdrstate,\nfamDrPostCode = :t_famdrpostcode,\nrefDrTitle = :t_refdrtitle,\nrefDrGiven = :t_refdrgiven,\nrefDrSurname = :t_refdrSurname,\nrefDrProviderNo = :t_refdrProNo,\nrefDrMedicareCenter = :t_refdrMedCenter,\nrefDrAdr1 = :t_refdrAdd1,\nrefDrAdr2 = :t_refdrAdd2,\nrefDrSuburb = :t_refdrsuburb,\nrefDrState = :t_refdrstate,\nrefDrPostCode = :t_refdrpostcode,\nnokGiven = :t_nokgiven,\nnokSUrname = :t_noksurname,\nnokRelationship = :t_nokrelationship,\nnokContactNo = :t_nokcontactno\nwhere patient_no = :t_patientno",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "t_famdrtitle",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "dr",
+      "required" : false
+    }, {
+      "name" : "t_famdrgiven",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "aa",
+      "required" : false
+    }, {
+      "name" : "t_famdrSurname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "bb",
+      "required" : false
+    }, {
+      "name" : "t_famdrProNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "11",
+      "required" : false
+    }, {
+      "name" : "t_famdrMedCenter",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "cc",
+      "required" : false
+    }, {
+      "name" : "t_famdrAdd1",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "dd",
+      "required" : false
+    }, {
+      "name" : "t_famdrAdd2",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ee",
+      "required" : false
+    }, {
+      "name" : "t_famdrsuburb",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ff",
+      "required" : false
+    }, {
+      "name" : "t_famdrstate",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "gg",
+      "required" : false
+    }, {
+      "name" : "t_famdrpostcode",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "hh",
+      "required" : false
+    }, {
+      "name" : "t_refdrtitle",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ii",
+      "required" : false
+    }, {
+      "name" : "t_refdrgiven",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "jj",
+      "required" : false
+    }, {
+      "name" : "t_refdrSurname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "kk",
+      "required" : false
+    }, {
+      "name" : "t_refdrProNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ll",
+      "required" : false
+    }, {
+      "name" : "t_refdrMedCenter",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "mm",
+      "required" : false
+    }, {
+      "name" : "t_refdrAdd1",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "nn",
+      "required" : false
+    }, {
+      "name" : "t_refdrAdd2",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "oo",
+      "required" : false
+    }, {
+      "name" : "t_refdrsuburb",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "pp",
+      "required" : false
+    }, {
+      "name" : "t_refdrstate",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "qq",
+      "required" : false
+    }, {
+      "name" : "t_refdrpostcode",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "rr",
+      "required" : false
+    }, {
+      "name" : "t_nokgiven",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ss",
+      "required" : false
+    }, {
+      "name" : "t_noksurname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "tt",
+      "required" : false
+    }, {
+      "name" : "t_nokrelationship",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "uu",
+      "required" : false
+    }, {
+      "name" : "t_nokcontactno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "vv",
+      "required" : false
+    }, {
+      "name" : "t_patientno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80092",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdateptdetailRegRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
   }
 }

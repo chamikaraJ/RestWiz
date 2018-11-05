@@ -193,6 +193,40 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("qryDeleteptDetailRegByIdno", params);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryUpdateptdetailReg(QryUpdateptdetailRegRequest qryUpdateptdetailRegRequest) {
+        Map<String, Object> params = new HashMap<>(25);
+
+        params.put("t_famdrtitle", qryUpdateptdetailRegRequest.getTfamdrtitle());
+        params.put("t_famdrgiven", qryUpdateptdetailRegRequest.getTfamdrgiven());
+        params.put("t_famdrSurname", qryUpdateptdetailRegRequest.getTfamdrSurname());
+        params.put("t_famdrProNo", qryUpdateptdetailRegRequest.getTfamdrProNo());
+        params.put("t_famdrMedCenter", qryUpdateptdetailRegRequest.getTfamdrMedCenter());
+        params.put("t_famdrAdd1", qryUpdateptdetailRegRequest.getTfamdrAdd1());
+        params.put("t_famdrAdd2", qryUpdateptdetailRegRequest.getTfamdrAdd2());
+        params.put("t_famdrsuburb", qryUpdateptdetailRegRequest.getTfamdrsuburb());
+        params.put("t_famdrstate", qryUpdateptdetailRegRequest.getTfamdrstate());
+        params.put("t_famdrpostcode", qryUpdateptdetailRegRequest.getTfamdrpostcode());
+        params.put("t_refdrtitle", qryUpdateptdetailRegRequest.getTrefdrtitle());
+        params.put("t_refdrgiven", qryUpdateptdetailRegRequest.getTrefdrgiven());
+        params.put("t_refdrSurname", qryUpdateptdetailRegRequest.getTrefdrSurname());
+        params.put("t_refdrProNo", qryUpdateptdetailRegRequest.getTrefdrProNo());
+        params.put("t_refdrMedCenter", qryUpdateptdetailRegRequest.getTrefdrMedCenter());
+        params.put("t_refdrAdd1", qryUpdateptdetailRegRequest.getTrefdrAdd1());
+        params.put("t_refdrAdd2", qryUpdateptdetailRegRequest.getTrefdrAdd2());
+        params.put("t_refdrsuburb", qryUpdateptdetailRegRequest.getTrefdrsuburb());
+        params.put("t_refdrstate", qryUpdateptdetailRegRequest.getTrefdrstate());
+        params.put("t_refdrpostcode", qryUpdateptdetailRegRequest.getTrefdrpostcode());
+        params.put("t_nokgiven", qryUpdateptdetailRegRequest.getTnokgiven());
+        params.put("t_noksurname", qryUpdateptdetailRegRequest.getTnoksurname());
+        params.put("t_nokrelationship", qryUpdateptdetailRegRequest.getTnokrelationship());
+        params.put("t_nokcontactno", qryUpdateptdetailRegRequest.getTnokcontactno());
+        params.put("t_patientno", qryUpdateptdetailRegRequest.getTpatientno());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryUpdateptdetailReg", params);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
     public Page<QryGetPatientByPatientNoResponse> executeQryGetPatientByPatientNo(String tpatientno, Pageable pageable) {

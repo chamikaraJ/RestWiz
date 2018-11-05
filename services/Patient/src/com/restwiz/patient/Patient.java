@@ -219,9 +219,11 @@ public class Patient {
 
             Ptcharacters ptcharacters =  ptcharactersService.getById((String) json.get("t_patient_no"));
            if(ptcharacters !=null){
-                ptcharacters.setAgiven((String) json.get("t_preferredName"));
-               ptcharacters.setMidname((String) json.get("t_midname"));
-               ptcharactersService.update(ptcharacters);
+                QryUpdatePtCharacterRequest characterRequest = new QryUpdatePtCharacterRequest();
+               characterRequest.setTpatientNo((String) json.get("t_patient_no"));
+               characterRequest.setTpreferredName((String) json.get("t_preferredName"));
+               characterRequest.setTmidname((String) json.get("t_midname"));
+               cWmwSQLQueryExecutorService.executeQryUpdatePtCharacter(characterRequest);  
            }
    
         } catch(ParseException e) {
