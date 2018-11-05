@@ -288,4 +288,16 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryUpdatePtCharacter(QryUpdatePtCharacterRequest qryUpdatePtCharacterRequest) {
+        Map<String, Object> params = new HashMap<>(3);
+
+        params.put("t_midname", qryUpdatePtCharacterRequest.getTmidname());
+        params.put("t_preferredName", qryUpdatePtCharacterRequest.getTpreferredName());
+        params.put("t_patientNo", qryUpdatePtCharacterRequest.getTpatientNo());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryUpdatePtCharacter", params);
+    }
+
 }

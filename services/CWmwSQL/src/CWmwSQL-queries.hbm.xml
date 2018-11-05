@@ -203,4 +203,13 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
         select count(*) from (select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED') wmTempTable
         ]]>
     </sql-query>
+
+    <sql-query name="qryUpdatePtCharacter">
+        <![CDATA[
+        update ptcharacters set midname =:t_midname ,agiven = :t_preferredName where patient_no = :t_patientNo
+        ]]>
+    <query-param name="t_midname" type="java.lang.String"/>
+    <query-param name="t_preferredName" type="java.lang.String"/>
+    <query-param name="t_patientNo" type="java.lang.String"/>
+    </sql-query>
 </hibernate-mapping>

@@ -311,4 +311,14 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryUpdatePtCharacter", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "update ptcharacter")
+    public IntegerWrapper executeQryUpdatePtCharacter(@Valid @RequestBody QryUpdatePtCharacterRequest qryUpdatePtCharacterRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryUpdatePtCharacter");
+        Integer _result = queryService.executeQryUpdatePtCharacter(qryUpdatePtCharacterRequest);
+        LOGGER.debug("got the result for named query: qryUpdatePtCharacter, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
 }

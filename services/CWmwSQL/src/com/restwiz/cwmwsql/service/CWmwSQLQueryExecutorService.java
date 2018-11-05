@@ -58,4 +58,6 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetVerifiedPatients(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Integer executeQryUpdatePtCharacter(QryUpdatePtCharacterRequest qryUpdatePtCharacterRequest);
+
 }

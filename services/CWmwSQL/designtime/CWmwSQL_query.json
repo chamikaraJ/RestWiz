@@ -1867,6 +1867,52 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryUpdatePtCharacter" : {
+    "name" : "qryUpdatePtCharacter",
+    "description" : "update ptcharacter",
+    "version" : "V2",
+    "queryString" : "update ptcharacters set midname =:t_midname ,agiven = :t_preferredName where patient_no = :t_patientNo",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "t_midname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Chandaaana",
+      "required" : true
+    }, {
+      "name" : "t_preferredName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "CW",
+      "required" : true
+    }, {
+      "name" : "t_patientNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80092",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdatePtCharacterRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "qryUpdatePtDetailRegStatus" : {
     "name" : "qryUpdatePtDetailRegStatus",
     "description" : "Update ptdetailReg status",
