@@ -45,6 +45,7 @@ import java.text.SimpleDateFormat;
 
 import com.restwiz.cwmwsql.Ptcharacters;
 import com.restwiz.cwmwsql.service.PtcharactersService;
+import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 
 
 //import com.restwiz.patient.model.*;
@@ -252,16 +253,18 @@ public class Patient {
             Ptcharacters ptcharacters =  ptcharactersService.getById((String) json.get("t_patient_no"));
            if(ptcharacters !=null){
                ptcharacters.setAgiven((String) json.get("t_preferredName"));
+               ptcharacters.setMidname("t_midname");
                ptcharactersService.update(ptcharacters);
-           }else{
-               ptcharacters = new Ptcharacters();
-               ptcharacters.setAgiven((String) json.get("t_preferredName"));
-               ptcharacters.setPatientNo((String) json.get("t_preferredName"));
-               ptcharactersService.create(ptcharacters);
            }
    
         } catch(ParseException e) {
             e.printStackTrace();
+        }catch (EntityNotFoundException e) {
+            // ptcharacters = new Ptcharacters();
+            // ptcharacters.setAgiven((String) json.get("t_preferredName"));
+            // ptcharacters.setPatientNo((String) json.get("t_patient_no"));
+            // ptcharacters.setMidname("t_midname");
+            // ptcharactersService.create(ptcharacters);
         }
         
         // ptdetailService.update(pt);
@@ -281,7 +284,7 @@ public class Patient {
     }
     
         private Date getSqlDate(String sdate) {
-        SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         java.util.Date date = null;
         try {
             date = sdf1.parse(sdate);

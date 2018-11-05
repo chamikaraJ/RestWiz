@@ -45,6 +45,16 @@ public class QueryExecutionController {
     @Autowired
 	private ExportedFileManager exportedFileManager;
 
+    @RequestMapping(value = "/queries/qryInsertPtCharacter", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "insert ptCharacter")
+    public IntegerWrapper executeQryInsertPtCharacter(@Valid @RequestBody QryInsertPtCharacterRequest qryInsertPtCharacterRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryInsertPtCharacter");
+        Integer _result = queryService.executeQryInsertPtCharacter(qryInsertPtCharacterRequest);
+        LOGGER.debug("got the result for named query: qryInsertPtCharacter, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/qryUpdatePatientNo", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "update patient number to login table")

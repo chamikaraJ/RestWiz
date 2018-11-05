@@ -1515,6 +1515,52 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryInsertPtCharacter" : {
+    "name" : "qryInsertPtCharacter",
+    "description" : "insert ptCharacter",
+    "version" : "V2",
+    "queryString" : "insert into ptcharacters(patient_no,midname,agiven) values(:t_patientNo,:t_midname,:t_preferredName)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "t_patientNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80092",
+      "required" : true
+    }, {
+      "name" : "t_midname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "chandana",
+      "required" : true
+    }, {
+      "name" : "t_preferredName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "CW",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryInsertPtCharacterRequest",
+      "method" : "POST"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "qryUpdateNextPtGenCode" : {
     "name" : "qryUpdateNextPtGenCode",
     "description" : "update next generated code for patient",

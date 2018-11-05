@@ -2,6 +2,15 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+    <sql-query name="qryInsertPtCharacter">
+        <![CDATA[
+        insert into ptcharacters(patient_no,midname,agiven) values(:t_patientNo,:t_midname,:t_preferredName)
+        ]]>
+    <query-param name="t_patientNo" type="java.lang.String"/>
+    <query-param name="t_midname" type="java.lang.String"/>
+    <query-param name="t_preferredName" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryUpdatePatientNo">
         <![CDATA[
         update x0152578 set patient_no = :patientNo where userid = :email

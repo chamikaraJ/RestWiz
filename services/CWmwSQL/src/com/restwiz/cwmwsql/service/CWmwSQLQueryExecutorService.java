@@ -16,6 +16,8 @@ import com.restwiz.cwmwsql.models.query.*;
 
 public interface CWmwSQLQueryExecutorService {
 
+    Integer executeQryInsertPtCharacter(QryInsertPtCharacterRequest qryInsertPtCharacterRequest);
+
     Integer executeQryUpdatePatientNo(QryUpdatePatientNoRequest qryUpdatePatientNoRequest);
 
     Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest);

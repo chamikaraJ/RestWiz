@@ -35,6 +35,18 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
 
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
+    public Integer executeQryInsertPtCharacter(QryInsertPtCharacterRequest qryInsertPtCharacterRequest) {
+        Map<String, Object> params = new HashMap<>(3);
+
+        params.put("t_patientNo", qryInsertPtCharacterRequest.getTpatientNo());
+        params.put("t_midname", qryInsertPtCharacterRequest.getTmidname());
+        params.put("t_preferredName", qryInsertPtCharacterRequest.getTpreferredName());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryInsertPtCharacter", params);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
     public Integer executeQryUpdatePatientNo(QryUpdatePatientNoRequest qryUpdatePatientNoRequest) {
         Map<String, Object> params = new HashMap<>(2);
 
