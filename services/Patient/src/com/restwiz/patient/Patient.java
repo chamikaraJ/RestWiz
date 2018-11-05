@@ -178,9 +178,9 @@ public class Patient {
         Ptdetail pt = new Ptdetail();
         
         JSONParser parser = new JSONParser();
-          
+        JSONObject json = new JSONObject();
         try {
-          JSONObject json = (JSONObject) parser.parse(patienData.toString());  
+          json = (JSONObject) parser.parse(patienData.toString());  
           
             QryUpdatePatientRequest req = new QryUpdatePatientRequest();
             req.setTpatientNo((String) json.get("t_patient_no"));
@@ -217,54 +217,21 @@ public class Patient {
 
             cWmwSQLQueryExecutorService.executeQryUpdatePatient(req);
 
-            // pt.setPatientNo((String) json.get("t_patient_no"));
-            // pt.setTitle((String) json.get("t_title"));
-            // pt.setGiven((String) json.get("t_given"));
-            // pt.setSurname((String) json.get("t_surname"));
-            // pt.setAddress1((String) json.get("t_address1"));
-            // pt.setAddress2((String) json.get("t_address2"));
-            // pt.setSuburb((String) json.get("t_suburb"));
-            // pt.setState((String) json.get("t_postcode"));
-            // pt.setPostcode((String) json.get("t_state" ));
-            // pt.setPhoneAh((String) json.get("t_phone_ah"));
-            // pt.setPhoneBh((String) json.get("t_phone_bh" ));
-            // pt.setMobile((String) json.get("t_mobile"));
-            // String dob = (String) json.get("t_dob");
-            // LocalDateTime ldob = getLocalDateTime(dob);
-            // pt.setDob(ldob);
-            // pt.setMedicareno((String) json.get("t_medicareno"));
-            // pt.setMemberNo((String) json.get("t_member_no"));
-            // pt.setEmail((String) json.get("t_email" ));
-            // pt.setFundcode((String) json.get("t_fundcode" ));
-            // pt.setBirthplace((String) json.get("t_birthplace"));
-            // pt.setVetaffno((String) json.get("t_vetafno"));
-            // pt.setReferalsrc((String) json.get("t_refRalSrc"));
-            // String exp = (String) json.get("t_medExpiry");
-            // LocalDateTime lexp = getLocalDateTime(exp);
-            // pt.setMediexpry(lexp);
-            // pt.setMcareRefn((String) json.get("t_mcareRefNo"));
-            // pt.setClaimdtls((String) json.get("t_claimDetail"));
-            // pt.setNextofkin((String) json.get("t_nextofkin"));
-            // pt.setFeepositn((byte) json.get("t_feepositn"));
-            // String joinDt = (String) json.get("t_dateJoined");
-            // LocalDateTime ljoinDt = getLocalDateTime(joinDt);
-            // pt.setDatejoined(ljoinDt);
-            
             Ptcharacters ptcharacters =  ptcharactersService.getById((String) json.get("t_patient_no"));
            if(ptcharacters !=null){
-               ptcharacters.setAgiven((String) json.get("t_preferredName"));
-               ptcharacters.setMidname("t_midname");
+                ptcharacters.setAgiven((String) json.get("t_preferredName"));
+               ptcharacters.setMidname((String) json.get("t_midname"));
                ptcharactersService.update(ptcharacters);
            }
    
         } catch(ParseException e) {
             e.printStackTrace();
         }catch (EntityNotFoundException e) {
-            // ptcharacters = new Ptcharacters();
-            // ptcharacters.setAgiven((String) json.get("t_preferredName"));
-            // ptcharacters.setPatientNo((String) json.get("t_patient_no"));
-            // ptcharacters.setMidname("t_midname");
-            // ptcharactersService.create(ptcharacters);
+             QryInsertPtCharacterRequest characterRequest = new QryInsertPtCharacterRequest();
+            characterRequest.setTmidname((String) json.get("t_midname"));
+            characterRequest.setTpreferredName((String) json.get("t_preferredName"));
+            characterRequest.setTpatientNo((String) json.get("t_patient_no"));
+            cWmwSQLQueryExecutorService.executeQryInsertPtCharacter(characterRequest);
         }
         
         // ptdetailService.update(pt);
