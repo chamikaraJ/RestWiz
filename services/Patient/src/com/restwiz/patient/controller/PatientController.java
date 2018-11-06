@@ -36,10 +36,10 @@ public class PatientController {
         return patient.checkPatient(patienData, pageable);
     }
 
-    @RequestMapping(value = "/patient", method = RequestMethod.PUT)
+    @RequestMapping(value = "/patient", produces = "application/json", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void updatePatient(@RequestBody String patienData) {
-        patient.updatePatient(patienData);
+    public String updatePatient(@RequestBody String patienData) {
+        return patient.updatePatient(patienData);
     }
 }

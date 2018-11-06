@@ -174,9 +174,10 @@ public class Patient {
         return "";
     }
     
-    public void updatePatient(String patienData){
+    public String updatePatient(String patienData){
         
         // Pageable pageable = new PageRequest(0,10);
+        String output = "";
         
         Ptdetail pt = new Ptdetail();
         
@@ -218,17 +219,65 @@ public class Patient {
             req.setTdateJoined(getSqlDate(joinDt));
 
 
-            cWmwSQLQueryExecutorService.executeQryUpdatePatient(req);
+            int i = cWmwSQLQueryExecutorService.executeQryUpdatePatient(req);
+            if(i==1){
+                output = output+ "PtDetail Updated. ";
+            }else{
+                output = output+ "PtDetail Update failed. ";
+            }
 
-            Ptcharacters ptcharacters =  ptcharactersService.getById((String) json.get("t_patient_no"));
+           
+           
+           QryUpdateptdetailRegRequest regRequest = new QryUpdateptdetailRegRequest();
+            regRequest.setTfamdrtitle((String) json.get("t_famdrtitle"));
+            regRequest.setTfamdrgiven((String) json.get("t_famdrgiven"));
+            regRequest.setTfamdrSurname((String) json.get("t_famdrSurname"));
+            regRequest.setTfamdrProNo((String) json.get("t_famdrProNo"));
+            regRequest.setTfamdrMedCenter((String) json.get("t_famdrMedCenter"));
+            regRequest.setTfamdrAdd1((String) json.get("t_famdrAdd1"));
+            regRequest.setTfamdrAdd2((String) json.get("t_famdrAdd2"));
+            regRequest.setTfamdrsuburb((String) json.get("t_famdrsuburb"));
+            regRequest.setTfamdrstate((String) json.get("t_famdrstate"));
+            regRequest.setTfamdrpostcode((String) json.get("t_famdrpostcode"));
+
+            regRequest.setTrefdrtitle((String) json.get("t_refdrtitle"));
+            regRequest.setTrefdrgiven((String) json.get("t_refdrgiven"));
+            regRequest.setTrefdrSurname((String) json.get("t_refdrSurname"));
+            regRequest.setTrefdrProNo((String) json.get("t_refdrProNo"));
+            regRequest.setTrefdrMedCenter((String) json.get("t_refdrMedCenter"));
+            regRequest.setTrefdrAdd1((String) json.get("t_refdrAdd1"));
+            regRequest.setTrefdrAdd2((String) json.get("t_refdrAdd2"));
+            regRequest.setTrefdrsuburb((String) json.get("t_refdrsuburb"));
+            regRequest.setTrefdrstate((String) json.get("t_refdrstate"));
+            regRequest.setTrefdrpostcode((String) json.get("t_refdrpostcode"));
+
+            regRequest.setTnokgiven((String) json.get("t_nokgiven"));
+            regRequest.setTnoksurname((String) json.get("t_noksurname"));
+            regRequest.setTnokrelationship((String) json.get("t_nokrelationship"));
+            regRequest.setTnokcontactno((String) json.get("t_nokcontactno"));
+            regRequest.setTpatientno((String) json.get("t_patient_no"));
+            int k = cWmwSQLQueryExecutorService.executeQryUpdateptdetailReg(regRequest);
+            if(k==1){
+                output = output+ "PtDetailReg Updated. ";
+            }else{
+                output = output+ "PtDetailReg Update failed. ";
+            }
+            
+             Ptcharacters ptcharacters =  ptcharactersService.getById((String) json.get("t_patient_no"));
            if(ptcharacters !=null){
                 QryUpdatePtCharacterRequest characterRequest = new QryUpdatePtCharacterRequest();
                characterRequest.setTpatientNo((String) json.get("t_patient_no"));
                characterRequest.setTpreferredName((String) json.get("t_preferredName"));
                characterRequest.setTmidname((String) json.get("t_midname"));
-               cWmwSQLQueryExecutorService.executeQryUpdatePtCharacter(characterRequest);  
+               int j = cWmwSQLQueryExecutorService.executeQryUpdatePtCharacter(characterRequest);  
+               
+               if(j==1){
+                    output = output+ "PtCharacter Updated. ";
+                }else{
+                    output = output+ "PtCharacter Update failed. ";
+                }
            }
-   
+            
         } catch(ParseException e) {
             e.printStackTrace();
         }catch (EntityNotFoundException e) {
@@ -236,14 +285,19 @@ public class Patient {
             characterRequest.setTmidname((String) json.get("t_midname"));
             characterRequest.setTpreferredName((String) json.get("t_preferredName"));
             characterRequest.setTpatientNo((String) json.get("t_patient_no"));
-            cWmwSQLQueryExecutorService.executeQryInsertPtCharacter(characterRequest);
+            int l = cWmwSQLQueryExecutorService.executeQryInsertPtCharacter(characterRequest);
+            if(l==1){
+                output = output+ "Insetr to PtCharacter. ";
+            }else{
+                output = output+ "Insetr to PtCharacter failed. ";
+            }
         }
         
         // ptdetailService.update(pt);
         
         
         // pt = ptdetailService.update(pt);
-        // return pt;
+        return output;
     }
     
      private LocalDateTime getLocalDateTime(String sdate){
