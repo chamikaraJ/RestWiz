@@ -106,7 +106,7 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest) {
-        Map<String, Object> params = new HashMap<>(26);
+        Map<String, Object> params = new HashMap<>(27);
 
         params.put("t_title", qryUpdatePatientRequest.getTtitle());
         params.put("t_given", qryUpdatePatientRequest.getTgiven());
@@ -132,6 +132,7 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_claimDetails", qryUpdatePatientRequest.getTclaimDetails());
         params.put("t_feepositn", qryUpdatePatientRequest.getTfeepositn());
         params.put("t_dateJoined", qryUpdatePatientRequest.getTdateJoined());
+        params.put("t_dvacardtype", qryUpdatePatientRequest.getTdvacardtype());
         params.put("t_nextofkin", qryUpdatePatientRequest.getTnextofkin());
         params.put("t_patient_no", qryUpdatePatientRequest.getTpatientNo());
 
@@ -158,6 +159,24 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         QueryProcedureInput queryInput = new QueryProcedureInput("qryGetCountryCode", params, QryGetCountryCodeResponse.class);
 
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryInsertClinicalConclutions(QryInsertClinicalConclutionsRequest qryInsertClinicalConclutionsRequest) {
+        Map<String, Object> params = new HashMap<>(9);
+
+        params.put("t_conref", qryInsertClinicalConclutionsRequest.getTconref());
+        params.put("t_condate", qryInsertClinicalConclutionsRequest.getTcondate());
+        params.put("t_concode", qryInsertClinicalConclutionsRequest.getTconcode());
+        params.put("t_context", qryInsertClinicalConclutionsRequest.getTcontext());
+        params.put("t_concat", qryInsertClinicalConclutionsRequest.getTconcat());
+        params.put("t_patient_no", qryInsertClinicalConclutionsRequest.getTpatientNo());
+        params.put("t_createdby", qryInsertClinicalConclutionsRequest.getTcreatedby());
+        params.put("t_createdon", qryInsertClinicalConclutionsRequest.getTcreatedon());
+        params.put("t_more_dtls", qryInsertClinicalConclutionsRequest.getTmoreDtls());
+
+        return queryExecutor.executeNamedQueryForUpdate("QryInsertClinicalConclutions", params);
     }
 
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)

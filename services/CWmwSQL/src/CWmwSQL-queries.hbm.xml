@@ -78,6 +78,7 @@ mcare_refn=:t_mcareRefNo,
 claimdtls=:t_claimDetails, 
 feepositn =:t_feepositn,
 datejoined=:t_dateJoined,
+dvacardtyp = :t_dvacardtype,
 nextofkin=:t_nextofkin where patient_no = :t_patient_no
         ]]>
     <query-param name="t_title" type="java.lang.String"/>
@@ -104,6 +105,7 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
     <query-param name="t_claimDetails" type="java.lang.String"/>
     <query-param name="t_feepositn" type="java.lang.String"/>
     <query-param name="t_dateJoined" type="java.sql.Date"/>
+    <query-param name="t_dvacardtype" type="java.lang.String"/>
     <query-param name="t_nextofkin" type="java.lang.String"/>
     <query-param name="t_patient_no" type="java.lang.String"/>
     </sql-query>
@@ -120,6 +122,21 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
         select count(*) from (select code,[desc] from country where [desc]  = :countryName) wmTempTable
         ]]>
     <query-param name="countryName" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="QryInsertClinicalConclutions">
+        <![CDATA[
+        insert into  clinicalconclusions(conref,condate,concode,context,concat,patient_no,createdby,createdon,more_dtls) values (:t_conref,:t_condate,:t_concode,:t_context,:t_concat,:t_patient_no,:t_createdby,:t_createdon,:t_more_dtls)
+        ]]>
+    <query-param name="t_conref" type="java.lang.String"/>
+    <query-param name="t_condate" type="java.time.LocalDateTime"/>
+    <query-param name="t_concode" type="java.lang.String"/>
+    <query-param name="t_context" type="java.lang.String"/>
+    <query-param name="t_concat" type="java.lang.String"/>
+    <query-param name="t_patient_no" type="java.lang.String"/>
+    <query-param name="t_createdby" type="java.lang.String"/>
+    <query-param name="t_createdon" type="java.time.LocalDateTime"/>
+    <query-param name="t_more_dtls" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetPatientNoAndRole">
@@ -202,14 +219,118 @@ where patient_no = :t_patientno
 
     <sql-query name="qryGetPatientByPatientNo">
         <![CDATA[
-        select * from ptdetail where patient_no = :t_patientno
+        select pt.patient_no,
+pt.title,
+pt.given,
+pt.surname,
+pt.address1,
+pt.address2,
+pt.suburb,
+pt.postcode,
+pt.state,
+pt.phone_ah,
+pt.phone_bh,
+pt.mobile,
+pt.dob,
+pt.medicareno,
+pt.member_no,
+pt.email,
+pt.fundcode,
+pt.birthplace,
+pt.vetaffno,
+pt.referalsrc,
+pt.mediexpry,
+pt.mcare_refn,
+pt.claimdtls,
+pt.nextofkin,
+pt.feepositn,
+pt.datejoined,
+pt.dvacardtyp,
+ptreg.famDrTitle,
+ptreg.famDrGiven,
+ptreg.famDrSurname,
+ptreg.famDrProviderNo,
+ptreg.famDrMedicareCenter,
+ptreg.famDrAdr1,
+ptreg.famDrAdr2,
+ptreg.famDrSuburb,
+ptreg.famDrState,
+ptreg.famDrPostCode,
+ptreg.refDrTitle,
+ptreg.refDrGiven,
+ptreg.refDrSurname,
+ptreg.refDrProviderNo,
+ptreg.refDrMedicareCenter,
+ptreg.refDrAdr1,
+ptreg.refDrAdr2,
+ptreg.refDrSuburb,
+ptreg.refDrState,
+ptreg.refDrPostCode,
+ptreg.nokGiven,
+ptreg.nokSUrname,
+ptreg.nokRelationship,
+ptreg.nokContactNo,
+ptchar.midname as middleName,
+ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = :t_patientno
         ]]>
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetPatientByPatientNo__count">
         <![CDATA[
-        select count(*) from (select * from ptdetail where patient_no = :t_patientno) wmTempTable
+        select count(*) from (select pt.patient_no,
+pt.title,
+pt.given,
+pt.surname,
+pt.address1,
+pt.address2,
+pt.suburb,
+pt.postcode,
+pt.state,
+pt.phone_ah,
+pt.phone_bh,
+pt.mobile,
+pt.dob,
+pt.medicareno,
+pt.member_no,
+pt.email,
+pt.fundcode,
+pt.birthplace,
+pt.vetaffno,
+pt.referalsrc,
+pt.mediexpry,
+pt.mcare_refn,
+pt.claimdtls,
+pt.nextofkin,
+pt.feepositn,
+pt.datejoined,
+pt.dvacardtyp,
+ptreg.famDrTitle,
+ptreg.famDrGiven,
+ptreg.famDrSurname,
+ptreg.famDrProviderNo,
+ptreg.famDrMedicareCenter,
+ptreg.famDrAdr1,
+ptreg.famDrAdr2,
+ptreg.famDrSuburb,
+ptreg.famDrState,
+ptreg.famDrPostCode,
+ptreg.refDrTitle,
+ptreg.refDrGiven,
+ptreg.refDrSurname,
+ptreg.refDrProviderNo,
+ptreg.refDrMedicareCenter,
+ptreg.refDrAdr1,
+ptreg.refDrAdr2,
+ptreg.refDrSuburb,
+ptreg.refDrState,
+ptreg.refDrPostCode,
+ptreg.nokGiven,
+ptreg.nokSUrname,
+ptreg.nokRelationship,
+ptreg.nokContactNo,
+ptchar.midname as middleName,
+ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = :t_patientno) wmTempTable
         ]]>
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>

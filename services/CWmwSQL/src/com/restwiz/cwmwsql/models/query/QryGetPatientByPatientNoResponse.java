@@ -18,9 +18,6 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
     @ColumnAlias("patient_no")
     private String patientNo;
 
-    @ColumnAlias("accountno")
-    private String accountno;
-
     @ColumnAlias("title")
     private String title;
 
@@ -54,290 +51,128 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
     @ColumnAlias("mobile")
     private String mobile;
 
-    @ColumnAlias("sex")
-    private String sex;
-
     @ColumnAlias("dob")
     private LocalDateTime dob;
-
-    @ColumnAlias("age")
-    private Float age;
-
-    @ColumnAlias("birthplace")
-    private String birthplace;
-
-    @ColumnAlias("aboriginal")
-    private Boolean aboriginal;
-
-    @ColumnAlias("maritalst")
-    private String maritalst;
-
-    @ColumnAlias("religion")
-    private String religion;
-
-    @ColumnAlias("relatnship")
-    private String relatnship;
 
     @ColumnAlias("medicareno")
     private String medicareno;
 
-    @ColumnAlias("mcaresufix")
-    private String mcaresufix;
-
-    @ColumnAlias("employer")
-    private String employer;
-
-    @ColumnAlias("occupation")
-    private String occupation;
-
-    @ColumnAlias("hlthbencrd")
-    private String hlthbencrd;
-
-    @ColumnAlias("vetaffno")
-    private String vetaffno;
-
-    @ColumnAlias("socialno")
-    private String socialno;
-
-    @ColumnAlias("pensionno")
-    private String pensionno;
-
-    @ColumnAlias("hlthcrdno")
-    private String hlthcrdno;
-
-    @ColumnAlias("medrecflno")
-    private String medrecflno;
-
     @ColumnAlias("member_no")
     private String memberNo;
-
-    @ColumnAlias("contributr")
-    private String contributr;
-
-    @ColumnAlias("coverdesc")
-    private String coverdesc;
-
-    @ColumnAlias("table_schd")
-    private String tableSchd;
-
-    @ColumnAlias("datejoined")
-    private LocalDateTime datejoined;
-
-    @ColumnAlias("insurlevel")
-    private String insurlevel;
-
-    @ColumnAlias("lastvist")
-    private LocalDateTime lastvist;
-
-    @ColumnAlias("allergies")
-    private String allergies;
-
-    @ColumnAlias("refdoc_id")
-    private String refdocId;
-
-    @ColumnAlias("refdate")
-    private LocalDateTime refdate;
-
-    @ColumnAlias("norefrlexp")
-    private Byte norefrlexp;
-
-    @ColumnAlias("recaladate")
-    private LocalDateTime recaladate;
-
-    @ColumnAlias("recalreasn")
-    private String recalreasn;
-
-    @ColumnAlias("doctor_id")
-    private String doctorId;
-
-    @ColumnAlias("fundcode")
-    private String fundcode;
-
-    @ColumnAlias("labelprnt")
-    private Byte labelprnt;
-
-    @ColumnAlias("reportprnt")
-    private Byte reportprnt;
-
-    @ColumnAlias("inv_prnt")
-    private Byte invPrnt;
-
-    @ColumnAlias("rcpt_prnt")
-    private Byte rcptPrnt;
-
-    @ColumnAlias("changedon")
-    private LocalDateTime changedon;
-
-    @ColumnAlias("hosptlurno")
-    private String hosptlurno;
-
-    @ColumnAlias("feepositn")
-    private Byte feepositn;
-
-    @ColumnAlias("meddirkey")
-    private String meddirkey;
-
-    @ColumnAlias("comments")
-    private String comments;
-
-    @ColumnAlias("famlyhist")
-    private String famlyhist;
-
-    @ColumnAlias("doctsnotes")
-    private String doctsnotes;
-
-    @ColumnAlias("critnotes")
-    private String critnotes;
 
     @ColumnAlias("email")
     private String email;
 
-    @ColumnAlias("ptstatus")
-    private String ptstatus;
+    @ColumnAlias("fundcode")
+    private String fundcode;
 
-    @ColumnAlias("mediexpry")
-    private LocalDateTime mediexpry;
+    @ColumnAlias("birthplace")
+    private String birthplace;
 
-    @ColumnAlias("othrrefdoc")
-    private String othrrefdoc;
-
-    @ColumnAlias("prfcomunic")
-    private String prfcomunic;
-
-    @ColumnAlias("ok2email")
-    private Boolean ok2email;
-
-    @ColumnAlias("pyesno01")
-    private Boolean pyesno01;
-
-    @ColumnAlias("pyesno02")
-    private Boolean pyesno02;
-
-    @ColumnAlias("pyesno03")
-    private Boolean pyesno03;
-
-    @ColumnAlias("pyesno04")
-    private Boolean pyesno04;
-
-    @ColumnAlias("pyesno05")
-    private Boolean pyesno05;
-
-    @ColumnAlias("pnumval01")
-    private Double pnumval01;
-
-    @ColumnAlias("pnumval02")
-    private Double pnumval02;
-
-    @ColumnAlias("pcharval01")
-    private String pcharval01;
-
-    @ColumnAlias("pcharval02")
-    private String pcharval02;
-
-    @ColumnAlias("pcharval03")
-    private String pcharval03;
-
-    @ColumnAlias("pdateval01")
-    private LocalDateTime pdateval01;
-
-    @ColumnAlias("pdateval02")
-    private LocalDateTime pdateval02;
-
-    @ColumnAlias("pdateval03")
-    private LocalDateTime pdateval03;
-
-    @ColumnAlias("hascopmt")
-    private Boolean hascopmt;
-
-    @ColumnAlias("excessamt")
-    private Float excessamt;
-
-    @ColumnAlias("nextofkin")
-    private String nextofkin;
-
-    @ColumnAlias("checkout")
-    private String checkout;
-
-    @ColumnAlias("checksum")
-    private Integer checksum;
-
-    @ColumnAlias("medcrefno")
-    private String medcrefno;
-
-    @ColumnAlias("lastegbchk")
-    private LocalDateTime lastegbchk;
-
-    @ColumnAlias("fundupi")
-    private String fundupi;
-
-    @ColumnAlias("aliasgname")
-    private String aliasgname;
-
-    @ColumnAlias("aliassname")
-    private String aliassname;
-
-    @ColumnAlias("lastfundst")
-    private String lastfundst;
-
-    @ColumnAlias("lastmedcst")
-    private String lastmedcst;
-
-    @ColumnAlias("mcare_irn")
-    private String mcareIrn;
-
-    @ColumnAlias("mcare_refn")
-    private String mcareRefn;
-
-    @ColumnAlias("lastfnstdt")
-    private LocalDateTime lastfnstdt;
-
-    @ColumnAlias("lastmcstdt")
-    private LocalDateTime lastmcstdt;
-
-    @ColumnAlias("m_initial")
-    private String minitial;
-
-    @ColumnAlias("refissuedt")
-    private LocalDateTime refissuedt;
+    @ColumnAlias("vetaffno")
+    private String vetaffno;
 
     @ColumnAlias("referalsrc")
     private String referalsrc;
 
-    @ColumnAlias("copyto")
-    private String copyto;
+    @ColumnAlias("mediexpry")
+    private LocalDateTime mediexpry;
 
-    @ColumnAlias("copyothers")
-    private String copyothers;
+    @ColumnAlias("mcare_refn")
+    private String mcareRefn;
 
     @ColumnAlias("claimdtls")
     private String claimdtls;
 
-    @ColumnAlias("othrrefdte")
-    private LocalDateTime othrrefdte;
+    @ColumnAlias("nextofkin")
+    private String nextofkin;
 
-    @ColumnAlias("othrrefexp")
-    private Byte othrrefexp;
+    @ColumnAlias("feepositn")
+    private Byte feepositn;
 
-    @ColumnAlias("pensexpiry")
-    private LocalDateTime pensexpiry;
-
-    @ColumnAlias("dvaexpiry")
-    private LocalDateTime dvaexpiry;
+    @ColumnAlias("datejoined")
+    private LocalDateTime datejoined;
 
     @ColumnAlias("dvacardtyp")
     private Byte dvacardtyp;
 
-    @ColumnAlias("indgenstyp")
-    private String indgenstyp;
+    @ColumnAlias("famDrTitle")
+    private String famDrTitle;
 
-    @ColumnAlias("datecreate")
-    private LocalDateTime datecreate;
+    @ColumnAlias("famDrGiven")
+    private String famDrGiven;
 
-    @ColumnAlias("hlthcrdexp")
-    private LocalDateTime hlthcrdexp;
+    @ColumnAlias("famDrSurname")
+    private String famDrSurname;
 
-    @ColumnAlias("IdNo")
-    private Integer idNo;
+    @ColumnAlias("famDrProviderNo")
+    private String famDrProviderNo;
+
+    @ColumnAlias("famDrMedicareCenter")
+    private String famDrMedicareCenter;
+
+    @ColumnAlias("famDrAdr1")
+    private String famDrAdr1;
+
+    @ColumnAlias("famDrAdr2")
+    private String famDrAdr2;
+
+    @ColumnAlias("famDrSuburb")
+    private String famDrSuburb;
+
+    @ColumnAlias("famDrState")
+    private String famDrState;
+
+    @ColumnAlias("famDrPostCode")
+    private String famDrPostCode;
+
+    @ColumnAlias("refDrTitle")
+    private String refDrTitle;
+
+    @ColumnAlias("refDrGiven")
+    private String refDrGiven;
+
+    @ColumnAlias("refDrSurname")
+    private String refDrSurname;
+
+    @ColumnAlias("refDrProviderNo")
+    private String refDrProviderNo;
+
+    @ColumnAlias("refDrMedicareCenter")
+    private String refDrMedicareCenter;
+
+    @ColumnAlias("refDrAdr1")
+    private String refDrAdr1;
+
+    @ColumnAlias("refDrAdr2")
+    private String refDrAdr2;
+
+    @ColumnAlias("refDrSuburb")
+    private String refDrSuburb;
+
+    @ColumnAlias("refDrState")
+    private String refDrState;
+
+    @ColumnAlias("refDrPostCode")
+    private String refDrPostCode;
+
+    @ColumnAlias("nokGiven")
+    private String nokGiven;
+
+    @ColumnAlias("nokSUrname")
+    private String nokSurname;
+
+    @ColumnAlias("nokRelationship")
+    private String nokRelationship;
+
+    @ColumnAlias("nokContactNo")
+    private String nokContactNo;
+
+    @ColumnAlias("middleName")
+    private String middleName;
+
+    @ColumnAlias("preferedName")
+    private String preferedName;
 
     public String getPatientNo() {
         return this.patientNo;
@@ -345,14 +180,6 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
 
     public void setPatientNo(String patientNo) {
         this.patientNo = patientNo;
-    }
-
-    public String getAccountno() {
-        return this.accountno;
-    }
-
-    public void setAccountno(String accountno) {
-        this.accountno = accountno;
     }
 
     public String getTitle() {
@@ -443,68 +270,12 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
         this.mobile = mobile;
     }
 
-    public String getSex() {
-        return this.sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
     public LocalDateTime getDob() {
         return this.dob;
     }
 
     public void setDob(LocalDateTime dob) {
         this.dob = dob;
-    }
-
-    public Float getAge() {
-        return this.age;
-    }
-
-    public void setAge(Float age) {
-        this.age = age;
-    }
-
-    public String getBirthplace() {
-        return this.birthplace;
-    }
-
-    public void setBirthplace(String birthplace) {
-        this.birthplace = birthplace;
-    }
-
-    public Boolean getAboriginal() {
-        return this.aboriginal;
-    }
-
-    public void setAboriginal(Boolean aboriginal) {
-        this.aboriginal = aboriginal;
-    }
-
-    public String getMaritalst() {
-        return this.maritalst;
-    }
-
-    public void setMaritalst(String maritalst) {
-        this.maritalst = maritalst;
-    }
-
-    public String getReligion() {
-        return this.religion;
-    }
-
-    public void setReligion(String religion) {
-        this.religion = religion;
-    }
-
-    public String getRelatnship() {
-        return this.relatnship;
-    }
-
-    public void setRelatnship(String relatnship) {
-        this.relatnship = relatnship;
     }
 
     public String getMedicareno() {
@@ -515,292 +286,12 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
         this.medicareno = medicareno;
     }
 
-    public String getMcaresufix() {
-        return this.mcaresufix;
-    }
-
-    public void setMcaresufix(String mcaresufix) {
-        this.mcaresufix = mcaresufix;
-    }
-
-    public String getEmployer() {
-        return this.employer;
-    }
-
-    public void setEmployer(String employer) {
-        this.employer = employer;
-    }
-
-    public String getOccupation() {
-        return this.occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public String getHlthbencrd() {
-        return this.hlthbencrd;
-    }
-
-    public void setHlthbencrd(String hlthbencrd) {
-        this.hlthbencrd = hlthbencrd;
-    }
-
-    public String getVetaffno() {
-        return this.vetaffno;
-    }
-
-    public void setVetaffno(String vetaffno) {
-        this.vetaffno = vetaffno;
-    }
-
-    public String getSocialno() {
-        return this.socialno;
-    }
-
-    public void setSocialno(String socialno) {
-        this.socialno = socialno;
-    }
-
-    public String getPensionno() {
-        return this.pensionno;
-    }
-
-    public void setPensionno(String pensionno) {
-        this.pensionno = pensionno;
-    }
-
-    public String getHlthcrdno() {
-        return this.hlthcrdno;
-    }
-
-    public void setHlthcrdno(String hlthcrdno) {
-        this.hlthcrdno = hlthcrdno;
-    }
-
-    public String getMedrecflno() {
-        return this.medrecflno;
-    }
-
-    public void setMedrecflno(String medrecflno) {
-        this.medrecflno = medrecflno;
-    }
-
     public String getMemberNo() {
         return this.memberNo;
     }
 
     public void setMemberNo(String memberNo) {
         this.memberNo = memberNo;
-    }
-
-    public String getContributr() {
-        return this.contributr;
-    }
-
-    public void setContributr(String contributr) {
-        this.contributr = contributr;
-    }
-
-    public String getCoverdesc() {
-        return this.coverdesc;
-    }
-
-    public void setCoverdesc(String coverdesc) {
-        this.coverdesc = coverdesc;
-    }
-
-    public String getTableSchd() {
-        return this.tableSchd;
-    }
-
-    public void setTableSchd(String tableSchd) {
-        this.tableSchd = tableSchd;
-    }
-
-    public LocalDateTime getDatejoined() {
-        return this.datejoined;
-    }
-
-    public void setDatejoined(LocalDateTime datejoined) {
-        this.datejoined = datejoined;
-    }
-
-    public String getInsurlevel() {
-        return this.insurlevel;
-    }
-
-    public void setInsurlevel(String insurlevel) {
-        this.insurlevel = insurlevel;
-    }
-
-    public LocalDateTime getLastvist() {
-        return this.lastvist;
-    }
-
-    public void setLastvist(LocalDateTime lastvist) {
-        this.lastvist = lastvist;
-    }
-
-    public String getAllergies() {
-        return this.allergies;
-    }
-
-    public void setAllergies(String allergies) {
-        this.allergies = allergies;
-    }
-
-    public String getRefdocId() {
-        return this.refdocId;
-    }
-
-    public void setRefdocId(String refdocId) {
-        this.refdocId = refdocId;
-    }
-
-    public LocalDateTime getRefdate() {
-        return this.refdate;
-    }
-
-    public void setRefdate(LocalDateTime refdate) {
-        this.refdate = refdate;
-    }
-
-    public Byte getNorefrlexp() {
-        return this.norefrlexp;
-    }
-
-    public void setNorefrlexp(Byte norefrlexp) {
-        this.norefrlexp = norefrlexp;
-    }
-
-    public LocalDateTime getRecaladate() {
-        return this.recaladate;
-    }
-
-    public void setRecaladate(LocalDateTime recaladate) {
-        this.recaladate = recaladate;
-    }
-
-    public String getRecalreasn() {
-        return this.recalreasn;
-    }
-
-    public void setRecalreasn(String recalreasn) {
-        this.recalreasn = recalreasn;
-    }
-
-    public String getDoctorId() {
-        return this.doctorId;
-    }
-
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
-    }
-
-    public String getFundcode() {
-        return this.fundcode;
-    }
-
-    public void setFundcode(String fundcode) {
-        this.fundcode = fundcode;
-    }
-
-    public Byte getLabelprnt() {
-        return this.labelprnt;
-    }
-
-    public void setLabelprnt(Byte labelprnt) {
-        this.labelprnt = labelprnt;
-    }
-
-    public Byte getReportprnt() {
-        return this.reportprnt;
-    }
-
-    public void setReportprnt(Byte reportprnt) {
-        this.reportprnt = reportprnt;
-    }
-
-    public Byte getInvPrnt() {
-        return this.invPrnt;
-    }
-
-    public void setInvPrnt(Byte invPrnt) {
-        this.invPrnt = invPrnt;
-    }
-
-    public Byte getRcptPrnt() {
-        return this.rcptPrnt;
-    }
-
-    public void setRcptPrnt(Byte rcptPrnt) {
-        this.rcptPrnt = rcptPrnt;
-    }
-
-    public LocalDateTime getChangedon() {
-        return this.changedon;
-    }
-
-    public void setChangedon(LocalDateTime changedon) {
-        this.changedon = changedon;
-    }
-
-    public String getHosptlurno() {
-        return this.hosptlurno;
-    }
-
-    public void setHosptlurno(String hosptlurno) {
-        this.hosptlurno = hosptlurno;
-    }
-
-    public Byte getFeepositn() {
-        return this.feepositn;
-    }
-
-    public void setFeepositn(Byte feepositn) {
-        this.feepositn = feepositn;
-    }
-
-    public String getMeddirkey() {
-        return this.meddirkey;
-    }
-
-    public void setMeddirkey(String meddirkey) {
-        this.meddirkey = meddirkey;
-    }
-
-    public String getComments() {
-        return this.comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
-    public String getFamlyhist() {
-        return this.famlyhist;
-    }
-
-    public void setFamlyhist(String famlyhist) {
-        this.famlyhist = famlyhist;
-    }
-
-    public String getDoctsnotes() {
-        return this.doctsnotes;
-    }
-
-    public void setDoctsnotes(String doctsnotes) {
-        this.doctsnotes = doctsnotes;
-    }
-
-    public String getCritnotes() {
-        return this.critnotes;
-    }
-
-    public void setCritnotes(String critnotes) {
-        this.critnotes = critnotes;
     }
 
     public String getEmail() {
@@ -811,292 +302,28 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
         this.email = email;
     }
 
-    public String getPtstatus() {
-        return this.ptstatus;
+    public String getFundcode() {
+        return this.fundcode;
     }
 
-    public void setPtstatus(String ptstatus) {
-        this.ptstatus = ptstatus;
+    public void setFundcode(String fundcode) {
+        this.fundcode = fundcode;
     }
 
-    public LocalDateTime getMediexpry() {
-        return this.mediexpry;
+    public String getBirthplace() {
+        return this.birthplace;
     }
 
-    public void setMediexpry(LocalDateTime mediexpry) {
-        this.mediexpry = mediexpry;
+    public void setBirthplace(String birthplace) {
+        this.birthplace = birthplace;
     }
 
-    public String getOthrrefdoc() {
-        return this.othrrefdoc;
+    public String getVetaffno() {
+        return this.vetaffno;
     }
 
-    public void setOthrrefdoc(String othrrefdoc) {
-        this.othrrefdoc = othrrefdoc;
-    }
-
-    public String getPrfcomunic() {
-        return this.prfcomunic;
-    }
-
-    public void setPrfcomunic(String prfcomunic) {
-        this.prfcomunic = prfcomunic;
-    }
-
-    public Boolean getOk2email() {
-        return this.ok2email;
-    }
-
-    public void setOk2email(Boolean ok2email) {
-        this.ok2email = ok2email;
-    }
-
-    public Boolean getPyesno01() {
-        return this.pyesno01;
-    }
-
-    public void setPyesno01(Boolean pyesno01) {
-        this.pyesno01 = pyesno01;
-    }
-
-    public Boolean getPyesno02() {
-        return this.pyesno02;
-    }
-
-    public void setPyesno02(Boolean pyesno02) {
-        this.pyesno02 = pyesno02;
-    }
-
-    public Boolean getPyesno03() {
-        return this.pyesno03;
-    }
-
-    public void setPyesno03(Boolean pyesno03) {
-        this.pyesno03 = pyesno03;
-    }
-
-    public Boolean getPyesno04() {
-        return this.pyesno04;
-    }
-
-    public void setPyesno04(Boolean pyesno04) {
-        this.pyesno04 = pyesno04;
-    }
-
-    public Boolean getPyesno05() {
-        return this.pyesno05;
-    }
-
-    public void setPyesno05(Boolean pyesno05) {
-        this.pyesno05 = pyesno05;
-    }
-
-    public Double getPnumval01() {
-        return this.pnumval01;
-    }
-
-    public void setPnumval01(Double pnumval01) {
-        this.pnumval01 = pnumval01;
-    }
-
-    public Double getPnumval02() {
-        return this.pnumval02;
-    }
-
-    public void setPnumval02(Double pnumval02) {
-        this.pnumval02 = pnumval02;
-    }
-
-    public String getPcharval01() {
-        return this.pcharval01;
-    }
-
-    public void setPcharval01(String pcharval01) {
-        this.pcharval01 = pcharval01;
-    }
-
-    public String getPcharval02() {
-        return this.pcharval02;
-    }
-
-    public void setPcharval02(String pcharval02) {
-        this.pcharval02 = pcharval02;
-    }
-
-    public String getPcharval03() {
-        return this.pcharval03;
-    }
-
-    public void setPcharval03(String pcharval03) {
-        this.pcharval03 = pcharval03;
-    }
-
-    public LocalDateTime getPdateval01() {
-        return this.pdateval01;
-    }
-
-    public void setPdateval01(LocalDateTime pdateval01) {
-        this.pdateval01 = pdateval01;
-    }
-
-    public LocalDateTime getPdateval02() {
-        return this.pdateval02;
-    }
-
-    public void setPdateval02(LocalDateTime pdateval02) {
-        this.pdateval02 = pdateval02;
-    }
-
-    public LocalDateTime getPdateval03() {
-        return this.pdateval03;
-    }
-
-    public void setPdateval03(LocalDateTime pdateval03) {
-        this.pdateval03 = pdateval03;
-    }
-
-    public Boolean getHascopmt() {
-        return this.hascopmt;
-    }
-
-    public void setHascopmt(Boolean hascopmt) {
-        this.hascopmt = hascopmt;
-    }
-
-    public Float getExcessamt() {
-        return this.excessamt;
-    }
-
-    public void setExcessamt(Float excessamt) {
-        this.excessamt = excessamt;
-    }
-
-    public String getNextofkin() {
-        return this.nextofkin;
-    }
-
-    public void setNextofkin(String nextofkin) {
-        this.nextofkin = nextofkin;
-    }
-
-    public String getCheckout() {
-        return this.checkout;
-    }
-
-    public void setCheckout(String checkout) {
-        this.checkout = checkout;
-    }
-
-    public Integer getChecksum() {
-        return this.checksum;
-    }
-
-    public void setChecksum(Integer checksum) {
-        this.checksum = checksum;
-    }
-
-    public String getMedcrefno() {
-        return this.medcrefno;
-    }
-
-    public void setMedcrefno(String medcrefno) {
-        this.medcrefno = medcrefno;
-    }
-
-    public LocalDateTime getLastegbchk() {
-        return this.lastegbchk;
-    }
-
-    public void setLastegbchk(LocalDateTime lastegbchk) {
-        this.lastegbchk = lastegbchk;
-    }
-
-    public String getFundupi() {
-        return this.fundupi;
-    }
-
-    public void setFundupi(String fundupi) {
-        this.fundupi = fundupi;
-    }
-
-    public String getAliasgname() {
-        return this.aliasgname;
-    }
-
-    public void setAliasgname(String aliasgname) {
-        this.aliasgname = aliasgname;
-    }
-
-    public String getAliassname() {
-        return this.aliassname;
-    }
-
-    public void setAliassname(String aliassname) {
-        this.aliassname = aliassname;
-    }
-
-    public String getLastfundst() {
-        return this.lastfundst;
-    }
-
-    public void setLastfundst(String lastfundst) {
-        this.lastfundst = lastfundst;
-    }
-
-    public String getLastmedcst() {
-        return this.lastmedcst;
-    }
-
-    public void setLastmedcst(String lastmedcst) {
-        this.lastmedcst = lastmedcst;
-    }
-
-    public String getMcareIrn() {
-        return this.mcareIrn;
-    }
-
-    public void setMcareIrn(String mcareIrn) {
-        this.mcareIrn = mcareIrn;
-    }
-
-    public String getMcareRefn() {
-        return this.mcareRefn;
-    }
-
-    public void setMcareRefn(String mcareRefn) {
-        this.mcareRefn = mcareRefn;
-    }
-
-    public LocalDateTime getLastfnstdt() {
-        return this.lastfnstdt;
-    }
-
-    public void setLastfnstdt(LocalDateTime lastfnstdt) {
-        this.lastfnstdt = lastfnstdt;
-    }
-
-    public LocalDateTime getLastmcstdt() {
-        return this.lastmcstdt;
-    }
-
-    public void setLastmcstdt(LocalDateTime lastmcstdt) {
-        this.lastmcstdt = lastmcstdt;
-    }
-
-    public String getMinitial() {
-        return this.minitial;
-    }
-
-    public void setMinitial(String minitial) {
-        this.minitial = minitial;
-    }
-
-    public LocalDateTime getRefissuedt() {
-        return this.refissuedt;
-    }
-
-    public void setRefissuedt(LocalDateTime refissuedt) {
-        this.refissuedt = refissuedt;
+    public void setVetaffno(String vetaffno) {
+        this.vetaffno = vetaffno;
     }
 
     public String getReferalsrc() {
@@ -1107,20 +334,20 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
         this.referalsrc = referalsrc;
     }
 
-    public String getCopyto() {
-        return this.copyto;
+    public LocalDateTime getMediexpry() {
+        return this.mediexpry;
     }
 
-    public void setCopyto(String copyto) {
-        this.copyto = copyto;
+    public void setMediexpry(LocalDateTime mediexpry) {
+        this.mediexpry = mediexpry;
     }
 
-    public String getCopyothers() {
-        return this.copyothers;
+    public String getMcareRefn() {
+        return this.mcareRefn;
     }
 
-    public void setCopyothers(String copyothers) {
-        this.copyothers = copyothers;
+    public void setMcareRefn(String mcareRefn) {
+        this.mcareRefn = mcareRefn;
     }
 
     public String getClaimdtls() {
@@ -1131,36 +358,28 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
         this.claimdtls = claimdtls;
     }
 
-    public LocalDateTime getOthrrefdte() {
-        return this.othrrefdte;
+    public String getNextofkin() {
+        return this.nextofkin;
     }
 
-    public void setOthrrefdte(LocalDateTime othrrefdte) {
-        this.othrrefdte = othrrefdte;
+    public void setNextofkin(String nextofkin) {
+        this.nextofkin = nextofkin;
     }
 
-    public Byte getOthrrefexp() {
-        return this.othrrefexp;
+    public Byte getFeepositn() {
+        return this.feepositn;
     }
 
-    public void setOthrrefexp(Byte othrrefexp) {
-        this.othrrefexp = othrrefexp;
+    public void setFeepositn(Byte feepositn) {
+        this.feepositn = feepositn;
     }
 
-    public LocalDateTime getPensexpiry() {
-        return this.pensexpiry;
+    public LocalDateTime getDatejoined() {
+        return this.datejoined;
     }
 
-    public void setPensexpiry(LocalDateTime pensexpiry) {
-        this.pensexpiry = pensexpiry;
-    }
-
-    public LocalDateTime getDvaexpiry() {
-        return this.dvaexpiry;
-    }
-
-    public void setDvaexpiry(LocalDateTime dvaexpiry) {
-        this.dvaexpiry = dvaexpiry;
+    public void setDatejoined(LocalDateTime datejoined) {
+        this.datejoined = datejoined;
     }
 
     public Byte getDvacardtyp() {
@@ -1171,36 +390,212 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
         this.dvacardtyp = dvacardtyp;
     }
 
-    public String getIndgenstyp() {
-        return this.indgenstyp;
+    public String getFamDrTitle() {
+        return this.famDrTitle;
     }
 
-    public void setIndgenstyp(String indgenstyp) {
-        this.indgenstyp = indgenstyp;
+    public void setFamDrTitle(String famDrTitle) {
+        this.famDrTitle = famDrTitle;
     }
 
-    public LocalDateTime getDatecreate() {
-        return this.datecreate;
+    public String getFamDrGiven() {
+        return this.famDrGiven;
     }
 
-    public void setDatecreate(LocalDateTime datecreate) {
-        this.datecreate = datecreate;
+    public void setFamDrGiven(String famDrGiven) {
+        this.famDrGiven = famDrGiven;
     }
 
-    public LocalDateTime getHlthcrdexp() {
-        return this.hlthcrdexp;
+    public String getFamDrSurname() {
+        return this.famDrSurname;
     }
 
-    public void setHlthcrdexp(LocalDateTime hlthcrdexp) {
-        this.hlthcrdexp = hlthcrdexp;
+    public void setFamDrSurname(String famDrSurname) {
+        this.famDrSurname = famDrSurname;
     }
 
-    public Integer getIdNo() {
-        return this.idNo;
+    public String getFamDrProviderNo() {
+        return this.famDrProviderNo;
     }
 
-    public void setIdNo(Integer idNo) {
-        this.idNo = idNo;
+    public void setFamDrProviderNo(String famDrProviderNo) {
+        this.famDrProviderNo = famDrProviderNo;
+    }
+
+    public String getFamDrMedicareCenter() {
+        return this.famDrMedicareCenter;
+    }
+
+    public void setFamDrMedicareCenter(String famDrMedicareCenter) {
+        this.famDrMedicareCenter = famDrMedicareCenter;
+    }
+
+    public String getFamDrAdr1() {
+        return this.famDrAdr1;
+    }
+
+    public void setFamDrAdr1(String famDrAdr1) {
+        this.famDrAdr1 = famDrAdr1;
+    }
+
+    public String getFamDrAdr2() {
+        return this.famDrAdr2;
+    }
+
+    public void setFamDrAdr2(String famDrAdr2) {
+        this.famDrAdr2 = famDrAdr2;
+    }
+
+    public String getFamDrSuburb() {
+        return this.famDrSuburb;
+    }
+
+    public void setFamDrSuburb(String famDrSuburb) {
+        this.famDrSuburb = famDrSuburb;
+    }
+
+    public String getFamDrState() {
+        return this.famDrState;
+    }
+
+    public void setFamDrState(String famDrState) {
+        this.famDrState = famDrState;
+    }
+
+    public String getFamDrPostCode() {
+        return this.famDrPostCode;
+    }
+
+    public void setFamDrPostCode(String famDrPostCode) {
+        this.famDrPostCode = famDrPostCode;
+    }
+
+    public String getRefDrTitle() {
+        return this.refDrTitle;
+    }
+
+    public void setRefDrTitle(String refDrTitle) {
+        this.refDrTitle = refDrTitle;
+    }
+
+    public String getRefDrGiven() {
+        return this.refDrGiven;
+    }
+
+    public void setRefDrGiven(String refDrGiven) {
+        this.refDrGiven = refDrGiven;
+    }
+
+    public String getRefDrSurname() {
+        return this.refDrSurname;
+    }
+
+    public void setRefDrSurname(String refDrSurname) {
+        this.refDrSurname = refDrSurname;
+    }
+
+    public String getRefDrProviderNo() {
+        return this.refDrProviderNo;
+    }
+
+    public void setRefDrProviderNo(String refDrProviderNo) {
+        this.refDrProviderNo = refDrProviderNo;
+    }
+
+    public String getRefDrMedicareCenter() {
+        return this.refDrMedicareCenter;
+    }
+
+    public void setRefDrMedicareCenter(String refDrMedicareCenter) {
+        this.refDrMedicareCenter = refDrMedicareCenter;
+    }
+
+    public String getRefDrAdr1() {
+        return this.refDrAdr1;
+    }
+
+    public void setRefDrAdr1(String refDrAdr1) {
+        this.refDrAdr1 = refDrAdr1;
+    }
+
+    public String getRefDrAdr2() {
+        return this.refDrAdr2;
+    }
+
+    public void setRefDrAdr2(String refDrAdr2) {
+        this.refDrAdr2 = refDrAdr2;
+    }
+
+    public String getRefDrSuburb() {
+        return this.refDrSuburb;
+    }
+
+    public void setRefDrSuburb(String refDrSuburb) {
+        this.refDrSuburb = refDrSuburb;
+    }
+
+    public String getRefDrState() {
+        return this.refDrState;
+    }
+
+    public void setRefDrState(String refDrState) {
+        this.refDrState = refDrState;
+    }
+
+    public String getRefDrPostCode() {
+        return this.refDrPostCode;
+    }
+
+    public void setRefDrPostCode(String refDrPostCode) {
+        this.refDrPostCode = refDrPostCode;
+    }
+
+    public String getNokGiven() {
+        return this.nokGiven;
+    }
+
+    public void setNokGiven(String nokGiven) {
+        this.nokGiven = nokGiven;
+    }
+
+    public String getNokSurname() {
+        return this.nokSurname;
+    }
+
+    public void setNokSurname(String nokSurname) {
+        this.nokSurname = nokSurname;
+    }
+
+    public String getNokRelationship() {
+        return this.nokRelationship;
+    }
+
+    public void setNokRelationship(String nokRelationship) {
+        this.nokRelationship = nokRelationship;
+    }
+
+    public String getNokContactNo() {
+        return this.nokContactNo;
+    }
+
+    public void setNokContactNo(String nokContactNo) {
+        this.nokContactNo = nokContactNo;
+    }
+
+    public String getMiddleName() {
+        return this.middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getPreferedName() {
+        return this.preferedName;
+    }
+
+    public void setPreferedName(String preferedName) {
+        this.preferedName = preferedName;
     }
 
     @Override
@@ -1209,7 +604,6 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
         if (!(o instanceof QryGetPatientByPatientNoResponse)) return false;
         final QryGetPatientByPatientNoResponse qryGetPatientByPatientNoResponse = (QryGetPatientByPatientNoResponse) o;
         return Objects.equals(getPatientNo(), qryGetPatientByPatientNoResponse.getPatientNo()) &&
-                Objects.equals(getAccountno(), qryGetPatientByPatientNoResponse.getAccountno()) &&
                 Objects.equals(getTitle(), qryGetPatientByPatientNoResponse.getTitle()) &&
                 Objects.equals(getGiven(), qryGetPatientByPatientNoResponse.getGiven()) &&
                 Objects.equals(getSurname(), qryGetPatientByPatientNoResponse.getSurname()) &&
@@ -1221,107 +615,52 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
                 Objects.equals(getPhoneAh(), qryGetPatientByPatientNoResponse.getPhoneAh()) &&
                 Objects.equals(getPhoneBh(), qryGetPatientByPatientNoResponse.getPhoneBh()) &&
                 Objects.equals(getMobile(), qryGetPatientByPatientNoResponse.getMobile()) &&
-                Objects.equals(getSex(), qryGetPatientByPatientNoResponse.getSex()) &&
                 Objects.equals(getDob(), qryGetPatientByPatientNoResponse.getDob()) &&
-                Objects.equals(getAge(), qryGetPatientByPatientNoResponse.getAge()) &&
-                Objects.equals(getBirthplace(), qryGetPatientByPatientNoResponse.getBirthplace()) &&
-                Objects.equals(getAboriginal(), qryGetPatientByPatientNoResponse.getAboriginal()) &&
-                Objects.equals(getMaritalst(), qryGetPatientByPatientNoResponse.getMaritalst()) &&
-                Objects.equals(getReligion(), qryGetPatientByPatientNoResponse.getReligion()) &&
-                Objects.equals(getRelatnship(), qryGetPatientByPatientNoResponse.getRelatnship()) &&
                 Objects.equals(getMedicareno(), qryGetPatientByPatientNoResponse.getMedicareno()) &&
-                Objects.equals(getMcaresufix(), qryGetPatientByPatientNoResponse.getMcaresufix()) &&
-                Objects.equals(getEmployer(), qryGetPatientByPatientNoResponse.getEmployer()) &&
-                Objects.equals(getOccupation(), qryGetPatientByPatientNoResponse.getOccupation()) &&
-                Objects.equals(getHlthbencrd(), qryGetPatientByPatientNoResponse.getHlthbencrd()) &&
-                Objects.equals(getVetaffno(), qryGetPatientByPatientNoResponse.getVetaffno()) &&
-                Objects.equals(getSocialno(), qryGetPatientByPatientNoResponse.getSocialno()) &&
-                Objects.equals(getPensionno(), qryGetPatientByPatientNoResponse.getPensionno()) &&
-                Objects.equals(getHlthcrdno(), qryGetPatientByPatientNoResponse.getHlthcrdno()) &&
-                Objects.equals(getMedrecflno(), qryGetPatientByPatientNoResponse.getMedrecflno()) &&
                 Objects.equals(getMemberNo(), qryGetPatientByPatientNoResponse.getMemberNo()) &&
-                Objects.equals(getContributr(), qryGetPatientByPatientNoResponse.getContributr()) &&
-                Objects.equals(getCoverdesc(), qryGetPatientByPatientNoResponse.getCoverdesc()) &&
-                Objects.equals(getTableSchd(), qryGetPatientByPatientNoResponse.getTableSchd()) &&
-                Objects.equals(getDatejoined(), qryGetPatientByPatientNoResponse.getDatejoined()) &&
-                Objects.equals(getInsurlevel(), qryGetPatientByPatientNoResponse.getInsurlevel()) &&
-                Objects.equals(getLastvist(), qryGetPatientByPatientNoResponse.getLastvist()) &&
-                Objects.equals(getAllergies(), qryGetPatientByPatientNoResponse.getAllergies()) &&
-                Objects.equals(getRefdocId(), qryGetPatientByPatientNoResponse.getRefdocId()) &&
-                Objects.equals(getRefdate(), qryGetPatientByPatientNoResponse.getRefdate()) &&
-                Objects.equals(getNorefrlexp(), qryGetPatientByPatientNoResponse.getNorefrlexp()) &&
-                Objects.equals(getRecaladate(), qryGetPatientByPatientNoResponse.getRecaladate()) &&
-                Objects.equals(getRecalreasn(), qryGetPatientByPatientNoResponse.getRecalreasn()) &&
-                Objects.equals(getDoctorId(), qryGetPatientByPatientNoResponse.getDoctorId()) &&
-                Objects.equals(getFundcode(), qryGetPatientByPatientNoResponse.getFundcode()) &&
-                Objects.equals(getLabelprnt(), qryGetPatientByPatientNoResponse.getLabelprnt()) &&
-                Objects.equals(getReportprnt(), qryGetPatientByPatientNoResponse.getReportprnt()) &&
-                Objects.equals(getInvPrnt(), qryGetPatientByPatientNoResponse.getInvPrnt()) &&
-                Objects.equals(getRcptPrnt(), qryGetPatientByPatientNoResponse.getRcptPrnt()) &&
-                Objects.equals(getChangedon(), qryGetPatientByPatientNoResponse.getChangedon()) &&
-                Objects.equals(getHosptlurno(), qryGetPatientByPatientNoResponse.getHosptlurno()) &&
-                Objects.equals(getFeepositn(), qryGetPatientByPatientNoResponse.getFeepositn()) &&
-                Objects.equals(getMeddirkey(), qryGetPatientByPatientNoResponse.getMeddirkey()) &&
-                Objects.equals(getComments(), qryGetPatientByPatientNoResponse.getComments()) &&
-                Objects.equals(getFamlyhist(), qryGetPatientByPatientNoResponse.getFamlyhist()) &&
-                Objects.equals(getDoctsnotes(), qryGetPatientByPatientNoResponse.getDoctsnotes()) &&
-                Objects.equals(getCritnotes(), qryGetPatientByPatientNoResponse.getCritnotes()) &&
                 Objects.equals(getEmail(), qryGetPatientByPatientNoResponse.getEmail()) &&
-                Objects.equals(getPtstatus(), qryGetPatientByPatientNoResponse.getPtstatus()) &&
-                Objects.equals(getMediexpry(), qryGetPatientByPatientNoResponse.getMediexpry()) &&
-                Objects.equals(getOthrrefdoc(), qryGetPatientByPatientNoResponse.getOthrrefdoc()) &&
-                Objects.equals(getPrfcomunic(), qryGetPatientByPatientNoResponse.getPrfcomunic()) &&
-                Objects.equals(getOk2email(), qryGetPatientByPatientNoResponse.getOk2email()) &&
-                Objects.equals(getPyesno01(), qryGetPatientByPatientNoResponse.getPyesno01()) &&
-                Objects.equals(getPyesno02(), qryGetPatientByPatientNoResponse.getPyesno02()) &&
-                Objects.equals(getPyesno03(), qryGetPatientByPatientNoResponse.getPyesno03()) &&
-                Objects.equals(getPyesno04(), qryGetPatientByPatientNoResponse.getPyesno04()) &&
-                Objects.equals(getPyesno05(), qryGetPatientByPatientNoResponse.getPyesno05()) &&
-                Objects.equals(getPnumval01(), qryGetPatientByPatientNoResponse.getPnumval01()) &&
-                Objects.equals(getPnumval02(), qryGetPatientByPatientNoResponse.getPnumval02()) &&
-                Objects.equals(getPcharval01(), qryGetPatientByPatientNoResponse.getPcharval01()) &&
-                Objects.equals(getPcharval02(), qryGetPatientByPatientNoResponse.getPcharval02()) &&
-                Objects.equals(getPcharval03(), qryGetPatientByPatientNoResponse.getPcharval03()) &&
-                Objects.equals(getPdateval01(), qryGetPatientByPatientNoResponse.getPdateval01()) &&
-                Objects.equals(getPdateval02(), qryGetPatientByPatientNoResponse.getPdateval02()) &&
-                Objects.equals(getPdateval03(), qryGetPatientByPatientNoResponse.getPdateval03()) &&
-                Objects.equals(getHascopmt(), qryGetPatientByPatientNoResponse.getHascopmt()) &&
-                Objects.equals(getExcessamt(), qryGetPatientByPatientNoResponse.getExcessamt()) &&
-                Objects.equals(getNextofkin(), qryGetPatientByPatientNoResponse.getNextofkin()) &&
-                Objects.equals(getCheckout(), qryGetPatientByPatientNoResponse.getCheckout()) &&
-                Objects.equals(getChecksum(), qryGetPatientByPatientNoResponse.getChecksum()) &&
-                Objects.equals(getMedcrefno(), qryGetPatientByPatientNoResponse.getMedcrefno()) &&
-                Objects.equals(getLastegbchk(), qryGetPatientByPatientNoResponse.getLastegbchk()) &&
-                Objects.equals(getFundupi(), qryGetPatientByPatientNoResponse.getFundupi()) &&
-                Objects.equals(getAliasgname(), qryGetPatientByPatientNoResponse.getAliasgname()) &&
-                Objects.equals(getAliassname(), qryGetPatientByPatientNoResponse.getAliassname()) &&
-                Objects.equals(getLastfundst(), qryGetPatientByPatientNoResponse.getLastfundst()) &&
-                Objects.equals(getLastmedcst(), qryGetPatientByPatientNoResponse.getLastmedcst()) &&
-                Objects.equals(getMcareIrn(), qryGetPatientByPatientNoResponse.getMcareIrn()) &&
-                Objects.equals(getMcareRefn(), qryGetPatientByPatientNoResponse.getMcareRefn()) &&
-                Objects.equals(getLastfnstdt(), qryGetPatientByPatientNoResponse.getLastfnstdt()) &&
-                Objects.equals(getLastmcstdt(), qryGetPatientByPatientNoResponse.getLastmcstdt()) &&
-                Objects.equals(getMinitial(), qryGetPatientByPatientNoResponse.getMinitial()) &&
-                Objects.equals(getRefissuedt(), qryGetPatientByPatientNoResponse.getRefissuedt()) &&
+                Objects.equals(getFundcode(), qryGetPatientByPatientNoResponse.getFundcode()) &&
+                Objects.equals(getBirthplace(), qryGetPatientByPatientNoResponse.getBirthplace()) &&
+                Objects.equals(getVetaffno(), qryGetPatientByPatientNoResponse.getVetaffno()) &&
                 Objects.equals(getReferalsrc(), qryGetPatientByPatientNoResponse.getReferalsrc()) &&
-                Objects.equals(getCopyto(), qryGetPatientByPatientNoResponse.getCopyto()) &&
-                Objects.equals(getCopyothers(), qryGetPatientByPatientNoResponse.getCopyothers()) &&
+                Objects.equals(getMediexpry(), qryGetPatientByPatientNoResponse.getMediexpry()) &&
+                Objects.equals(getMcareRefn(), qryGetPatientByPatientNoResponse.getMcareRefn()) &&
                 Objects.equals(getClaimdtls(), qryGetPatientByPatientNoResponse.getClaimdtls()) &&
-                Objects.equals(getOthrrefdte(), qryGetPatientByPatientNoResponse.getOthrrefdte()) &&
-                Objects.equals(getOthrrefexp(), qryGetPatientByPatientNoResponse.getOthrrefexp()) &&
-                Objects.equals(getPensexpiry(), qryGetPatientByPatientNoResponse.getPensexpiry()) &&
-                Objects.equals(getDvaexpiry(), qryGetPatientByPatientNoResponse.getDvaexpiry()) &&
+                Objects.equals(getNextofkin(), qryGetPatientByPatientNoResponse.getNextofkin()) &&
+                Objects.equals(getFeepositn(), qryGetPatientByPatientNoResponse.getFeepositn()) &&
+                Objects.equals(getDatejoined(), qryGetPatientByPatientNoResponse.getDatejoined()) &&
                 Objects.equals(getDvacardtyp(), qryGetPatientByPatientNoResponse.getDvacardtyp()) &&
-                Objects.equals(getIndgenstyp(), qryGetPatientByPatientNoResponse.getIndgenstyp()) &&
-                Objects.equals(getDatecreate(), qryGetPatientByPatientNoResponse.getDatecreate()) &&
-                Objects.equals(getHlthcrdexp(), qryGetPatientByPatientNoResponse.getHlthcrdexp()) &&
-                Objects.equals(getIdNo(), qryGetPatientByPatientNoResponse.getIdNo());
+                Objects.equals(getFamDrTitle(), qryGetPatientByPatientNoResponse.getFamDrTitle()) &&
+                Objects.equals(getFamDrGiven(), qryGetPatientByPatientNoResponse.getFamDrGiven()) &&
+                Objects.equals(getFamDrSurname(), qryGetPatientByPatientNoResponse.getFamDrSurname()) &&
+                Objects.equals(getFamDrProviderNo(), qryGetPatientByPatientNoResponse.getFamDrProviderNo()) &&
+                Objects.equals(getFamDrMedicareCenter(), qryGetPatientByPatientNoResponse.getFamDrMedicareCenter()) &&
+                Objects.equals(getFamDrAdr1(), qryGetPatientByPatientNoResponse.getFamDrAdr1()) &&
+                Objects.equals(getFamDrAdr2(), qryGetPatientByPatientNoResponse.getFamDrAdr2()) &&
+                Objects.equals(getFamDrSuburb(), qryGetPatientByPatientNoResponse.getFamDrSuburb()) &&
+                Objects.equals(getFamDrState(), qryGetPatientByPatientNoResponse.getFamDrState()) &&
+                Objects.equals(getFamDrPostCode(), qryGetPatientByPatientNoResponse.getFamDrPostCode()) &&
+                Objects.equals(getRefDrTitle(), qryGetPatientByPatientNoResponse.getRefDrTitle()) &&
+                Objects.equals(getRefDrGiven(), qryGetPatientByPatientNoResponse.getRefDrGiven()) &&
+                Objects.equals(getRefDrSurname(), qryGetPatientByPatientNoResponse.getRefDrSurname()) &&
+                Objects.equals(getRefDrProviderNo(), qryGetPatientByPatientNoResponse.getRefDrProviderNo()) &&
+                Objects.equals(getRefDrMedicareCenter(), qryGetPatientByPatientNoResponse.getRefDrMedicareCenter()) &&
+                Objects.equals(getRefDrAdr1(), qryGetPatientByPatientNoResponse.getRefDrAdr1()) &&
+                Objects.equals(getRefDrAdr2(), qryGetPatientByPatientNoResponse.getRefDrAdr2()) &&
+                Objects.equals(getRefDrSuburb(), qryGetPatientByPatientNoResponse.getRefDrSuburb()) &&
+                Objects.equals(getRefDrState(), qryGetPatientByPatientNoResponse.getRefDrState()) &&
+                Objects.equals(getRefDrPostCode(), qryGetPatientByPatientNoResponse.getRefDrPostCode()) &&
+                Objects.equals(getNokGiven(), qryGetPatientByPatientNoResponse.getNokGiven()) &&
+                Objects.equals(getNokSurname(), qryGetPatientByPatientNoResponse.getNokSurname()) &&
+                Objects.equals(getNokRelationship(), qryGetPatientByPatientNoResponse.getNokRelationship()) &&
+                Objects.equals(getNokContactNo(), qryGetPatientByPatientNoResponse.getNokContactNo()) &&
+                Objects.equals(getMiddleName(), qryGetPatientByPatientNoResponse.getMiddleName()) &&
+                Objects.equals(getPreferedName(), qryGetPatientByPatientNoResponse.getPreferedName());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getPatientNo(),
-                getAccountno(),
                 getTitle(),
                 getGiven(),
                 getSurname(),
@@ -1333,100 +672,46 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
                 getPhoneAh(),
                 getPhoneBh(),
                 getMobile(),
-                getSex(),
                 getDob(),
-                getAge(),
-                getBirthplace(),
-                getAboriginal(),
-                getMaritalst(),
-                getReligion(),
-                getRelatnship(),
                 getMedicareno(),
-                getMcaresufix(),
-                getEmployer(),
-                getOccupation(),
-                getHlthbencrd(),
-                getVetaffno(),
-                getSocialno(),
-                getPensionno(),
-                getHlthcrdno(),
-                getMedrecflno(),
                 getMemberNo(),
-                getContributr(),
-                getCoverdesc(),
-                getTableSchd(),
-                getDatejoined(),
-                getInsurlevel(),
-                getLastvist(),
-                getAllergies(),
-                getRefdocId(),
-                getRefdate(),
-                getNorefrlexp(),
-                getRecaladate(),
-                getRecalreasn(),
-                getDoctorId(),
-                getFundcode(),
-                getLabelprnt(),
-                getReportprnt(),
-                getInvPrnt(),
-                getRcptPrnt(),
-                getChangedon(),
-                getHosptlurno(),
-                getFeepositn(),
-                getMeddirkey(),
-                getComments(),
-                getFamlyhist(),
-                getDoctsnotes(),
-                getCritnotes(),
                 getEmail(),
-                getPtstatus(),
-                getMediexpry(),
-                getOthrrefdoc(),
-                getPrfcomunic(),
-                getOk2email(),
-                getPyesno01(),
-                getPyesno02(),
-                getPyesno03(),
-                getPyesno04(),
-                getPyesno05(),
-                getPnumval01(),
-                getPnumval02(),
-                getPcharval01(),
-                getPcharval02(),
-                getPcharval03(),
-                getPdateval01(),
-                getPdateval02(),
-                getPdateval03(),
-                getHascopmt(),
-                getExcessamt(),
-                getNextofkin(),
-                getCheckout(),
-                getChecksum(),
-                getMedcrefno(),
-                getLastegbchk(),
-                getFundupi(),
-                getAliasgname(),
-                getAliassname(),
-                getLastfundst(),
-                getLastmedcst(),
-                getMcareIrn(),
-                getMcareRefn(),
-                getLastfnstdt(),
-                getLastmcstdt(),
-                getMinitial(),
-                getRefissuedt(),
+                getFundcode(),
+                getBirthplace(),
+                getVetaffno(),
                 getReferalsrc(),
-                getCopyto(),
-                getCopyothers(),
+                getMediexpry(),
+                getMcareRefn(),
                 getClaimdtls(),
-                getOthrrefdte(),
-                getOthrrefexp(),
-                getPensexpiry(),
-                getDvaexpiry(),
+                getNextofkin(),
+                getFeepositn(),
+                getDatejoined(),
                 getDvacardtyp(),
-                getIndgenstyp(),
-                getDatecreate(),
-                getHlthcrdexp(),
-                getIdNo());
+                getFamDrTitle(),
+                getFamDrGiven(),
+                getFamDrSurname(),
+                getFamDrProviderNo(),
+                getFamDrMedicareCenter(),
+                getFamDrAdr1(),
+                getFamDrAdr2(),
+                getFamDrSuburb(),
+                getFamDrState(),
+                getFamDrPostCode(),
+                getRefDrTitle(),
+                getRefDrGiven(),
+                getRefDrSurname(),
+                getRefDrProviderNo(),
+                getRefDrMedicareCenter(),
+                getRefDrAdr1(),
+                getRefDrAdr2(),
+                getRefDrSuburb(),
+                getRefDrState(),
+                getRefDrPostCode(),
+                getNokGiven(),
+                getNokSurname(),
+                getNokRelationship(),
+                getNokContactNo(),
+                getMiddleName(),
+                getPreferedName());
     }
 }

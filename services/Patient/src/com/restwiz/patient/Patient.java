@@ -217,6 +217,8 @@ public class Patient {
             req.setTfeepositn(feePos.toString());
             String joinDt = (String) json.get("t_dateJoined");
             req.setTdateJoined(getSqlDate(joinDt));
+            Long dvaCardType = (Long) json.get("t_dvacardtype");
+            req.setTdvacardtype(dvaCardType.toString());
 
 
             int i = cWmwSQLQueryExecutorService.executeQryUpdatePatient(req);

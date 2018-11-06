@@ -151,6 +151,16 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/QryInsertClinicalConclutions", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "insert medical history")
+    public IntegerWrapper executeQryInsertClinicalConclutions(@Valid @RequestBody QryInsertClinicalConclutionsRequest qryInsertClinicalConclutionsRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: QryInsertClinicalConclutions");
+        Integer _result = queryService.executeQryInsertClinicalConclutions(qryInsertClinicalConclutionsRequest);
+        LOGGER.debug("got the result for named query: QryInsertClinicalConclutions, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/qryGetPatientNoAndRole", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get Patient no and role")
