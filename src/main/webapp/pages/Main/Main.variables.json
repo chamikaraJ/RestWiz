@@ -28,11 +28,11 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "patienData",
-      "value" : "bind:Widgets.textarea1.datavalue",
-      "type" : "string"
+      "isList" : false,
+      "target" : "String",
+      "value" : "bind:Widgets.textarea1.datavalue"
     } ],
-    "type" : "com.restwiz.cwmwsql.Ptdetail",
+    "type" : "string",
     "service" : "Patient",
     "operation" : "updatePatient",
     "operationId" : "PatientController_updatePatient",
