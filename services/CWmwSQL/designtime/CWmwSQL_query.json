@@ -1539,7 +1539,7 @@
     "name" : "qryUpdateNextPtGenCode",
     "description" : "update next generated code for patient",
     "version" : "V2",
-    "queryString" : "update NoGenCon set NumValue = :nextNo, CurPreFix = :prefix where idCode = 'PATNO'",
+    "queryString" : "update NoGenCon set NumValue = :nextNo, CurPreFix = :prefix where idCode = :t_idCode",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -1550,7 +1550,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "80089",
+      "testValue" : "80096",
       "required" : true
     }, {
       "name" : "prefix",
@@ -1558,7 +1558,15 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "AA",
+      "testValue" : "A",
+      "required" : true
+    }, {
+      "name" : "t_idCode",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "PATNO",
       "required" : true
     } ],
     "request" : {

@@ -26,6 +26,10 @@ public class QryUpdateNextPtGenCodeRequest implements Serializable {
     @NotNull
     private String prefix;
 
+    @JsonProperty("t_idCode")
+    @NotNull
+    private String tidCode;
+
     public String getNextNo() {
         return this.nextNo;
     }
@@ -42,18 +46,28 @@ public class QryUpdateNextPtGenCodeRequest implements Serializable {
         this.prefix = prefix;
     }
 
+    public String getTidCode() {
+        return this.tidCode;
+    }
+
+    public void setTidCode(String tidCode) {
+        this.tidCode = tidCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof QryUpdateNextPtGenCodeRequest)) return false;
         final QryUpdateNextPtGenCodeRequest qryUpdateNextPtGenCodeRequest = (QryUpdateNextPtGenCodeRequest) o;
         return Objects.equals(getNextNo(), qryUpdateNextPtGenCodeRequest.getNextNo()) &&
-                Objects.equals(getPrefix(), qryUpdateNextPtGenCodeRequest.getPrefix());
+                Objects.equals(getPrefix(), qryUpdateNextPtGenCodeRequest.getPrefix()) &&
+                Objects.equals(getTidCode(), qryUpdateNextPtGenCodeRequest.getTidCode());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getNextNo(),
-                getPrefix());
+                getPrefix(),
+                getTidCode());
     }
 }

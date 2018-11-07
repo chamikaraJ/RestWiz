@@ -12,16 +12,19 @@
   "port" : "1433",
   "schemaName" : "dbo",
   "tableFilter" : [ {
-    "table" : "ptdetail",
-    "schema" : "dbo"
-  }, {
-    "table" : "ptdetail_reg",
+    "table" : "account",
     "schema" : "dbo"
   }, {
     "table" : "ptcharacters",
     "schema" : "dbo"
   }, {
+    "table" : "ptdetail",
+    "schema" : "dbo"
+  }, {
     "table" : "ptdetail_field_data",
+    "schema" : "dbo"
+  }, {
+    "table" : "ptdetail_reg",
     "schema" : "dbo"
   }, {
     "table" : "x0152578",

@@ -185,6 +185,7 @@ public class Patient {
         try {
           json = (JSONObject) parser.parse(patienData.toString());  
           
+            //Update ptdetailed
             QryUpdatePatientRequest req = new QryUpdatePatientRequest();
             req.setTpatientNo((String) json.get("t_patient_no"));
             req.setTtitle((String) json.get("t_title"));
@@ -227,6 +228,7 @@ public class Patient {
                 output = output+ "PtDetail Update failed. ";
             }
 
+            //Update ptDetailsReg
            QryUpdateptdetailRegRequest regRequest = new QryUpdateptdetailRegRequest();
             regRequest.setTfamdrtitle((String) json.get("t_famdrtitle"));
             regRequest.setTfamdrgiven((String) json.get("t_famdrgiven"));
@@ -262,6 +264,7 @@ public class Patient {
                 output = output+ "PtDetailReg Update failed. ";
             }
             
+            //Update ptCharacter
              Ptcharacters ptcharacters =  ptcharactersService.getById((String) json.get("t_patient_no"));
            if(ptcharacters !=null){
                 QryUpdatePtCharacterRequest characterRequest = new QryUpdatePtCharacterRequest();
@@ -297,6 +300,10 @@ public class Patient {
            saveClinicalConclutions("#00006TIE",(String) json.get("t_patient_no"),(String) json.get("#00006TIE"));
            saveClinicalConclutions("#00006TI8",(String) json.get("t_patient_no"),(String) json.get("#00006TI8"));
            saveClinicalConclutions("#00006TIB",(String) json.get("t_patient_no"),(String) json.get("#00006TIB"));
+           
+           
+           //Add detaile to account
+           
             
         } catch(ParseException e) {
             e.printStackTrace();
@@ -355,6 +362,7 @@ public class Patient {
                 QryUpdateNextPtGenCodeRequest updateReq = new QryUpdateNextPtGenCodeRequest();
                 updateReq.setNextNo(nextNumber.toString());
                 updateReq.setPrefix("");
+                updateReq.setTidCode("CLINCON");
                 int i = cWmwSQLQueryExecutorService.executeQryUpdateNextPtGenCode(updateReq);
             }
         

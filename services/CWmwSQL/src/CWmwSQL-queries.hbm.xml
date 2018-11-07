@@ -381,10 +381,11 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
 
     <sql-query name="qryUpdateNextPtGenCode">
         <![CDATA[
-        update NoGenCon set NumValue = :nextNo, CurPreFix = :prefix where idCode = 'PATNO'
+        update NoGenCon set NumValue = :nextNo, CurPreFix = :prefix where idCode = :t_idCode
         ]]>
     <query-param name="nextNo" type="java.lang.String"/>
     <query-param name="prefix" type="java.lang.String"/>
+    <query-param name="t_idCode" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetUserAuth">

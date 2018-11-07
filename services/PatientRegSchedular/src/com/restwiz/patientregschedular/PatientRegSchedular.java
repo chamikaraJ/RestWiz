@@ -162,6 +162,7 @@ public class PatientRegSchedular {
                QryUpdateNextPtGenCodeRequest updateReq = new QryUpdateNextPtGenCodeRequest();
                updateReq.setNextNo(nextNumberToSave.get("nextNo"));
                updateReq.setPrefix(nextNumberToSave.get("prefix"));
+               updateReq.setTidCode("PATNO");
                int i = queryExecutorService.executeQryUpdateNextPtGenCode(updateReq);
             }
             return nextPatientNo;

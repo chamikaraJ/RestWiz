@@ -340,10 +340,11 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdateNextPtGenCode(QryUpdateNextPtGenCodeRequest qryUpdateNextPtGenCodeRequest) {
-        Map<String, Object> params = new HashMap<>(2);
+        Map<String, Object> params = new HashMap<>(3);
 
         params.put("nextNo", qryUpdateNextPtGenCodeRequest.getNextNo());
         params.put("prefix", qryUpdateNextPtGenCodeRequest.getPrefix());
+        params.put("t_idCode", qryUpdateNextPtGenCodeRequest.getTidCode());
 
         return queryExecutor.executeNamedQueryForUpdate("qryUpdateNextPtGenCode", params);
     }
