@@ -11,6 +11,20 @@
     <query-param name="t_preferredName" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetClinCatDatByCode">
+        <![CDATA[
+        select * from clinCatDat where code = :t_code
+        ]]>
+    <query-param name="t_code" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetClinCatDatByCode__count">
+        <![CDATA[
+        select count(*) from (select * from clinCatDat where code = :t_code) wmTempTable
+        ]]>
+    <query-param name="t_code" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryUpdatePatientNo">
         <![CDATA[
         update x0152578 set patient_no = :patientNo where userid = :email
@@ -122,6 +136,22 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
         select count(*) from (select code,[desc] from country where [desc]  = :countryName) wmTempTable
         ]]>
     <query-param name="countryName" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetUserLogin">
+        <![CDATA[
+        select patient_no from  x0152578 where userid = :t_userid and password = :t_pass
+        ]]>
+    <query-param name="t_userid" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetUserLogin__count">
+        <![CDATA[
+        select count(*) from (select patient_no from  x0152578 where userid = :t_userid and password = :t_pass) wmTempTable
+        ]]>
+    <query-param name="t_userid" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="QryInsertClinicalConclutions">
@@ -337,14 +367,16 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
 
     <sql-query name="qryGetNextPatientNo">
         <![CDATA[
-        select * from NoGenCon where idCode = 'PATNO'
+        select * from NoGenCon where idCode = :t_idCode
         ]]>
+    <query-param name="t_idCode" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetNextPatientNo__count">
         <![CDATA[
-        select count(*) from (select * from NoGenCon where idCode = 'PATNO') wmTempTable
+        select count(*) from (select * from NoGenCon where idCode = :t_idCode) wmTempTable
         ]]>
+    <query-param name="t_idCode" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryUpdateNextPtGenCode">

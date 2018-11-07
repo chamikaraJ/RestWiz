@@ -146,7 +146,7 @@ public class PatientRegSchedular {
          public String nextPatientNumber(Pageable pageable){
              //When issue the next to be used  this will generate the next number also
             String nextPatientNo = "Patient No. not found";
-            Page<QryGetNextPatientNoResponse> res = queryExecutorService.executeQryGetNextPatientNo(pageable);
+            Page<QryGetNextPatientNoResponse> res = queryExecutorService.executeQryGetNextPatientNo("PATNO",pageable);
     
             if(res.getContent().size()>0){
                Long numVal = res.getContent().get(0).getNumValue();

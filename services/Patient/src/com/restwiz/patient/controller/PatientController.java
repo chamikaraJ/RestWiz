@@ -36,6 +36,13 @@ public class PatientController {
         return patient.checkPatient(patienData, pageable);
     }
 
+    @RequestMapping(value = "/nextNumber", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public String nextNumber() {
+        return patient.nextNumber();
+    }
+
     @RequestMapping(value = "/patient", produces = "application/json", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

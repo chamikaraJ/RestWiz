@@ -55,6 +55,34 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/qryGetClinCatDatByCode", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get clinCatDat by code")
+    public Page<QryGetClinCatDatByCodeResponse> executeQryGetClinCatDatByCode(@RequestParam(value = "t_code") String tcode, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetClinCatDatByCode");
+        Page<QryGetClinCatDatByCodeResponse> _result = queryService.executeQryGetClinCatDatByCode(tcode, pageable);
+        LOGGER.debug("got the result for named query: qryGetClinCatDatByCode, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetClinCatDatByCode")
+    @RequestMapping(value = "/queries/qryGetClinCatDatByCode/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetClinCatDatByCode(@RequestParam(value = "t_code") String tcode, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetClinCatDatByCode");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetClinCatDatByCode";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetClinCatDatByCode(tcode,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryUpdatePatientNo", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "update patient number to login table")
@@ -151,6 +179,34 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryGetUserLogin", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get user by username and password")
+    public Page<QryGetUserLoginResponse> executeQryGetUserLogin(@RequestParam(value = "t_userid") String tuserid, @RequestParam(value = "t_pass") String tpass, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetUserLogin");
+        Page<QryGetUserLoginResponse> _result = queryService.executeQryGetUserLogin(tuserid, tpass, pageable);
+        LOGGER.debug("got the result for named query: qryGetUserLogin, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetUserLogin")
+    @RequestMapping(value = "/queries/qryGetUserLogin/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetUserLogin(@RequestParam(value = "t_userid") String tuserid, @RequestParam(value = "t_pass") String tpass, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetUserLogin");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetUserLogin";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetUserLogin(tuserid, tpass,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/QryInsertClinicalConclutions", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "insert medical history")
@@ -240,9 +296,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/qryGetNextPatientNo", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get next patient No")
-    public Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(Pageable pageable, HttpServletRequest _request) {
+    public Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(@RequestParam(value = "t_idCode") String tidCode, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: qryGetNextPatientNo");
-        Page<QryGetNextPatientNoResponse> _result = queryService.executeQryGetNextPatientNo(pageable);
+        Page<QryGetNextPatientNoResponse> _result = queryService.executeQryGetNextPatientNo(tidCode, pageable);
         LOGGER.debug("got the result for named query: qryGetNextPatientNo, result:{}", _result);
         return _result;
     }
@@ -250,7 +306,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file url for query qryGetNextPatientNo")
     @RequestMapping(value = "/queries/qryGetNextPatientNo/export", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public StringWrapper exportQryGetNextPatientNo(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+    public StringWrapper exportQryGetNextPatientNo(@RequestParam(value = "t_idCode") String tidCode, @RequestBody ExportOptions exportOptions, Pageable pageable) {
         LOGGER.debug("Exporting named query: qryGetNextPatientNo");
 
         String exportedFileName = exportOptions.getFileName();
@@ -260,7 +316,7 @@ public class QueryExecutionController {
         exportedFileName += exportOptions.getExportType().getExtension();
 
         String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
-                        outputStream -> queryService.exportQryGetNextPatientNo( exportOptions, pageable, outputStream));
+                        outputStream -> queryService.exportQryGetNextPatientNo(tidCode,  exportOptions, pageable, outputStream));
 
         return new StringWrapper(exportedUrl);
     }

@@ -23,8 +23,7 @@ import org.json.simple.parser.ParseException;
 import com.restwiz.cwmwsql.service.CWmwSQLQueryExecutorService;
 import com.restwiz.cwmwsql.models.query.*;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 
 //import com.restwiz.user.model.*;
 
@@ -82,7 +81,7 @@ public class User {
         // } catch(ParseException e) {
         // } 
         
-        // Pageable pageable = new PageRequest(0,10);
+        Pageable pageable = new PageRequest(0,10);
          Ptdetail pt = new Ptdetail();
         
         JSONParser parser = new JSONParser();
@@ -91,7 +90,7 @@ public class User {
           json = (JSONObject) parser.parse(patientAuth.toString());
             String tuserid = (String) json.get("t_userid");
             String tpass = (String) json.get("t_pass");
-            //   Page<QryGetUserAuthResponse> res =  cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid,tpass,dateOfBirth,pageable);
+              Page<QryGetUserLoginResponse> res =  cWmwSQLQueryExecutorService.executeQryGetUserLogin(tuserid,tpass,pageable);
         }catch(ParseException e) {
             e.printStackTrace();
         }

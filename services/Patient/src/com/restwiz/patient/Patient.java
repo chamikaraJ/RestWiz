@@ -23,8 +23,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 
 import java.sql.Date;
 import org.apache.commons.lang3.*;
@@ -279,6 +278,8 @@ public class Patient {
                     output = output+ "PtCharacter Update failed. ";
                 }
            }
+           
+           
             
         } catch(ParseException e) {
             e.printStackTrace();
@@ -321,6 +322,26 @@ public class Patient {
         }
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         return sqlDate;
+    }
+    
+    public String nextNumber(){
+        Pageable pageable = new PageRequest(0,10);
+        String currentNo = "";
+        
+         Page<QryGetNextPatientNoResponse> res = cWmwSQLQueryExecutorService.executeQryGetNextPatientNo("CLINCON",pageable);
+    
+            if(res.getContent().size()>0){
+               Long numVal = res.getContent().get(0).getNumValue();
+                currentNo = numVal.toString();
+                Long nextNumber = numVal+1;
+                
+                QryUpdateNextPtGenCodeRequest updateReq = new QryUpdateNextPtGenCodeRequest();
+                updateReq.setNextNo(nextNumber.toString());
+                updateReq.setPrefix("");
+                int i = cWmwSQLQueryExecutorService.executeQryUpdateNextPtGenCode(updateReq);
+            }
+        
+        return currentNo;
     }
     
     

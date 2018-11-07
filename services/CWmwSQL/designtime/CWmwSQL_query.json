@@ -123,6 +123,91 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryGetClinCatDatByCode" : {
+    "name" : "qryGetClinCatDatByCode",
+    "description" : "get clinCatDat by code",
+    "version" : "V2",
+    "queryString" : "select * from clinCatDat where code = :t_code",
+    "countQueryString" : "select count(*) from (select * from clinCatDat where code = :t_code) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "t_code",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "#000000002",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetClinCatDatByCodeResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "code",
+        "fieldName" : "code",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "descriptn",
+        "fieldName" : "descriptn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "category",
+        "fieldName" : "category",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "para_text",
+        "fieldName" : "paraText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "sortorder",
+        "fieldName" : "sortorder",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "idno",
+        "fieldName" : "idno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetCountryCode" : {
     "name" : "qryGetCountryCode",
     "description" : "get Country code by country Name",
@@ -176,12 +261,20 @@
     "name" : "qryGetNextPatientNo",
     "description" : "Get next patient No",
     "version" : "V2",
-    "queryString" : "select * from NoGenCon where idCode = 'PATNO'",
-    "countQueryString" : "select count(*) from (select * from NoGenCon where idCode = 'PATNO') wmTempTable",
+    "queryString" : "select * from NoGenCon where idCode = :t_idCode",
+    "countQueryString" : "select count(*) from (select * from NoGenCon where idCode = :t_idCode) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
-    "parameters" : [ ],
+    "parameters" : [ {
+      "name" : "t_idCode",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "PATNO",
+      "required" : true
+    } ],
     "request" : {
       "wrapped" : false,
       "typeRef" : null,
@@ -944,6 +1037,54 @@
     "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetUserAuthResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "patient_no",
+        "fieldName" : "patientNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "qryGetUserLogin" : {
+    "name" : "qryGetUserLogin",
+    "description" : "get user by username and password",
+    "version" : "V2",
+    "queryString" : "select patient_no from  x0152578 where userid = :t_userid and password = :t_pass",
+    "countQueryString" : "select count(*) from (select patient_no from  x0152578 where userid = :t_userid and password = :t_pass) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "t_userid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "cj",
+      "required" : true
+    }, {
+      "name" : "t_pass",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1111",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetUserLoginResponse",
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {

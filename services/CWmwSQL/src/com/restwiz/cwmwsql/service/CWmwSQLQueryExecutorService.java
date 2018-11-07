@@ -18,6 +18,10 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryInsertPtCharacter(QryInsertPtCharacterRequest qryInsertPtCharacterRequest);
 
+    Page<QryGetClinCatDatByCodeResponse> executeQryGetClinCatDatByCode(String tcode, Pageable pageable);
+
+    void exportQryGetClinCatDatByCode(String tcode, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Integer executeQryUpdatePatientNo(QryUpdatePatientNoRequest qryUpdatePatientNoRequest);
 
     Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest);
@@ -34,6 +38,10 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetCountryCode(String countryName, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Page<QryGetUserLoginResponse> executeQryGetUserLogin(String tuserid, String tpass, Pageable pageable);
+
+    void exportQryGetUserLogin(String tuserid, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Integer executeQryInsertClinicalConclutions(QryInsertClinicalConclutionsRequest qryInsertClinicalConclutionsRequest);
 
     Page<QryGetPatientNoAndRoleResponse> executeQryGetPatientNoAndRole(String tuserid, String tpass, Pageable pageable);
@@ -48,9 +56,9 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetPatientByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
-    Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(Pageable pageable);
+    Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(String tidCode, Pageable pageable);
 
-    void exportQryGetNextPatientNo(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+    void exportQryGetNextPatientNo(String tidCode, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
     Integer executeQryUpdateNextPtGenCode(QryUpdateNextPtGenCodeRequest qryUpdateNextPtGenCodeRequest);
 

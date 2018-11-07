@@ -45,6 +45,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("qryInsertPtCharacter", params);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetClinCatDatByCodeResponse> executeQryGetClinCatDatByCode(String tcode, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_code", tcode);
+
+        return queryExecutor.executeNamedQuery("qryGetClinCatDatByCode", params, QryGetClinCatDatByCodeResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetClinCatDatByCode(String tcode, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_code", tcode);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetClinCatDatByCode", params, QryGetClinCatDatByCodeResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdatePatientNo(QryUpdatePatientNoRequest qryUpdatePatientNoRequest) {
@@ -161,6 +183,30 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetUserLoginResponse> executeQryGetUserLogin(String tuserid, String tpass, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(2);
+
+        params.put("t_userid", tuserid);
+        params.put("t_pass", tpass);
+
+        return queryExecutor.executeNamedQuery("qryGetUserLogin", params, QryGetUserLoginResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetUserLogin(String tuserid, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(2);
+
+        params.put("t_userid", tuserid);
+        params.put("t_pass", tpass);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetUserLogin", params, QryGetUserLoginResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryInsertClinicalConclutions(QryInsertClinicalConclutionsRequest qryInsertClinicalConclutionsRequest) {
@@ -271,18 +317,20 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
 
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
-    public Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(Pageable pageable) {
-        Map<String, Object> params = new HashMap<>(0);
+    public Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(String tidCode, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
 
+        params.put("t_idCode", tidCode);
 
         return queryExecutor.executeNamedQuery("qryGetNextPatientNo", params, QryGetNextPatientNoResponse.class, pageable);
     }
 
     @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
     @Override
-    public void exportQryGetNextPatientNo(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
-        Map<String, Object> params = new HashMap<>(0);
+    public void exportQryGetNextPatientNo(String tidCode, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
 
+        params.put("t_idCode", tidCode);
 
         QueryProcedureInput queryInput = new QueryProcedureInput("qryGetNextPatientNo", params, QryGetNextPatientNoResponse.class);
 
