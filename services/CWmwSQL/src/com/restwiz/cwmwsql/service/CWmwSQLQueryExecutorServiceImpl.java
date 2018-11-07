@@ -315,6 +315,26 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryUpdateAccount(QryUpdateAccountRequest qryUpdateAccountRequest) {
+        Map<String, Object> params = new HashMap<>(11);
+
+        params.put("t_ac_name", qryUpdateAccountRequest.getTacName());
+        params.put("t_accescode", qryUpdateAccountRequest.getTaccescode());
+        params.put("t_contact", qryUpdateAccountRequest.getTcontact());
+        params.put("t_phone_ah", qryUpdateAccountRequest.getTphoneAh());
+        params.put("t_phone_bh", qryUpdateAccountRequest.getTphoneBh());
+        params.put("t_address1", qryUpdateAccountRequest.getTaddress1());
+        params.put("t_address2", qryUpdateAccountRequest.getTaddress2());
+        params.put("t_suburb", qryUpdateAccountRequest.getTsuburb());
+        params.put("t_state", qryUpdateAccountRequest.getTstate());
+        params.put("t_postcode", qryUpdateAccountRequest.getTpostcode());
+        params.put("t_accountno", qryUpdateAccountRequest.getTaccountno());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryUpdateAccount", params);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
     public Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(String tidCode, Pageable pageable) {
@@ -369,6 +389,26 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         QueryProcedureInput queryInput = new QueryProcedureInput("qryGetUserAuth", params, QryGetUserAuthResponse.class);
 
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryInsertAccount(QryInsertAccountRequest qryInsertAccountRequest) {
+        Map<String, Object> params = new HashMap<>(11);
+
+        params.put("t_accountno", qryInsertAccountRequest.getTaccountno());
+        params.put("t_ac_name", qryInsertAccountRequest.getTacName());
+        params.put("t_accescode", qryInsertAccountRequest.getTaccescode());
+        params.put("t_contact", qryInsertAccountRequest.getTcontact());
+        params.put("t_phone_ah", qryInsertAccountRequest.getTphoneAh());
+        params.put("t_phone_bh", qryInsertAccountRequest.getTphoneBh());
+        params.put("t_address1", qryInsertAccountRequest.getTaddress1());
+        params.put("t_address2", qryInsertAccountRequest.getTaddress2());
+        params.put("t_suburb", qryInsertAccountRequest.getTsuburb());
+        params.put("t_state", qryInsertAccountRequest.getTstate());
+        params.put("t_postcode", qryInsertAccountRequest.getTpostcode());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryInsertAccount", params);
     }
 
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)

@@ -365,6 +365,33 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryUpdateAccount">
+        <![CDATA[
+        update account set 
+ac_name= :t_ac_name,
+accescode = :t_accescode,
+contact = :t_contact,
+phone_ah = :t_phone_ah,
+phone_bh = :t_phone_bh,
+address1 = :t_address1,
+address2 = :t_address2,
+suburb = :t_suburb,
+state =:t_state,
+postcode = :t_postcode where accountno = :t_accountno
+        ]]>
+    <query-param name="t_ac_name" type="java.lang.String"/>
+    <query-param name="t_accescode" type="java.lang.String"/>
+    <query-param name="t_contact" type="java.lang.String"/>
+    <query-param name="t_phone_ah" type="java.lang.String"/>
+    <query-param name="t_phone_bh" type="java.lang.String"/>
+    <query-param name="t_address1" type="java.lang.String"/>
+    <query-param name="t_address2" type="java.lang.String"/>
+    <query-param name="t_suburb" type="java.lang.String"/>
+    <query-param name="t_state" type="java.lang.String"/>
+    <query-param name="t_postcode" type="java.lang.String"/>
+    <query-param name="t_accountno" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetNextPatientNo">
         <![CDATA[
         select * from NoGenCon where idCode = :t_idCode
@@ -400,6 +427,23 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
         select count(*) from (select patient_no from  x0152578 where userid = :t_userid) wmTempTable
         ]]>
     <query-param name="t_userid" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryInsertAccount">
+        <![CDATA[
+        insert into account(accountno,acctype,tradeactyp,mainfile,mainfield,ac_name,accescode,contact,phone_ah,phone_bh,address1,address2,suburb,state,postcode) values(:t_accountno,'PATIENT','D','PTDETAIL','patient_no',:t_ac_name,:t_accescode,:t_contact,:t_phone_ah,:t_phone_bh,:t_address1,:t_address2,:t_suburb,:t_state,:t_postcode)
+        ]]>
+    <query-param name="t_accountno" type="java.lang.String"/>
+    <query-param name="t_ac_name" type="java.lang.String"/>
+    <query-param name="t_accescode" type="java.lang.String"/>
+    <query-param name="t_contact" type="java.lang.String"/>
+    <query-param name="t_phone_ah" type="java.lang.String"/>
+    <query-param name="t_phone_bh" type="java.lang.String"/>
+    <query-param name="t_address1" type="java.lang.String"/>
+    <query-param name="t_address2" type="java.lang.String"/>
+    <query-param name="t_suburb" type="java.lang.String"/>
+    <query-param name="t_state" type="java.lang.String"/>
+    <query-param name="t_postcode" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetVerifiedPatients">

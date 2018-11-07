@@ -1419,6 +1419,116 @@
       } ]
     }
   },
+  "qryInsertAccount" : {
+    "name" : "qryInsertAccount",
+    "description" : "save Account",
+    "version" : "V2",
+    "queryString" : "insert into account(accountno,acctype,tradeactyp,mainfile,mainfield,ac_name,accescode,contact,phone_ah,phone_bh,address1,address2,suburb,state,postcode) values(:t_accountno,'PATIENT','D','PTDETAIL','patient_no',:t_ac_name,:t_accescode,:t_contact,:t_phone_ah,:t_phone_bh,:t_address1,:t_address2,:t_suburb,:t_state,:t_postcode)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "t_accountno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80095",
+      "required" : false
+    }, {
+      "name" : "t_ac_name",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Mr Chamikara Jayasinghe",
+      "required" : true
+    }, {
+      "name" : "t_accescode",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Jayasinghe Mr Chamikara",
+      "required" : true
+    }, {
+      "name" : "t_contact",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Jayasinghe Mr Chamikara",
+      "required" : true
+    }, {
+      "name" : "t_phone_ah",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "11",
+      "required" : true
+    }, {
+      "name" : "t_phone_bh",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "22",
+      "required" : true
+    }, {
+      "name" : "t_address1",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "aa",
+      "required" : true
+    }, {
+      "name" : "t_address2",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ss",
+      "required" : true
+    }, {
+      "name" : "t_suburb",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "dd",
+      "required" : true
+    }, {
+      "name" : "t_state",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ff",
+      "required" : true
+    }, {
+      "name" : "t_postcode",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ww",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryInsertAccountRequest",
+      "method" : "POST"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "qryInsertPatientDetails" : {
     "name" : "qryInsertPatientDetails",
     "description" : "Insert patient details to ptdetail",
@@ -1527,6 +1637,116 @@
       "wrapped" : true,
       "typeRef" : "com.restwiz.cwmwsql.models.query.QryInsertPtCharacterRequest",
       "method" : "POST"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "qryUpdateAccount" : {
+    "name" : "qryUpdateAccount",
+    "description" : "Update Account",
+    "version" : "V2",
+    "queryString" : "update account set \nac_name= :t_ac_name,\naccescode = :t_accescode,\ncontact = :t_contact,\nphone_ah = :t_phone_ah,\nphone_bh = :t_phone_bh,\naddress1 = :t_address1,\naddress2 = :t_address2,\nsuburb = :t_suburb,\nstate =:t_state,\npostcode = :t_postcode where accountno = :t_accountno",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "t_ac_name",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "aa",
+      "required" : true
+    }, {
+      "name" : "t_accescode",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ss",
+      "required" : true
+    }, {
+      "name" : "t_contact",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "dd",
+      "required" : true
+    }, {
+      "name" : "t_phone_ah",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "22",
+      "required" : true
+    }, {
+      "name" : "t_phone_bh",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "33",
+      "required" : true
+    }, {
+      "name" : "t_address1",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ss",
+      "required" : true
+    }, {
+      "name" : "t_address2",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ss",
+      "required" : true
+    }, {
+      "name" : "t_suburb",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ss",
+      "required" : true
+    }, {
+      "name" : "t_state",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ss",
+      "required" : true
+    }, {
+      "name" : "t_postcode",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ss",
+      "required" : true
+    }, {
+      "name" : "t_accountno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80095",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdateAccountRequest",
+      "method" : "PUT"
     },
     "identifiers" : [ ],
     "response" : {

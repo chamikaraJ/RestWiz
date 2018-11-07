@@ -56,6 +56,8 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetPatientByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Integer executeQryUpdateAccount(QryUpdateAccountRequest qryUpdateAccountRequest);
+
     Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(String tidCode, Pageable pageable);
 
     void exportQryGetNextPatientNo(String tidCode, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
@@ -65,6 +67,8 @@ public interface CWmwSQLQueryExecutorService {
     Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, Pageable pageable);
 
     void exportQryGetUserAuth(String tuserid, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Integer executeQryInsertAccount(QryInsertAccountRequest qryInsertAccountRequest);
 
     Page<QryGetVerifiedPatientsResponse> executeQryGetVerifiedPatients(Pageable pageable);
 

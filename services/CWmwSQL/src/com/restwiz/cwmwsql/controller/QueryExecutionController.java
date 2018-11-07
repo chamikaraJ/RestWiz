@@ -293,6 +293,16 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryUpdateAccount", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update Account")
+    public IntegerWrapper executeQryUpdateAccount(@Valid @RequestBody QryUpdateAccountRequest qryUpdateAccountRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryUpdateAccount");
+        Integer _result = queryService.executeQryUpdateAccount(qryUpdateAccountRequest);
+        LOGGER.debug("got the result for named query: qryUpdateAccount, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/qryGetNextPatientNo", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get next patient No")
@@ -357,6 +367,16 @@ public class QueryExecutionController {
                         outputStream -> queryService.exportQryGetUserAuth(tuserid,  exportOptions, pageable, outputStream));
 
         return new StringWrapper(exportedUrl);
+    }
+
+    @RequestMapping(value = "/queries/qryInsertAccount", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "save Account")
+    public IntegerWrapper executeQryInsertAccount(@Valid @RequestBody QryInsertAccountRequest qryInsertAccountRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryInsertAccount");
+        Integer _result = queryService.executeQryInsertAccount(qryInsertAccountRequest);
+        LOGGER.debug("got the result for named query: qryInsertAccount, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/qryGetVerifiedPatients", method = RequestMethod.GET)

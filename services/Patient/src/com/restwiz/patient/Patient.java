@@ -32,19 +32,19 @@ import java.util.*;
 import java.io.IOException;
 
 import com.restwiz.cwmwsql.PtdetailFieldData;
-import com.restwiz.cwmwsql.service.PtdetailFieldDataService;
+import com.restwiz.cwmwsql.service.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.restwiz.cwmwsql.Ptdetail;
-import com.restwiz.cwmwsql.service.PtdetailService;
 import java.time.LocalDateTime;
 import java.text.SimpleDateFormat;
 
 import com.restwiz.cwmwsql.Ptcharacters;
-import com.restwiz.cwmwsql.service.PtcharactersService;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
+
+import com.restwiz.cwmwsql.Account;
 
 
 //import com.restwiz.patient.model.*;
@@ -76,16 +76,10 @@ public class Patient {
     
     @Autowired
     private PtcharactersService ptcharactersService;
+    
+    @Autowired
+    private AccountService accountService;
 
-    /**
-     * This is sample java operation that accepts an input from the caller and responds with "Hello".
-     *
-     * SecurityService that is Autowired will provide access to the security context of the caller. It has methods like isAuthenticated(),
-     * getUserName() and getUserId() etc which returns the information based on the caller context.
-     *
-     * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
-     * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
-     */
 
     public String checkPatient(String patienData,Pageable pageable){
   
@@ -303,6 +297,12 @@ public class Patient {
            
            
            //Add detaile to account
+           Account acc = getAccount((String) json.get("t_patient_no"));
+            if(acc==null){
+                
+            }else{
+
+            }
            
             
         } catch(ParseException e) {
@@ -391,6 +391,16 @@ public class Patient {
             int i = cWmwSQLQueryExecutorService.executeQryInsertClinicalConclutions(req);
         }
         return aa;
+    }
+    
+    private Account getAccount(String accNo){
+        Account acc = null;
+        try {
+            acc = accountService.findById(accNo);
+        }catch (EntityNotFoundException e) {
+            acc = null;
+        }
+        return acc;
     }
 
 }
