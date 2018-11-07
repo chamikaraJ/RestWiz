@@ -227,8 +227,6 @@ public class Patient {
                 output = output+ "PtDetail Update failed. ";
             }
 
-           
-           
            QryUpdateptdetailRegRequest regRequest = new QryUpdateptdetailRegRequest();
             regRequest.setTfamdrtitle((String) json.get("t_famdrtitle"));
             regRequest.setTfamdrgiven((String) json.get("t_famdrgiven"));
@@ -279,7 +277,26 @@ public class Patient {
                 }
            }
            
-           
+           //Save MedicalHistory
+           saveClinicalConclutions("#00006U1O",(String) json.get("t_patient_no"),(String) json.get("#00006U1O"));
+           saveClinicalConclutions("#00006TGB",(String) json.get("t_patient_no"),(String) json.get("#00006TGB"));
+           saveClinicalConclutions("#00006TGD",(String) json.get("t_patient_no"),(String) json.get("#00006TGD"));
+           saveClinicalConclutions("#00006TGE",(String) json.get("t_patient_no"),(String) json.get("#00006TGE"));
+           saveClinicalConclutions("#00006TGF",(String) json.get("t_patient_no"),(String) json.get("#00006TGF"));
+           saveClinicalConclutions("#00006U1P",(String) json.get("t_patient_no"),(String) json.get("#00006U1P"));
+           saveClinicalConclutions("#00006U1Q",(String) json.get("t_patient_no"),(String) json.get("#00006U1Q"));
+           saveClinicalConclutions("#00006TGG",(String) json.get("t_patient_no"),(String) json.get("#00006TGG"));
+           saveClinicalConclutions("#00006TGH",(String) json.get("t_patient_no"),(String) json.get("#00006TGH"));
+           saveClinicalConclutions("#00006TGI",(String) json.get("t_patient_no"),(String) json.get("#00006TGI"));
+           saveClinicalConclutions("#00006TI0",(String) json.get("t_patient_no"),(String) json.get("#00006TI0"));
+           saveClinicalConclutions("#00006TI1",(String) json.get("t_patient_no"),(String) json.get("#00006TI1"));
+           saveClinicalConclutions("#00006TI2",(String) json.get("t_patient_no"),(String) json.get("#00006TI2"));
+           saveClinicalConclutions("#000000002",(String) json.get("t_patient_no"),(String) json.get("#000000002"));
+           saveClinicalConclutions("#000000003",(String) json.get("t_patient_no"),(String) json.get("#000000003"));
+           saveClinicalConclutions("#00006TI3",(String) json.get("t_patient_no"),(String) json.get("#00006TI3"));
+           saveClinicalConclutions("#00006TIE",(String) json.get("t_patient_no"),(String) json.get("#00006TIE"));
+           saveClinicalConclutions("#00006TI8",(String) json.get("t_patient_no"),(String) json.get("#00006TI8"));
+           saveClinicalConclutions("#00006TIB",(String) json.get("t_patient_no"),(String) json.get("#00006TIB"));
             
         } catch(ParseException e) {
             e.printStackTrace();
@@ -344,6 +361,28 @@ public class Patient {
         return currentNo;
     }
     
-    
+    public String saveClinicalConclutions(String code,String patientNo,String dtls){
+        Pageable pageable = new PageRequest(0,10);
+        String aa = "";
+        
+        String nextNo = nextNumber();
+        
+        Page<QryGetClinCatDatByCodeResponse> res = cWmwSQLQueryExecutorService.executeQryGetClinCatDatByCode(code,pageable);
+        
+        if(res.getContent().size()>0){
+            QryInsertClinicalConclutionsRequest req = new QryInsertClinicalConclutionsRequest();
+            req.setTconref(nextNo);
+            req.setTcondate(LocalDateTime.now());
+            req.setTconcode(res.getContent().get(0).getCode());
+            req.setTcontext(res.getContent().get(0).getDescriptn());
+            req.setTconcat(res.getContent().get(0).getCategory());
+            req.setTpatientNo(patientNo);
+            req.setTcreatedby("WEB USER");
+            req.setTcreatedon(LocalDateTime.now());
+            req.setTmoreDtls(dtls);
+            int i = cWmwSQLQueryExecutorService.executeQryInsertClinicalConclutions(req);
+        }
+        return aa;
+    }
 
 }

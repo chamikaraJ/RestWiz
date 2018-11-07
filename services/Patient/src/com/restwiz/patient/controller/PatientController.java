@@ -43,6 +43,13 @@ public class PatientController {
         return patient.nextNumber();
     }
 
+    @RequestMapping(value = "/saveClinicalConclutions", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public String saveClinicalConclutions(@RequestParam(value = "code", required = false) String code, @RequestParam(value = "patientNo", required = false) String patientNo, @RequestParam(value = "dtls", required = false) String dtls) {
+        return patient.saveClinicalConclutions(code, patientNo, dtls);
+    }
+
     @RequestMapping(value = "/patient", produces = "application/json", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
