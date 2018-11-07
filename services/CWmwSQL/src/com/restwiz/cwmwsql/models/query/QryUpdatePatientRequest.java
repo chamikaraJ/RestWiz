@@ -92,6 +92,9 @@ public class QryUpdatePatientRequest implements Serializable {
     @JsonProperty("t_dvacardtype")
     private String tdvacardtype;
 
+    @JsonProperty("t_allergies")
+    private String tallergies;
+
     @JsonProperty("t_nextofkin")
     private String tnextofkin;
 
@@ -299,6 +302,14 @@ public class QryUpdatePatientRequest implements Serializable {
         this.tdvacardtype = tdvacardtype;
     }
 
+    public String getTallergies() {
+        return this.tallergies;
+    }
+
+    public void setTallergies(String tallergies) {
+        this.tallergies = tallergies;
+    }
+
     public String getTnextofkin() {
         return this.tnextofkin;
     }
@@ -345,6 +356,7 @@ public class QryUpdatePatientRequest implements Serializable {
                 Objects.equals(getTfeepositn(), qryUpdatePatientRequest.getTfeepositn()) &&
                 Objects.equals(getTdateJoined(), qryUpdatePatientRequest.getTdateJoined()) &&
                 Objects.equals(getTdvacardtype(), qryUpdatePatientRequest.getTdvacardtype()) &&
+                Objects.equals(getTallergies(), qryUpdatePatientRequest.getTallergies()) &&
                 Objects.equals(getTnextofkin(), qryUpdatePatientRequest.getTnextofkin()) &&
                 Objects.equals(getTpatientNo(), qryUpdatePatientRequest.getTpatientNo());
     }
@@ -376,6 +388,7 @@ public class QryUpdatePatientRequest implements Serializable {
                 getTfeepositn(),
                 getTdateJoined(),
                 getTdvacardtype(),
+                getTallergies(),
                 getTnextofkin(),
                 getTpatientNo());
     }

@@ -128,7 +128,7 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest) {
-        Map<String, Object> params = new HashMap<>(27);
+        Map<String, Object> params = new HashMap<>(28);
 
         params.put("t_title", qryUpdatePatientRequest.getTtitle());
         params.put("t_given", qryUpdatePatientRequest.getTgiven());
@@ -155,6 +155,7 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_feepositn", qryUpdatePatientRequest.getTfeepositn());
         params.put("t_dateJoined", qryUpdatePatientRequest.getTdateJoined());
         params.put("t_dvacardtype", qryUpdatePatientRequest.getTdvacardtype());
+        params.put("t_allergies", qryUpdatePatientRequest.getTallergies());
         params.put("t_nextofkin", qryUpdatePatientRequest.getTnextofkin());
         params.put("t_patient_no", qryUpdatePatientRequest.getTpatientNo());
 

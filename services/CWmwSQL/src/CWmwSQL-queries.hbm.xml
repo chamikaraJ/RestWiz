@@ -93,6 +93,7 @@ claimdtls=:t_claimDetails,
 feepositn =:t_feepositn,
 datejoined=:t_dateJoined,
 dvacardtyp = :t_dvacardtype,
+allergies = :t_allergies,
 nextofkin=:t_nextofkin where patient_no = :t_patient_no
         ]]>
     <query-param name="t_title" type="java.lang.String"/>
@@ -120,6 +121,7 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
     <query-param name="t_feepositn" type="java.lang.String"/>
     <query-param name="t_dateJoined" type="java.sql.Date"/>
     <query-param name="t_dvacardtype" type="java.lang.String"/>
+    <query-param name="t_allergies" type="java.lang.String"/>
     <query-param name="t_nextofkin" type="java.lang.String"/>
     <query-param name="t_patient_no" type="java.lang.String"/>
     </sql-query>

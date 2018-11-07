@@ -203,6 +203,9 @@ public class Patient {
             req.setTdateJoined(getSqlDate(joinDt));
             Long dvaCardType = (Long) json.get("t_dvacardtype");
             req.setTdvacardtype(dvaCardType.toString());
+            if((String) json.get("alergies") !=null){
+                req.setTallergies((String) json.get("alergies"));
+            }
 
 
             int i = cWmwSQLQueryExecutorService.executeQryUpdatePatient(req);
@@ -277,6 +280,7 @@ public class Patient {
             }
 
             //Save MedicalHistory
+            // if((String) json.get("#00006U1O")!==null && )
             saveClinicalConclutions("#00006U1O", (String) json.get("t_patient_no"), (String) json.get("#00006U1O"));
             saveClinicalConclutions("#00006TGB", (String) json.get("t_patient_no"), (String) json.get("#00006TGB"));
             saveClinicalConclutions("#00006TGD", (String) json.get("t_patient_no"), (String) json.get("#00006TGD"));
@@ -300,7 +304,7 @@ public class Patient {
 
             //Add detaile to account
             Account acc = getAccount((String) json.get("t_patient_no"));
-            String acName = new StringBuilder().append((String) json.get("")).append(" ").append((String) json.get("t_given")).append(" ").append((String) json.get("t_surname")).toString();
+            String acName = new StringBuilder().append((String) json.get("t_title")).append(" ").append((String) json.get("t_given")).append(" ").append((String) json.get("t_surname")).toString();
             String accescode = new StringBuilder().append((String) json.get("t_surname")).append(" ").append((String) json.get("t_title")).append(" ").append((String) json.get("t_given")).toString();
             if (acc == null) {
                 QryInsertAccountRequest accReq = new QryInsertAccountRequest();
