@@ -55,6 +55,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/UpdatePatientSchedular/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/User/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -156,6 +163,7 @@
                                 <source>services/KeyValueDao/src</source>
                                 <source>services/Patient/src</source>
                                 <source>services/PatientRegSchedular/src</source>
+                                <source>services/UpdatePatientSchedular/src</source>
                                 <source>services/User/src</source>
                                 <source>services/securityService/src</source>
                             </sources>
