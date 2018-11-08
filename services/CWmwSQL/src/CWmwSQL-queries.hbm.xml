@@ -448,6 +448,18 @@ postcode = :t_postcode where accountno = :t_accountno
     <query-param name="t_postcode" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetAllJsonText">
+        <![CDATA[
+        select * from JSONTextTemp
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetAllJsonText__count">
+        <![CDATA[
+        select count(*) from (select * from JSONTextTemp) wmTempTable
+        ]]>
+    </sql-query>
+
     <sql-query name="qryGetVerifiedPatients">
         <![CDATA[
         select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED' and ptdetailStatus is null

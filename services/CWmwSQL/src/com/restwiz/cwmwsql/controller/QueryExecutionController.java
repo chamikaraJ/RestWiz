@@ -379,6 +379,34 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/qryGetAllJsonText", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get all json text")
+    public Page<QryGetAllJsonTextResponse> executeQryGetAllJsonText(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetAllJsonText");
+        Page<QryGetAllJsonTextResponse> _result = queryService.executeQryGetAllJsonText(pageable);
+        LOGGER.debug("got the result for named query: qryGetAllJsonText, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetAllJsonText")
+    @RequestMapping(value = "/queries/qryGetAllJsonText/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetAllJsonText(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetAllJsonText");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetAllJsonText";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetAllJsonText( exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryGetVerifiedPatients", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get verified patients")

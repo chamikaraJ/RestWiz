@@ -123,6 +123,47 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryGetAllJsonText" : {
+    "name" : "qryGetAllJsonText",
+    "description" : "get all json text",
+    "version" : "V2",
+    "queryString" : "select * from JSONTextTemp",
+    "countQueryString" : "select count(*) from (select * from JSONTextTemp) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetAllJsonTextResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "JsonText",
+        "fieldName" : "jsonText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetClinCatDatByCode" : {
     "name" : "qryGetClinCatDatByCode",
     "description" : "get clinCatDat by code",

@@ -70,6 +70,10 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryInsertAccount(QryInsertAccountRequest qryInsertAccountRequest);
 
+    Page<QryGetAllJsonTextResponse> executeQryGetAllJsonText(Pageable pageable);
+
+    void exportQryGetAllJsonText(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetVerifiedPatientsResponse> executeQryGetVerifiedPatients(Pageable pageable);
 
     void exportQryGetVerifiedPatients(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
