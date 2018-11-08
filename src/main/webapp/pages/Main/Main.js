@@ -19,4 +19,14 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
     };
 
+
+    $scope.jsvUpdatePatientonSuccess = function(variable, data, options) {
+        debugger;
+    };
+
+
+    $scope.jsvUpdatePatientonError = function(variable, data, options) {
+        debugger;
+    };
+
 }]);

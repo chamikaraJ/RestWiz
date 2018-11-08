@@ -35,10 +35,6 @@ public class JSONTextSave {
     @Autowired
     private JsontextTempService tempService;
 
-    @Autowired
-    private CWmwSQLQueryExecutorService cWmwSQLQueryExecutorService;
-
-
     public JsontextTemp saveText(String text) {
         String result = "";
 

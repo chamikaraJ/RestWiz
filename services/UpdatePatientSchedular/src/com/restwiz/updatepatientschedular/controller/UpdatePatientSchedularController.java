@@ -22,6 +22,8 @@ public class UpdatePatientSchedularController {
     private UpdatePatientSchedular updatePatientSchedular;
 
     @RequestMapping(value = "/patient", produces = "application/json", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public String updatePatient() {
         return updatePatientSchedular.updatePatient();
     }
