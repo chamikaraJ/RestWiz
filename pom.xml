@@ -27,6 +27,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/JSONTextSave/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/KeyValueDao/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -145,6 +152,7 @@
                             <sources>
                                 <source>services/CWmwSQL/src</source>
                                 <source>services/Createcsv/src</source>
+                                <source>services/JSONTextSave/src</source>
                                 <source>services/KeyValueDao/src</source>
                                 <source>services/Patient/src</source>
                                 <source>services/PatientRegSchedular/src</source>

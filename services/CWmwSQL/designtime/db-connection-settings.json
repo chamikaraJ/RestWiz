@@ -12,22 +12,25 @@
   "port" : "1433",
   "schemaName" : "dbo",
   "tableFilter" : [ {
-    "table" : "account",
-    "schema" : "dbo"
-  }, {
-    "table" : "ptcharacters",
-    "schema" : "dbo"
-  }, {
     "table" : "ptdetail",
     "schema" : "dbo"
   }, {
-    "table" : "ptdetail_field_data",
+    "table" : "account",
     "schema" : "dbo"
   }, {
     "table" : "ptdetail_reg",
     "schema" : "dbo"
   }, {
+    "table" : "ptcharacters",
+    "schema" : "dbo"
+  }, {
+    "table" : "ptdetail_field_data",
+    "schema" : "dbo"
+  }, {
     "table" : "x0152578",
+    "schema" : "dbo"
+  }, {
+    "table" : "JSONTextTemp",
     "schema" : "dbo"
   } ],
   "schemaFilter" : [ "dbo" ],
