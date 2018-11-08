@@ -172,40 +172,56 @@ public class Patient {
             //Update ptdetailed
             QryUpdatePatientRequest req = new QryUpdatePatientRequest();
             req.setTpatientNo((String) json.get("t_patient_no"));
-            req.setTtitle((String) json.get("t_title"));
-            req.setTgiven((String) json.get("t_given"));
-            req.setTsurname((String) json.get("t_surname"));
-            req.setTaddress1((String) json.get("t_address1"));
-            req.setTaddress2((String) json.get("t_address2"));
-            req.setTsuburb((String) json.get("t_suburb"));
-            req.setTpostcode((String) json.get("t_postcode"));
-            req.setTstate((String) json.get("t_state"));
-            req.setTphoneAh((String) json.get("t_phone_ah"));
-            req.setTphoneBh((String) json.get("t_phone_bh"));
-            req.setTmobile((String) json.get("t_mobile"));
-            String dob = (String) json.get("t_dob");
+            req.setTtitle((String) json.get("sltTitle"));
+            req.setTgiven((String) json.get("txtGivenName"));
+            req.setTsurname((String) json.get("txtSurname"));
+            req.setTaddress1((String) json.get("address2"));
+            req.setTaddress2((String) json.get("streetname"));
+            req.setTsuburb((String) json.get("suburb"));
+            req.setTpostcode((String) json.get("postcode"));
+            req.setTstate((String) json.get("state"));
+            req.setTphoneAh((String) json.get("txtPhoneNumberH"));
+            req.setTphoneBh((String) json.get("txtPhoneNumberW"));
+            req.setTmobile((String) json.get("txtMobileNo"));
+            String dob = (String) json.get("dobYear") +"-"+ (String) json.get("dobMonth") +"-"+ (String) json.get("dobDay")+" 00:00:00";
             req.setTdob(getSqlDate(dob));
-            req.setTmedicareno((String) json.get("t_medicareno"));
-            req.setTmemberNo((String) json.get("t_member_no"));
-            req.setTemail((String) json.get("t_email"));
-            req.setTfundcode((String) json.get("t_fundcode"));
-            req.setTbirthplace((String) json.get("t_birthplace"));
-            req.setTvetafno((String) json.get("t_vetafno"));
-            req.setTrefRalSrc((String) json.get("t_refRalSrc"));
-            String exp = (String) json.get("t_medExpiry");
+            req.setTmedicareno((String) json.get("txtMedicareCardNO"));
+            req.setTmemberNo((String) json.get("txtMembershipName"));
+            req.setTemail((String) json.get("txtEmail"));
+            req.setTfundcode((String) json.get("srchFundName"));
+            req.setTbirthplace((String) json.get("country"));
+            req.setTvetafno((String) json.get("txtDvaCardNo"));
+            req.setTrefRalSrc((String) json.get("sltHowdidYouHear"));
+            String exp =  (String) json.get("txtExpYear") +"-"+ (String) json.get("txtExpMonth") +"-"+ (String) json.get("txtExpDate")+" 00:00:00";
             req.setTmedExpiry(getSqlDate(exp));
-            req.setTmcareRefNo((String) json.get("t_mcareRefNo"));
-            req.setTclaimDetails((String) json.get("t_claimDetails"));
-            req.setTnextofkin((String) json.get("t_nextofkin"));
-            Long feePos = (Long) json.get("t_feepositn");
-            req.setTfeepositn(feePos.toString());
-            String joinDt = (String) json.get("t_dateJoined");
+            req.setTmcareRefNo((String) json.get("txtMedicareCardNO") +"-"+(String) json.get("txtMrefNo"));
+              
+            req.setTclaimDetails((String) json.get("txtClaimNo"));
+            req.setTnextofkin((String) json.get("txtFirstName"));
+            
+            String feePos = ((String) json.get("rdoPrivateHospitalCover"))=="Yes"?"1":"0";
+            req.setTfeepositn(feePos);
+            
+            String joinDt = (String) json.get("sltJoinedYear")+"-01-01 00:00:00";
+            
             req.setTdateJoined(getSqlDate(joinDt));
-            Long dvaCardType = (Long) json.get("t_dvacardtype");
-            req.setTdvacardtype(dvaCardType.toString());
-            if((String) json.get("alergies") !=null){
-                req.setTallergies((String) json.get("alergies"));
-            }
+            String dvaType = (String) json.get("sltDVAType");
+            String dvaValue = "0";
+        switch (dvaType) {
+            case "White":
+                dvaValue = "1";
+                break;
+            case "Gold":
+                dvaValue = "2";
+                break;
+            case "Orange":
+                dvaValue = "3";
+                break;
+        }
+            req.setTdvacardtype(dvaValue);
+            
+            req.setTallergies((String) json.get("rdoDoYouHaveAllergies")+" "+(String) json.get("chkTypeOfAllergies"));
+             
 
 
             int i = cWmwSQLQueryExecutorService.executeQryUpdatePatient(req);
@@ -217,33 +233,33 @@ public class Patient {
 
             //Update ptDetailsReg
             QryUpdateptdetailRegRequest regRequest = new QryUpdateptdetailRegRequest();
-            regRequest.setTfamdrtitle((String) json.get("t_famdrtitle"));
-            regRequest.setTfamdrgiven((String) json.get("t_famdrgiven"));
-            regRequest.setTfamdrSurname((String) json.get("t_famdrSurname"));
-            regRequest.setTfamdrProNo((String) json.get("t_famdrProNo"));
-            regRequest.setTfamdrMedCenter((String) json.get("t_famdrMedCenter"));
-            regRequest.setTfamdrAdd1((String) json.get("t_famdrAdd1"));
-            regRequest.setTfamdrAdd2((String) json.get("t_famdrAdd2"));
-            regRequest.setTfamdrsuburb((String) json.get("t_famdrsuburb"));
-            regRequest.setTfamdrstate((String) json.get("t_famdrstate"));
-            regRequest.setTfamdrpostcode((String) json.get("t_famdrpostcode"));
+            regRequest.setTfamdrtitle((String) json.get("sltfamDrTitle"));
+            regRequest.setTfamdrgiven((String) json.get("txtFamilyDoctorGiven"));
+            regRequest.setTfamdrSurname((String) json.get("txtFamilyDoctorSurname"));
+            regRequest.setTfamdrProNo((String) json.get("txtFamDrProviderNo"));
+            regRequest.setTfamdrMedCenter((String) json.get("txtFamDrmedCenter"));
+            regRequest.setTfamdrAdd1((String) json.get("famDraddress2"));
+            regRequest.setTfamdrAdd2((String) json.get("famDrstreetname"));
+            regRequest.setTfamdrsuburb((String) json.get("famDrsuburb"));
+            regRequest.setTfamdrstate((String) json.get("famDrstate"));
+            regRequest.setTfamdrpostcode((String) json.get("famDrpostcode"));
 
-            regRequest.setTrefdrtitle((String) json.get("t_refdrtitle"));
-            regRequest.setTrefdrgiven((String) json.get("t_refdrgiven"));
-            regRequest.setTrefdrSurname((String) json.get("t_refdrSurname"));
-            regRequest.setTrefdrProNo((String) json.get("t_refdrProNo"));
-            regRequest.setTrefdrMedCenter((String) json.get("t_refdrMedCenter"));
-            regRequest.setTrefdrAdd1((String) json.get("t_refdrAdd1"));
-            regRequest.setTrefdrAdd2((String) json.get("t_refdrAdd2"));
-            regRequest.setTrefdrsuburb((String) json.get("t_refdrsuburb"));
-            regRequest.setTrefdrstate((String) json.get("t_refdrstate"));
-            regRequest.setTrefdrpostcode((String) json.get("t_refdrpostcode"));
+            regRequest.setTrefdrtitle((String) json.get("sltrefDrTitle"));
+            regRequest.setTrefdrgiven((String) json.get("txtRefeDrGiven"));
+            regRequest.setTrefdrSurname((String) json.get("txtRefeDrSurname"));
+            regRequest.setTrefdrProNo((String) json.get("txtRefDrProviderNo"));
+            regRequest.setTrefdrMedCenter((String) json.get("txtRefDrmedCenter"));
+            regRequest.setTrefdrAdd1((String) json.get("refDraddress2"));
+            regRequest.setTrefdrAdd2((String) json.get("refDrstreetname"));
+            regRequest.setTrefdrsuburb((String) json.get("refDrsuburb"));
+            regRequest.setTrefdrstate((String) json.get("refDrstate"));
+            regRequest.setTrefdrpostcode((String) json.get("refDrpostcode"));
 
-            regRequest.setTnokgiven((String) json.get("t_nokgiven"));
-            regRequest.setTnoksurname((String) json.get("t_noksurname"));
-            regRequest.setTnokrelationship((String) json.get("t_nokrelationship"));
+            regRequest.setTnokgiven((String) json.get("txtFirstName"));
+            regRequest.setTnoksurname((String) json.get("txtLastName"));
+            regRequest.setTnokrelationship((String) json.get("slcRelationship"));
             regRequest.setTnokcontactno((String) json.get("t_nokcontactno"));
-            regRequest.setTpatientno((String) json.get("t_patient_no"));
+            regRequest.setTpatientno((String) json.get("txtContctNo"));
             int k = cWmwSQLQueryExecutorService.executeQryUpdateptdetailReg(regRequest);
             if (k == 1) {
                 output = output + "PtDetailReg Updated. ";
@@ -256,8 +272,8 @@ public class Patient {
 
             if (ptcharacters == null) {
                 QryInsertPtCharacterRequest characterRequest = new QryInsertPtCharacterRequest();
-                characterRequest.setTmidname((String) json.get("t_midname"));
-                characterRequest.setTpreferredName((String) json.get("t_preferredName"));
+                characterRequest.setTmidname((String) json.get("txtMiddleName"));
+                characterRequest.setTpreferredName((String) json.get("txtPreferredName"));
                 characterRequest.setTpatientNo((String) json.get("t_patient_no"));
                 int l = cWmwSQLQueryExecutorService.executeQryInsertPtCharacter(characterRequest);
                 if (l == 1) {
@@ -268,8 +284,8 @@ public class Patient {
             } else {
                 QryUpdatePtCharacterRequest characterRequest = new QryUpdatePtCharacterRequest();
                 characterRequest.setTpatientNo((String) json.get("t_patient_no"));
-                characterRequest.setTpreferredName((String) json.get("t_preferredName"));
-                characterRequest.setTmidname((String) json.get("t_midname"));
+                characterRequest.setTpreferredName((String) json.get("txtPreferredName"));
+                characterRequest.setTmidname((String) json.get("txtMiddleName"));
                 int j = cWmwSQLQueryExecutorService.executeQryUpdatePtCharacter(characterRequest);
 
                 if (j == 1) {
@@ -279,27 +295,60 @@ public class Patient {
                 }
             }
 
-            //Save MedicalHistory
-            // if((String) json.get("#00006U1O")!==null && )
-            saveClinicalConclutions("#00006U1O", (String) json.get("t_patient_no"), (String) json.get("#00006U1O"));
-            saveClinicalConclutions("#00006TGB", (String) json.get("t_patient_no"), (String) json.get("#00006TGB"));
-            saveClinicalConclutions("#00006TGD", (String) json.get("t_patient_no"), (String) json.get("#00006TGD"));
-            saveClinicalConclutions("#00006TGE", (String) json.get("t_patient_no"), (String) json.get("#00006TGE"));
-            saveClinicalConclutions("#00006TGF", (String) json.get("t_patient_no"), (String) json.get("#00006TGF"));
-            saveClinicalConclutions("#00006U1P", (String) json.get("t_patient_no"), (String) json.get("#00006U1P"));
-            saveClinicalConclutions("#00006U1Q", (String) json.get("t_patient_no"), (String) json.get("#00006U1Q"));
-            saveClinicalConclutions("#00006TGG", (String) json.get("t_patient_no"), (String) json.get("#00006TGG"));
-            saveClinicalConclutions("#00006TGH", (String) json.get("t_patient_no"), (String) json.get("#00006TGH"));
-            saveClinicalConclutions("#00006TGI", (String) json.get("t_patient_no"), (String) json.get("#00006TGI"));
-            saveClinicalConclutions("#00006TI0", (String) json.get("t_patient_no"), (String) json.get("#00006TI0"));
-            saveClinicalConclutions("#00006TI1", (String) json.get("t_patient_no"), (String) json.get("#00006TI1"));
-            saveClinicalConclutions("#00006TI2", (String) json.get("t_patient_no"), (String) json.get("#00006TI2"));
-            saveClinicalConclutions("#000000002", (String) json.get("t_patient_no"), (String) json.get("#000000002"));
-            saveClinicalConclutions("#000000003", (String) json.get("t_patient_no"), (String) json.get("#000000003"));
-            saveClinicalConclutions("#00006TI3", (String) json.get("t_patient_no"), (String) json.get("#00006TI3"));
-            saveClinicalConclutions("#00006TIE", (String) json.get("t_patient_no"), (String) json.get("#00006TIE"));
-            saveClinicalConclutions("#00006TI8", (String) json.get("t_patient_no"), (String) json.get("#00006TI8"));
-            saveClinicalConclutions("#00006TIB", (String) json.get("t_patient_no"), (String) json.get("#00006TIB"));
+            // //Save MedicalHistory
+            // // if((String) json.get("#00006U1O")!==null && )
+            // // rdoColonoscopyPart txaColonoscopyPart
+            // saveClinicalConclutions("#00006U1O", (String) json.get("t_patient_no"), (String) json.get("#00006U1O"));
+            // // rdoDrinkAlcohol chkDoYouDrinkAlcohol txtHowManyGlasses
+            // saveClinicalConclutions("#00006TGB", (String) json.get("t_patient_no"), (String) json.get("#00006TGB"));
+            // // rdoRecentTestInvestigation txaRecentTestInvestigation
+            // saveClinicalConclutions("#00006TGD", (String) json.get("t_patient_no"), (String) json.get("#00006TGD"));
+            // // rdoAreYouASmoker txtAreYouASmoker 
+            // saveClinicalConclutions("#00006TGE", (String) json.get("t_patient_no"), (String) json.get("#00006TGE"));
+            // // rdoExSmoker txaesmokerDetails 
+            
+            // saveClinicalConclutions("#00006TGF", (String) json.get("t_patient_no"), (String) json.get("#00006TGF"));
+            // // rdoHighBloodPressure 
+            // saveClinicalConclutions("#00006U1P", (String) json.get("t_patient_no"), (String) json.get("#00006U1P"));
+            // // rdoEverHadaStroke txaEverHadaStroke 
+            
+            // saveClinicalConclutions("#00006U1Q", (String) json.get("t_patient_no"), (String) json.get("#00006U1Q"));
+            
+            
+            // saveClinicalConclutions("#00006TGG", (String) json.get("t_patient_no"), (String) json.get("#00006TGG"));
+            
+            
+            // saveClinicalConclutions("#00006TGH", (String) json.get("t_patient_no"), (String) json.get("#00006TGH"));
+            
+            
+            // saveClinicalConclutions("#00006TGI", (String) json.get("t_patient_no"), (String) json.get("#00006TGI"));
+            
+            
+            // saveClinicalConclutions("#00006TI0", (String) json.get("t_patient_no"), (String) json.get("#00006TI0"));
+            
+            
+            // saveClinicalConclutions("#00006TI1", (String) json.get("t_patient_no"), (String) json.get("#00006TI1"));
+            
+            
+            // saveClinicalConclutions("#00006TI2", (String) json.get("t_patient_no"), (String) json.get("#00006TI2"));
+            
+            
+            // saveClinicalConclutions("#000000002", (String) json.get("t_patient_no"), (String) json.get("#000000002"));
+            
+            
+            // saveClinicalConclutions("#000000003", (String) json.get("t_patient_no"), (String) json.get("#000000003"));
+            
+            
+            // saveClinicalConclutions("#00006TI3", (String) json.get("t_patient_no"), (String) json.get("#00006TI3"));
+            
+            
+            // saveClinicalConclutions("#00006TIE", (String) json.get("t_patient_no"), (String) json.get("#00006TIE"));
+            
+            
+            // saveClinicalConclutions("#00006TI8", (String) json.get("t_patient_no"), (String) json.get("#00006TI8"));
+            
+            
+            // saveClinicalConclutions("#00006TIB", (String) json.get("t_patient_no"), (String) json.get("#00006TIB"));
 
 
             //Add detaile to account
