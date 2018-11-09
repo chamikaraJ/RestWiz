@@ -171,7 +171,7 @@ public class Patient {
 
             //Update ptdetailed
             QryUpdatePatientRequest req = new QryUpdatePatientRequest();
-            req.setTpatientNo((String) json.get("t_patient_no"));
+            req.setTpatientNo((String) json.get("txtPatientNo"));
             req.setTtitle((String) json.get("sltTitle"));
             req.setTgiven((String) json.get("txtGivenName"));
             req.setTsurname((String) json.get("txtSurname"));
@@ -268,13 +268,13 @@ public class Patient {
             }
 
             //Update ptCharacter
-            Ptcharacters ptcharacters = getPtcharacters((String) json.get("t_patient_no"));
+            Ptcharacters ptcharacters = getPtcharacters((String) json.get("txtPatientNo"));
 
             if (ptcharacters == null) {
                 QryInsertPtCharacterRequest characterRequest = new QryInsertPtCharacterRequest();
                 characterRequest.setTmidname((String) json.get("txtMiddleName"));
                 characterRequest.setTpreferredName((String) json.get("txtPreferredName"));
-                characterRequest.setTpatientNo((String) json.get("t_patient_no"));
+                characterRequest.setTpatientNo((String) json.get("txtPatientNo"));
                 int l = cWmwSQLQueryExecutorService.executeQryInsertPtCharacter(characterRequest);
                 if (l == 1) {
                     output = output + "Insetr to PtCharacter. ";
@@ -283,7 +283,7 @@ public class Patient {
                 }
             } else {
                 QryUpdatePtCharacterRequest characterRequest = new QryUpdatePtCharacterRequest();
-                characterRequest.setTpatientNo((String) json.get("t_patient_no"));
+                characterRequest.setTpatientNo((String) json.get("txtPatientNo"));
                 characterRequest.setTpreferredName((String) json.get("txtPreferredName"));
                 characterRequest.setTmidname((String) json.get("txtMiddleName"));
                 int j = cWmwSQLQueryExecutorService.executeQryUpdatePtCharacter(characterRequest);
@@ -298,76 +298,75 @@ public class Patient {
             // //Save MedicalHistory
             // // if((String) json.get("#00006U1O")!==null && )
             // // rdoColonoscopyPart txaColonoscopyPart
-            // saveClinicalConclutions("#00006U1O", (String) json.get("t_patient_no"), (String) json.get("#00006U1O"));
+            // saveClinicalConclutions("#00006U1O", (String) json.get("txtPatientNo"), (String) json.get("#00006U1O"));
             // // rdoDrinkAlcohol chkDoYouDrinkAlcohol txtHowManyGlasses
-            // saveClinicalConclutions("#00006TGB", (String) json.get("t_patient_no"), (String) json.get("#00006TGB"));
+            // saveClinicalConclutions("#00006TGB", (String) json.get("txtPatientNo"), (String) json.get("#00006TGB"));
             // // rdoRecentTestInvestigation txaRecentTestInvestigation
-            // saveClinicalConclutions("#00006TGD", (String) json.get("t_patient_no"), (String) json.get("#00006TGD"));
+            // saveClinicalConclutions("#00006TGD", (String) json.get("txtPatientNo"), (String) json.get("#00006TGD"));
             // // rdoAreYouASmoker txtAreYouASmoker 
-            // saveClinicalConclutions("#00006TGE", (String) json.get("t_patient_no"), (String) json.get("#00006TGE"));
+            // saveClinicalConclutions("#00006TGE", (String) json.get("txtPatientNo"), (String) json.get("#00006TGE"));
             // // rdoExSmoker txaesmokerDetails 
             
-            // saveClinicalConclutions("#00006TGF", (String) json.get("t_patient_no"), (String) json.get("#00006TGF"));
+            // saveClinicalConclutions("#00006TGF", (String) json.get("txtPatientNo"), (String) json.get("#00006TGF"));
             // // rdoHighBloodPressure 
-            // saveClinicalConclutions("#00006U1P", (String) json.get("t_patient_no"), (String) json.get("#00006U1P"));
+            // saveClinicalConclutions("#00006U1P", (String) json.get("txtPatientNo"), (String) json.get("#00006U1P"));
             // // rdoEverHadaStroke txaEverHadaStroke 
             
-            // saveClinicalConclutions("#00006U1Q", (String) json.get("t_patient_no"), (String) json.get("#00006U1Q"));
+            // saveClinicalConclutions("#00006U1Q", (String) json.get("txtPatientNo"), (String) json.get("#00006U1Q"));
             
             
-            // saveClinicalConclutions("#00006TGG", (String) json.get("t_patient_no"), (String) json.get("#00006TGG"));
+            // saveClinicalConclutions("#00006TGG", (String) json.get("txtPatientNo"), (String) json.get("#00006TGG"));
             
             
-            // saveClinicalConclutions("#00006TGH", (String) json.get("t_patient_no"), (String) json.get("#00006TGH"));
+            // saveClinicalConclutions("#00006TGH", (String) json.get("txtPatientNo"), (String) json.get("#00006TGH"));
             
             
-            // saveClinicalConclutions("#00006TGI", (String) json.get("t_patient_no"), (String) json.get("#00006TGI"));
+            // saveClinicalConclutions("#00006TGI", (String) json.get("txtPatientNo"), (String) json.get("#00006TGI"));
             
             
-            // saveClinicalConclutions("#00006TI0", (String) json.get("t_patient_no"), (String) json.get("#00006TI0"));
+            // saveClinicalConclutions("#00006TI0", (String) json.get("txtPatientNo"), (String) json.get("#00006TI0"));
             
             
-            // saveClinicalConclutions("#00006TI1", (String) json.get("t_patient_no"), (String) json.get("#00006TI1"));
+            // saveClinicalConclutions("#00006TI1", (String) json.get("txtPatientNo"), (String) json.get("#00006TI1"));
             
             
-            // saveClinicalConclutions("#00006TI2", (String) json.get("t_patient_no"), (String) json.get("#00006TI2"));
+            // saveClinicalConclutions("#00006TI2", (String) json.get("txtPatientNo"), (String) json.get("#00006TI2"));
             
             
-            // saveClinicalConclutions("#000000002", (String) json.get("t_patient_no"), (String) json.get("#000000002"));
+            // saveClinicalConclutions("#000000002", (String) json.get("txtPatientNo"), (String) json.get("#000000002"));
             
             
-            // saveClinicalConclutions("#000000003", (String) json.get("t_patient_no"), (String) json.get("#000000003"));
+            // saveClinicalConclutions("#000000003", (String) json.get("txtPatientNo"), (String) json.get("#000000003"));
             
             
-            // saveClinicalConclutions("#00006TI3", (String) json.get("t_patient_no"), (String) json.get("#00006TI3"));
+            // saveClinicalConclutions("#00006TI3", (String) json.get("txtPatientNo"), (String) json.get("#00006TI3"));
             
             
-            // saveClinicalConclutions("#00006TIE", (String) json.get("t_patient_no"), (String) json.get("#00006TIE"));
+            // saveClinicalConclutions("#00006TIE", (String) json.get("txtPatientNo"), (String) json.get("#00006TIE"));
             
             
-            // saveClinicalConclutions("#00006TI8", (String) json.get("t_patient_no"), (String) json.get("#00006TI8"));
+            // saveClinicalConclutions("#00006TI8", (String) json.get("txtPatientNo"), (String) json.get("#00006TI8"));
             
             
-            // saveClinicalConclutions("#00006TIB", (String) json.get("t_patient_no"), (String) json.get("#00006TIB"));
-
+            // saveClinicalConclutions("#00006TIB", (String) json.get("txtPatientNo"), (String) json.get("#00006TIB"));
 
             //Add detaile to account
-            Account acc = getAccount((String) json.get("t_patient_no"));
-            String acName = new StringBuilder().append((String) json.get("t_title")).append(" ").append((String) json.get("t_given")).append(" ").append((String) json.get("t_surname")).toString();
-            String accescode = new StringBuilder().append((String) json.get("t_surname")).append(" ").append((String) json.get("t_title")).append(" ").append((String) json.get("t_given")).toString();
+            Account acc = getAccount((String) json.get("txtPatientNo"));
+            String acName = new StringBuilder().append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).append(" ").append((String) json.get("txtSurname")).toString();
+            String accescode = new StringBuilder().append((String) json.get("txtSurname")).append(" ").append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).toString();
             if (acc == null) {
                 QryInsertAccountRequest accReq = new QryInsertAccountRequest();
-                accReq.setTaccountno((String) json.get("t_patient_no"));
+                accReq.setTaccountno((String) json.get("txtPatientNo"));
                 accReq.setTacName(acName);
                 accReq.setTaccescode(accescode);
                 accReq.setTcontact(accescode);
-                accReq.setTphoneAh((String) json.get("t_phone_ah"));
-                accReq.setTphoneBh((String) json.get("t_phone_bh"));
-                accReq.setTaddress1((String) json.get("t_address1"));
-                accReq.setTaddress2((String) json.get("t_address2"));
-                accReq.setTsuburb((String) json.get("t_suburb"));
-                accReq.setTstate((String) json.get("t_state"));
-                accReq.setTpostcode((String) json.get("t_postcode"));
+                accReq.setTphoneAh((String) json.get("txtPhoneNumberH"));
+                accReq.setTphoneBh((String) json.get("txtPhoneNumberW"));
+                accReq.setTaddress1((String) json.get("address2"));
+                accReq.setTaddress2((String) json.get("streetname"));
+                accReq.setTsuburb((String) json.get("suburb"));
+                accReq.setTstate((String) json.get("state"));
+                accReq.setTpostcode((String) json.get("postcode"));
                 int acnt = cWmwSQLQueryExecutorService.executeQryInsertAccount(accReq);
                 if (acnt == 1) {
                     output = output + "Insetr to Account. ";
@@ -379,13 +378,13 @@ public class Patient {
                 updateAcc.setTacName(acName);
                 updateAcc.setTaccescode(accescode);
                 updateAcc.setTcontact(accescode);
-                updateAcc.setTphoneAh((String) json.get("t_phone_ah"));
-                updateAcc.setTphoneBh((String) json.get("t_phone_bh"));
-                updateAcc.setTaddress1((String) json.get("t_address1"));
-                updateAcc.setTaddress2((String) json.get("t_address2"));
-                updateAcc.setTsuburb((String) json.get("t_suburb"));
-                updateAcc.setTstate((String) json.get("t_state"));
-                updateAcc.setTpostcode((String) json.get("t_postcode"));
+                updateAcc.setTphoneAh((String) json.get("txtPhoneNumberH"));
+                updateAcc.setTphoneBh((String) json.get("txtPhoneNumberW"));
+                updateAcc.setTaddress1((String) json.get("address2"));
+                updateAcc.setTaddress2((String) json.get("streetname"));
+                updateAcc.setTsuburb((String) json.get("suburb"));
+                updateAcc.setTstate((String) json.get("state"));
+                updateAcc.setTpostcode((String) json.get("postcode"));
                 int accUp = cWmwSQLQueryExecutorService.executeQryUpdateAccount(updateAcc);
                 if (accUp == 1) {
                     output = output + "Update to Account. ";
