@@ -35,17 +35,17 @@ public class UpdatePatientSchedularController {
         return updatePatientSchedular.saveClinicalConclutions(code, patientNo, dtls);
     }
 
-    @RequestMapping(value = "/patient", produces = "application/json", method = RequestMethod.PUT)
+    @RequestMapping(value = "/savePatientData", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String updatePatient(@RequestParam(value = "patienData", required = false) String patienData) {
-        return updatePatientSchedular.updatePatient(patienData);
+    public String savePatientData(@RequestParam(value = "patienData", required = false) String patienData) {
+        return updatePatientSchedular.savePatientData(patienData);
     }
 
-    @RequestMapping(value = "/patient_1", produces = "application/json", method = RequestMethod.PUT)
+    @RequestMapping(value = "/startUpdatePatient", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String updatePatient_1() {
-        return updatePatientSchedular.updatePatient();
+    public String startUpdatePatient() {
+        return updatePatientSchedular.startUpdatePatient();
     }
 }

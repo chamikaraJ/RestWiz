@@ -67,7 +67,7 @@ public class UpdatePatientSchedular {
     @Autowired
     private PtcharactersService ptcharactersService;
 
-    public String updatePatient() {
+    public String startUpdatePatient() {
         
         if(firstMsg){
             logger.warn("Starting patient update service");
@@ -78,22 +78,20 @@ public class UpdatePatientSchedular {
         String result = "";
         Page<QryGetAllJsonTextResponse> qryGetAllJsonTextResponses = queryExecutorService.executeQryGetAllJsonText(pageable);
 
-//        Page<JsontextTemp> temps = tempService.findAll("select * from JsontextTempService", pageable);
-
         if (qryGetAllJsonTextResponses.getContent().size() > 0) {
             List<QryGetAllJsonTextResponse> content = qryGetAllJsonTextResponses.getContent();
 
             for (int i = 0; i < content.size(); i++) {
-                result = updatePatient(content.get(i).getJsonText());
+                result = savePatientData(content.get(i).getJsonText());
                 if (result.length() > 0) {
-//                    tempService.delete(content.get(i).getId());
+                    tempService.delete(content.get(i).getId());
                 }
             }
         }
         return result;
     }
 
-    public String updatePatient(String patienData) {
+    public String savePatientData(String patienData) {
 
         Pageable pageable = new PageRequest(0, 10);
         String output = "";
