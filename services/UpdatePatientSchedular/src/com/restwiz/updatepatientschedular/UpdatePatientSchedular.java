@@ -49,7 +49,7 @@ import java.util.stream.Collectors;
 public class UpdatePatientSchedular {
 
     private static final Logger logger = LoggerFactory.getLogger(UpdatePatientSchedular.class);
-    
+
     private boolean firstMsg = true;
 
     @Autowired
@@ -68,12 +68,12 @@ public class UpdatePatientSchedular {
     private PtcharactersService ptcharactersService;
 
     public String startUpdatePatient() {
-        
-        if(firstMsg){
+
+        if (firstMsg) {
             logger.warn("Starting patient update service");
-                firstMsg = false;
-            }
-        
+            firstMsg = false;
+        }
+
         Pageable pageable = new PageRequest(0, 10);
         String result = "";
         Page<QryGetAllJsonTextResponse> qryGetAllJsonTextResponses = queryExecutorService.executeQryGetAllJsonText(pageable);
@@ -114,40 +114,44 @@ public class UpdatePatientSchedular {
             //Update ptdetailed
             QryUpdatePatientRequest req = new QryUpdatePatientRequest();
             req.setTpatientNo(json.get("txtPatientNo").toString().trim());
-            req.setTtitle(json.get("sltTitle").toString().trim());
-            req.setTgiven(json.get("txtGivenName").toString().trim());
-            req.setTsurname(json.get("txtSurname").toString().trim());
-            req.setTaddress1(json.get("address2").toString().trim());
-            req.setTaddress2(json.get("streetname").toString().trim());
-            req.setTsuburb(json.get("suburb").toString().trim());
-            req.setTpostcode(json.get("postcode").toString().trim());
-            req.setTstate(json.get("state").toString().trim());
-            req.setTphoneAh(json.get("txtPhoneNumberH").toString().trim());
-            req.setTphoneBh(json.get("txtPhoneNumberW").toString().trim());
-            req.setTmobile(json.get("txtMobileNo").toString().trim());
+            req.setTtitle(json.get("sltTitle")!=null?json.get("sltTitle").toString().trim():"");
+            req.setTgiven(json.get("txtGivenName")!=null?json.get("txtGivenName").toString().trim():"");
+            req.setTsurname(json.get("txtSurname")!=null?json.get("txtSurname").toString().trim():"");
+            req.setTaddress1(json.get("address2")!=null?json.get("address2").toString().trim():"");
+            req.setTaddress2(json.get("streetname")!=null?json.get("streetname").toString().trim():"");
+            req.setTsuburb(json.get("suburb")!=null?json.get("suburb").toString().trim():"");
+            req.setTpostcode(json.get("postcode")!=null?json.get("postcode").toString().trim():"");
+            req.setTstate(json.get("state")!=null?json.get("state").toString().trim():"");
+            req.setTphoneAh(json.get("txtPhoneNumberH")!=null?json.get("txtPhoneNumberH").toString().trim():"");
+            req.setTphoneBh(json.get("txtPhoneNumberW")!=null?json.get("txtPhoneNumberW").toString().trim():"");
+            req.setTmobile(json.get("txtMobileNo")!=null?json.get("txtMobileNo").toString().trim():"");
             String dob = json.get("dobYear") + "-" + json.get("dobMonth") + "-" + json.get("dobDay") + " 00:00:00";
             req.setTdob(getSqlDate(dob));
-            req.setTmedicareno(json.get("txtMedicareCardNO").toString().trim() + "-" + json.get("txtMrefNo").toString().trim());
-            req.setTmemberNo(json.get("txtMembershipName").toString().trim());
-            req.setTemail(json.get("txtEmail").toString().trim());
-            req.setTfundcode(json.get("srchFundName").toString().trim());
+            req.setTmedicareno(json.get("txtMedicareCardNO")!=null?json.get("txtMedicareCardNO").toString().trim():"" + "-" + json.get("txtMrefNo")!=null?json.get("txtMrefNo").toString().trim():"");
+            req.setTmemberNo(json.get("txtMembershipName")!=null?json.get("txtMembershipName").toString().trim():"");
+            req.setTemail(json.get("txtEmail")!=null?json.get("txtEmail").toString().trim():"");
+            req.setTfundcode(json.get("srchFundName")!=null?json.get("srchFundName").toString().trim():"");
             req.setTbirthplace(countryCode);
-            req.setTvetafno(json.get("txtDvaCardNo").toString().trim());
-            req.setTrefRalSrc(json.get("sltHowdidYouHear").toString().trim());
+            req.setTvetafno(json.get("txtDvaCardNo")!=null?json.get("txtDvaCardNo").toString().trim():"");
+            req.setTrefRalSrc(json.get("sltHowdidYouHear")!=null?json.get("sltHowdidYouHear").toString().trim():"");
             String exp = json.get("txtExpYear") + "-" + json.get("txtExpMonth") + "-" + json.get("txtExpDate") + " 00:00:00";
             req.setTmedExpiry(getSqlDate(exp));
-            req.setTmcareRefNo(json.get("txtMrefNo").toString().trim());
+            req.setTmcareRefNo(json.get("txtMrefNo")!=null?json.get("txtMrefNo").toString().trim():"");
 
-            req.setTclaimDetails(json.get("txtClaimNo").toString().trim());
-            req.setTnextofkin(json.get("txtFirstName").toString().trim());
+            req.setTclaimDetails(json.get("txtClaimNo")!=null?json.get("txtClaimNo").toString().trim():"");
+            req.setTnextofkin(json.get("txtFirstName")!=null?json.get("txtFirstName").toString().trim():"");
 
-            String feePos = (json.get("rdoPrivateHospitalCover").toString().trim()) == "Yes" ? "1" : "0";
+            String feePos = (json.get("rdoPrivateHospitalCover")!=null?json.get("rdoPrivateHospitalCover").toString().trim():"") == "Yes" ? "1" : "0";
             req.setTfeepositn(feePos);
 
-            String joinDt = json.get("sltJoinedYear") + "-01-01 00:00:00";
+            if(json.get("sltJoinedYear")!=null) {
+                String joinDt = json.get("sltJoinedYear") + "-01-01 00:00:00";
 
-            req.setTdateJoined(getSqlDate(joinDt));
-            String dvaType = json.get("sltDVAType").toString().trim();
+                req.setTdateJoined(getSqlDate(joinDt));
+            }else{
+                req.setTdateJoined(getSqlDate("1970-01-01 00:00:00"));
+            }
+            String dvaType = json.get("sltDVAType")!=null?json.get("sltDVAType").toString().trim():"";
             String dvaValue = "0";
             switch (dvaType) {
                 case "White":
@@ -162,10 +166,15 @@ public class UpdatePatientSchedular {
             }
             req.setTdvacardtype(dvaValue);
 
-            String allergies = getcommaSeparatedStringFromJson((JSONArray) json.get("chkTypeOfAllergies"));
-            req.setTallergies(json.get("rdoDoYouHaveAllergies").toString().trim() + " " + allergies);
+            if(json.get("rdoDoYouHaveAllergies")!=null) {
+                if(json.get("chkTypeOfAllergies")!=null) {
+                    String allergies = getcommaSeparatedStringFromJson((JSONArray) json.get("chkTypeOfAllergies"));
+                    req.setTallergies(json.get("rdoDoYouHaveAllergies").toString().trim() + " " + allergies);
+                }else{
+                    req.setTallergies("");
+                }
 
-
+            }
             int i = queryExecutorService.executeQryUpdatePatient(req);
             if (i == 1) {
                 output = output + "PtDetail Updated. ";
@@ -175,32 +184,32 @@ public class UpdatePatientSchedular {
 
             //Update ptDetailsReg
             QryUpdateptdetailRegRequest regRequest = new QryUpdateptdetailRegRequest();
-            regRequest.setTfamdrtitle(json.get("sltfamDrTitle").toString().trim());
-            regRequest.setTfamdrgiven(json.get("txtFamilyDoctorGiven").toString().trim());
-            regRequest.setTfamdrSurname(json.get("txtFamilyDoctorSurname").toString().trim());
-            regRequest.setTfamdrProNo(json.get("txtFamDrProviderNo").toString().trim());
-            regRequest.setTfamdrMedCenter(json.get("txtFamDrmedCenter").toString().trim());
-            regRequest.setTfamdrAdd1(json.get("famDraddress2").toString().trim());
-            regRequest.setTfamdrAdd2(json.get("famDrstreetname").toString().trim());
-            regRequest.setTfamdrsuburb(json.get("famDrsuburb").toString().trim());
-            regRequest.setTfamdrstate(json.get("famDrstate").toString().trim());
-            regRequest.setTfamdrpostcode(json.get("famDrpostcode").toString().trim());
+            regRequest.setTfamdrtitle(json.get("sltfamDrTitle") != null ? json.get("sltfamDrTitle").toString().trim() : "");
+            regRequest.setTfamdrgiven(json.get("txtFamilyDoctorGiven") != null ? json.get("txtFamilyDoctorGiven").toString().trim() : "");
+            regRequest.setTfamdrSurname(json.get("txtFamilyDoctorSurname") != null ? json.get("txtFamilyDoctorSurname").toString().trim() : "");
+            regRequest.setTfamdrProNo(json.get("txtFamDrProviderNo") != null ? json.get("txtFamDrProviderNo").toString().trim() : "");
+            regRequest.setTfamdrMedCenter(json.get("txtFamDrmedCenter") != null ? json.get("txtFamDrmedCenter").toString().trim() : "");
+            regRequest.setTfamdrAdd1(json.get("famDraddress2") != null ? json.get("famDraddress2").toString().trim() : "");
+            regRequest.setTfamdrAdd2(json.get("famDrstreetname") != null ? json.get("famDrstreetname").toString().trim() : "");
+            regRequest.setTfamdrsuburb(json.get("famDrsuburb") != null ? json.get("famDrsuburb").toString().trim() : "");
+            regRequest.setTfamdrstate(json.get("famDrstate") != null ? json.get("famDrstate").toString().trim() : "");
+            regRequest.setTfamdrpostcode(json.get("famDrpostcode") != null ? json.get("famDrpostcode").toString().trim() : "");
 
-            regRequest.setTrefdrtitle(json.get("sltrefDrTitle").toString().trim());
-            regRequest.setTrefdrgiven(json.get("txtRefeDrGiven").toString().trim());
-            regRequest.setTrefdrSurname(json.get("txtRefeDrSurname").toString().trim());
-            regRequest.setTrefdrProNo(json.get("txtRefDrProviderNo").toString().trim());
-            regRequest.setTrefdrMedCenter(json.get("txtRefDrmedCenter").toString().trim());
-            regRequest.setTrefdrAdd1(json.get("refDraddress2").toString().trim());
-            regRequest.setTrefdrAdd2(json.get("refDrstreetname").toString().trim());
-            regRequest.setTrefdrsuburb(json.get("refDrsuburb").toString().trim());
-            regRequest.setTrefdrstate(json.get("refDrstate").toString().trim());
-            regRequest.setTrefdrpostcode(json.get("refDrpostcode").toString().trim());
+            regRequest.setTrefdrtitle(json.get("sltrefDrTitle") != null ? json.get("sltrefDrTitle").toString().trim() : "");
+            regRequest.setTrefdrgiven(json.get("txtRefeDrGiven") != null ? json.get("txtRefeDrGiven").toString().trim() : "");
+            regRequest.setTrefdrSurname(json.get("txtRefeDrSurname") != null ? json.get("txtRefeDrSurname").toString().trim() : "");
+            regRequest.setTrefdrProNo(json.get("txtRefDrProviderNo") != null ? json.get("txtRefDrProviderNo").toString().trim() : "");
+            regRequest.setTrefdrMedCenter(json.get("txtRefDrmedCenter") != null ? json.get("txtRefDrmedCenter").toString().trim() : "");
+            regRequest.setTrefdrAdd1(json.get("refDraddress2") != null ? json.get("refDraddress2").toString().trim() : "");
+            regRequest.setTrefdrAdd2(json.get("refDrstreetname") != null ? json.get("refDrstreetname").toString().trim() : "");
+            regRequest.setTrefdrsuburb(json.get("refDrsuburb") != null ? json.get("refDrsuburb").toString().trim() : "");
+            regRequest.setTrefdrstate(json.get("refDrstate") != null ? json.get("refDrstate").toString().trim() : "");
+            regRequest.setTrefdrpostcode(json.get("refDrpostcode") != null ? json.get("refDrpostcode").toString().trim() : "");
 
-            regRequest.setTnokgiven(json.get("txtFirstName").toString().trim());
-            regRequest.setTnoksurname(json.get("txtLastName").toString().trim());
-            regRequest.setTnokrelationship(json.get("slcRelationship").toString().trim());
-            regRequest.setTnokcontactno(json.get("txtContctNo").toString().trim());
+            regRequest.setTnokgiven(json.get("txtFirstName") != null ? json.get("txtFirstName").toString().trim() : "");
+            regRequest.setTnoksurname(json.get("txtLastName") != null ? json.get("txtLastName").toString().trim() : "");
+            regRequest.setTnokrelationship(json.get("slcRelationship") != null ? json.get("slcRelationship").toString().trim() : "");
+            regRequest.setTnokcontactno(json.get("txtContctNo") != null ? json.get("txtContctNo").toString().trim() : "");
             regRequest.setTpatientno(json.get("txtPatientNo").toString().trim());
             int k = queryExecutorService.executeQryUpdateptdetailReg(regRequest);
             if (k == 1) {
@@ -209,31 +218,33 @@ public class UpdatePatientSchedular {
                 output = output + "PtDetailReg Update failed. ";
             }
 
-            //Update ptCharacter
-            Ptcharacters ptcharacters = getPtcharacters(json.get("txtPatientNo").toString().trim());
+            if (json.get("txtPatientNo") != null) {
+                //Update ptCharacter
+                Ptcharacters ptcharacters = getPtcharacters(json.get("txtPatientNo").toString().trim());
 
-            if (ptcharacters == null) {
-                QryInsertPtCharacterRequest characterRequest = new QryInsertPtCharacterRequest();
-                characterRequest.setTmidname(json.get("txtMiddleName").toString().trim());
-                characterRequest.setTpreferredName(json.get("txtPreferredName").toString().trim());
-                characterRequest.setTpatientNo(json.get("txtPatientNo").toString().trim());
-                int l = queryExecutorService.executeQryInsertPtCharacter(characterRequest);
-                if (l == 1) {
-                    output = output + "Insetr to PtCharacter. ";
+                if (ptcharacters == null) {
+                    QryInsertPtCharacterRequest characterRequest = new QryInsertPtCharacterRequest();
+                    characterRequest.setTmidname(json.get("txtMiddleName") != null ? json.get("txtMiddleName").toString().trim() : "");
+                    characterRequest.setTpreferredName(json.get("txtPreferredName") != null ? json.get("txtPreferredName").toString().trim() : "");
+                    characterRequest.setTpatientNo(json.get("txtPatientNo").toString().trim());
+                    int l = queryExecutorService.executeQryInsertPtCharacter(characterRequest);
+                    if (l == 1) {
+                        output = output + "Insetr to PtCharacter. ";
+                    } else {
+                        output = output + "Insetr to PtCharacter failed. ";
+                    }
                 } else {
-                    output = output + "Insetr to PtCharacter failed. ";
-                }
-            } else {
-                QryUpdatePtCharacterRequest characterRequest = new QryUpdatePtCharacterRequest();
-                characterRequest.setTpatientNo(json.get("txtPatientNo").toString().trim());
-                characterRequest.setTpreferredName(json.get("txtPreferredName").toString().trim());
-                characterRequest.setTmidname(json.get("txtMiddleName").toString().trim());
-                int j = queryExecutorService.executeQryUpdatePtCharacter(characterRequest);
+                    QryUpdatePtCharacterRequest characterRequest = new QryUpdatePtCharacterRequest();
+                    characterRequest.setTpatientNo(json.get("txtPatientNo").toString().trim());
+                    characterRequest.setTpreferredName(json.get("txtPreferredName") != null ? json.get("txtPreferredName").toString().trim() : "");
+                    characterRequest.setTmidname(json.get("txtMiddleName").toString().trim() != null ? json.get("txtMiddleName").toString().trim() : "");
+                    int j = queryExecutorService.executeQryUpdatePtCharacter(characterRequest);
 
-                if (j == 1) {
-                    output = output + "PtCharacter Updated. ";
-                } else {
-                    output = output + "PtCharacter Update failed. ";
+                    if (j == 1) {
+                        output = output + "PtCharacter Updated. ";
+                    } else {
+                        output = output + "PtCharacter Update failed. ";
+                    }
                 }
             }
 
@@ -387,15 +398,19 @@ public class UpdatePatientSchedular {
             if (text != null && rdo.toString().equals("Yes")) {
                 sb.append(" ").append(text.toString());
             }
+            return sb.toString();
+        } else {
+            return null;
         }
-        return sb.toString();
     }
 
     private String getcommaSeparatedStringFromJson(JSONArray arr) {
         List<String> list = new ArrayList<String>();
-        for (int i = 0; i < arr.size(); i++) {
-            System.out.println(arr.get(i));
-            list.add((String) arr.get(i));
+        if (arr != null) {
+            for (int i = 0; i < arr.size(); i++) {
+                System.out.println(arr.get(i));
+                list.add((String) arr.get(i));
+            }
         }
         return list.stream().collect(Collectors.joining(","));
     }
