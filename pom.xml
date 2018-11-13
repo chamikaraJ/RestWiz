@@ -334,13 +334,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>sqljdbc42</groupId>
-            <artifactId>sqljdbc42</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.lib.directory}/sqljdbc42.jar</systemPath>
-        </dependency>
-        <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1</version>
@@ -359,6 +352,13 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>2.9.7</version>
+        </dependency>
+        <dependency>
+            <groupId>sqljdbc42</groupId>
+            <artifactId>sqljdbc42</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.lib.directory}/sqljdbc42.jar</systemPath>
         </dependency>
     </dependencies>
     <dependencyManagement>

@@ -5,6 +5,7 @@ package com.restwiz.user.controller;
 
 import com.restwiz.user.User;
 import java.lang.String;
+import com.restwiz.cwmwsql.models.query.QryGetPatientByPatientNoResponse;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,10 @@ public class UserController {
     @Autowired
     private User user;
 
-    @RequestMapping(value = "/patient", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void getPatient(@RequestParam(value = "patientAuth", required = false) String patientAuth) {
-        user.getPatient(patientAuth);
+    public QryGetPatientByPatientNoResponse getPatient(@RequestBody String patientAuth) {
+        return user.getPatient(patientAuth);
     }
 }
