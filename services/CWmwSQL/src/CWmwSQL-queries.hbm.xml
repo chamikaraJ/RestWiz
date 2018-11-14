@@ -220,7 +220,8 @@ nokGiven = :t_nokgiven,
 nokSUrname = :t_noksurname,
 nokRelationship = :t_nokrelationship,
 nokContactNo = :t_nokcontactno,
-sigText = :t_sigText
+sigText = :t_sigText,
+base64ImageUrl = :t_base64imageurl
 where patient_no = :t_patientno
         ]]>
     <query-param name="t_famdrtitle" type="java.lang.String"/>
@@ -248,6 +249,7 @@ where patient_no = :t_patientno
     <query-param name="t_nokrelationship" type="java.lang.String"/>
     <query-param name="t_nokcontactno" type="java.lang.String"/>
     <query-param name="t_sigText" type="java.lang.String"/>
+    <query-param name="t_base64imageurl" type="java.lang.String"/>
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 

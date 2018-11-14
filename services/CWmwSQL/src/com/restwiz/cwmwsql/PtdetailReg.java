@@ -57,6 +57,7 @@ public class PtdetailReg implements Serializable {
     private String patientNo;
     private String ptdetailStatus;
     private String sigText;
+    private String base64imageUrl;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -364,6 +365,15 @@ public class PtdetailReg implements Serializable {
 
     public void setSigText(String sigText) {
         this.sigText = sigText;
+    }
+
+    @Column(name = "`base64ImageUrl`", nullable = true, length = 2147483647)
+    public String getBase64imageUrl() {
+        return this.base64imageUrl;
+    }
+
+    public void setBase64imageUrl(String base64imageUrl) {
+        this.base64imageUrl = base64imageUrl;
     }
 
 

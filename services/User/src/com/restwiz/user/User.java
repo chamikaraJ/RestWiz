@@ -3,23 +3,24 @@
  with the terms of the source code license agreement you entered into with medicalwizard.com.au*/
 package com.restwiz.user;
 
-import com.restwiz.cwmwsql.Ptdetail;
-import com.restwiz.cwmwsql.models.query.QryGetPatientByPatientNoResponse;
-import com.restwiz.cwmwsql.models.query.QryGetUserLoginResponse;
-import com.restwiz.cwmwsql.service.CWmwSQLQueryExecutorService;
-import com.wavemaker.runtime.security.SecurityService;
-import com.wavemaker.runtime.service.annotations.ExposeToClient;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+        import com.restwiz.cwmwsql.Ptdetail;
+        import com.restwiz.cwmwsql.models.query.QryGetPatientByPatientNoResponse;
+        import com.restwiz.cwmwsql.models.query.QryGetUserAuthResponse;
+        import com.restwiz.cwmwsql.models.query.QryGetUserLoginResponse;
+        import com.restwiz.cwmwsql.service.CWmwSQLQueryExecutorService;
+        import com.wavemaker.runtime.security.SecurityService;
+        import com.wavemaker.runtime.service.annotations.ExposeToClient;
+        import org.json.simple.JSONObject;
+        import org.json.simple.parser.JSONParser;
+        import org.json.simple.parser.ParseException;
+        import org.slf4j.Logger;
+        import org.slf4j.LoggerFactory;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.data.domain.Page;
+        import org.springframework.data.domain.PageRequest;
+        import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+        import java.util.List;
 
 //import com.restwiz.user.model.*;
 
@@ -57,10 +58,13 @@ public class User {
         try {
             json = (JSONObject) parser.parse(patientAuth.toString());
             String tuserid = (String) json.get("t_userid");
-            String tpass = (String) json.get("t_pass");
-            Page<QryGetUserLoginResponse> res = cWmwSQLQueryExecutorService.executeQryGetUserLogin(tuserid, tpass, pageable);
-            List<QryGetUserLoginResponse> content = res.getContent();
-            patientNo = content.get(0).getPatientNo();
+            // String tpass = (String) json.get("t_pass");
+//            Page<QryGetUserLoginResponse> res = cWmwSQLQueryExecutorService.executeQryGetUserLogin(tuserid, tpass, pageable);
+//            List<QryGetUserLoginResponse> content = res.getContent();
+//            patientNo = content.get(0).getPatientNo();
+
+            Page<QryGetUserAuthResponse> qryGetUserAuthResponses = cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid, pageable);
+            patientNo = qryGetUserAuthResponses.getContent().get(0).getPatientNo();
 
             Page<QryGetPatientByPatientNoResponse> qryGetPatientByPatientNoResponses = cWmwSQLQueryExecutorService.executeQryGetPatientByPatientNo(patientNo, pageable);
             List<QryGetPatientByPatientNoResponse> content1 = qryGetPatientByPatientNoResponses.getContent();

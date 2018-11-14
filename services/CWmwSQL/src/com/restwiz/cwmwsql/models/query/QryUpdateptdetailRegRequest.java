@@ -93,6 +93,9 @@ public class QryUpdateptdetailRegRequest implements Serializable {
     @JsonProperty("t_sigText")
     private String tsigText;
 
+    @JsonProperty("t_base64imageurl")
+    private String tbase64imageurl;
+
     @JsonProperty("t_patientno")
     private String tpatientno;
 
@@ -296,6 +299,14 @@ public class QryUpdateptdetailRegRequest implements Serializable {
         this.tsigText = tsigText;
     }
 
+    public String getTbase64imageurl() {
+        return this.tbase64imageurl;
+    }
+
+    public void setTbase64imageurl(String tbase64imageurl) {
+        this.tbase64imageurl = tbase64imageurl;
+    }
+
     public String getTpatientno() {
         return this.tpatientno;
     }
@@ -334,6 +345,7 @@ public class QryUpdateptdetailRegRequest implements Serializable {
                 Objects.equals(getTnokrelationship(), qryUpdateptdetailRegRequest.getTnokrelationship()) &&
                 Objects.equals(getTnokcontactno(), qryUpdateptdetailRegRequest.getTnokcontactno()) &&
                 Objects.equals(getTsigText(), qryUpdateptdetailRegRequest.getTsigText()) &&
+                Objects.equals(getTbase64imageurl(), qryUpdateptdetailRegRequest.getTbase64imageurl()) &&
                 Objects.equals(getTpatientno(), qryUpdateptdetailRegRequest.getTpatientno());
     }
 
@@ -364,6 +376,7 @@ public class QryUpdateptdetailRegRequest implements Serializable {
                 getTnokrelationship(),
                 getTnokcontactno(),
                 getTsigText(),
+                getTbase64imageurl(),
                 getTpatientno());
     }
 }

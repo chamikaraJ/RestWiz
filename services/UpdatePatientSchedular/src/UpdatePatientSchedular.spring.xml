@@ -19,7 +19,7 @@ http://www.springframework.org/schema/security/spring-security.xsd"
     <bean class="com.restwiz.updatepatientschedular.controller.UpdatePatientSchedularController" id="UpdatePatientSchedularController"/>
     <!--<task:annotation-driven scheduler="taskScheduler" />-->
     <!--<task:scheduler id="taskScheduler" pool-size="5" />-->
-    <!--<task:scheduled-tasks >-->
-    <!--    <task:scheduled cron="* */5 * * * ?" method="startUpdatePatient" ref="UpdatePatientSchedular"/>-->
-    <!--</task:scheduled-tasks>-->
+    <task:scheduled-tasks >
+        <task:scheduled cron="* */5 * * * ?" method="startUpdatePatient" ref="UpdatePatientSchedular"/>
+    </task:scheduled-tasks>
 </beans>

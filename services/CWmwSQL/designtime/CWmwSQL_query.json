@@ -2231,7 +2231,7 @@
     "name" : "qryUpdateptdetailReg",
     "description" : "update ptdetailreg table",
     "version" : "V2",
-    "queryString" : "update ptdetail_reg set famDrTitle = :t_famdrtitle,\nfamDrGiven = :t_famdrgiven,\nfamDrSurname = :t_famdrSurname,\nfamDrProviderNo = :t_famdrProNo,\nfamDrMedicareCenter = :t_famdrMedCenter,\nfamDrAdr1 = :t_famdrAdd1,\nfamDrAdr2 = :t_famdrAdd2,\nfamDrSuburb = :t_famdrsuburb,\nfamDrState = :t_famdrstate,\nfamDrPostCode = :t_famdrpostcode,\nrefDrTitle = :t_refdrtitle,\nrefDrGiven = :t_refdrgiven,\nrefDrSurname = :t_refdrSurname,\nrefDrProviderNo = :t_refdrProNo,\nrefDrMedicareCenter = :t_refdrMedCenter,\nrefDrAdr1 = :t_refdrAdd1,\nrefDrAdr2 = :t_refdrAdd2,\nrefDrSuburb = :t_refdrsuburb,\nrefDrState = :t_refdrstate,\nrefDrPostCode = :t_refdrpostcode,\nnokGiven = :t_nokgiven,\nnokSUrname = :t_noksurname,\nnokRelationship = :t_nokrelationship,\nnokContactNo = :t_nokcontactno,\nsigText = :t_sigText\nwhere patient_no = :t_patientno",
+    "queryString" : "update ptdetail_reg set famDrTitle = :t_famdrtitle,\nfamDrGiven = :t_famdrgiven,\nfamDrSurname = :t_famdrSurname,\nfamDrProviderNo = :t_famdrProNo,\nfamDrMedicareCenter = :t_famdrMedCenter,\nfamDrAdr1 = :t_famdrAdd1,\nfamDrAdr2 = :t_famdrAdd2,\nfamDrSuburb = :t_famdrsuburb,\nfamDrState = :t_famdrstate,\nfamDrPostCode = :t_famdrpostcode,\nrefDrTitle = :t_refdrtitle,\nrefDrGiven = :t_refdrgiven,\nrefDrSurname = :t_refdrSurname,\nrefDrProviderNo = :t_refdrProNo,\nrefDrMedicareCenter = :t_refdrMedCenter,\nrefDrAdr1 = :t_refdrAdd1,\nrefDrAdr2 = :t_refdrAdd2,\nrefDrSuburb = :t_refdrsuburb,\nrefDrState = :t_refdrstate,\nrefDrPostCode = :t_refdrpostcode,\nnokGiven = :t_nokgiven,\nnokSUrname = :t_noksurname,\nnokRelationship = :t_nokrelationship,\nnokContactNo = :t_nokcontactno,\nsigText = :t_sigText,\nbase64ImageUrl = :t_base64imageurl\nwhere patient_no = :t_patientno",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -2435,6 +2435,14 @@
       "variableType" : "PROMPT",
       "variableName" : "",
       "testValue" : "sdfgsddf",
+      "required" : false
+    }, {
+      "name" : "t_base64imageurl",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ddggd",
       "required" : false
     }, {
       "name" : "t_patientno",

@@ -213,6 +213,7 @@ public class UpdatePatientSchedular {
             regRequest.setTnokcontactno(json.get("txtContctNo") != null ? json.get("txtContctNo").toString().trim() : "");
             regRequest.setTpatientno(json.get("txtPatientNo").toString().trim());
             regRequest.setTsigText(json.get("txtSigText").toString());
+            regRequest.setTbase64imageurl(json.get("txt64bitImageUrl").toString());
             int k = queryExecutorService.executeQryUpdateptdetailReg(regRequest);
             if (k == 1) {
                 output = output + "PtDetailReg Updated. ";
