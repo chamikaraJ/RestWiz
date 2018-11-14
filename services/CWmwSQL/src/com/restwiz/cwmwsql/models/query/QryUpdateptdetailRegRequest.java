@@ -90,6 +90,9 @@ public class QryUpdateptdetailRegRequest implements Serializable {
     @JsonProperty("t_nokcontactno")
     private String tnokcontactno;
 
+    @JsonProperty("t_sigText")
+    private String tsigText;
+
     @JsonProperty("t_patientno")
     private String tpatientno;
 
@@ -285,6 +288,14 @@ public class QryUpdateptdetailRegRequest implements Serializable {
         this.tnokcontactno = tnokcontactno;
     }
 
+    public String getTsigText() {
+        return this.tsigText;
+    }
+
+    public void setTsigText(String tsigText) {
+        this.tsigText = tsigText;
+    }
+
     public String getTpatientno() {
         return this.tpatientno;
     }
@@ -322,6 +333,7 @@ public class QryUpdateptdetailRegRequest implements Serializable {
                 Objects.equals(getTnoksurname(), qryUpdateptdetailRegRequest.getTnoksurname()) &&
                 Objects.equals(getTnokrelationship(), qryUpdateptdetailRegRequest.getTnokrelationship()) &&
                 Objects.equals(getTnokcontactno(), qryUpdateptdetailRegRequest.getTnokcontactno()) &&
+                Objects.equals(getTsigText(), qryUpdateptdetailRegRequest.getTsigText()) &&
                 Objects.equals(getTpatientno(), qryUpdateptdetailRegRequest.getTpatientno());
     }
 
@@ -351,6 +363,7 @@ public class QryUpdateptdetailRegRequest implements Serializable {
                 getTnoksurname(),
                 getTnokrelationship(),
                 getTnokcontactno(),
+                getTsigText(),
                 getTpatientno());
     }
 }

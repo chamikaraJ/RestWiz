@@ -219,7 +219,8 @@ refDrPostCode = :t_refdrpostcode,
 nokGiven = :t_nokgiven,
 nokSUrname = :t_noksurname,
 nokRelationship = :t_nokrelationship,
-nokContactNo = :t_nokcontactno
+nokContactNo = :t_nokcontactno,
+sigText = :t_sigText
 where patient_no = :t_patientno
         ]]>
     <query-param name="t_famdrtitle" type="java.lang.String"/>
@@ -246,6 +247,7 @@ where patient_no = :t_patientno
     <query-param name="t_noksurname" type="java.lang.String"/>
     <query-param name="t_nokrelationship" type="java.lang.String"/>
     <query-param name="t_nokcontactno" type="java.lang.String"/>
+    <query-param name="t_sigText" type="java.lang.String"/>
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 
@@ -302,6 +304,7 @@ ptreg.nokGiven,
 ptreg.nokSUrname,
 ptreg.nokRelationship,
 ptreg.nokContactNo,
+ptreg.sigText,
 ptchar.midname as middleName,
 ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = :t_patientno
         ]]>
@@ -361,6 +364,7 @@ ptreg.nokGiven,
 ptreg.nokSUrname,
 ptreg.nokRelationship,
 ptreg.nokContactNo,
+ptreg.sigText,
 ptchar.midname as middleName,
 ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = :t_patientno) wmTempTable
         ]]>

@@ -263,7 +263,7 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdateptdetailReg(QryUpdateptdetailRegRequest qryUpdateptdetailRegRequest) {
-        Map<String, Object> params = new HashMap<>(25);
+        Map<String, Object> params = new HashMap<>(26);
 
         params.put("t_famdrtitle", qryUpdateptdetailRegRequest.getTfamdrtitle());
         params.put("t_famdrgiven", qryUpdateptdetailRegRequest.getTfamdrgiven());
@@ -289,6 +289,7 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_noksurname", qryUpdateptdetailRegRequest.getTnoksurname());
         params.put("t_nokrelationship", qryUpdateptdetailRegRequest.getTnokrelationship());
         params.put("t_nokcontactno", qryUpdateptdetailRegRequest.getTnokcontactno());
+        params.put("t_sigText", qryUpdateptdetailRegRequest.getTsigText());
         params.put("t_patientno", qryUpdateptdetailRegRequest.getTpatientno());
 
         return queryExecutor.executeNamedQueryForUpdate("qryUpdateptdetailReg", params);

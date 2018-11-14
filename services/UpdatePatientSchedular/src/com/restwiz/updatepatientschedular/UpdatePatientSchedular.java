@@ -212,6 +212,7 @@ public class UpdatePatientSchedular {
             regRequest.setTnokrelationship(json.get("slcRelationship") != null ? json.get("slcRelationship").toString().trim() : "");
             regRequest.setTnokcontactno(json.get("txtContctNo") != null ? json.get("txtContctNo").toString().trim() : "");
             regRequest.setTpatientno(json.get("txtPatientNo").toString().trim());
+            regRequest.setTsigText(json.get("txtSigText").toString());
             int k = queryExecutorService.executeQryUpdateptdetailReg(regRequest);
             if (k == 1) {
                 output = output + "PtDetailReg Updated. ";

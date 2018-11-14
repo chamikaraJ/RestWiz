@@ -56,6 +56,7 @@ public class PtdetailReg implements Serializable {
     private String nokContactNo;
     private String patientNo;
     private String ptdetailStatus;
+    private String sigText;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -354,6 +355,15 @@ public class PtdetailReg implements Serializable {
 
     public void setPtdetailStatus(String ptdetailStatus) {
         this.ptdetailStatus = ptdetailStatus;
+    }
+
+    @Column(name = "`sigText`", nullable = true, length = 2147483647)
+    public String getSigText() {
+        return this.sigText;
+    }
+
+    public void setSigText(String sigText) {
+        this.sigText = sigText;
     }
 
 

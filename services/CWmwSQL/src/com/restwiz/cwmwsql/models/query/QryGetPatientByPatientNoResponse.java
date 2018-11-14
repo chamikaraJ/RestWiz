@@ -168,6 +168,9 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
     @ColumnAlias("nokContactNo")
     private String nokContactNo;
 
+    @ColumnAlias("sigText")
+    private String sigText;
+
     @ColumnAlias("middleName")
     private String middleName;
 
@@ -582,6 +585,14 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
         this.nokContactNo = nokContactNo;
     }
 
+    public String getSigText() {
+        return this.sigText;
+    }
+
+    public void setSigText(String sigText) {
+        this.sigText = sigText;
+    }
+
     public String getMiddleName() {
         return this.middleName;
     }
@@ -654,6 +665,7 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
                 Objects.equals(getNokSurname(), qryGetPatientByPatientNoResponse.getNokSurname()) &&
                 Objects.equals(getNokRelationship(), qryGetPatientByPatientNoResponse.getNokRelationship()) &&
                 Objects.equals(getNokContactNo(), qryGetPatientByPatientNoResponse.getNokContactNo()) &&
+                Objects.equals(getSigText(), qryGetPatientByPatientNoResponse.getSigText()) &&
                 Objects.equals(getMiddleName(), qryGetPatientByPatientNoResponse.getMiddleName()) &&
                 Objects.equals(getPreferedName(), qryGetPatientByPatientNoResponse.getPreferedName());
     }
@@ -711,6 +723,7 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
                 getNokSurname(),
                 getNokRelationship(),
                 getNokContactNo(),
+                getSigText(),
                 getMiddleName(),
                 getPreferedName());
     }
