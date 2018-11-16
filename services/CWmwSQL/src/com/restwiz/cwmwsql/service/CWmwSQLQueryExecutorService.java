@@ -30,6 +30,8 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetReferralSrc(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Integer executeQryUpdateAccountNo(QryUpdateAccountNoRequest qryUpdateAccountNoRequest);
+
     Integer executeQryUpdatePtDetailRegStatus(QryUpdatePtDetailRegStatusRequest qryUpdatePtDetailRegStatusRequest);
 
     Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest);

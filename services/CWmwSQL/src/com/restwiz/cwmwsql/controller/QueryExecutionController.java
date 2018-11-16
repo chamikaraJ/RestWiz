@@ -131,6 +131,16 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryUpdateAccountNo", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update account no")
+    public IntegerWrapper executeQryUpdateAccountNo(@Valid @RequestBody QryUpdateAccountNoRequest qryUpdateAccountNoRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryUpdateAccountNo");
+        Integer _result = queryService.executeQryUpdateAccountNo(qryUpdateAccountNoRequest);
+        LOGGER.debug("got the result for named query: qryUpdateAccountNo, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/qryUpdatePtDetailRegStatus", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Update ptdetailReg status")

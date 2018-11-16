@@ -115,6 +115,17 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
 
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
+    public Integer executeQryUpdateAccountNo(QryUpdateAccountNoRequest qryUpdateAccountNoRequest) {
+        Map<String, Object> params = new HashMap<>(2);
+
+        params.put("t_accountNo", qryUpdateAccountNoRequest.getTaccountNo());
+        params.put("t_patientNo", qryUpdateAccountNoRequest.getTpatientNo());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryUpdateAccountNo", params);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
     public Integer executeQryUpdatePtDetailRegStatus(QryUpdatePtDetailRegStatusRequest qryUpdatePtDetailRegStatusRequest) {
         Map<String, Object> params = new HashMap<>(3);
 
@@ -128,7 +139,7 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest) {
-        Map<String, Object> params = new HashMap<>(28);
+        Map<String, Object> params = new HashMap<>(29);
 
         params.put("t_title", qryUpdatePatientRequest.getTtitle());
         params.put("t_given", qryUpdatePatientRequest.getTgiven());
@@ -156,6 +167,7 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_dateJoined", qryUpdatePatientRequest.getTdateJoined());
         params.put("t_dvacardtype", qryUpdatePatientRequest.getTdvacardtype());
         params.put("t_allergies", qryUpdatePatientRequest.getTallergies());
+        params.put("t_accountNo", qryUpdatePatientRequest.getTaccountNo());
         params.put("t_nextofkin", qryUpdatePatientRequest.getTnextofkin());
         params.put("t_patient_no", qryUpdatePatientRequest.getTpatientNo());
 

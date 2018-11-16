@@ -114,6 +114,7 @@ public class UpdatePatientSchedular {
             //Update ptdetailed
             QryUpdatePatientRequest req = new QryUpdatePatientRequest();
             req.setTpatientNo(json.get("txtPatientNo").toString().trim());
+            req.setTaccountNo(json.get("txtPatientNo").toString().trim());
             req.setTtitle(json.get("sltTitle") != null ? json.get("sltTitle").toString().trim() : "");
             req.setTgiven(json.get("txtGivenName") != null ? json.get("txtGivenName").toString().trim() : "");
             req.setTsurname(json.get("txtSurname") != null ? json.get("txtSurname").toString().trim() : "");
@@ -353,6 +354,7 @@ public class UpdatePatientSchedular {
                 int acnt = queryExecutorService.executeQryInsertAccount(accReq);
                 if (acnt == 1) {
                     output = output + "Insetr to Account. ";
+                    updateAccoutnNo((String) json.get("txtPatientNo"),(String) json.get("txtPatientNo"));
                 } else {
                     output = output + "Insetr to Account failed. ";
                 }
@@ -372,6 +374,7 @@ public class UpdatePatientSchedular {
                 int accUp = queryExecutorService.executeQryUpdateAccount(updateAcc);
                 if (accUp == 1) {
                     output = output + "Update to Account. ";
+                    updateAccoutnNo(acc.getAccountno(),(String) json.get("txtPatientNo"));
                 } else {
                     output = output + "Update to Account failed. ";
                 }
@@ -387,6 +390,15 @@ public class UpdatePatientSchedular {
 
         // pt = ptdetailService.update(pt);
         return output;
+    }
+    
+    private int updateAccoutnNo(String accNo, String ptNo){
+        int result = 0;
+        QryUpdateAccountNoRequest req = new QryUpdateAccountNoRequest();
+        req.setTpatientNo(ptNo);
+        req.setTaccountNo(accNo);
+        result =  queryExecutorService.executeQryUpdateAccountNo(req);
+        return result;
     }
 
     private String concatQuestion(Object rdo, Object check, Object text) {

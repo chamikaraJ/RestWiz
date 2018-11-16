@@ -1805,6 +1805,44 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryUpdateAccountNo" : {
+    "name" : "qryUpdateAccountNo",
+    "description" : "Update account no",
+    "version" : "V2",
+    "queryString" : "update ptdetail set accountno = :t_accountNo where patient_no = :t_patientNo",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "t_accountNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "9999",
+      "required" : true
+    }, {
+      "name" : "t_patientNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "9999",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdateAccountNoRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "qryUpdateNextPtGenCode" : {
     "name" : "qryUpdateNextPtGenCode",
     "description" : "update next generated code for patient",
@@ -1855,7 +1893,7 @@
     "name" : "qryUpdatePatient",
     "description" : "Update Patient Details",
     "version" : "V2",
-    "queryString" : "update ptdetail set title = :t_title, \ngiven = :t_given, \nsurname = :t_surname, \naddress1 = :t_address1, \naddress2 = :t_address2, \nsuburb=:t_suburb, \npostcode=:t_postcode, \nstate = :t_state, \nphone_ah=:t_phone_ah, \nphone_bh=:t_phone_bh, \nmobile=rtrim(:t_mobile+' '), \ndob = :t_dob, \nmedicareno = :t_medicareno, \nmember_no=:t_member_no, \nemail = :t_email, \nfundcode = :t_fundcode, \nbirthplace=:t_birthplace,\nvetaffno=:t_vetafno, \nreferalsrc=:t_refRalSrc,\nmediexpry=:t_medExpiry,\nmcare_refn=:t_mcareRefNo, \nclaimdtls=:t_claimDetails, \nfeepositn =:t_feepositn,\ndatejoined=:t_dateJoined,\ndvacardtyp = :t_dvacardtype,\nallergies = :t_allergies,\nnextofkin=:t_nextofkin where patient_no = :t_patient_no",
+    "queryString" : "update ptdetail set title = :t_title, \ngiven = :t_given, \nsurname = :t_surname, \naddress1 = :t_address1, \naddress2 = :t_address2, \nsuburb=:t_suburb, \npostcode=:t_postcode, \nstate = :t_state, \nphone_ah=:t_phone_ah, \nphone_bh=:t_phone_bh, \nmobile=rtrim(:t_mobile+' '), \ndob = :t_dob, \nmedicareno = :t_medicareno, \nmember_no=:t_member_no, \nemail = :t_email, \nfundcode = :t_fundcode, \nbirthplace=:t_birthplace,\nvetaffno=:t_vetafno, \nreferalsrc=:t_refRalSrc,\nmediexpry=:t_medExpiry,\nmcare_refn=:t_mcareRefNo, \nclaimdtls=:t_claimDetails, \nfeepositn =:t_feepositn,\ndatejoined=:t_dateJoined,\ndvacardtyp = :t_dvacardtype,\nallergies = :t_allergies,\naccountno = :t_accountNo,\nnextofkin=:t_nextofkin where patient_no = :t_patient_no",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -2067,6 +2105,14 @@
       "variableType" : "PROMPT",
       "variableName" : "",
       "testValue" : "latex",
+      "required" : false
+    }, {
+      "name" : "t_accountNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "9999",
       "required" : false
     }, {
       "name" : "t_nextofkin",

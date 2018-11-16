@@ -57,6 +57,14 @@
         ]]>
     </sql-query>
 
+    <sql-query name="qryUpdateAccountNo">
+        <![CDATA[
+        update ptdetail set accountno = :t_accountNo where patient_no = :t_patientNo
+        ]]>
+    <query-param name="t_accountNo" type="java.lang.String"/>
+    <query-param name="t_patientNo" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryUpdatePtDetailRegStatus">
         <![CDATA[
         update ptdetail_reg set ptdetailStatus=:t_ptdetailStatus,patient_no = :t_patientno where idno =:t_idno
@@ -94,6 +102,7 @@ feepositn =:t_feepositn,
 datejoined=:t_dateJoined,
 dvacardtyp = :t_dvacardtype,
 allergies = :t_allergies,
+accountno = :t_accountNo,
 nextofkin=:t_nextofkin where patient_no = :t_patient_no
         ]]>
     <query-param name="t_title" type="java.lang.String"/>
@@ -122,6 +131,7 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
     <query-param name="t_dateJoined" type="java.sql.Date"/>
     <query-param name="t_dvacardtype" type="java.lang.String"/>
     <query-param name="t_allergies" type="java.lang.String"/>
+    <query-param name="t_accountNo" type="java.lang.String"/>
     <query-param name="t_nextofkin" type="java.lang.String"/>
     <query-param name="t_patient_no" type="java.lang.String"/>
     </sql-query>
