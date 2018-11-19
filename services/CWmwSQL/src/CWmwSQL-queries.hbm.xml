@@ -45,6 +45,20 @@
     <query-param name="dob" type="java.sql.Date"/>
     </sql-query>
 
+    <sql-query name="qryGetPatientByMedicareno">
+        <![CDATA[
+        select patient_no from ptdetail where medicareno = :t_medicareno
+        ]]>
+    <query-param name="t_medicareno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPatientByMedicareno__count">
+        <![CDATA[
+        select count(*) from (select patient_no from ptdetail where medicareno = :t_medicareno) wmTempTable
+        ]]>
+    <query-param name="t_medicareno" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetReferralSrc">
         <![CDATA[
         select * from refrlsrc

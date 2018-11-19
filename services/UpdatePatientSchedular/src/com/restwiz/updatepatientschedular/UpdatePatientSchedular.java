@@ -51,6 +51,7 @@ public class UpdatePatientSchedular {
     private static final Logger logger = LoggerFactory.getLogger(UpdatePatientSchedular.class);
 
     private boolean firstMsg = true;
+    private Pageable pageable = new PageRequest(0, 10);
 
     @Autowired
     private SecurityService securityService;
@@ -335,52 +336,16 @@ public class UpdatePatientSchedular {
                 saveClinicalConclutions("#00006TIB", (String) json.get("txtPatientNo"), q20);
 
             //Add detaile to account
-            Account acc = getAccount((String) json.get("txtPatientNo"));
-            String acName = new StringBuilder().append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).append(" ").append((String) json.get("txtSurname")).toString();
-            String accescode = new StringBuilder().append((String) json.get("txtSurname")).append(" ").append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).toString();
-            if (acc == null) {
-                QryInsertAccountRequest accReq = new QryInsertAccountRequest();
-                accReq.setTaccountno((String) json.get("txtPatientNo"));
-                accReq.setTacName(acName);
-                accReq.setTaccescode(accescode);
-                accReq.setTcontact(accescode);
-                accReq.setTphoneAh(json.get("txtPhoneNumberH") != null ? json.get("txtPhoneNumberH").toString().trim() : "");
-                accReq.setTphoneBh(json.get("txtPhoneNumberW") != null ? json.get("txtPhoneNumberW").toString().trim() : "");
-                accReq.setTaddress1(json.get("address2") != null ? json.get("address2").toString().trim() : "");
-                accReq.setTaddress2(json.get("streetname") != null ? json.get("streetname").toString().trim() : "");
-                accReq.setTsuburb(json.get("suburb") != null ? json.get("suburb").toString().trim() : "");
-                accReq.setTstate(json.get("state") != null ? json.get("state").toString().trim() : "");
-                accReq.setTpostcode(json.get("postcode") != null ? json.get("postcode").toString().trim() : "");
-                int acnt = queryExecutorService.executeQryInsertAccount(accReq);
-                if (acnt == 1) {
-                    output = output + "Insetr to Account. ";
-                    updateAccoutnNo((String) json.get("txtPatientNo"),(String) json.get("txtPatientNo"));
-                } else {
-                    output = output + "Insetr to Account failed. ";
-                }
-            } else {
-                QryUpdateAccountRequest updateAcc = new QryUpdateAccountRequest();
-                updateAcc.setTacName(acName);
-                updateAcc.setTaccescode(accescode);
-                updateAcc.setTcontact(accescode);
-                updateAcc.setTphoneAh(json.get("txtPhoneNumberH") != null ? json.get("txtPhoneNumberH").toString().trim() : "");
-                updateAcc.setTphoneBh(json.get("txtPhoneNumberW") != null ? json.get("txtPhoneNumberW").toString().trim() : "");
-                updateAcc.setTaddress1(json.get("address2") != null ? json.get("address2").toString().trim() : "");
-                updateAcc.setTaddress2(json.get("streetname") != null ? json.get("streetname").toString().trim() : "");
-                updateAcc.setTsuburb(json.get("suburb") != null ? json.get("suburb").toString().trim() : "");
-                updateAcc.setTstate(json.get("state") != null ? json.get("state").toString().trim() : "");
-                updateAcc.setTpostcode(json.get("postcode") != null ? json.get("postcode").toString().trim() : "");
-                updateAcc.setTaccountno(json.get("txtPatientNo") != null ? json.get("txtPatientNo").toString().trim() : "");
-                int accUp = queryExecutorService.executeQryUpdateAccount(updateAcc);
-                if (accUp == 1) {
-                    output = output + "Update to Account. ";
-                    updateAccoutnNo(acc.getAccountno(),(String) json.get("txtPatientNo"));
-                } else {
-                    output = output + "Update to Account failed. ";
-                }
+            String isChildren = json.get("rdoisChildren").toString();
+            if(isChildren == "No"){
+                output = output + updateAccountDetails(json,json.get("txtPatientNo").toString(),true);
+            }else{
+                String medicareNo = json.get("txtGuardianMedicareCardNo").toString();
+                Page<QryGetPatientByMedicarenoResponse> resPage = queryExecutorService.executeQryGetPatientByMedicareno(medicareNo,pageable);
+                List<QryGetPatientByMedicarenoResponse> rescontent = resPage.getContent();
+                String patientNo = rescontent.get(0).getPatientNo();
+                output = output + updateAccountDetails(json,patientNo,false);
             }
-
-
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -389,6 +354,56 @@ public class UpdatePatientSchedular {
 
 
         // pt = ptdetailService.update(pt);
+        return output;
+    }
+    
+    private String updateAccountDetails(JSONObject json,String patientNo,boolean isAdult){
+        String output = "";
+            
+                Account acc = getAccount(patientNo);
+                String acName = new StringBuilder().append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).append(" ").append((String) json.get("txtSurname")).toString();
+                String accescode = new StringBuilder().append((String) json.get("txtSurname")).append(" ").append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).toString();
+                if (acc == null) {
+                    QryInsertAccountRequest accReq = new QryInsertAccountRequest();
+                    accReq.setTaccountno((String) json.get("txtPatientNo"));
+                    accReq.setTacName(acName);
+                    accReq.setTaccescode(accescode);
+                    accReq.setTcontact(accescode);
+                    accReq.setTphoneAh(json.get("txtPhoneNumberH") != null ? json.get("txtPhoneNumberH").toString().trim() : "");
+                    accReq.setTphoneBh(json.get("txtPhoneNumberW") != null ? json.get("txtPhoneNumberW").toString().trim() : "");
+                    accReq.setTaddress1(json.get("address2") != null ? json.get("address2").toString().trim() : "");
+                    accReq.setTaddress2(json.get("streetname") != null ? json.get("streetname").toString().trim() : "");
+                    accReq.setTsuburb(json.get("suburb") != null ? json.get("suburb").toString().trim() : "");
+                    accReq.setTstate(json.get("state") != null ? json.get("state").toString().trim() : "");
+                    accReq.setTpostcode(json.get("postcode") != null ? json.get("postcode").toString().trim() : "");
+                    int acnt = queryExecutorService.executeQryInsertAccount(accReq);
+                    if (acnt == 1) {
+                        output = output + "Insetr to Account. ";
+                        updateAccoutnNo(patientNo,patientNo);
+                    } else {
+                        output = output + "Insetr to Account failed. ";
+                    }
+                } else if(isAdult){
+                    QryUpdateAccountRequest updateAcc = new QryUpdateAccountRequest();
+                    updateAcc.setTacName(acName);
+                    updateAcc.setTaccescode(accescode);
+                    updateAcc.setTcontact(accescode);
+                    updateAcc.setTphoneAh(json.get("txtPhoneNumberH") != null ? json.get("txtPhoneNumberH").toString().trim() : "");
+                    updateAcc.setTphoneBh(json.get("txtPhoneNumberW") != null ? json.get("txtPhoneNumberW").toString().trim() : "");
+                    updateAcc.setTaddress1(json.get("address2") != null ? json.get("address2").toString().trim() : "");
+                    updateAcc.setTaddress2(json.get("streetname") != null ? json.get("streetname").toString().trim() : "");
+                    updateAcc.setTsuburb(json.get("suburb") != null ? json.get("suburb").toString().trim() : "");
+                    updateAcc.setTstate(json.get("state") != null ? json.get("state").toString().trim() : "");
+                    updateAcc.setTpostcode(json.get("postcode") != null ? json.get("postcode").toString().trim() : "");
+                    updateAcc.setTaccountno(json.get("txtPatientNo") != null ? json.get("txtPatientNo").toString().trim() : "");
+                    int accUp = queryExecutorService.executeQryUpdateAccount(updateAcc);
+                    if (accUp == 1) {
+                        output = output + "Update to Account. ";
+                        updateAccoutnNo(acc.getAccountno(),patientNo);
+                    } else {
+                        output = output + "Update to Account failed. ";
+                    }
+                }
         return output;
     }
     
@@ -459,7 +474,6 @@ public class UpdatePatientSchedular {
             updateReq.setTidCode("CLINCON");
             int i = queryExecutorService.executeQryUpdateNextPtGenCode(updateReq);
         }
-
         return currentNo;
     }
 

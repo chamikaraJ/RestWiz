@@ -103,6 +103,34 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/qryGetPatientByMedicareno", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get patient by medicare no")
+    public Page<QryGetPatientByMedicarenoResponse> executeQryGetPatientByMedicareno(@RequestParam(value = "t_medicareno") String tmedicareno, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetPatientByMedicareno");
+        Page<QryGetPatientByMedicarenoResponse> _result = queryService.executeQryGetPatientByMedicareno(tmedicareno, pageable);
+        LOGGER.debug("got the result for named query: qryGetPatientByMedicareno, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetPatientByMedicareno")
+    @RequestMapping(value = "/queries/qryGetPatientByMedicareno/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetPatientByMedicareno(@RequestParam(value = "t_medicareno") String tmedicareno, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetPatientByMedicareno");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetPatientByMedicareno";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetPatientByMedicareno(tmedicareno,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryGetReferralSrc", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get referral source")

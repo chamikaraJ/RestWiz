@@ -26,6 +26,10 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest);
 
+    Page<QryGetPatientByMedicarenoResponse> executeQryGetPatientByMedicareno(String tmedicareno, Pageable pageable);
+
+    void exportQryGetPatientByMedicareno(String tmedicareno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable);
 
     void exportQryGetReferralSrc(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);

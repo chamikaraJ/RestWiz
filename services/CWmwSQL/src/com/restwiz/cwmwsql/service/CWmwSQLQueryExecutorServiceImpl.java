@@ -95,6 +95,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
 
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
+    public Page<QryGetPatientByMedicarenoResponse> executeQryGetPatientByMedicareno(String tmedicareno, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_medicareno", tmedicareno);
+
+        return queryExecutor.executeNamedQuery("qryGetPatientByMedicareno", params, QryGetPatientByMedicarenoResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetPatientByMedicareno(String tmedicareno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_medicareno", tmedicareno);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetPatientByMedicareno", params, QryGetPatientByMedicarenoResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
     public Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable) {
         Map<String, Object> params = new HashMap<>(0);
 
