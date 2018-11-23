@@ -1,0 +1,214 @@
+{
+  "username" : "{WM_CLOUD_MYSQL_USER_NAME}",
+  "password" : "{WM_CLOUD_MYSQL_PASSWORD}",
+  "url" : "jdbc:mysql://{WM_CLOUD_MYSQL_HOST}/clinicalobs?useUnicode=yes&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&createDatabaseIfNotExist=true",
+  "driverClass" : "com.mysql.jdbc.Driver",
+  "dialect" : "com.wavemaker.runtime.data.dialect.MySQLDialect",
+  "serviceId" : "clinicalobs",
+  "packageName" : "com.restwiz.clinicalobs",
+  "dbType" : "MySQL",
+  "host" : "{WM_CLOUD_MYSQL_HOST}",
+  "dbName" : "clinicalobs",
+  "port" : "",
+  "schemaName" : null,
+  "tableFilter" : [ {
+    "table" : "ActionTaken",
+    "schema" : null
+  }, {
+    "table" : "admission",
+    "schema" : null
+  }, {
+    "table" : "allergies",
+    "schema" : null
+  }, {
+    "table" : "anaesthetic",
+    "schema" : null
+  }, {
+    "table" : "anaestheticIVDrug",
+    "schema" : null
+  }, {
+    "table" : "anaestheticIVFluid",
+    "schema" : null
+  }, {
+    "table" : "anaestheticRecord",
+    "schema" : null
+  }, {
+    "table" : "anaestheticnurse",
+    "schema" : null
+  }, {
+    "table" : "clinicalalerts",
+    "schema" : null
+  }, {
+    "table" : "clinicalevents",
+    "schema" : null
+  }, {
+    "table" : "dischargeassessment",
+    "schema" : null
+  }, {
+    "table" : "drug",
+    "schema" : null
+  }, {
+    "table" : "dynamicDataForHTML",
+    "schema" : null
+  }, {
+    "table" : "DynamicHTMLAnswer",
+    "schema" : null
+  }, {
+    "table" : "dynamicMetaData",
+    "schema" : null
+  }, {
+    "table" : "dynamicQandA",
+    "schema" : null
+  }, {
+    "table" : "events",
+    "schema" : null
+  }, {
+    "table" : "handover",
+    "schema" : null
+  }, {
+    "table" : "Hospital",
+    "schema" : null
+  }, {
+    "table" : "IgnoredAllergy",
+    "schema" : null
+  }, {
+    "table" : "IntraOperativeCarePlan",
+    "schema" : null
+  }, {
+    "table" : "lockedrecordstatus",
+    "schema" : null
+  }, {
+    "table" : "mwusers",
+    "schema" : null
+  }, {
+    "table" : "obs",
+    "schema" : null
+  }, {
+    "table" : "obspatients",
+    "schema" : null
+  }, {
+    "table" : "ObsptStatus",
+    "schema" : null
+  }, {
+    "table" : "procedureassessment",
+    "schema" : null
+  }, {
+    "table" : "proceduremedications",
+    "schema" : null
+  }, {
+    "table" : "ptAlert",
+    "schema" : null
+  }, {
+    "table" : "ptAllergy",
+    "schema" : null
+  }, {
+    "table" : "ptDocument",
+    "schema" : null
+  }, {
+    "table" : "ptProcedure",
+    "schema" : null
+  }, {
+    "table" : "Qcategory",
+    "schema" : null
+  }, {
+    "table" : "QSubCategory",
+    "schema" : null
+  }, {
+    "table" : "reactions",
+    "schema" : null
+  }, {
+    "table" : "recovery",
+    "schema" : null
+  }, {
+    "table" : "refProcedure",
+    "schema" : null
+  }, {
+    "table" : "refantiembolicdevices",
+    "schema" : null
+  }, {
+    "table" : "refdenturesnoted",
+    "schema" : null
+  }, {
+    "table" : "refdiathermy",
+    "schema" : null
+  }, {
+    "table" : "refinfiltration",
+    "schema" : null
+  }, {
+    "table" : "refirrigationsolutions",
+    "schema" : null
+  }, {
+    "table" : "refmedications",
+    "schema" : null
+  }, {
+    "table" : "refmonitoranaestheticbay",
+    "schema" : null
+  }, {
+    "table" : "refpatientposition",
+    "schema" : null
+  }, {
+    "table" : "refpositioningaids",
+    "schema" : null
+  }, {
+    "table" : "refprepsolution",
+    "schema" : null
+  }, {
+    "table" : "refsignin",
+    "schema" : null
+  }, {
+    "table" : "refskinintegrity",
+    "schema" : null
+  }, {
+    "table" : "refskinprep",
+    "schema" : null
+  }, {
+    "table" : "refstatus",
+    "schema" : null
+  }, {
+    "table" : "refwarmingdevices",
+    "schema" : null
+  }, {
+    "table" : "refxrays",
+    "schema" : null
+  }, {
+    "table" : "sales_table",
+    "schema" : null
+  }, {
+    "table" : "SelectedObsFields",
+    "schema" : null
+  }, {
+    "table" : "sitedefault",
+    "schema" : null
+  }, {
+    "table" : "surgchecklist",
+    "schema" : null
+  }, {
+    "table" : "testtime",
+    "schema" : null
+  }, {
+    "table" : "timeoutconsent",
+    "schema" : null
+  }, {
+    "table" : "timesheet",
+    "schema" : null
+  }, {
+    "table" : "User",
+    "schema" : null
+  } ],
+  "schemaFilter" : [ ],
+  "impersonateUser" : false,
+  "activeDirectoryDomain" : null,
+  "hbm2ddl" : "update",
+  "maxPageSize" : 100,
+  "minPoolSize" : 2,
+  "maxPoolSize" : 4,
+  "transactionTimeout" : 30,
+  "dataSourceType" : "WM_MANAGED_DATASOURCE",
+  "jndiName" : "",
+  "reloadInfo" : {
+    "reload" : false,
+    "reason" : null,
+    "message" : null
+  },
+  "readOnly" : false
+}

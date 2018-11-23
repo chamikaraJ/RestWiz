@@ -8,5 +8,6 @@
     <import resource="classpath:PatientRegSchedular.spring.xml"/>
     <import resource="classpath:UpdatePatientSchedular.spring.xml"/>
     <import resource="classpath:User.spring.xml"/>
+    <import resource="classpath:clinicalobs.spring.xml"/>
     <import resource="classpath:securityService.spring.xml"/>
 </beans>
