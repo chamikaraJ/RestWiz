@@ -105,12 +105,15 @@ public class UpdatePatientSchedular {
 
         try {
             json = (JSONObject) parser.parse(patienData.toString());
-
+            
+            String countryCode = "1101";
             //Get Country Code
-            String countryname = json.get("country").toString().trim();
-            Page<QryGetCountryCodeResponse> country = queryExecutorService.executeQryGetCountryCode(countryname, pageable);
-            List<QryGetCountryCodeResponse> content = country.getContent();
-            String countryCode = content.get(0).getCode();
+            if(json.get("country")!=null){
+                String countryname = json.get("country").toString().trim();
+                Page<QryGetCountryCodeResponse> country = queryExecutorService.executeQryGetCountryCode(countryname, pageable);
+                List<QryGetCountryCodeResponse> content = country.getContent();
+                countryCode = content.get(0).getCode();
+            }
 
             //Update ptdetailed
             QryUpdatePatientRequest req = new QryUpdatePatientRequest();
@@ -340,11 +343,13 @@ public class UpdatePatientSchedular {
             if(isChildren == "No"){
                 output = output + updateAccountDetails(json,json.get("txtPatientNo").toString(),true);
             }else{
-                String medicareNo = json.get("txtGuardianMedicareCardNo").toString();
-                Page<QryGetPatientByMedicarenoResponse> resPage = queryExecutorService.executeQryGetPatientByMedicareno(medicareNo,pageable);
-                List<QryGetPatientByMedicarenoResponse> rescontent = resPage.getContent();
-                String patientNo = rescontent.get(0).getPatientNo();
-                output = output + updateAccountDetails(json,patientNo,false);
+                if(json.get("txtGuardianMedicareCardNo")!=null){
+                    String medicareNo = json.get("txtGuardianMedicareCardNo").toString();
+                    Page<QryGetPatientByMedicarenoResponse> resPage = queryExecutorService.executeQryGetPatientByMedicareno(medicareNo,pageable);
+                    List<QryGetPatientByMedicarenoResponse> rescontent = resPage.getContent();
+                    String patientNo = rescontent.get(0).getPatientNo();
+                    output = output + updateAccountDetails(json,patientNo,false);
+                }
             }
         } catch (ParseException e) {
             e.printStackTrace();
