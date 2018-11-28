@@ -18,17 +18,47 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryInsertPtCharacter(QryInsertPtCharacterRequest qryInsertPtCharacterRequest);
 
-    Page<QryGetClinCatDatByCodeResponse> executeQryGetClinCatDatByCode(String tcode, Pageable pageable);
+    Page<QryGetPatientNumberByUnamePassResponse> executeQryGetPatientNumberByUnamePass(String tuserid, String tpass, Pageable pageable);
 
-    void exportQryGetClinCatDatByCode(String tcode, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
-
-    Integer executeQryUpdatePatientNo(QryUpdatePatientNoRequest qryUpdatePatientNoRequest);
-
-    Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest);
+    void exportQryGetPatientNumberByUnamePass(String tuserid, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
     Page<QryGetPatientByMedicarenoResponse> executeQryGetPatientByMedicareno(String tmedicareno, Pageable pageable);
 
     void exportQryGetPatientByMedicareno(String tmedicareno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest);
+
+    Page<QryGetPatientNoAndRoleResponse> executeQryGetPatientNoAndRole(String tuserid, String tpass, Pageable pageable);
+
+    void exportQryGetPatientNoAndRole(String tuserid, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Integer executeQryDeleteptDetailRegByIdno(Integer idno);
+
+    Page<QryGetPatientByUnamePassResponse> executeQryGetPatientByUnamePass(String tusername, String tpass, Pageable pageable);
+
+    void exportQryGetPatientByUnamePass(String tusername, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Integer executeQryUpdateptdetailReg(QryUpdateptdetailRegRequest qryUpdateptdetailRegRequest);
+
+    Page<QryGetPatientByPatientNoResponse> executeQryGetPatientByPatientNo(String tpatientno, Pageable pageable);
+
+    void exportQryGetPatientByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Page<QryGetVerifiedPatientsResponse> executeQryGetVerifiedPatients(Pageable pageable);
+
+    void exportQryGetVerifiedPatients(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Page<QryGetClinCatDatByCodeResponse> executeQryGetClinCatDatByCode(String tcode, Pageable pageable);
+
+    void exportQryGetClinCatDatByCode(String tcode, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Page<QryGetPatientByUnamePassMedResponse> executeQryGetPatientByUnamePassMed(String tusername, String tpass, String tmedicareno, Pageable pageable);
+
+    void exportQryGetPatientByUnamePassMed(String tusername, String tpass, String tmedicareno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Integer executeQryUpdatePatientNo(QryUpdatePatientNoRequest qryUpdatePatientNoRequest);
+
+    Integer executeQryInsertPatientDetails(QryInsertPatientDetailsRequest qryInsertPatientDetailsRequest);
 
     Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable);
 
@@ -37,8 +67,6 @@ public interface CWmwSQLQueryExecutorService {
     Integer executeQryUpdateAccountNo(QryUpdateAccountNoRequest qryUpdateAccountNoRequest);
 
     Integer executeQryUpdatePtDetailRegStatus(QryUpdatePtDetailRegStatusRequest qryUpdatePtDetailRegStatusRequest);
-
-    Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest);
 
     Page<QryGetCountryCodeResponse> executeQryGetCountryCode(String countryName, Pageable pageable);
 
@@ -49,18 +77,6 @@ public interface CWmwSQLQueryExecutorService {
     void exportQryGetUserLogin(String tuserid, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
     Integer executeQryInsertClinicalConclutions(QryInsertClinicalConclutionsRequest qryInsertClinicalConclutionsRequest);
-
-    Page<QryGetPatientNoAndRoleResponse> executeQryGetPatientNoAndRole(String tuserid, String tpass, Pageable pageable);
-
-    void exportQryGetPatientNoAndRole(String tuserid, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
-
-    Integer executeQryDeleteptDetailRegByIdno(Integer idno);
-
-    Integer executeQryUpdateptdetailReg(QryUpdateptdetailRegRequest qryUpdateptdetailRegRequest);
-
-    Page<QryGetPatientByPatientNoResponse> executeQryGetPatientByPatientNo(String tpatientno, Pageable pageable);
-
-    void exportQryGetPatientByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
     Integer executeQryUpdateAccount(QryUpdateAccountRequest qryUpdateAccountRequest);
 
@@ -79,10 +95,6 @@ public interface CWmwSQLQueryExecutorService {
     Page<QryGetAllJsonTextResponse> executeQryGetAllJsonText(Pageable pageable);
 
     void exportQryGetAllJsonText(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
-
-    Page<QryGetVerifiedPatientsResponse> executeQryGetVerifiedPatients(Pageable pageable);
-
-    void exportQryGetVerifiedPatients(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
     Integer executeQryUpdatePtCharacter(QryUpdatePtCharacterRequest qryUpdatePtCharacterRequest);
 

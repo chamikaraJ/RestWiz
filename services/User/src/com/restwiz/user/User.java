@@ -4,9 +4,7 @@
 package com.restwiz.user;
 
         import com.restwiz.cwmwsql.Ptdetail;
-        import com.restwiz.cwmwsql.models.query.QryGetPatientByPatientNoResponse;
-        import com.restwiz.cwmwsql.models.query.QryGetUserAuthResponse;
-        import com.restwiz.cwmwsql.models.query.QryGetUserLoginResponse;
+        import com.restwiz.cwmwsql.models.query.*;
         import com.restwiz.cwmwsql.service.CWmwSQLQueryExecutorService;
         import com.wavemaker.runtime.security.SecurityService;
         import com.wavemaker.runtime.service.annotations.ExposeToClient;
@@ -46,7 +44,8 @@ public class User {
     private CWmwSQLQueryExecutorService cWmwSQLQueryExecutorService;
 
 
-    public QryGetPatientByPatientNoResponse getPatient(String patientAuth) {
+    // public QryGetPatientByPatientNoResponse getPatient(String patientAuth) {
+         public QryGetPatientByUnamePassResponse getPatient(String patientAuth) {
         String patientNo = "patient not found";
 
         Pageable pageable = new PageRequest(0, 10);
@@ -54,20 +53,30 @@ public class User {
 
         JSONParser parser = new JSONParser();
         JSONObject json = new JSONObject();
-        QryGetPatientByPatientNoResponse qryGetPatientByPatientNoResponse = null;
+        // QryGetPatientByPatientNoResponse qryGetPatientByPatientNoResponse = null;
+        
+        QryGetPatientByUnamePassResponse qryGetPatientByPatientNoResponse = null;
+        
+        
         try {
             json = (JSONObject) parser.parse(patientAuth.toString());
             String tuserid = (String) json.get("t_userid");
-            // String tpass = (String) json.get("t_pass");
+            String tpass = (String) json.get("t_pass");
 //            Page<QryGetUserLoginResponse> res = cWmwSQLQueryExecutorService.executeQryGetUserLogin(tuserid, tpass, pageable);
 //            List<QryGetUserLoginResponse> content = res.getContent();
 //            patientNo = content.get(0).getPatientNo();
 
-            Page<QryGetUserAuthResponse> qryGetUserAuthResponses = cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid, pageable);
-            patientNo = qryGetUserAuthResponses.getContent().get(0).getPatientNo();
+            // Page<QryGetPatientNumberByUnamePassResponse> qryGetUserAuthResponses = cWmwSQLQueryExecutorService.executeQryGetPatientNumberByUnamePass(tuserid,tpass, pageable);
+            // // Page<QryGetUserAuthResponse> qryGetUserAuthResponses = cWmwSQLQueryExecutorService.executeQryGetUserAuth(tuserid, pageable);
+            // patientNo = qryGetUserAuthResponses.getContent().get(0).getPatientNo();
 
-            Page<QryGetPatientByPatientNoResponse> qryGetPatientByPatientNoResponses = cWmwSQLQueryExecutorService.executeQryGetPatientByPatientNo(patientNo, pageable);
-            List<QryGetPatientByPatientNoResponse> content1 = qryGetPatientByPatientNoResponses.getContent();
+            // Page<QryGetPatientByPatientNoResponse> qryGetPatientByPatientNoResponses = cWmwSQLQueryExecutorService.executeQryGetPatientByPatientNo(patientNo, pageable);
+            // List<QryGetPatientByPatientNoResponse> content1 = qryGetPatientByPatientNoResponses.getContent();
+            // qryGetPatientByPatientNoResponse = content1.get(0);
+            
+            
+            Page<QryGetPatientByUnamePassResponse> qryGetPatientByPatientNoResponses = cWmwSQLQueryExecutorService.executeQryGetPatientByUnamePass(tuserid,tpass,pageable);
+            List<QryGetPatientByUnamePassResponse> content1 = qryGetPatientByPatientNoResponses.getContent();
             qryGetPatientByPatientNoResponse = content1.get(0);
         } catch (ParseException e) {
             e.printStackTrace();

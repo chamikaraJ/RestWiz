@@ -222,8 +222,10 @@ public class UpdatePatientSchedular {
             int k = queryExecutorService.executeQryUpdateptdetailReg(regRequest);
             if (k == 1) {
                 output = output + "PtDetailReg Updated. ";
+                logger.warn("PtDetailReg Updated");
             } else {
                 output = output + "PtDetailReg Update failed. ";
+                logger.warn("PtDetailReg Update failed");
             }
 
             if (json.get("txtPatientNo") != null) {
@@ -238,8 +240,10 @@ public class UpdatePatientSchedular {
                     int l = queryExecutorService.executeQryInsertPtCharacter(characterRequest);
                     if (l == 1) {
                         output = output + "Insetr to PtCharacter. ";
+                        logger.warn("Insetr to PtCharacter.");
                     } else {
                         output = output + "Insetr to PtCharacter failed. ";
+                        logger.warn("Insetr to PtCharacter failed.");
                     }
                 } else {
                     QryUpdatePtCharacterRequest characterRequest = new QryUpdatePtCharacterRequest();
@@ -250,8 +254,10 @@ public class UpdatePatientSchedular {
 
                     if (j == 1) {
                         output = output + "PtCharacter Updated. ";
+                        logger.warn("PtCharacter Updated");
                     } else {
                         output = output + "PtCharacter Update failed. ";
+                        logger.warn("PtCharacter Update failed");
                     }
                 }
             }
@@ -404,9 +410,11 @@ public class UpdatePatientSchedular {
                     int accUp = queryExecutorService.executeQryUpdateAccount(updateAcc);
                     if (accUp == 1) {
                         output = output + "Update to Account. ";
+                        logger.warn("Update to Account");
                         updateAccoutnNo(acc.getAccountno(),patientNo);
                     } else {
                         output = output + "Update to Account failed. ";
+                        logger.warn("Update to Account failed");
                     }
                 }
         return output;
@@ -451,12 +459,14 @@ public class UpdatePatientSchedular {
     }
 
     private Date getSqlDate(String sdate) {
+        
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-M-d hh:mm:ss");
         java.util.Date date = null;
         try {
             date = sdf1.parse(sdate);
         } catch (java.text.ParseException e) {
             e.printStackTrace();
+            return null;
         }
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         return sqlDate;

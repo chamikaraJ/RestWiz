@@ -114,6 +114,12 @@ public class QryGetVerifiedPatientsResponse implements Serializable {
     @ColumnAlias("ptdetailStatus")
     private String ptdetailStatus;
 
+    @ColumnAlias("sigText")
+    private String sigText;
+
+    @ColumnAlias("base64ImageUrl")
+    private String base64imageUrl;
+
     public Integer getIdno() {
         return this.idno;
     }
@@ -378,6 +384,22 @@ public class QryGetVerifiedPatientsResponse implements Serializable {
         this.ptdetailStatus = ptdetailStatus;
     }
 
+    public String getSigText() {
+        return this.sigText;
+    }
+
+    public void setSigText(String sigText) {
+        this.sigText = sigText;
+    }
+
+    public String getBase64imageUrl() {
+        return this.base64imageUrl;
+    }
+
+    public void setBase64imageUrl(String base64imageUrl) {
+        this.base64imageUrl = base64imageUrl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -415,7 +437,9 @@ public class QryGetVerifiedPatientsResponse implements Serializable {
                 Objects.equals(getNokRelationship(), qryGetVerifiedPatientsResponse.getNokRelationship()) &&
                 Objects.equals(getNokContactNo(), qryGetVerifiedPatientsResponse.getNokContactNo()) &&
                 Objects.equals(getPatientNo(), qryGetVerifiedPatientsResponse.getPatientNo()) &&
-                Objects.equals(getPtdetailStatus(), qryGetVerifiedPatientsResponse.getPtdetailStatus());
+                Objects.equals(getPtdetailStatus(), qryGetVerifiedPatientsResponse.getPtdetailStatus()) &&
+                Objects.equals(getSigText(), qryGetVerifiedPatientsResponse.getSigText()) &&
+                Objects.equals(getBase64imageUrl(), qryGetVerifiedPatientsResponse.getBase64imageUrl());
     }
 
     @Override
@@ -452,6 +476,8 @@ public class QryGetVerifiedPatientsResponse implements Serializable {
                 getNokRelationship(),
                 getNokContactNo(),
                 getPatientNo(),
-                getPtdetailStatus());
+                getPtdetailStatus(),
+                getSigText(),
+                getBase64imageUrl());
     }
 }

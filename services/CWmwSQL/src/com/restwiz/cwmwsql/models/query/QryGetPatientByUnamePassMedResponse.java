@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class QryGetPatientByPatientNoResponse implements Serializable {
+public class QryGetPatientByUnamePassMedResponse implements Serializable {
 
 
     @ColumnAlias("patient_no")
@@ -623,63 +623,63 @@ public class QryGetPatientByPatientNoResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof QryGetPatientByPatientNoResponse)) return false;
-        final QryGetPatientByPatientNoResponse qryGetPatientByPatientNoResponse = (QryGetPatientByPatientNoResponse) o;
-        return Objects.equals(getPatientNo(), qryGetPatientByPatientNoResponse.getPatientNo()) &&
-                Objects.equals(getTitle(), qryGetPatientByPatientNoResponse.getTitle()) &&
-                Objects.equals(getGiven(), qryGetPatientByPatientNoResponse.getGiven()) &&
-                Objects.equals(getSurname(), qryGetPatientByPatientNoResponse.getSurname()) &&
-                Objects.equals(getAddress1(), qryGetPatientByPatientNoResponse.getAddress1()) &&
-                Objects.equals(getAddress2(), qryGetPatientByPatientNoResponse.getAddress2()) &&
-                Objects.equals(getSuburb(), qryGetPatientByPatientNoResponse.getSuburb()) &&
-                Objects.equals(getPostcode(), qryGetPatientByPatientNoResponse.getPostcode()) &&
-                Objects.equals(getState(), qryGetPatientByPatientNoResponse.getState()) &&
-                Objects.equals(getPhoneAh(), qryGetPatientByPatientNoResponse.getPhoneAh()) &&
-                Objects.equals(getPhoneBh(), qryGetPatientByPatientNoResponse.getPhoneBh()) &&
-                Objects.equals(getMobile(), qryGetPatientByPatientNoResponse.getMobile()) &&
-                Objects.equals(getDob(), qryGetPatientByPatientNoResponse.getDob()) &&
-                Objects.equals(getMedicareno(), qryGetPatientByPatientNoResponse.getMedicareno()) &&
-                Objects.equals(getMemberNo(), qryGetPatientByPatientNoResponse.getMemberNo()) &&
-                Objects.equals(getEmail(), qryGetPatientByPatientNoResponse.getEmail()) &&
-                Objects.equals(getFundcode(), qryGetPatientByPatientNoResponse.getFundcode()) &&
-                Objects.equals(getBirthplace(), qryGetPatientByPatientNoResponse.getBirthplace()) &&
-                Objects.equals(getVetaffno(), qryGetPatientByPatientNoResponse.getVetaffno()) &&
-                Objects.equals(getReferalsrc(), qryGetPatientByPatientNoResponse.getReferalsrc()) &&
-                Objects.equals(getMediexpry(), qryGetPatientByPatientNoResponse.getMediexpry()) &&
-                Objects.equals(getMcareRefn(), qryGetPatientByPatientNoResponse.getMcareRefn()) &&
-                Objects.equals(getClaimdtls(), qryGetPatientByPatientNoResponse.getClaimdtls()) &&
-                Objects.equals(getNextofkin(), qryGetPatientByPatientNoResponse.getNextofkin()) &&
-                Objects.equals(getFeepositn(), qryGetPatientByPatientNoResponse.getFeepositn()) &&
-                Objects.equals(getDatejoined(), qryGetPatientByPatientNoResponse.getDatejoined()) &&
-                Objects.equals(getDvacardtyp(), qryGetPatientByPatientNoResponse.getDvacardtyp()) &&
-                Objects.equals(getFamDrTitle(), qryGetPatientByPatientNoResponse.getFamDrTitle()) &&
-                Objects.equals(getFamDrGiven(), qryGetPatientByPatientNoResponse.getFamDrGiven()) &&
-                Objects.equals(getFamDrSurname(), qryGetPatientByPatientNoResponse.getFamDrSurname()) &&
-                Objects.equals(getFamDrProviderNo(), qryGetPatientByPatientNoResponse.getFamDrProviderNo()) &&
-                Objects.equals(getFamDrMedicareCenter(), qryGetPatientByPatientNoResponse.getFamDrMedicareCenter()) &&
-                Objects.equals(getFamDrAdr1(), qryGetPatientByPatientNoResponse.getFamDrAdr1()) &&
-                Objects.equals(getFamDrAdr2(), qryGetPatientByPatientNoResponse.getFamDrAdr2()) &&
-                Objects.equals(getFamDrSuburb(), qryGetPatientByPatientNoResponse.getFamDrSuburb()) &&
-                Objects.equals(getFamDrState(), qryGetPatientByPatientNoResponse.getFamDrState()) &&
-                Objects.equals(getFamDrPostCode(), qryGetPatientByPatientNoResponse.getFamDrPostCode()) &&
-                Objects.equals(getRefDrTitle(), qryGetPatientByPatientNoResponse.getRefDrTitle()) &&
-                Objects.equals(getRefDrGiven(), qryGetPatientByPatientNoResponse.getRefDrGiven()) &&
-                Objects.equals(getRefDrSurname(), qryGetPatientByPatientNoResponse.getRefDrSurname()) &&
-                Objects.equals(getRefDrProviderNo(), qryGetPatientByPatientNoResponse.getRefDrProviderNo()) &&
-                Objects.equals(getRefDrMedicareCenter(), qryGetPatientByPatientNoResponse.getRefDrMedicareCenter()) &&
-                Objects.equals(getRefDrAdr1(), qryGetPatientByPatientNoResponse.getRefDrAdr1()) &&
-                Objects.equals(getRefDrAdr2(), qryGetPatientByPatientNoResponse.getRefDrAdr2()) &&
-                Objects.equals(getRefDrSuburb(), qryGetPatientByPatientNoResponse.getRefDrSuburb()) &&
-                Objects.equals(getRefDrState(), qryGetPatientByPatientNoResponse.getRefDrState()) &&
-                Objects.equals(getRefDrPostCode(), qryGetPatientByPatientNoResponse.getRefDrPostCode()) &&
-                Objects.equals(getNokGiven(), qryGetPatientByPatientNoResponse.getNokGiven()) &&
-                Objects.equals(getNokSurname(), qryGetPatientByPatientNoResponse.getNokSurname()) &&
-                Objects.equals(getNokRelationship(), qryGetPatientByPatientNoResponse.getNokRelationship()) &&
-                Objects.equals(getNokContactNo(), qryGetPatientByPatientNoResponse.getNokContactNo()) &&
-                Objects.equals(getSigText(), qryGetPatientByPatientNoResponse.getSigText()) &&
-                Objects.equals(getBase64imageUrl(), qryGetPatientByPatientNoResponse.getBase64imageUrl()) &&
-                Objects.equals(getMiddleName(), qryGetPatientByPatientNoResponse.getMiddleName()) &&
-                Objects.equals(getPreferedName(), qryGetPatientByPatientNoResponse.getPreferedName());
+        if (!(o instanceof QryGetPatientByUnamePassMedResponse)) return false;
+        final QryGetPatientByUnamePassMedResponse qryGetPatientByUnamePassMedResponse = (QryGetPatientByUnamePassMedResponse) o;
+        return Objects.equals(getPatientNo(), qryGetPatientByUnamePassMedResponse.getPatientNo()) &&
+                Objects.equals(getTitle(), qryGetPatientByUnamePassMedResponse.getTitle()) &&
+                Objects.equals(getGiven(), qryGetPatientByUnamePassMedResponse.getGiven()) &&
+                Objects.equals(getSurname(), qryGetPatientByUnamePassMedResponse.getSurname()) &&
+                Objects.equals(getAddress1(), qryGetPatientByUnamePassMedResponse.getAddress1()) &&
+                Objects.equals(getAddress2(), qryGetPatientByUnamePassMedResponse.getAddress2()) &&
+                Objects.equals(getSuburb(), qryGetPatientByUnamePassMedResponse.getSuburb()) &&
+                Objects.equals(getPostcode(), qryGetPatientByUnamePassMedResponse.getPostcode()) &&
+                Objects.equals(getState(), qryGetPatientByUnamePassMedResponse.getState()) &&
+                Objects.equals(getPhoneAh(), qryGetPatientByUnamePassMedResponse.getPhoneAh()) &&
+                Objects.equals(getPhoneBh(), qryGetPatientByUnamePassMedResponse.getPhoneBh()) &&
+                Objects.equals(getMobile(), qryGetPatientByUnamePassMedResponse.getMobile()) &&
+                Objects.equals(getDob(), qryGetPatientByUnamePassMedResponse.getDob()) &&
+                Objects.equals(getMedicareno(), qryGetPatientByUnamePassMedResponse.getMedicareno()) &&
+                Objects.equals(getMemberNo(), qryGetPatientByUnamePassMedResponse.getMemberNo()) &&
+                Objects.equals(getEmail(), qryGetPatientByUnamePassMedResponse.getEmail()) &&
+                Objects.equals(getFundcode(), qryGetPatientByUnamePassMedResponse.getFundcode()) &&
+                Objects.equals(getBirthplace(), qryGetPatientByUnamePassMedResponse.getBirthplace()) &&
+                Objects.equals(getVetaffno(), qryGetPatientByUnamePassMedResponse.getVetaffno()) &&
+                Objects.equals(getReferalsrc(), qryGetPatientByUnamePassMedResponse.getReferalsrc()) &&
+                Objects.equals(getMediexpry(), qryGetPatientByUnamePassMedResponse.getMediexpry()) &&
+                Objects.equals(getMcareRefn(), qryGetPatientByUnamePassMedResponse.getMcareRefn()) &&
+                Objects.equals(getClaimdtls(), qryGetPatientByUnamePassMedResponse.getClaimdtls()) &&
+                Objects.equals(getNextofkin(), qryGetPatientByUnamePassMedResponse.getNextofkin()) &&
+                Objects.equals(getFeepositn(), qryGetPatientByUnamePassMedResponse.getFeepositn()) &&
+                Objects.equals(getDatejoined(), qryGetPatientByUnamePassMedResponse.getDatejoined()) &&
+                Objects.equals(getDvacardtyp(), qryGetPatientByUnamePassMedResponse.getDvacardtyp()) &&
+                Objects.equals(getFamDrTitle(), qryGetPatientByUnamePassMedResponse.getFamDrTitle()) &&
+                Objects.equals(getFamDrGiven(), qryGetPatientByUnamePassMedResponse.getFamDrGiven()) &&
+                Objects.equals(getFamDrSurname(), qryGetPatientByUnamePassMedResponse.getFamDrSurname()) &&
+                Objects.equals(getFamDrProviderNo(), qryGetPatientByUnamePassMedResponse.getFamDrProviderNo()) &&
+                Objects.equals(getFamDrMedicareCenter(), qryGetPatientByUnamePassMedResponse.getFamDrMedicareCenter()) &&
+                Objects.equals(getFamDrAdr1(), qryGetPatientByUnamePassMedResponse.getFamDrAdr1()) &&
+                Objects.equals(getFamDrAdr2(), qryGetPatientByUnamePassMedResponse.getFamDrAdr2()) &&
+                Objects.equals(getFamDrSuburb(), qryGetPatientByUnamePassMedResponse.getFamDrSuburb()) &&
+                Objects.equals(getFamDrState(), qryGetPatientByUnamePassMedResponse.getFamDrState()) &&
+                Objects.equals(getFamDrPostCode(), qryGetPatientByUnamePassMedResponse.getFamDrPostCode()) &&
+                Objects.equals(getRefDrTitle(), qryGetPatientByUnamePassMedResponse.getRefDrTitle()) &&
+                Objects.equals(getRefDrGiven(), qryGetPatientByUnamePassMedResponse.getRefDrGiven()) &&
+                Objects.equals(getRefDrSurname(), qryGetPatientByUnamePassMedResponse.getRefDrSurname()) &&
+                Objects.equals(getRefDrProviderNo(), qryGetPatientByUnamePassMedResponse.getRefDrProviderNo()) &&
+                Objects.equals(getRefDrMedicareCenter(), qryGetPatientByUnamePassMedResponse.getRefDrMedicareCenter()) &&
+                Objects.equals(getRefDrAdr1(), qryGetPatientByUnamePassMedResponse.getRefDrAdr1()) &&
+                Objects.equals(getRefDrAdr2(), qryGetPatientByUnamePassMedResponse.getRefDrAdr2()) &&
+                Objects.equals(getRefDrSuburb(), qryGetPatientByUnamePassMedResponse.getRefDrSuburb()) &&
+                Objects.equals(getRefDrState(), qryGetPatientByUnamePassMedResponse.getRefDrState()) &&
+                Objects.equals(getRefDrPostCode(), qryGetPatientByUnamePassMedResponse.getRefDrPostCode()) &&
+                Objects.equals(getNokGiven(), qryGetPatientByUnamePassMedResponse.getNokGiven()) &&
+                Objects.equals(getNokSurname(), qryGetPatientByUnamePassMedResponse.getNokSurname()) &&
+                Objects.equals(getNokRelationship(), qryGetPatientByUnamePassMedResponse.getNokRelationship()) &&
+                Objects.equals(getNokContactNo(), qryGetPatientByUnamePassMedResponse.getNokContactNo()) &&
+                Objects.equals(getSigText(), qryGetPatientByUnamePassMedResponse.getSigText()) &&
+                Objects.equals(getBase64imageUrl(), qryGetPatientByUnamePassMedResponse.getBase64imageUrl()) &&
+                Objects.equals(getMiddleName(), qryGetPatientByUnamePassMedResponse.getMiddleName()) &&
+                Objects.equals(getPreferedName(), qryGetPatientByUnamePassMedResponse.getPreferedName());
     }
 
     @Override

@@ -7,23 +7,15 @@ package com.restwiz.cwmwsql.models.query;
 
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.Objects;
 
-import javax.validation.constraints.NotNull;
+import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class QryUpdatePatientNoRequest implements Serializable {
+public class QryGetPatientNumberByUnamePassResponse implements Serializable {
 
 
-    @JsonProperty("patientNo")
-    @NotNull
+    @ColumnAlias("patient_no")
     private String patientNo;
-
-    @JsonProperty("email")
-    @NotNull
-    private String email;
 
     public String getPatientNo() {
         return this.patientNo;
@@ -33,26 +25,16 @@ public class QryUpdatePatientNoRequest implements Serializable {
         this.patientNo = patientNo;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof QryUpdatePatientNoRequest)) return false;
-        final QryUpdatePatientNoRequest qryUpdatePatientNoRequest = (QryUpdatePatientNoRequest) o;
-        return Objects.equals(getPatientNo(), qryUpdatePatientNoRequest.getPatientNo()) &&
-                Objects.equals(getEmail(), qryUpdatePatientNoRequest.getEmail());
+        if (!(o instanceof QryGetPatientNumberByUnamePassResponse)) return false;
+        final QryGetPatientNumberByUnamePassResponse qryGetPatientNumberByUnamePassResponse = (QryGetPatientNumberByUnamePassResponse) o;
+        return Objects.equals(getPatientNo(), qryGetPatientNumberByUnamePassResponse.getPatientNo());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPatientNo(),
-                getEmail());
+        return Objects.hash(getPatientNo());
     }
 }

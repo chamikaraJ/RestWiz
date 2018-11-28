@@ -472,8 +472,8 @@
     "name" : "qryGetPatientByPatientNo",
     "description" : "get Patient by patient No",
     "version" : "V2",
-    "queryString" : "select pt.patient_no,\npt.title,\npt.given,\npt.surname,\npt.address1,\npt.address2,\npt.suburb,\npt.postcode,\npt.state,\npt.phone_ah,\npt.phone_bh,\npt.mobile,\npt.dob,\npt.medicareno,\npt.member_no,\npt.email,\npt.fundcode,\npt.birthplace,\npt.vetaffno,\npt.referalsrc,\npt.mediexpry,\npt.mcare_refn,\npt.claimdtls,\npt.nextofkin,\npt.feepositn,\npt.datejoined,\npt.dvacardtyp,\nptreg.famDrTitle,\nptreg.famDrGiven,\nptreg.famDrSurname,\nptreg.famDrProviderNo,\nptreg.famDrMedicareCenter,\nptreg.famDrAdr1,\nptreg.famDrAdr2,\nptreg.famDrSuburb,\nptreg.famDrState,\nptreg.famDrPostCode,\nptreg.refDrTitle,\nptreg.refDrGiven,\nptreg.refDrSurname,\nptreg.refDrProviderNo,\nptreg.refDrMedicareCenter,\nptreg.refDrAdr1,\nptreg.refDrAdr2,\nptreg.refDrSuburb,\nptreg.refDrState,\nptreg.refDrPostCode,\nptreg.nokGiven,\nptreg.nokSUrname,\nptreg.nokRelationship,\nptreg.nokContactNo,\nptreg.sigText,\nptchar.midname as middleName,\nptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = :t_patientno",
-    "countQueryString" : "select count(*) from (select pt.patient_no,\npt.title,\npt.given,\npt.surname,\npt.address1,\npt.address2,\npt.suburb,\npt.postcode,\npt.state,\npt.phone_ah,\npt.phone_bh,\npt.mobile,\npt.dob,\npt.medicareno,\npt.member_no,\npt.email,\npt.fundcode,\npt.birthplace,\npt.vetaffno,\npt.referalsrc,\npt.mediexpry,\npt.mcare_refn,\npt.claimdtls,\npt.nextofkin,\npt.feepositn,\npt.datejoined,\npt.dvacardtyp,\nptreg.famDrTitle,\nptreg.famDrGiven,\nptreg.famDrSurname,\nptreg.famDrProviderNo,\nptreg.famDrMedicareCenter,\nptreg.famDrAdr1,\nptreg.famDrAdr2,\nptreg.famDrSuburb,\nptreg.famDrState,\nptreg.famDrPostCode,\nptreg.refDrTitle,\nptreg.refDrGiven,\nptreg.refDrSurname,\nptreg.refDrProviderNo,\nptreg.refDrMedicareCenter,\nptreg.refDrAdr1,\nptreg.refDrAdr2,\nptreg.refDrSuburb,\nptreg.refDrState,\nptreg.refDrPostCode,\nptreg.nokGiven,\nptreg.nokSUrname,\nptreg.nokRelationship,\nptreg.nokContactNo,\nptreg.sigText,\nptchar.midname as middleName,\nptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = :t_patientno) wmTempTable",
+    "queryString" : "select pt.patient_no,\npt.title,\npt.given,\npt.surname,\npt.address1,\npt.address2,\npt.suburb,\npt.postcode,\npt.state,\npt.phone_ah,\npt.phone_bh,\npt.mobile,\npt.dob,\npt.medicareno,\npt.member_no,\npt.email,\npt.fundcode,\npt.birthplace,\npt.vetaffno,\npt.referalsrc,\npt.mediexpry,\npt.mcare_refn,\npt.claimdtls,\npt.nextofkin,\npt.feepositn,\npt.datejoined,\npt.dvacardtyp,\nptreg.famDrTitle,\nptreg.famDrGiven,\nptreg.famDrSurname,\nptreg.famDrProviderNo,\nptreg.famDrMedicareCenter,\nptreg.famDrAdr1,\nptreg.famDrAdr2,\nptreg.famDrSuburb,\nptreg.famDrState,\nptreg.famDrPostCode,\nptreg.refDrTitle,\nptreg.refDrGiven,\nptreg.refDrSurname,\nptreg.refDrProviderNo,\nptreg.refDrMedicareCenter,\nptreg.refDrAdr1,\nptreg.refDrAdr2,\nptreg.refDrSuburb,\nptreg.refDrState,\nptreg.refDrPostCode,\nptreg.nokGiven,\nptreg.nokSUrname,\nptreg.nokRelationship,\nptreg.nokContactNo,\nptreg.sigText,\nptreg.base64ImageUrl,\nptchar.midname as middleName,\nptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = :t_patientno",
+    "countQueryString" : "select count(*) from (select pt.patient_no,\npt.title,\npt.given,\npt.surname,\npt.address1,\npt.address2,\npt.suburb,\npt.postcode,\npt.state,\npt.phone_ah,\npt.phone_bh,\npt.mobile,\npt.dob,\npt.medicareno,\npt.member_no,\npt.email,\npt.fundcode,\npt.birthplace,\npt.vetaffno,\npt.referalsrc,\npt.mediexpry,\npt.mcare_refn,\npt.claimdtls,\npt.nextofkin,\npt.feepositn,\npt.datejoined,\npt.dvacardtyp,\nptreg.famDrTitle,\nptreg.famDrGiven,\nptreg.famDrSurname,\nptreg.famDrProviderNo,\nptreg.famDrMedicareCenter,\nptreg.famDrAdr1,\nptreg.famDrAdr2,\nptreg.famDrSuburb,\nptreg.famDrState,\nptreg.famDrPostCode,\nptreg.refDrTitle,\nptreg.refDrGiven,\nptreg.refDrSurname,\nptreg.refDrProviderNo,\nptreg.refDrMedicareCenter,\nptreg.refDrAdr1,\nptreg.refDrAdr2,\nptreg.refDrSuburb,\nptreg.refDrState,\nptreg.refDrPostCode,\nptreg.nokGiven,\nptreg.nokSUrname,\nptreg.nokRelationship,\nptreg.nokContactNo,\nptreg.sigText,\nptreg.base64ImageUrl,\nptchar.midname as middleName,\nptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = :t_patientno) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -965,6 +965,1091 @@
           "list" : false
         }
       }, {
+        "name" : "base64ImageUrl",
+        "fieldName" : "base64imageUrl",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "middleName",
+        "fieldName" : "middleName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "preferedName",
+        "fieldName" : "preferedName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "qryGetPatientByUnamePass" : {
+    "name" : "qryGetPatientByUnamePass",
+    "description" : "get patient by username and password",
+    "version" : "V2",
+    "queryString" : "select pt.patient_no,\npt.title,\npt.given,\npt.surname,\npt.address1,\npt.address2,\npt.suburb,\npt.postcode,\npt.state,\npt.phone_ah,\npt.phone_bh,\npt.mobile,\npt.dob,\npt.medicareno,\npt.member_no,\npt.email,\npt.fundcode,\npt.birthplace,\npt.vetaffno,\npt.referalsrc,\npt.mediexpry,\npt.mcare_refn,\npt.claimdtls,\npt.nextofkin,\npt.feepositn,\npt.datejoined,\npt.dvacardtyp,\nptreg.famDrTitle,\nptreg.famDrGiven,\nptreg.famDrSurname,\nptreg.famDrProviderNo,\nptreg.famDrMedicareCenter,\nptreg.famDrAdr1,\nptreg.famDrAdr2,\nptreg.famDrSuburb,\nptreg.famDrState,\nptreg.famDrPostCode,\nptreg.refDrTitle,\nptreg.refDrGiven,\nptreg.refDrSurname,\nptreg.refDrProviderNo,\nptreg.refDrMedicareCenter,\nptreg.refDrAdr1,\nptreg.refDrAdr2,\nptreg.refDrSuburb,\nptreg.refDrState,\nptreg.refDrPostCode,\nptreg.nokGiven,\nptreg.nokSUrname,\nptreg.nokRelationship,\nptreg.nokContactNo,\nptreg.sigText,\nptreg.base64ImageUrl,\nptchar.midname as middleName,\nptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = (select patient_no from x0152578 where userid = :t_username and password = :t_pass)",
+    "countQueryString" : "select count(*) from (select pt.patient_no,\npt.title,\npt.given,\npt.surname,\npt.address1,\npt.address2,\npt.suburb,\npt.postcode,\npt.state,\npt.phone_ah,\npt.phone_bh,\npt.mobile,\npt.dob,\npt.medicareno,\npt.member_no,\npt.email,\npt.fundcode,\npt.birthplace,\npt.vetaffno,\npt.referalsrc,\npt.mediexpry,\npt.mcare_refn,\npt.claimdtls,\npt.nextofkin,\npt.feepositn,\npt.datejoined,\npt.dvacardtyp,\nptreg.famDrTitle,\nptreg.famDrGiven,\nptreg.famDrSurname,\nptreg.famDrProviderNo,\nptreg.famDrMedicareCenter,\nptreg.famDrAdr1,\nptreg.famDrAdr2,\nptreg.famDrSuburb,\nptreg.famDrState,\nptreg.famDrPostCode,\nptreg.refDrTitle,\nptreg.refDrGiven,\nptreg.refDrSurname,\nptreg.refDrProviderNo,\nptreg.refDrMedicareCenter,\nptreg.refDrAdr1,\nptreg.refDrAdr2,\nptreg.refDrSuburb,\nptreg.refDrState,\nptreg.refDrPostCode,\nptreg.nokGiven,\nptreg.nokSUrname,\nptreg.nokRelationship,\nptreg.nokContactNo,\nptreg.sigText,\nptreg.base64ImageUrl,\nptchar.midname as middleName,\nptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = (select patient_no from x0152578 where userid = :t_username and password = :t_pass)) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "t_username",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "cj",
+      "required" : true
+    }, {
+      "name" : "t_pass",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1111",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetPatientByUnamePassResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "patient_no",
+        "fieldName" : "patientNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "title",
+        "fieldName" : "title",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "given",
+        "fieldName" : "given",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "surname",
+        "fieldName" : "surname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "address1",
+        "fieldName" : "address1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "address2",
+        "fieldName" : "address2",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "suburb",
+        "fieldName" : "suburb",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "postcode",
+        "fieldName" : "postcode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "state",
+        "fieldName" : "state",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "phone_ah",
+        "fieldName" : "phoneAh",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "phone_bh",
+        "fieldName" : "phoneBh",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "mobile",
+        "fieldName" : "mobile",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "dob",
+        "fieldName" : "dob",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "medicareno",
+        "fieldName" : "medicareno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "member_no",
+        "fieldName" : "memberNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fundcode",
+        "fieldName" : "fundcode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "birthplace",
+        "fieldName" : "birthplace",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "vetaffno",
+        "fieldName" : "vetaffno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "referalsrc",
+        "fieldName" : "referalsrc",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "mediexpry",
+        "fieldName" : "mediexpry",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "mcare_refn",
+        "fieldName" : "mcareRefn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "claimdtls",
+        "fieldName" : "claimdtls",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "nextofkin",
+        "fieldName" : "nextofkin",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "feepositn",
+        "fieldName" : "feepositn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "datejoined",
+        "fieldName" : "datejoined",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "dvacardtyp",
+        "fieldName" : "dvacardtyp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrTitle",
+        "fieldName" : "famDrTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrGiven",
+        "fieldName" : "famDrGiven",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrSurname",
+        "fieldName" : "famDrSurname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrProviderNo",
+        "fieldName" : "famDrProviderNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrMedicareCenter",
+        "fieldName" : "famDrMedicareCenter",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrAdr1",
+        "fieldName" : "famDrAdr1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrAdr2",
+        "fieldName" : "famDrAdr2",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrSuburb",
+        "fieldName" : "famDrSuburb",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrState",
+        "fieldName" : "famDrState",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrPostCode",
+        "fieldName" : "famDrPostCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrTitle",
+        "fieldName" : "refDrTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrGiven",
+        "fieldName" : "refDrGiven",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrSurname",
+        "fieldName" : "refDrSurname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrProviderNo",
+        "fieldName" : "refDrProviderNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrMedicareCenter",
+        "fieldName" : "refDrMedicareCenter",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrAdr1",
+        "fieldName" : "refDrAdr1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrAdr2",
+        "fieldName" : "refDrAdr2",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrSuburb",
+        "fieldName" : "refDrSuburb",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrState",
+        "fieldName" : "refDrState",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrPostCode",
+        "fieldName" : "refDrPostCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "nokGiven",
+        "fieldName" : "nokGiven",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "nokSUrname",
+        "fieldName" : "nokSurname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "nokRelationship",
+        "fieldName" : "nokRelationship",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "nokContactNo",
+        "fieldName" : "nokContactNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "sigText",
+        "fieldName" : "sigText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "base64ImageUrl",
+        "fieldName" : "base64imageUrl",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "middleName",
+        "fieldName" : "middleName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "preferedName",
+        "fieldName" : "preferedName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "qryGetPatientByUnamePassMed" : {
+    "name" : "qryGetPatientByUnamePassMed",
+    "description" : "get patient by username password and medicareno",
+    "version" : "V2",
+    "queryString" : "select pt.patient_no,\npt.title,\npt.given,\npt.surname,\npt.address1,\npt.address2,\npt.suburb,\npt.postcode,\npt.state,\npt.phone_ah,\npt.phone_bh,\npt.mobile,\npt.dob,\npt.medicareno,\npt.member_no,\npt.email,\npt.fundcode,\npt.birthplace,\npt.vetaffno,\npt.referalsrc,\npt.mediexpry,\npt.mcare_refn,\npt.claimdtls,\npt.nextofkin,\npt.feepositn,\npt.datejoined,\npt.dvacardtyp,\nptreg.famDrTitle,\nptreg.famDrGiven,\nptreg.famDrSurname,\nptreg.famDrProviderNo,\nptreg.famDrMedicareCenter,\nptreg.famDrAdr1,\nptreg.famDrAdr2,\nptreg.famDrSuburb,\nptreg.famDrState,\nptreg.famDrPostCode,\nptreg.refDrTitle,\nptreg.refDrGiven,\nptreg.refDrSurname,\nptreg.refDrProviderNo,\nptreg.refDrMedicareCenter,\nptreg.refDrAdr1,\nptreg.refDrAdr2,\nptreg.refDrSuburb,\nptreg.refDrState,\nptreg.refDrPostCode,\nptreg.nokGiven,\nptreg.nokSUrname,\nptreg.nokRelationship,\nptreg.nokContactNo,\nptreg.sigText,\nptreg.base64ImageUrl,\nptchar.midname as middleName,\nptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no left join x0152578 on x0152578.patient_no = pt.patient_no where x0152578.userid = :t_username and x0152578.password = :t_pass and ptreg.medicareno = :t_medicareno",
+    "countQueryString" : "select count(*) from (select pt.patient_no,\npt.title,\npt.given,\npt.surname,\npt.address1,\npt.address2,\npt.suburb,\npt.postcode,\npt.state,\npt.phone_ah,\npt.phone_bh,\npt.mobile,\npt.dob,\npt.medicareno,\npt.member_no,\npt.email,\npt.fundcode,\npt.birthplace,\npt.vetaffno,\npt.referalsrc,\npt.mediexpry,\npt.mcare_refn,\npt.claimdtls,\npt.nextofkin,\npt.feepositn,\npt.datejoined,\npt.dvacardtyp,\nptreg.famDrTitle,\nptreg.famDrGiven,\nptreg.famDrSurname,\nptreg.famDrProviderNo,\nptreg.famDrMedicareCenter,\nptreg.famDrAdr1,\nptreg.famDrAdr2,\nptreg.famDrSuburb,\nptreg.famDrState,\nptreg.famDrPostCode,\nptreg.refDrTitle,\nptreg.refDrGiven,\nptreg.refDrSurname,\nptreg.refDrProviderNo,\nptreg.refDrMedicareCenter,\nptreg.refDrAdr1,\nptreg.refDrAdr2,\nptreg.refDrSuburb,\nptreg.refDrState,\nptreg.refDrPostCode,\nptreg.nokGiven,\nptreg.nokSUrname,\nptreg.nokRelationship,\nptreg.nokContactNo,\nptreg.sigText,\nptreg.base64ImageUrl,\nptchar.midname as middleName,\nptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no left join x0152578 on x0152578.patient_no = pt.patient_no where x0152578.userid = :t_username and x0152578.password = :t_pass and ptreg.medicareno = :t_medicareno) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "t_username",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "cj",
+      "required" : true
+    }, {
+      "name" : "t_pass",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1111",
+      "required" : true
+    }, {
+      "name" : "t_medicareno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "123456789",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetPatientByUnamePassMedResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "patient_no",
+        "fieldName" : "patientNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "title",
+        "fieldName" : "title",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "given",
+        "fieldName" : "given",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "surname",
+        "fieldName" : "surname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "address1",
+        "fieldName" : "address1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "address2",
+        "fieldName" : "address2",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "suburb",
+        "fieldName" : "suburb",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "postcode",
+        "fieldName" : "postcode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "state",
+        "fieldName" : "state",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "phone_ah",
+        "fieldName" : "phoneAh",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "phone_bh",
+        "fieldName" : "phoneBh",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "mobile",
+        "fieldName" : "mobile",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "dob",
+        "fieldName" : "dob",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "medicareno",
+        "fieldName" : "medicareno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "member_no",
+        "fieldName" : "memberNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fundcode",
+        "fieldName" : "fundcode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "birthplace",
+        "fieldName" : "birthplace",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "vetaffno",
+        "fieldName" : "vetaffno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "referalsrc",
+        "fieldName" : "referalsrc",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "mediexpry",
+        "fieldName" : "mediexpry",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "mcare_refn",
+        "fieldName" : "mcareRefn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "claimdtls",
+        "fieldName" : "claimdtls",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "nextofkin",
+        "fieldName" : "nextofkin",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "feepositn",
+        "fieldName" : "feepositn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "datejoined",
+        "fieldName" : "datejoined",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "dvacardtyp",
+        "fieldName" : "dvacardtyp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrTitle",
+        "fieldName" : "famDrTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrGiven",
+        "fieldName" : "famDrGiven",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrSurname",
+        "fieldName" : "famDrSurname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrProviderNo",
+        "fieldName" : "famDrProviderNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrMedicareCenter",
+        "fieldName" : "famDrMedicareCenter",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrAdr1",
+        "fieldName" : "famDrAdr1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrAdr2",
+        "fieldName" : "famDrAdr2",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrSuburb",
+        "fieldName" : "famDrSuburb",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrState",
+        "fieldName" : "famDrState",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "famDrPostCode",
+        "fieldName" : "famDrPostCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrTitle",
+        "fieldName" : "refDrTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrGiven",
+        "fieldName" : "refDrGiven",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrSurname",
+        "fieldName" : "refDrSurname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrProviderNo",
+        "fieldName" : "refDrProviderNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrMedicareCenter",
+        "fieldName" : "refDrMedicareCenter",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrAdr1",
+        "fieldName" : "refDrAdr1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrAdr2",
+        "fieldName" : "refDrAdr2",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrSuburb",
+        "fieldName" : "refDrSuburb",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrState",
+        "fieldName" : "refDrState",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "refDrPostCode",
+        "fieldName" : "refDrPostCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "nokGiven",
+        "fieldName" : "nokGiven",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "nokSUrname",
+        "fieldName" : "nokSurname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "nokRelationship",
+        "fieldName" : "nokRelationship",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "nokContactNo",
+        "fieldName" : "nokContactNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "sigText",
+        "fieldName" : "sigText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "base64ImageUrl",
+        "fieldName" : "base64imageUrl",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "middleName",
         "fieldName" : "middleName",
         "optional" : false,
@@ -1033,6 +2118,54 @@
       }, {
         "name" : "role",
         "fieldName" : "role",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "qryGetPatientNumberByUnamePass" : {
+    "name" : "qryGetPatientNumberByUnamePass",
+    "description" : "getpatient Number by username and password",
+    "version" : "V2",
+    "queryString" : "select patient_no from  x0152578 where userid = :t_userid and password = :t_pass",
+    "countQueryString" : "select count(*) from (select patient_no from  x0152578 where userid = :t_userid and password = :t_pass) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "t_userid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "cj",
+      "required" : true
+    }, {
+      "name" : "t_pass",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1111",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetPatientNumberByUnamePassResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "patient_no",
+        "fieldName" : "patientNo",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1500,6 +2633,24 @@
       }, {
         "name" : "ptdetailStatus",
         "fieldName" : "ptdetailStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "sigText",
+        "fieldName" : "sigText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "base64ImageUrl",
+        "fieldName" : "base64imageUrl",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
