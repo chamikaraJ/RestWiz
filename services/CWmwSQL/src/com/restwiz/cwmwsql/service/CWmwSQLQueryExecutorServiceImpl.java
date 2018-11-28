@@ -45,6 +45,34 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("qryInsertPtCharacter", params);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryInsertPrescriptionHeader(QryInsertPrescriptionHeaderRequest qryInsertPrescriptionHeaderRequest) {
+        Map<String, Object> params = new HashMap<>(6);
+
+        params.put("t_resxtiptionno", qryInsertPrescriptionHeaderRequest.getTresxtiptionno());
+        params.put("t_patientno", qryInsertPrescriptionHeaderRequest.getTpatientno());
+        params.put("t_doctorid", qryInsertPrescriptionHeaderRequest.getTdoctorid());
+        params.put("t_date", qryInsertPrescriptionHeaderRequest.getTdate());
+        params.put("t_adminuse", qryInsertPrescriptionHeaderRequest.getTadminuse());
+        params.put("t_patndetls", qryInsertPrescriptionHeaderRequest.getTpatndetls());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryInsertPrescriptionHeader", params);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryInsertPrescriptionDtl(QryInsertPrescriptionDtlRequest qryInsertPrescriptionDtlRequest) {
+        Map<String, Object> params = new HashMap<>(4);
+
+        params.put("t_presscno", qryInsertPrescriptionDtlRequest.getTpresscno());
+        params.put("t_patientNo", qryInsertPrescriptionDtlRequest.getTpatientNo());
+        params.put("t_drugdesc", qryInsertPrescriptionDtlRequest.getTdrugdesc());
+        params.put("t_drugcode", qryInsertPrescriptionDtlRequest.getTdrugcode());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryInsertPrescriptionDtl", params);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
     public Page<QryGetPatientNumberByUnamePassResponse> executeQryGetPatientNumberByUnamePass(String tuserid, String tpass, Pageable pageable) {

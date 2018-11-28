@@ -2880,6 +2880,130 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryInsertPrescriptionDtl" : {
+    "name" : "qryInsertPrescriptionDtl",
+    "description" : "insert prescription details",
+    "version" : "V2",
+    "queryString" : "insert into prscrpdt(\n[prscrp_no]\n      ,[patient_no]\n      ,[drugdesc],[drugcode]) values(:t_presscno,:t_patientNo,:t_drugdesc,:t_drugcode)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "t_presscno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "P000000008",
+      "required" : true
+    }, {
+      "name" : "t_patientNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80095",
+      "required" : true
+    }, {
+      "name" : "t_drugdesc",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Asprin",
+      "required" : true
+    }, {
+      "name" : "t_drugcode",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "#FREETEXT#",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryInsertPrescriptionDtlRequest",
+      "method" : "POST"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "qryInsertPrescriptionHeader" : {
+    "name" : "qryInsertPrescriptionHeader",
+    "description" : "Insert prescription header",
+    "version" : "V2",
+    "queryString" : "insert into prscrphd([prscrp_no], [patient_no]\r\n      ,[doctor_id]\r\n      ,[date]\r\n      ,[adminuse]\r\n      ,[patndetls]) values(:t_resxtiptionno,:t_patientno,:t_doctorid,:t_date,:t_adminuse,:t_patndetls)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "t_resxtiptionno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "P000000006",
+      "required" : true
+    }, {
+      "name" : "t_patientno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80095",
+      "required" : true
+    }, {
+      "name" : "t_doctorid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "DW",
+      "required" : true
+    }, {
+      "name" : "t_date",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2018-11-28",
+      "required" : true
+    }, {
+      "name" : "t_adminuse",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Manual Ent",
+      "required" : true
+    }, {
+      "name" : "t_patndetls",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "aaaa",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryInsertPrescriptionHeaderRequest",
+      "method" : "POST"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "qryInsertPtCharacter" : {
     "name" : "qryInsertPtCharacter",
     "description" : "insert ptCharacter",

@@ -55,6 +55,26 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/qryInsertPrescriptionHeader", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Insert prescription header")
+    public IntegerWrapper executeQryInsertPrescriptionHeader(@Valid @RequestBody QryInsertPrescriptionHeaderRequest qryInsertPrescriptionHeaderRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryInsertPrescriptionHeader");
+        Integer _result = queryService.executeQryInsertPrescriptionHeader(qryInsertPrescriptionHeaderRequest);
+        LOGGER.debug("got the result for named query: qryInsertPrescriptionHeader, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
+    @RequestMapping(value = "/queries/qryInsertPrescriptionDtl", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "insert prescription details")
+    public IntegerWrapper executeQryInsertPrescriptionDtl(@Valid @RequestBody QryInsertPrescriptionDtlRequest qryInsertPrescriptionDtlRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryInsertPrescriptionDtl");
+        Integer _result = queryService.executeQryInsertPrescriptionDtl(qryInsertPrescriptionDtlRequest);
+        LOGGER.debug("got the result for named query: qryInsertPrescriptionDtl, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/qryGetPatientNumberByUnamePass", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "getpatient Number by username and password")

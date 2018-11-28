@@ -11,6 +11,35 @@
     <query-param name="t_preferredName" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryInsertPrescriptionHeader">
+        <![CDATA[
+        insert into prscrphd([prscrp_no], [patient_no]
+      ,[doctor_id]
+      ,[date]
+      ,[adminuse]
+      ,[patndetls]) values(:t_resxtiptionno,:t_patientno,:t_doctorid,:t_date,:t_adminuse,:t_patndetls)
+        ]]>
+    <query-param name="t_resxtiptionno" type="java.lang.String"/>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    <query-param name="t_doctorid" type="java.lang.String"/>
+    <query-param name="t_date" type="java.sql.Date"/>
+    <query-param name="t_adminuse" type="java.lang.String"/>
+    <query-param name="t_patndetls" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryInsertPrescriptionDtl">
+        <![CDATA[
+        insert into prscrpdt(
+[prscrp_no]
+      ,[patient_no]
+      ,[drugdesc],[drugcode]) values(:t_presscno,:t_patientNo,:t_drugdesc,:t_drugcode)
+        ]]>
+    <query-param name="t_presscno" type="java.lang.String"/>
+    <query-param name="t_patientNo" type="java.lang.String"/>
+    <query-param name="t_drugdesc" type="java.lang.String"/>
+    <query-param name="t_drugcode" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetPatientNumberByUnamePass">
         <![CDATA[
         select patient_no from  x0152578 where userid = :t_userid and password = :t_pass

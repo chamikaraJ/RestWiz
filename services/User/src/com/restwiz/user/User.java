@@ -77,7 +77,11 @@ public class User {
             
             Page<QryGetPatientByUnamePassResponse> qryGetPatientByPatientNoResponses = cWmwSQLQueryExecutorService.executeQryGetPatientByUnamePass(tuserid,tpass,pageable);
             List<QryGetPatientByUnamePassResponse> content1 = qryGetPatientByPatientNoResponses.getContent();
-            qryGetPatientByPatientNoResponse = content1.get(0);
+            if(content1.size()>0) {
+                qryGetPatientByPatientNoResponse = content1.get(0);
+            }else{
+                qryGetPatientByPatientNoResponse = null;
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }

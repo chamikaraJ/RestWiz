@@ -5,6 +5,7 @@ package com.restwiz.updatepatientschedular.controller;
 
 import com.restwiz.updatepatientschedular.UpdatePatientSchedular;
 import java.lang.String;
+import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class UpdatePatientSchedularController {
     @RequestMapping(value = "/nextNumber", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String nextNumber() {
-        return updatePatientSchedular.nextNumber();
+    public String nextNumber(@RequestParam(value = "genCode", required = false) String genCode) {
+        return updatePatientSchedular.nextNumber(genCode);
     }
 
     @RequestMapping(value = "/saveClinicalConclutions", produces = "application/json", method = RequestMethod.GET)
@@ -40,6 +41,20 @@ public class UpdatePatientSchedularController {
     @ApiOperation(value = "")
     public String savePatientData(@RequestParam(value = "patienData", required = false) String patienData) {
         return updatePatientSchedular.savePatientData(patienData);
+    }
+
+    @RequestMapping(value = "/savePrescription", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void savePrescription(@RequestBody JSONObject json, @RequestParam(value = "patientNo", required = false) String patientNo) {
+        updatePatientSchedular.savePrescription(json, patientNo);
+    }
+
+    @RequestMapping(value = "/savePrescriptiondetails", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void savePrescriptiondetails(@RequestParam(value = "predetail", required = false) String predetail, @RequestParam(value = "nextNo", required = false) String nextNo, @RequestParam(value = "patientNo", required = false) String patientNo) {
+        updatePatientSchedular.savePrescriptiondetails(predetail, nextNo, patientNo);
     }
 
     @RequestMapping(value = "/startUpdatePatient", produces = "application/json", method = RequestMethod.GET)

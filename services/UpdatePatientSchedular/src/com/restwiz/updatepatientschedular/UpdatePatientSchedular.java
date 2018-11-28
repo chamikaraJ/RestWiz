@@ -31,6 +31,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.apache.commons.lang.StringUtils;
 
 
 //import com.restwiz.updatepatientschedular.model.*;
@@ -143,7 +144,8 @@ public class UpdatePatientSchedular {
             req.setTmedExpiry(getSqlDate(exp));
             req.setTmcareRefNo(json.get("txtMrefNo") != null ? json.get("txtMrefNo").toString().trim() : "");
 
-            req.setTclaimDetails(json.get("txtClaimNo") != null ? json.get("txtClaimNo").toString().trim() : "");
+            // req.setTclaimDetails(json.get("txtClaimNo") != null ? json.get("txtClaimNo").toString().trim() : "");
+            req.setTclaimDetails(createClaimDetails(json));
             req.setTnextofkin(json.get("txtFirstName") != null ? json.get("txtFirstName").toString().trim() : "");
 
             String feePos = (json.get("rdoPrivateHospitalCover") != null ? json.get("rdoPrivateHospitalCover").toString().trim() : "").equals("Yes")==true? "1" : "0";
@@ -175,8 +177,14 @@ public class UpdatePatientSchedular {
                 String allergies = "";
                 if (json.get("chkTypeOfAllergies") != null) {
                     allergies = getcommaSeparatedStringFromJson((JSONArray) json.get("chkTypeOfAllergies"));
+                    
+                    if(json.get("txaAllergiDetails")!=null){
+                        allergies = allergies + " "+json.get("txaAllergiDetails").toString().trim();
+                    }
+                    
                 }
-                req.setTallergies(json.get("rdoDoYouHaveAllergies").toString().trim() + " " + allergies);
+                // req.setTallergies(json.get("rdoDoYouHaveAllergies").toString().trim() + " " + allergies);
+                req.setTallergies(allergies);
 
             } else {
                 req.setTallergies("");
@@ -361,11 +369,31 @@ public class UpdatePatientSchedular {
             e.printStackTrace();
         }
 
+        savePrescription(json,json.get("txtPatientNo").toString());
         // ptdetailService.update(pt);
 
 
         // pt = ptdetailService.update(pt);
         return output;
+    }
+    
+   private String createClaimDetails(JSONObject json){
+        StringBuilder claim = new StringBuilder();
+        claim.append("Claim No : ").append(json.get("txtClaimNo")!=null? json.get("txtClaimNo").toString().trim():"").append(System.getProperty("line.separator"));
+        if(json.get("txtInjuryDate")!=null){
+            String date = json.get("txtInjuryDate").toString().trim();
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+//            java.util.Date d = new java.util.Date(date);
+            
+            claim.append("Injury Date : ").append(date).append(System.getProperty("line.separator"));
+        }
+        claim.append("Insurer : ").append(json.get("txtInsurer")!=null? json.get("txtInsurer").toString().trim():"").append(System.getProperty("line.separator"));
+        claim.append("Case Manager : ").append(json.get("txtCaseManager")!=null? json.get("txtCaseManager").toString().trim():"").append(System.getProperty("line.separator"));
+        claim.append("Contact Ph : ").append(json.get("txtContactPh")!=null? json.get("txtContactPh").toString().trim():"").append(System.getProperty("line.separator"));
+        claim.append("Employer : ").append(json.get("txtEmployer")!=null? json.get("txtEmployer").toString().trim():"").append(System.getProperty("line.separator"));
+        claim.append("Solicitor :").append(json.get("txtSolicitor")!=null? json.get("txtSolicitor").toString().trim():"").append(System.getProperty("line.separator"));
+
+        return claim.toString();
     }
     
     private String updateAccountDetails(JSONObject json,String patientNo,boolean isAdult){
@@ -471,32 +499,147 @@ public class UpdatePatientSchedular {
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         return sqlDate;
     }
+    
 
-    public String nextNumber() {
+    public String nextNumber(String genCode) {
         Pageable pageable = new PageRequest(0, 10);
         String currentNo = "";
 
-        Page<QryGetNextPatientNoResponse> res = queryExecutorService.executeQryGetNextPatientNo("CLINCON", pageable);
+        Page<QryGetNextPatientNoResponse> res = queryExecutorService.executeQryGetNextPatientNo(genCode, pageable);
 
         if (res.getContent().size() > 0) {
             Long numVal = res.getContent().get(0).getNumValue();
+            Byte numLength = res.getContent().get(0).getGenNumLen();
+            String prefix =  res.getContent().get(0).getCurPreFix();
             currentNo = numVal.toString();
-            Long nextNumber = numVal + 1;
+            String nextNumber = "";
+            if(numLength==0) {
+                nextNumber = numVal + 1+"";
+            }else{
+                nextNumber = prefix + StringUtils.leftPad(numVal+"",numLength,"0");
+                
+            }
+
 
             QryUpdateNextPtGenCodeRequest updateReq = new QryUpdateNextPtGenCodeRequest();
-            updateReq.setNextNo(nextNumber.toString());
-            updateReq.setPrefix("");
-            updateReq.setTidCode("CLINCON");
+            updateReq.setNextNo(nextNumber);
+            updateReq.setPrefix(prefix);
+            updateReq.setTidCode(genCode);
             int i = queryExecutorService.executeQryUpdateNextPtGenCode(updateReq);
         }
         return currentNo;
+    }
+    
+    public void savePrescription(JSONObject json,String patientNo){
+        String nextNo = nextNumber("PRESCRP");
+        
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-M-d hh:mm:ss");
+        java.util.Date d = new java.util.Date();
+        String today = sdf1.format(d);
+        
+        String fullname = new StringBuilder().append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).append(" ").append((String) json.get("txtSurname")).toString();
+         
+            QryInsertPrescriptionHeaderRequest header = new QryInsertPrescriptionHeaderRequest();
+            header.setTresxtiptionno(nextNo);
+            header.setTpatientno(patientNo);
+            header.setTdoctorid("DW");
+            header.setTdate(getSqlDate(today));
+            header.setTadminuse("Manual Ent");
+            header.setTpatndetls(fullname);
+            
+            int i = queryExecutorService.executeQryInsertPrescriptionHeader(header);
+            if(i==1){
+                logger.warn("Priscription header saved");
+            }else{
+                logger.warn("Saving Priscription header failed");
+            }
+            
+            if(json.get("txtMedication1")!=null){
+                savePrescriptiondetails(json.get("txtMedication1").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication2")!=null){
+                savePrescriptiondetails(json.get("txtMedication2").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication2")!=null){
+                savePrescriptiondetails(json.get("txtMedication3").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication4")!=null){
+                savePrescriptiondetails(json.get("txtMedication4").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication5")!=null){
+                savePrescriptiondetails(json.get("txtMedication5").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication6")!=null){
+                savePrescriptiondetails(json.get("txtMedication6").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication7")!=null){
+                savePrescriptiondetails(json.get("txtMedication7").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication8")!=null){
+                savePrescriptiondetails(json.get("txtMedication8").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication9")!=null){
+                savePrescriptiondetails(json.get("txtMedication9").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication10")!=null){
+                savePrescriptiondetails(json.get("txtMedication10").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication11")!=null){
+                savePrescriptiondetails(json.get("txtMedication11").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication12")!=null){
+                savePrescriptiondetails(json.get("txtMedication12").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication13")!=null){
+                savePrescriptiondetails(json.get("txtMedication13").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication14")!=null){
+                savePrescriptiondetails(json.get("txtMedication14").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication15")!=null){
+                savePrescriptiondetails(json.get("txtMedication15").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication16")!=null){
+                savePrescriptiondetails(json.get("txtMedication16").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication17")!=null){
+                savePrescriptiondetails(json.get("txtMedication17").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication18")!=null){
+                savePrescriptiondetails(json.get("txtMedication18").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication19")!=null){
+                savePrescriptiondetails(json.get("txtMedication19").toString(),nextNo,patientNo);
+            }
+            if(json.get("txtMedication20")!=null){
+                savePrescriptiondetails(json.get("txtMedication20").toString(),nextNo,patientNo);
+            }
+            
+
+    // Integer executeQryInsertPrescriptionDtl(QryInsertPrescriptionDtlRequest qryInsertPrescriptionDtlRequest);
+        
+    }
+    
+    
+    public void savePrescriptiondetails(String predetail,String nextNo,String patientNo){
+            QryInsertPrescriptionDtlRequest detail = new QryInsertPrescriptionDtlRequest();
+            detail.setTpresscno(nextNo);
+            detail.setTpatientNo(patientNo);
+            detail.setTdrugdesc(predetail);
+            detail.setTdrugcode("#FREETEXT#");
+            int i = queryExecutorService.executeQryInsertPrescriptionDtl(detail);
+            if(i==1){
+                logger.warn("Prescription details saved. : "+predetail);
+            }else{
+                logger.warn("Saving Prescription details falied");
+            }
     }
 
     public String saveClinicalConclutions(String code, String patientNo, String dtls) {
         Pageable pageable = new PageRequest(0, 10);
         String aa = "";
 
-        String nextNo = nextNumber();
+        String nextNo = nextNumber("CLINCON");
 
         Page<QryGetClinCatDatByCodeResponse> res = queryExecutorService.executeQryGetClinCatDatByCode(code, pageable);
 
