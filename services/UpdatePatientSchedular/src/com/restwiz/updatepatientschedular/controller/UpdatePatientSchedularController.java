@@ -57,6 +57,11 @@ public class UpdatePatientSchedularController {
         updatePatientSchedular.savePrescriptiondetails(predetail, nextNo, patientNo);
     }
 
+    @RequestMapping(value = "/savePrescriptionheader", method = RequestMethod.GET)
+    public void savePrescriptionheader(@RequestParam(value = "fullname", required = false) String fullname, @RequestParam(value = "patientNo", required = false) String patientNo, @RequestParam(value = "nextNo", required = false) String nextNo, @RequestParam(value = "today", required = false) String today) {
+        updatePatientSchedular.savePrescriptionheader(fullname, patientNo, nextNo, today);
+    }
+
     @RequestMapping(value = "/startUpdatePatient", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

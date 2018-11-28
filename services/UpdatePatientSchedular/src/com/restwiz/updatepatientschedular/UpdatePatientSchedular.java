@@ -14,6 +14,7 @@ import com.restwiz.cwmwsql.service.PtcharactersService;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
+import org.apache.commons.lang.StringUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -31,7 +32,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.apache.commons.lang.StringUtils;
 
 
 //import com.restwiz.updatepatientschedular.model.*;
@@ -106,10 +106,10 @@ public class UpdatePatientSchedular {
 
         try {
             json = (JSONObject) parser.parse(patienData.toString());
-            
+
             String countryCode = "1101";
             //Get Country Code
-            if(json.get("country")!=null){
+            if (json.get("country") != null) {
                 String countryname = json.get("country").toString().trim();
                 Page<QryGetCountryCodeResponse> country = queryExecutorService.executeQryGetCountryCode(countryname, pageable);
                 List<QryGetCountryCodeResponse> content = country.getContent();
@@ -140,15 +140,15 @@ public class UpdatePatientSchedular {
             req.setTbirthplace(countryCode);
             req.setTvetafno(json.get("txtDvaCardNo") != null ? json.get("txtDvaCardNo").toString().trim() : "");
             req.setTrefRalSrc(json.get("sltHowdidYouHear") != null ? json.get("sltHowdidYouHear").toString().trim() : "");
-            String exp = json.get("txtExpYear") + "-" + json.get("txtExpMonth") + "-" + json.get("txtExpDate") + " 00:00:00";
-            req.setTmedExpiry(getSqlDate(exp));
+            // String exp = json.get("txtExpYear") + "-" + json.get("txtExpMonth") + "-" + json.get("txtExpDate") + " 00:00:00";
+            req.setTmedExpiry(getSqlDate("1970-01-01 00:00:00"));
             req.setTmcareRefNo(json.get("txtMrefNo") != null ? json.get("txtMrefNo").toString().trim() : "");
 
             // req.setTclaimDetails(json.get("txtClaimNo") != null ? json.get("txtClaimNo").toString().trim() : "");
             req.setTclaimDetails(createClaimDetails(json));
             req.setTnextofkin(json.get("txtFirstName") != null ? json.get("txtFirstName").toString().trim() : "");
 
-            String feePos = (json.get("rdoPrivateHospitalCover") != null ? json.get("rdoPrivateHospitalCover").toString().trim() : "").equals("Yes")==true? "1" : "0";
+            String feePos = (json.get("rdoPrivateHospitalCover") != null ? json.get("rdoPrivateHospitalCover").toString().trim() : "").equals("Yes") == true ? "1" : "0";
             req.setTfeepositn(feePos);
 
             if (json.get("sltJoinedYear") != null) {
@@ -177,11 +177,11 @@ public class UpdatePatientSchedular {
                 String allergies = "";
                 if (json.get("chkTypeOfAllergies") != null) {
                     allergies = getcommaSeparatedStringFromJson((JSONArray) json.get("chkTypeOfAllergies"));
-                    
-                    if(json.get("txaAllergiDetails")!=null){
-                        allergies = allergies + " "+json.get("txaAllergiDetails").toString().trim();
+
+                    if (json.get("txaAllergiDetails") != null) {
+                        allergies = allergies + " " + json.get("txaAllergiDetails").toString().trim();
                     }
-                    
+
                 }
                 // req.setTallergies(json.get("rdoDoYouHaveAllergies").toString().trim() + " " + allergies);
                 req.setTallergies(allergies);
@@ -354,106 +354,106 @@ public class UpdatePatientSchedular {
 
             //Add detaile to account
             String isChildren = json.get("rdoisChildren").toString();
-            if(isChildren == "No"){
-                output = output + updateAccountDetails(json,json.get("txtPatientNo").toString(),true);
-            }else{
-                if(json.get("txtGuardianMedicareCardNo")!=null){
+            if (isChildren == "No") {
+                output = output + updateAccountDetails(json, json.get("txtPatientNo").toString(), true);
+            } else {
+                if (json.get("txtGuardianMedicareCardNo") != null) {
                     String medicareNo = json.get("txtGuardianMedicareCardNo").toString();
-                    Page<QryGetPatientByMedicarenoResponse> resPage = queryExecutorService.executeQryGetPatientByMedicareno(medicareNo,pageable);
+                    Page<QryGetPatientByMedicarenoResponse> resPage = queryExecutorService.executeQryGetPatientByMedicareno(medicareNo, pageable);
                     List<QryGetPatientByMedicarenoResponse> rescontent = resPage.getContent();
                     String patientNo = rescontent.get(0).getPatientNo();
-                    output = output + updateAccountDetails(json,patientNo,false);
+                    output = output + updateAccountDetails(json, patientNo, false);
                 }
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        savePrescription(json,json.get("txtPatientNo").toString());
+        savePrescription(json, json.get("txtPatientNo").toString());
         // ptdetailService.update(pt);
 
 
         // pt = ptdetailService.update(pt);
         return output;
     }
-    
-   private String createClaimDetails(JSONObject json){
+
+    private String createClaimDetails(JSONObject json) {
         StringBuilder claim = new StringBuilder();
-        claim.append("Claim No : ").append(json.get("txtClaimNo")!=null? json.get("txtClaimNo").toString().trim():"").append(System.getProperty("line.separator"));
-        if(json.get("txtInjuryDate")!=null){
+        claim.append("Claim No : ").append(json.get("txtClaimNo") != null ? json.get("txtClaimNo").toString().trim() : "").append(System.getProperty("line.separator"));
+        if (json.get("txtInjuryDate") != null) {
             String date = json.get("txtInjuryDate").toString().trim();
 //            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 //            java.util.Date d = new java.util.Date(date);
-            
+
             claim.append("Injury Date : ").append(date).append(System.getProperty("line.separator"));
         }
-        claim.append("Insurer : ").append(json.get("txtInsurer")!=null? json.get("txtInsurer").toString().trim():"").append(System.getProperty("line.separator"));
-        claim.append("Case Manager : ").append(json.get("txtCaseManager")!=null? json.get("txtCaseManager").toString().trim():"").append(System.getProperty("line.separator"));
-        claim.append("Contact Ph : ").append(json.get("txtContactPh")!=null? json.get("txtContactPh").toString().trim():"").append(System.getProperty("line.separator"));
-        claim.append("Employer : ").append(json.get("txtEmployer")!=null? json.get("txtEmployer").toString().trim():"").append(System.getProperty("line.separator"));
-        claim.append("Solicitor :").append(json.get("txtSolicitor")!=null? json.get("txtSolicitor").toString().trim():"").append(System.getProperty("line.separator"));
+        claim.append("Insurer : ").append(json.get("txtInsurer") != null ? json.get("txtInsurer").toString().trim() : "").append(System.getProperty("line.separator"));
+        claim.append("Case Manager : ").append(json.get("txtCaseManager") != null ? json.get("txtCaseManager").toString().trim() : "").append(System.getProperty("line.separator"));
+        claim.append("Contact Ph : ").append(json.get("txtContactPh") != null ? json.get("txtContactPh").toString().trim() : "").append(System.getProperty("line.separator"));
+        claim.append("Employer : ").append(json.get("txtEmployer") != null ? json.get("txtEmployer").toString().trim() : "").append(System.getProperty("line.separator"));
+        claim.append("Solicitor :").append(json.get("txtSolicitor") != null ? json.get("txtSolicitor").toString().trim() : "").append(System.getProperty("line.separator"));
 
         return claim.toString();
     }
-    
-    private String updateAccountDetails(JSONObject json,String patientNo,boolean isAdult){
+
+    private String updateAccountDetails(JSONObject json, String patientNo, boolean isAdult) {
         String output = "";
-            
-                Account acc = getAccount(patientNo);
-                String acName = new StringBuilder().append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).append(" ").append((String) json.get("txtSurname")).toString();
-                String accescode = new StringBuilder().append((String) json.get("txtSurname")).append(" ").append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).toString();
-                if (acc == null) {
-                    QryInsertAccountRequest accReq = new QryInsertAccountRequest();
-                    accReq.setTaccountno((String) json.get("txtPatientNo"));
-                    accReq.setTacName(acName);
-                    accReq.setTaccescode(accescode);
-                    accReq.setTcontact(accescode);
-                    accReq.setTphoneAh(json.get("txtPhoneNumberH") != null ? json.get("txtPhoneNumberH").toString().trim() : "");
-                    accReq.setTphoneBh(json.get("txtPhoneNumberW") != null ? json.get("txtPhoneNumberW").toString().trim() : "");
-                    accReq.setTaddress1(json.get("address2") != null ? json.get("address2").toString().trim() : "");
-                    accReq.setTaddress2(json.get("streetname") != null ? json.get("streetname").toString().trim() : "");
-                    accReq.setTsuburb(json.get("suburb") != null ? json.get("suburb").toString().trim() : "");
-                    accReq.setTstate(json.get("state") != null ? json.get("state").toString().trim() : "");
-                    accReq.setTpostcode(json.get("postcode") != null ? json.get("postcode").toString().trim() : "");
-                    int acnt = queryExecutorService.executeQryInsertAccount(accReq);
-                    if (acnt == 1) {
-                        output = output + "Insetr to Account. ";
-                        updateAccoutnNo(patientNo,patientNo);
-                    } else {
-                        output = output + "Insetr to Account failed. ";
-                    }
-                } else if(isAdult){
-                    QryUpdateAccountRequest updateAcc = new QryUpdateAccountRequest();
-                    updateAcc.setTacName(acName);
-                    updateAcc.setTaccescode(accescode);
-                    updateAcc.setTcontact(accescode);
-                    updateAcc.setTphoneAh(json.get("txtPhoneNumberH") != null ? json.get("txtPhoneNumberH").toString().trim() : "");
-                    updateAcc.setTphoneBh(json.get("txtPhoneNumberW") != null ? json.get("txtPhoneNumberW").toString().trim() : "");
-                    updateAcc.setTaddress1(json.get("address2") != null ? json.get("address2").toString().trim() : "");
-                    updateAcc.setTaddress2(json.get("streetname") != null ? json.get("streetname").toString().trim() : "");
-                    updateAcc.setTsuburb(json.get("suburb") != null ? json.get("suburb").toString().trim() : "");
-                    updateAcc.setTstate(json.get("state") != null ? json.get("state").toString().trim() : "");
-                    updateAcc.setTpostcode(json.get("postcode") != null ? json.get("postcode").toString().trim() : "");
-                    updateAcc.setTaccountno(json.get("txtPatientNo") != null ? json.get("txtPatientNo").toString().trim() : "");
-                    int accUp = queryExecutorService.executeQryUpdateAccount(updateAcc);
-                    if (accUp == 1) {
-                        output = output + "Update to Account. ";
-                        logger.warn("Update to Account");
-                        updateAccoutnNo(acc.getAccountno(),patientNo);
-                    } else {
-                        output = output + "Update to Account failed. ";
-                        logger.warn("Update to Account failed");
-                    }
-                }
+
+        Account acc = getAccount(patientNo);
+        String acName = new StringBuilder().append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).append(" ").append((String) json.get("txtSurname")).toString();
+        String accescode = new StringBuilder().append((String) json.get("txtSurname")).append(" ").append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).toString();
+        if (acc == null) {
+            QryInsertAccountRequest accReq = new QryInsertAccountRequest();
+            accReq.setTaccountno((String) json.get("txtPatientNo"));
+            accReq.setTacName(acName);
+            accReq.setTaccescode(accescode);
+            accReq.setTcontact(accescode);
+            accReq.setTphoneAh(json.get("txtPhoneNumberH") != null ? json.get("txtPhoneNumberH").toString().trim() : "");
+            accReq.setTphoneBh(json.get("txtPhoneNumberW") != null ? json.get("txtPhoneNumberW").toString().trim() : "");
+            accReq.setTaddress1(json.get("address2") != null ? json.get("address2").toString().trim() : "");
+            accReq.setTaddress2(json.get("streetname") != null ? json.get("streetname").toString().trim() : "");
+            accReq.setTsuburb(json.get("suburb") != null ? json.get("suburb").toString().trim() : "");
+            accReq.setTstate(json.get("state") != null ? json.get("state").toString().trim() : "");
+            accReq.setTpostcode(json.get("postcode") != null ? json.get("postcode").toString().trim() : "");
+            int acnt = queryExecutorService.executeQryInsertAccount(accReq);
+            if (acnt == 1) {
+                output = output + "Insetr to Account. ";
+                updateAccoutnNo(patientNo, patientNo);
+            } else {
+                output = output + "Insetr to Account failed. ";
+            }
+        } else if (isAdult) {
+            QryUpdateAccountRequest updateAcc = new QryUpdateAccountRequest();
+            updateAcc.setTacName(acName);
+            updateAcc.setTaccescode(accescode);
+            updateAcc.setTcontact(accescode);
+            updateAcc.setTphoneAh(json.get("txtPhoneNumberH") != null ? json.get("txtPhoneNumberH").toString().trim() : "");
+            updateAcc.setTphoneBh(json.get("txtPhoneNumberW") != null ? json.get("txtPhoneNumberW").toString().trim() : "");
+            updateAcc.setTaddress1(json.get("address2") != null ? json.get("address2").toString().trim() : "");
+            updateAcc.setTaddress2(json.get("streetname") != null ? json.get("streetname").toString().trim() : "");
+            updateAcc.setTsuburb(json.get("suburb") != null ? json.get("suburb").toString().trim() : "");
+            updateAcc.setTstate(json.get("state") != null ? json.get("state").toString().trim() : "");
+            updateAcc.setTpostcode(json.get("postcode") != null ? json.get("postcode").toString().trim() : "");
+            updateAcc.setTaccountno(json.get("txtPatientNo") != null ? json.get("txtPatientNo").toString().trim() : "");
+            int accUp = queryExecutorService.executeQryUpdateAccount(updateAcc);
+            if (accUp == 1) {
+                output = output + "Update to Account. ";
+                logger.warn("Update to Account");
+                updateAccoutnNo(acc.getAccountno(), patientNo);
+            } else {
+                output = output + "Update to Account failed. ";
+                logger.warn("Update to Account failed");
+            }
+        }
         return output;
     }
-    
-    private int updateAccoutnNo(String accNo, String ptNo){
+
+    private int updateAccoutnNo(String accNo, String ptNo) {
         int result = 0;
         QryUpdateAccountNoRequest req = new QryUpdateAccountNoRequest();
         req.setTpatientNo(ptNo);
         req.setTaccountNo(accNo);
-        result =  queryExecutorService.executeQryUpdateAccountNo(req);
+        result = queryExecutorService.executeQryUpdateAccountNo(req);
         return result;
     }
 
@@ -487,7 +487,7 @@ public class UpdatePatientSchedular {
     }
 
     private Date getSqlDate(String sdate) {
-        
+
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-M-d hh:mm:ss");
         java.util.Date date = null;
         try {
@@ -499,7 +499,7 @@ public class UpdatePatientSchedular {
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         return sqlDate;
     }
-    
+
 
     public String nextNumber(String genCode) {
         Pageable pageable = new PageRequest(0, 10);
@@ -510,129 +510,170 @@ public class UpdatePatientSchedular {
         if (res.getContent().size() > 0) {
             Long numVal = res.getContent().get(0).getNumValue();
             Byte numLength = res.getContent().get(0).getGenNumLen();
-            String prefix =  res.getContent().get(0).getCurPreFix();
-            currentNo = numVal.toString();
-            String nextNumber = "";
-            if(numLength==0) {
-                nextNumber = numVal + 1+"";
-            }else{
-                nextNumber = prefix + StringUtils.leftPad(numVal+"",numLength,"0");
-                
+            String prefix = res.getContent().get(0).getCurPreFix();
+//            currentNo = numVal.toString();
+            Long nextNumber = numVal + 1;
+
+            if (numLength == 0) {
+                currentNo = numVal.toString();
+            } else {
+                currentNo = prefix + StringUtils.leftPad(numVal + "", numLength - 1, "0");
             }
 
 
             QryUpdateNextPtGenCodeRequest updateReq = new QryUpdateNextPtGenCodeRequest();
-            updateReq.setNextNo(nextNumber);
+            updateReq.setNextNo(nextNumber.toString());
             updateReq.setPrefix(prefix);
             updateReq.setTidCode(genCode);
             int i = queryExecutorService.executeQryUpdateNextPtGenCode(updateReq);
         }
         return currentNo;
     }
-    
-    public void savePrescription(JSONObject json,String patientNo){
-        String nextNo = nextNumber("PRESCRP");
-        
+
+    public void savePrescription(JSONObject json, String patientNo) {
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-M-d hh:mm:ss");
         java.util.Date d = new java.util.Date();
         String today = sdf1.format(d);
-        
-        String fullname = new StringBuilder().append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).append(" ").append((String) json.get("txtSurname")).toString();
-         
-            QryInsertPrescriptionHeaderRequest header = new QryInsertPrescriptionHeaderRequest();
-            header.setTresxtiptionno(nextNo);
-            header.setTpatientno(patientNo);
-            header.setTdoctorid("DW");
-            header.setTdate(getSqlDate(today));
-            header.setTadminuse("Manual Ent");
-            header.setTpatndetls(fullname);
-            
-            int i = queryExecutorService.executeQryInsertPrescriptionHeader(header);
-            if(i==1){
-                logger.warn("Priscription header saved");
-            }else{
-                logger.warn("Saving Priscription header failed");
-            }
-            
-            if(json.get("txtMedication1")!=null){
-                savePrescriptiondetails(json.get("txtMedication1").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication2")!=null){
-                savePrescriptiondetails(json.get("txtMedication2").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication2")!=null){
-                savePrescriptiondetails(json.get("txtMedication3").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication4")!=null){
-                savePrescriptiondetails(json.get("txtMedication4").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication5")!=null){
-                savePrescriptiondetails(json.get("txtMedication5").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication6")!=null){
-                savePrescriptiondetails(json.get("txtMedication6").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication7")!=null){
-                savePrescriptiondetails(json.get("txtMedication7").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication8")!=null){
-                savePrescriptiondetails(json.get("txtMedication8").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication9")!=null){
-                savePrescriptiondetails(json.get("txtMedication9").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication10")!=null){
-                savePrescriptiondetails(json.get("txtMedication10").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication11")!=null){
-                savePrescriptiondetails(json.get("txtMedication11").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication12")!=null){
-                savePrescriptiondetails(json.get("txtMedication12").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication13")!=null){
-                savePrescriptiondetails(json.get("txtMedication13").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication14")!=null){
-                savePrescriptiondetails(json.get("txtMedication14").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication15")!=null){
-                savePrescriptiondetails(json.get("txtMedication15").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication16")!=null){
-                savePrescriptiondetails(json.get("txtMedication16").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication17")!=null){
-                savePrescriptiondetails(json.get("txtMedication17").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication18")!=null){
-                savePrescriptiondetails(json.get("txtMedication18").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication19")!=null){
-                savePrescriptiondetails(json.get("txtMedication19").toString(),nextNo,patientNo);
-            }
-            if(json.get("txtMedication20")!=null){
-                savePrescriptiondetails(json.get("txtMedication20").toString(),nextNo,patientNo);
-            }
-            
 
-    // Integer executeQryInsertPrescriptionDtl(QryInsertPrescriptionDtlRequest qryInsertPrescriptionDtlRequest);
+        String fullname = new StringBuilder().append((String) json.get("sltTitle")).append(" ").append((String) json.get("txtGivenName")).append(" ").append((String) json.get("txtSurname")).toString();
         
+        if (json.get("txtMedication1") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication1").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication2") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication2").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication2") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication3").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication4") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication4").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication5") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication5").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication6") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication6").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication7") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication7").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication8") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication8").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication9") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication9").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication10") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication10").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication11") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication11").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication12") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication12").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication13") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication13").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication14") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication14").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication15") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication15").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication16") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication16").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication17") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication17").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication18") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication18").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication19") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication19").toString(), nextNo, patientNo);
+        }
+        if (json.get("txtMedication20") != null) {
+            String nextNo = nextNumber("PRESCRP");
+            savePrescriptionheader(fullname,patientNo,nextNo,today);
+            savePrescriptiondetails(json.get("txtMedication20").toString(), nextNo, patientNo);
+        }
+
+
+        // Integer executeQryInsertPrescriptionDtl(QryInsertPrescriptionDtlRequest qryInsertPrescriptionDtlRequest);
+
     }
     
-    
-    public void savePrescriptiondetails(String predetail,String nextNo,String patientNo){
-            QryInsertPrescriptionDtlRequest detail = new QryInsertPrescriptionDtlRequest();
-            detail.setTpresscno(nextNo);
-            detail.setTpatientNo(patientNo);
-            detail.setTdrugdesc(predetail);
-            detail.setTdrugcode("#FREETEXT#");
-            int i = queryExecutorService.executeQryInsertPrescriptionDtl(detail);
-            if(i==1){
-                logger.warn("Prescription details saved. : "+predetail);
-            }else{
-                logger.warn("Saving Prescription details falied");
-            }
+    public void savePrescriptionheader(String fullname, String patientNo,String nextNo,String today){
+
+        QryInsertPrescriptionHeaderRequest header = new QryInsertPrescriptionHeaderRequest();
+        header.setTresxtiptionno(nextNo);
+        header.setTpatientno(patientNo.trim());
+        header.setTdoctorid("DW");
+        header.setTdate(getSqlDate(today));
+        header.setTadminuse("Manual Ent");
+        header.setTpatndetls(fullname);
+
+        int i = queryExecutorService.executeQryInsertPrescriptionHeader(header);
+        if (i == 1) {
+            logger.warn("Priscription header saved");
+        } else {
+            logger.warn("Saving Priscription header failed");
+        }
+    }
+
+
+    public void savePrescriptiondetails(String predetail, String nextNo, String patientNo) {
+        QryInsertPrescriptionDtlRequest detail = new QryInsertPrescriptionDtlRequest();
+        detail.setTpresscno(nextNo);
+        detail.setTpatientNo(patientNo);
+        detail.setTdrugdesc(predetail);
+        detail.setTdrugcode("#FREETEXT#");
+        int i = queryExecutorService.executeQryInsertPrescriptionDtl(detail);
+        if (i == 1) {
+            logger.warn("Prescription details saved. : " + predetail);
+        } else {
+            logger.warn("Saving Prescription details falied");
+        }
     }
 
     public String saveClinicalConclutions(String code, String patientNo, String dtls) {
