@@ -446,6 +446,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("QryInsertClinicalConclutions", params);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryCheckUsernameExistResponse> executeQryCheckUsernameExist(String tuserid, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_userid", tuserid);
+
+        return queryExecutor.executeNamedQuery("qryCheckUsernameExist", params, QryCheckUsernameExistResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryCheckUsernameExist(String tuserid, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_userid", tuserid);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryCheckUsernameExist", params, QryCheckUsernameExistResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdateAccount(QryUpdateAccountRequest qryUpdateAccountRequest) {

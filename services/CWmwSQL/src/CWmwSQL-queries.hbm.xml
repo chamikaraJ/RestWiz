@@ -677,6 +677,20 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
     <query-param name="t_more_dtls" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryCheckUsernameExist">
+        <![CDATA[
+        select case when count(idno)>0 then 'true'  else 'false' end as result from x0152578 where userid = :t_userid
+        ]]>
+    <query-param name="t_userid" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryCheckUsernameExist__count">
+        <![CDATA[
+        select count(*) from (select case when count(idno)>0 then 'true'  else 'false' end as result from x0152578 where userid = :t_userid) wmTempTable
+        ]]>
+    <query-param name="t_userid" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryUpdateAccount">
         <![CDATA[
         update account set 

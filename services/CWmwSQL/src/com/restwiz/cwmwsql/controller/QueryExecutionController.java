@@ -443,6 +443,34 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/qryCheckUsernameExist", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "check the username is exist")
+    public Page<QryCheckUsernameExistResponse> executeQryCheckUsernameExist(@RequestParam(value = "t_userid") String tuserid, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryCheckUsernameExist");
+        Page<QryCheckUsernameExistResponse> _result = queryService.executeQryCheckUsernameExist(tuserid, pageable);
+        LOGGER.debug("got the result for named query: qryCheckUsernameExist, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryCheckUsernameExist")
+    @RequestMapping(value = "/queries/qryCheckUsernameExist/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryCheckUsernameExist(@RequestParam(value = "t_userid") String tuserid, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryCheckUsernameExist");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryCheckUsernameExist";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryCheckUsernameExist(tuserid,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryUpdateAccount", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Update Account")

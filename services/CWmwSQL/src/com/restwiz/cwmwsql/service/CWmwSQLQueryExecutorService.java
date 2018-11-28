@@ -78,6 +78,10 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryInsertClinicalConclutions(QryInsertClinicalConclutionsRequest qryInsertClinicalConclutionsRequest);
 
+    Page<QryCheckUsernameExistResponse> executeQryCheckUsernameExist(String tuserid, Pageable pageable);
+
+    void exportQryCheckUsernameExist(String tuserid, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Integer executeQryUpdateAccount(QryUpdateAccountRequest qryUpdateAccountRequest);
 
     Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(String tidCode, Pageable pageable);
