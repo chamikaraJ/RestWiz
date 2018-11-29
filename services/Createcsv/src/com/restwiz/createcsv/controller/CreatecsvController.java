@@ -34,6 +34,11 @@ public class CreatecsvController {
         return createcsv.createCSVFile(patientDetail, request);
     }
 
+    @RequestMapping(value = "/cSVFile_1", produces = "application/json", method = RequestMethod.POST)
+    public String createCSVFile_1(@RequestBody Object patientDetail) throws Exception {
+        return createcsv.createCSVFile(patientDetail);
+    }
+
     @RequestMapping(value = "/archivePath", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

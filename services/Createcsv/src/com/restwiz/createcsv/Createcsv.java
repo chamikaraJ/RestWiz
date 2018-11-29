@@ -295,5 +295,62 @@ public class Createcsv {
 
         return vstatus;
     }
+    
+    public String createCSVFile(Object patientDetail) throws Exception {
+
+
+        String vstatus = "";
+
+
+            LinkedHashMap<String, String> patientDetails = (LinkedHashMap) patientDetail;
+            patientDetails.remove("address1"); //Address1 is long complete text with number street city and country
+            patientDetails.remove("txtCSVText");
+            String firstName = patientDetails.get("txtGivenName");
+            String lastName = patientDetails.get("txtSurname");
+            String contextName = "RestWiz";
+
+            String detail = patientDetail.toString();
+
+            String uploadDir = getArchivePath(contextName, firstName, lastName);
+
+            String filenme = generateFileName(firstName, lastName) + ".csv";
+            String outputFile = uploadDir + "/" + filenme;
+            // before we open the file check to see if it already exists
+            boolean alreadyExists = new File(outputFile).exists();
+
+            try {
+                if (!alreadyExists) {
+                    vstatus = "Success";
+
+                    String jsonString = detail.replace(", ,", ", ").replace("=", "\":\"").replace(",", "\",\"").replace("\",\" ", "\", \"").replace("\"[", "[\"").replace("]\"", "\"]").replace("{", "{\"").replace("}", "\"}");
+
+                    StringBuilder sb = new StringBuilder();
+                    // sb.append("{\"dataValue\": [");
+                    sb.append(jsonString.toString());
+                    // sb.append("]}");
+
+                    String flatJson = getCSVString(sb.toString());
+
+                    logger.info("Json string :" + flatJson);
+
+                    //  TO-DO
+                    writeToFile(flatJson, outputFile);
+                    // writeToFileInputStream(flatJson, filenme);
+
+                    return flatJson;
+
+                } else {
+                    //File already exists so that data can be appended.  But not for this project- DK
+                    vstatus = "UnSuccess";
+                }
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                vstatus = "Error" + e;
+                e.printStackTrace();
+            }
+        
+
+        return vstatus;
+    }
 
 }
