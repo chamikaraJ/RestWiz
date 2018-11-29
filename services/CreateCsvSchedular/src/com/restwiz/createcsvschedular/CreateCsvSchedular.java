@@ -74,6 +74,15 @@ public class CreateCsvSchedular {
             //     if (result.length() > 0) {
             //         tempService.delete(content.get(i).getId());
             //     }
+            
+             try {
+                   String status =  csv.createCSVFile(content.get(i).getJsonText());
+                   if(status.equals("Success")){
+                        tempService.delete(content.get(i).getId());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         return result;

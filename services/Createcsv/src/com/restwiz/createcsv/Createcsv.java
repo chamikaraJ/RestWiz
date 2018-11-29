@@ -320,8 +320,7 @@ public class Createcsv {
 
             try {
                 if (!alreadyExists) {
-                    vstatus = "Success";
-
+                    
                     String jsonString = detail.replace(", ,", ", ").replace("=", "\":\"").replace(",", "\",\"").replace("\",\" ", "\", \"").replace("\"[", "[\"").replace("]\"", "\"]").replace("{", "{\"").replace("}", "\"}");
 
                     StringBuilder sb = new StringBuilder();
@@ -336,7 +335,9 @@ public class Createcsv {
                     //  TO-DO
                     writeToFile(flatJson, outputFile);
                     // writeToFileInputStream(flatJson, filenme);
-
+                    
+                    vstatus = "Success";
+                    
                     return flatJson;
 
                 } else {
