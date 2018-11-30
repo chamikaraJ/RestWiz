@@ -21,6 +21,7 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ExposeToClient
 public class Createcsv {
@@ -297,12 +298,17 @@ public class Createcsv {
     }
     
     public String createCSVFile(Object patientDetail) throws Exception {
+        Object aa = patientDetail;
+        String bb = patientDetail.toString();
+
+        ObjectMapper mapper = new ObjectMapper();
+        LinkedHashMap<String, String> patientDetails = mapper.readValue((String)patientDetail, LinkedHashMap.class);
 
 
         String vstatus = "";
 
 
-            LinkedHashMap<String, String> patientDetails = (LinkedHashMap) patientDetail;
+//            LinkedHashMap<String, String> patientDetails = (LinkedHashMap) patientDetail;
             patientDetails.remove("address1"); //Address1 is long complete text with number street city and country
             patientDetails.remove("txtCSVText");
             String firstName = patientDetails.get("txtGivenName");
@@ -320,25 +326,11 @@ public class Createcsv {
 
             try {
                 if (!alreadyExists) {
-                    
-                    String jsonString = detail.replace(", ,", ", ").replace("=", "\":\"").replace(",", "\",\"").replace("\",\" ", "\", \"").replace("\"[", "[\"").replace("]\"", "\"]").replace("{", "{\"").replace("}", "\"}");
-
-                    StringBuilder sb = new StringBuilder();
-                    // sb.append("{\"dataValue\": [");
-                    sb.append(jsonString.toString());
-                    // sb.append("]}");
-
-                    String flatJson = getCSVString(sb.toString());
-
-                    logger.info("Json string :" + flatJson);
-
                     //  TO-DO
-                    writeToFile(flatJson, outputFile);
-                    // writeToFileInputStream(flatJson, filenme);
-                    
+//                    writeToFile(flatJson, outputFile);
+                    writeToFile(detail, outputFile);
+
                     vstatus = "Success";
-                    
-                    return flatJson;
 
                 } else {
                     //File already exists so that data can be appended.  But not for this project- DK
@@ -349,7 +341,7 @@ public class Createcsv {
                 vstatus = "Error" + e;
                 e.printStackTrace();
             }
-        
+
 
         return vstatus;
     }

@@ -69,13 +69,7 @@ public class CreateCsvSchedular {
 
             for (int i = 0; i < content.size(); i++) {
                 Createcsv csv = new Createcsv();
-                // csv.createCSVFile(content.get(i).getJsonText());
-            //     result = savePatientData(content.get(i).getJsonText());
-            //     if (result.length() > 0) {
-            //         tempService.delete(content.get(i).getId());
-            //     }
-            
-             try {
+                       try {
                    String status =  csv.createCSVFile(content.get(i).getJsonText());
                    if(status.equals("Success")){
                         tempService.delete(content.get(i).getId());

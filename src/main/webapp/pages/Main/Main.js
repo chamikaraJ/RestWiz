@@ -29,4 +29,9 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
         debugger;
     };
 
+
+    $scope.button4_1Click = function($event, $isolateScope) {
+        $scope.Variables.jsvSaveBase64File.invoke();
+    };
+
 }]);

@@ -1,4 +1,30 @@
 {
+  "jsvSaveBase64File" : {
+    "_id" : "wm-jsvSaveBase64File-wm.ServiceVariable-1543551495841",
+    "name" : "jsvSaveBase64File",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "json",
+      "value" : "bind:Widgets.txabase64.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "object",
+    "service" : "SaveBase64File",
+    "operation" : "saveBase64File",
+    "operationId" : "SaveBase64FileController_saveBase64File",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "SaveBase64File"
+  },
   "jsvUpdatePatient" : {
     "_id" : "wm-jsvUpdatePatient-wm.ServiceVariable-1542020530444",
     "name" : "jsvUpdatePatient",

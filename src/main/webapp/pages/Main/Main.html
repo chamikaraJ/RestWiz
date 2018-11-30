@@ -27,6 +27,13 @@
             </wm-composite>
             <wm-button class="btn-default" caption="Button" type="button" margin="unset 0.5em" name="button2" on-click="button2Click($event, $scope);Variables.svUpdatePatient.invoke()"></wm-button>
             <wm-button class="btn-default" caption="Update Patient" type="button" margin="unset 0.5em" name="button3" on-click="Variables.jsvUpdatePatient.invoke()"></wm-button>
+            <wm-composite name="composite3">
+                <wm-label class="col-md-3 control-label" name="label3" caption="Base64Text"></wm-label>
+                <wm-container class="col-md-9" name="container3">
+                    <wm-textarea name="txabase64"></wm-textarea>
+                </wm-container>
+            </wm-composite>
+            <wm-button class="btn-default" caption="save base64 to file" type="button" margin="unset 0.5em" name="button4_1" on-click="button4_1Click($event, $scope)"></wm-button>
         </wm-page-content>
         <wm-right-panel columnwidth="2" name="rightpanel" content="rightnav"></wm-right-panel>
     </wm-content>
