@@ -21,10 +21,29 @@ public class SaveBase64FileController {
     @Autowired
     private SaveBase64File saveBase64File;
 
-    @RequestMapping(value = "/saveBase64File", method = RequestMethod.GET)
+    @RequestMapping(value = "/decoder", method = RequestMethod.GET)
+    public void decoder(@RequestParam(value = "base64Image", required = false) String base64Image, @RequestParam(value = "pathFile", required = false) String pathFile) {
+        saveBase64File.decoder(base64Image, pathFile);
+    }
+
+    @RequestMapping(value = "/archivePath", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void saveBase64File(@RequestParam(value = "json", required = false) String stringToParse) {
+    public String getArchivePath(@RequestParam(value = "context", required = false) String context) {
+        return saveBase64File.getArchivePath(context);
+    }
+
+    @RequestMapping(value = "/saveBase64File", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void saveBase64File(@RequestBody String stringToParse) {
         saveBase64File.saveBase64File(stringToParse);
+    }
+
+    @RequestMapping(value = "/writeToFile", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void writeToFile(@RequestParam(value = "flatJson", required = false) String flatJson, @RequestParam(value = "fileName", required = false) String fileName) {
+        saveBase64File.writeToFile(flatJson, fileName);
     }
 }
