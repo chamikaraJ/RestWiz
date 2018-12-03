@@ -24,13 +24,13 @@
     "table" : "ptcharacters",
     "schema" : "dbo"
   }, {
+    "table" : "JSONTextTemp",
+    "schema" : "dbo"
+  }, {
     "table" : "ptdetail_field_data",
     "schema" : "dbo"
   }, {
     "table" : "x0152578",
-    "schema" : "dbo"
-  }, {
-    "table" : "JSONTextTemp",
     "schema" : "dbo"
   } ],
   "schemaFilter" : [ "dbo" ],

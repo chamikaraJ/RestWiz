@@ -24,6 +24,12 @@ public class JsontextTemp implements Serializable {
 
     private Integer id;
     private String jsonText;
+    private String personalData;
+    private String fundDetails;
+    private String nextOfkin;
+    private String medicalHistory;
+    private String patientNo;
+    private Boolean isFormComplete;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +49,60 @@ public class JsontextTemp implements Serializable {
 
     public void setJsonText(String jsonText) {
         this.jsonText = jsonText;
+    }
+
+    @Column(name = "`personalData`", nullable = true, length = 2147483647)
+    public String getPersonalData() {
+        return this.personalData;
+    }
+
+    public void setPersonalData(String personalData) {
+        this.personalData = personalData;
+    }
+
+    @Column(name = "`fundDetails`", nullable = true, length = 2147483647)
+    public String getFundDetails() {
+        return this.fundDetails;
+    }
+
+    public void setFundDetails(String fundDetails) {
+        this.fundDetails = fundDetails;
+    }
+
+    @Column(name = "`nextOfkin`", nullable = true, length = 2147483647)
+    public String getNextOfkin() {
+        return this.nextOfkin;
+    }
+
+    public void setNextOfkin(String nextOfkin) {
+        this.nextOfkin = nextOfkin;
+    }
+
+    @Column(name = "`medicalHistory`", nullable = true, length = 2147483647)
+    public String getMedicalHistory() {
+        return this.medicalHistory;
+    }
+
+    public void setMedicalHistory(String medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
+    @Column(name = "`patient_no`", nullable = true, length = 255)
+    public String getPatientNo() {
+        return this.patientNo;
+    }
+
+    public void setPatientNo(String patientNo) {
+        this.patientNo = patientNo;
+    }
+
+    @Column(name = "`isFormComplete`", nullable = true)
+    public Boolean getIsFormComplete() {
+        return this.isFormComplete;
+    }
+
+    public void setIsFormComplete(Boolean isFormComplete) {
+        this.isFormComplete = isFormComplete;
     }
 
 

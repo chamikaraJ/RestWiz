@@ -35,11 +35,15 @@ public class JSONTextSave {
     @Autowired
     private JsontextTempService tempService;
 
-    public JsontextTemp saveText(String text) {
+    public JsontextTemp saveText(String text,String personalData,String nextofkin, String medHistory,String patientNo) {
         String result = "";
 
         JsontextTemp temp = new JsontextTemp();
         temp.setJsonText(text);
+        temp.setPersonalData(personalData);
+        temp.setNextOfkin(nextofkin);
+        temp.setMedicalHistory(medHistory);
+        temp.setPatientNo(patientNo);
         temp = tempService.create(temp);
         return temp;
 
