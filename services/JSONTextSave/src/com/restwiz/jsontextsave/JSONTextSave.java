@@ -62,16 +62,22 @@ public class JSONTextSave {
         JSONParser parser = new JSONParser();
         JSONObject json = new JSONObject();
 
-
         try {
-            json = (JSONObject) parser.parse(text.toString());
-            personalData = json.get("personal").toString();
-            fundDetails = json.get("fundDetails").toString();
-            refDetails = json.get("refDetails").toString();
-            nextofkin = json.get("nextofkin").toString();
-            medHistory = json.get("medHistory").toString();
-            patientNo = json.get("patientNo").toString();
-            claimData = json.get("claimData").toString();
+            json = (JSONObject) parser.parse(text);
+            if (json.get("personal") != null)
+                personalData = json.get("personal").toString();
+            if (json.get("fundDetails") != null)
+                fundDetails = json.get("fundDetails").toString();
+            if (json.get("refDetails") != null)
+                refDetails = json.get("refDetails").toString();
+            if (json.get("nextofkin") != null)
+                nextofkin = json.get("nextofkin").toString();
+            if (json.get("medHistory") != null)
+                medHistory = json.get("medHistory").toString();
+            if (json.get("patientNo") != null)
+                patientNo = json.get("patientNo").toString();
+            if (json.get("claimData") != null)
+                claimData = json.get("claimData").toString();
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -83,10 +89,10 @@ public class JSONTextSave {
         temp.setJsonText(claimData);
         temp.setPersonalData(personalData);
         temp.setFundDetails(fundDetails);
+        temp.setRefData(refDetails);
         temp.setNextOfkin(nextofkin);
         temp.setMedicalHistory(medHistory);
         temp.setPatientNo(patientNo);
-
 
         Page<QryGetJsonTextByPatientNoResponse> qryResponses = queryService.executeQryGetJsonTextByPatientNo(patientNo, pageable);
         List<QryGetJsonTextByPatientNoResponse> content = qryResponses.getContent();
@@ -99,8 +105,5 @@ public class JSONTextSave {
             }
         }
         return result;
-
     }
-
-
 }
