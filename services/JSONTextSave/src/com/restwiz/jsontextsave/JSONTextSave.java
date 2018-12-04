@@ -4,13 +4,22 @@
 package com.restwiz.jsontextsave;
 
 import com.restwiz.cwmwsql.JsontextTemp;
+import com.restwiz.cwmwsql.models.query.QryGetJsonTextByPatientNoResponse;
 import com.restwiz.cwmwsql.service.CWmwSQLQueryExecutorService;
 import com.restwiz.cwmwsql.service.JsontextTempService;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 //import com.restwiz.jsontextsave.model.*;
 
@@ -35,17 +44,61 @@ public class JSONTextSave {
     @Autowired
     private JsontextTempService tempService;
 
-    public JsontextTemp saveText(String text,String personalData,String nextofkin, String medHistory,String patientNo) {
-        String result = "";
+    @Autowired
+    private CWmwSQLQueryExecutorService queryService;
+
+    private Pageable pageable = new PageRequest(0, 10);
+
+    private String personalData = null;
+    private String fundDetails = null;
+    private String refDetails = null;
+    private String nextofkin = null;
+    private String medHistory = null;
+    private String patientNo = null;
+    private String claimData = null;
+
+    public JsontextTemp saveText(String text) {
+
+        JSONParser parser = new JSONParser();
+        JSONObject json = new JSONObject();
+
+
+        try {
+            json = (JSONObject) parser.parse(text.toString());
+            personalData = json.get("personal").toString();
+            fundDetails = json.get("fundDetails").toString();
+            refDetails = json.get("refDetails").toString();
+            nextofkin = json.get("nextofkin").toString();
+            medHistory = json.get("medHistory").toString();
+            patientNo = json.get("patientNo").toString();
+            claimData = json.get("claimData").toString();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        JsontextTemp result = null;
 
         JsontextTemp temp = new JsontextTemp();
-        temp.setJsonText(text);
+        temp.setJsonText(claimData);
         temp.setPersonalData(personalData);
+        temp.setFundDetails(fundDetails);
         temp.setNextOfkin(nextofkin);
         temp.setMedicalHistory(medHistory);
         temp.setPatientNo(patientNo);
-        temp = tempService.create(temp);
-        return temp;
+
+
+        Page<QryGetJsonTextByPatientNoResponse> qryResponses = queryService.executeQryGetJsonTextByPatientNo(patientNo, pageable);
+        List<QryGetJsonTextByPatientNoResponse> content = qryResponses.getContent();
+        if (content != null) {
+            String dataExist = content.get(0).getDataExist();
+            if (dataExist.equals("true")) {
+                result = tempService.update(temp);
+            } else {
+                result = tempService.create(temp);
+            }
+        }
+        return result;
 
     }
 

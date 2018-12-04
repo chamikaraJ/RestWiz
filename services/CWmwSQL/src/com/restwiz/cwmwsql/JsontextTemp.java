@@ -30,6 +30,7 @@ public class JsontextTemp implements Serializable {
     private String medicalHistory;
     private String patientNo;
     private Boolean isFormComplete;
+    private String refData;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -103,6 +104,15 @@ public class JsontextTemp implements Serializable {
 
     public void setIsFormComplete(Boolean isFormComplete) {
         this.isFormComplete = isFormComplete;
+    }
+
+    @Column(name = "`refData`", nullable = true, length = 2147483647)
+    public String getRefData() {
+        return this.refData;
+    }
+
+    public void setRefData(String refData) {
+        this.refData = refData;
     }
 
 

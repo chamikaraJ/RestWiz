@@ -23,7 +23,9 @@ public class JSONTextSaveController {
     private JSONTextSave jSONTextSave;
 
     @RequestMapping(value = "/saveText", method = RequestMethod.GET)
-    public JsontextTemp saveText(@RequestParam(value = "text", required = false) String text, @RequestParam(value = "personalData", required = false) String personalData, @RequestParam(value = "nextofkin", required = false) String nextofkin, @RequestParam(value = "medHistory", required = false) String medHistory, @RequestParam(value = "patientNo", required = false) String patientNo) {
-        return jSONTextSave.saveText(text, personalData, nextofkin, medHistory, patientNo);
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public JsontextTemp saveText(@RequestParam(value = "text", required = false) String text) {
+        return jSONTextSave.saveText(text);
     }
 }
