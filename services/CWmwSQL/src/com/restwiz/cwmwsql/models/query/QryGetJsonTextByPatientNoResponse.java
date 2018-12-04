@@ -14,92 +14,15 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class QryGetJsonTextByPatientNoResponse implements Serializable {
 
 
-    @ColumnAlias("ID")
-    private Integer id;
+    @ColumnAlias("dataExist")
+    private String dataExist;
 
-    @ColumnAlias("JsonText")
-    private String jsonText;
-
-    @ColumnAlias("personalData")
-    private String personalData;
-
-    @ColumnAlias("fundDetails")
-    private String fundDetails;
-
-    @ColumnAlias("nextOfkin")
-    private String nextOfkin;
-
-    @ColumnAlias("medicalHistory")
-    private String medicalHistory;
-
-    @ColumnAlias("patient_no")
-    private String patientNo;
-
-    @ColumnAlias("isFormComplete")
-    private Boolean isFormComplete;
-
-    public Integer getId() {
-        return this.id;
+    public String getDataExist() {
+        return this.dataExist;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getJsonText() {
-        return this.jsonText;
-    }
-
-    public void setJsonText(String jsonText) {
-        this.jsonText = jsonText;
-    }
-
-    public String getPersonalData() {
-        return this.personalData;
-    }
-
-    public void setPersonalData(String personalData) {
-        this.personalData = personalData;
-    }
-
-    public String getFundDetails() {
-        return this.fundDetails;
-    }
-
-    public void setFundDetails(String fundDetails) {
-        this.fundDetails = fundDetails;
-    }
-
-    public String getNextOfkin() {
-        return this.nextOfkin;
-    }
-
-    public void setNextOfkin(String nextOfkin) {
-        this.nextOfkin = nextOfkin;
-    }
-
-    public String getMedicalHistory() {
-        return this.medicalHistory;
-    }
-
-    public void setMedicalHistory(String medicalHistory) {
-        this.medicalHistory = medicalHistory;
-    }
-
-    public String getPatientNo() {
-        return this.patientNo;
-    }
-
-    public void setPatientNo(String patientNo) {
-        this.patientNo = patientNo;
-    }
-
-    public Boolean getIsFormComplete() {
-        return this.isFormComplete;
-    }
-
-    public void setIsFormComplete(Boolean isFormComplete) {
-        this.isFormComplete = isFormComplete;
+    public void setDataExist(String dataExist) {
+        this.dataExist = dataExist;
     }
 
     @Override
@@ -107,25 +30,11 @@ public class QryGetJsonTextByPatientNoResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof QryGetJsonTextByPatientNoResponse)) return false;
         final QryGetJsonTextByPatientNoResponse qryGetJsonTextByPatientNoResponse = (QryGetJsonTextByPatientNoResponse) o;
-        return Objects.equals(getId(), qryGetJsonTextByPatientNoResponse.getId()) &&
-                Objects.equals(getJsonText(), qryGetJsonTextByPatientNoResponse.getJsonText()) &&
-                Objects.equals(getPersonalData(), qryGetJsonTextByPatientNoResponse.getPersonalData()) &&
-                Objects.equals(getFundDetails(), qryGetJsonTextByPatientNoResponse.getFundDetails()) &&
-                Objects.equals(getNextOfkin(), qryGetJsonTextByPatientNoResponse.getNextOfkin()) &&
-                Objects.equals(getMedicalHistory(), qryGetJsonTextByPatientNoResponse.getMedicalHistory()) &&
-                Objects.equals(getPatientNo(), qryGetJsonTextByPatientNoResponse.getPatientNo()) &&
-                Objects.equals(getIsFormComplete(), qryGetJsonTextByPatientNoResponse.getIsFormComplete());
+        return Objects.equals(getDataExist(), qryGetJsonTextByPatientNoResponse.getDataExist());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getJsonText(),
-                getPersonalData(),
-                getFundDetails(),
-                getNextOfkin(),
-                getMedicalHistory(),
-                getPatientNo(),
-                getIsFormComplete());
+        return Objects.hash(getDataExist());
     }
 }

@@ -340,14 +340,14 @@ where patient_no = :t_patientno
 
     <sql-query name="qryGetJsonTextByPatientNo">
         <![CDATA[
-        select * from JSONTextTemp where patient_no = :t_patientno
+        select case when count(ID)>0 then 'true' when count(ID)=0 then 'false'  end as dataExist from JSONTextTemp where patient_no = :t_patientno
         ]]>
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetJsonTextByPatientNo__count">
         <![CDATA[
-        select count(*) from (select * from JSONTextTemp where patient_no = :t_patientno) wmTempTable
+        select count(*) from (select case when count(ID)>0 then 'true' when count(ID)=0 then 'false'  end as dataExist from JSONTextTemp where patient_no = :t_patientno) wmTempTable
         ]]>
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
