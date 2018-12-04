@@ -217,6 +217,34 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/qryGetJsonTextByPatientNo", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get json text by patient number for update")
+    public Page<QryGetJsonTextByPatientNoResponse> executeQryGetJsonTextByPatientNo(@RequestParam(value = "t_patientno") String tpatientno, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetJsonTextByPatientNo");
+        Page<QryGetJsonTextByPatientNoResponse> _result = queryService.executeQryGetJsonTextByPatientNo(tpatientno, pageable);
+        LOGGER.debug("got the result for named query: qryGetJsonTextByPatientNo, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetJsonTextByPatientNo")
+    @RequestMapping(value = "/queries/qryGetJsonTextByPatientNo/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetJsonTextByPatientNo(@RequestParam(value = "t_patientno") String tpatientno, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetJsonTextByPatientNo");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetJsonTextByPatientNo";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetJsonTextByPatientNo(tpatientno,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryGetPatientByPatientNo", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get Patient by patient No")

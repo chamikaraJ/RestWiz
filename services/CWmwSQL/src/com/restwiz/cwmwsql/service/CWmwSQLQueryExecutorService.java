@@ -44,6 +44,10 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryUpdateptdetailReg(QryUpdateptdetailRegRequest qryUpdateptdetailRegRequest);
 
+    Page<QryGetJsonTextByPatientNoResponse> executeQryGetJsonTextByPatientNo(String tpatientno, Pageable pageable);
+
+    void exportQryGetJsonTextByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetPatientByPatientNoResponse> executeQryGetPatientByPatientNo(String tpatientno, Pageable pageable);
 
     void exportQryGetPatientByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);

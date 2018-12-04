@@ -338,6 +338,20 @@ where patient_no = :t_patientno
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetJsonTextByPatientNo">
+        <![CDATA[
+        select * from JSONTextTemp where patient_no = :t_patientno
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetJsonTextByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select * from JSONTextTemp where patient_no = :t_patientno) wmTempTable
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetPatientByPatientNo">
         <![CDATA[
         select pt.patient_no,

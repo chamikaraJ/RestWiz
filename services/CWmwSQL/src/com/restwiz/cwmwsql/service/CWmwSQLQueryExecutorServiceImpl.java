@@ -253,6 +253,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
 
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
+    public Page<QryGetJsonTextByPatientNoResponse> executeQryGetJsonTextByPatientNo(String tpatientno, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_patientno", tpatientno);
+
+        return queryExecutor.executeNamedQuery("qryGetJsonTextByPatientNo", params, QryGetJsonTextByPatientNoResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetJsonTextByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_patientno", tpatientno);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetJsonTextByPatientNo", params, QryGetJsonTextByPatientNoResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
     public Page<QryGetPatientByPatientNoResponse> executeQryGetPatientByPatientNo(String tpatientno, Pageable pageable) {
         Map<String, Object> params = new HashMap<>(1);
 

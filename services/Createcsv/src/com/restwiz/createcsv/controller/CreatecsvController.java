@@ -11,6 +11,7 @@ import java.lang.String;
 import org.json.JSONObject;
 import com.restwiz.keyvaluedao.KeyValueDao;
 import java.util.List;
+import java.nio.file.Path;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,7 @@ public class CreatecsvController {
     @RequestMapping(value = "/writeToFile", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void writeToFile(@RequestParam(value = "flatJson", required = false) String flatJson, @RequestParam(value = "fileName", required = false) String fileName) {
-        createcsv.writeToFile(flatJson, fileName);
+    public Path writeToFile(@RequestParam(value = "flatJson", required = false) String flatJson, @RequestParam(value = "fileName", required = false) String fileName) {
+        return createcsv.writeToFile(flatJson, fileName);
     }
 }

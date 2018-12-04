@@ -3,6 +3,7 @@
  with the terms of the source code license agreement you entered into with medicalwizard.com.au*/
 package com.restwiz.createcsv;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.restwiz.keyvaluedao.KeyValueDao;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
@@ -17,15 +18,15 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ExposeToClient
 public class Createcsv {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(Createcsv.class);
 
     private static final Class<?> JSON_OBJECT = JSONObject.class;
@@ -176,14 +177,16 @@ public class Createcsv {
         return csvString;
     }
 
-    public static void writeToFile(String flatJson, String fileName) {
+    public Path writeToFile(String flatJson, String fileName) {
         String csvString = flatJson;
-
+        Path path = null;
         try {
-            Files.write(Paths.get(fileName), csvString.getBytes("ISO8859_1"));
+            path = Files.write(Paths.get(fileName), csvString.getBytes("ISO8859_1"));
         } catch (IOException e) {
             logger.error("CSVWriter#writeLargeFile(flatJson, separator, fileName, headers) IOException: ", e);
         }
+
+        return path;
     }
 
     private String generateFileName(String firstname, String surname) {
@@ -247,100 +250,104 @@ public class Createcsv {
         String vstatus = "";
 
 
-            LinkedHashMap<String, String> patientDetails = (LinkedHashMap) patientDetail;
-            patientDetails.remove("address1"); //Address1 is long complete text with number street city and country
-            patientDetails.remove("txtCSVText");
-            String firstName = patientDetails.get("txtGivenName");
-            String lastName = patientDetails.get("txtSurname");
+        LinkedHashMap<String, String> patientDetails = (LinkedHashMap) patientDetail;
+        patientDetails.remove("address1"); //Address1 is long complete text with number street city and country
+        patientDetails.remove("txtCSVText");
+        String firstName = patientDetails.get("txtGivenName");
+        String lastName = patientDetails.get("txtSurname");
 
-            String detail = patientDetail.toString();
+        String detail = patientDetail.toString();
 
-            String uploadDir = getArchivePath(request.getServletContext().getServletContextName(), firstName, lastName);
+        String uploadDir = getArchivePath(request.getServletContext().getServletContextName(), firstName, lastName);
 
-            String filenme = generateFileName(firstName, lastName) + ".csv";
-            String outputFile = uploadDir + "/" + filenme;
-            // before we open the file check to see if it already exists
-            boolean alreadyExists = new File(outputFile).exists();
+        String filenme = generateFileName(firstName, lastName) + ".csv";
+        String outputFile = uploadDir + "/" + filenme;
+        // before we open the file check to see if it already exists
+        boolean alreadyExists = new File(outputFile).exists();
 
-            try {
-                if (!alreadyExists) {
-                    vstatus = "Success";
+        try {
+            if (!alreadyExists) {
+                vstatus = "Success";
 
-                    String jsonString = detail.replace(", ,", ", ").replace("=", "\":\"").replace(",", "\",\"").replace("\",\" ", "\", \"").replace("\"[", "[\"").replace("]\"", "\"]").replace("{", "{\"").replace("}", "\"}");
+                String jsonString = detail.replace(", ,", ", ").replace("=", "\":\"").replace(",", "\",\"").replace("\",\" ", "\", \"").replace("\"[", "[\"").replace("]\"", "\"]").replace("{", "{\"").replace("}", "\"}");
 
-                    StringBuilder sb = new StringBuilder();
-                    // sb.append("{\"dataValue\": [");
-                    sb.append(jsonString.toString());
-                    // sb.append("]}");
+                StringBuilder sb = new StringBuilder();
+                // sb.append("{\"dataValue\": [");
+                sb.append(jsonString.toString());
+                // sb.append("]}");
 
-                    String flatJson = getCSVString(sb.toString());
+                String flatJson = getCSVString(sb.toString());
 
-                    logger.info("Json string :" + flatJson);
+                logger.info("Json string :" + flatJson);
 
-                    //  TO-DO
-                    writeToFile(flatJson, outputFile);
-                    // writeToFileInputStream(flatJson, filenme);
+                //  TO-DO
+                writeToFile(flatJson, outputFile);
+                // writeToFileInputStream(flatJson, filenme);
 
-                    return flatJson;
+                return flatJson;
 
-                } else {
-                    //File already exists so that data can be appended.  But not for this project- DK
-                    vstatus = "UnSuccess";
-                }
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                vstatus = "Error" + e;
-                e.printStackTrace();
+            } else {
+                //File already exists so that data can be appended.  But not for this project- DK
+                vstatus = "UnSuccess";
             }
-        
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            vstatus = "Error" + e;
+            e.printStackTrace();
+        }
+
 
         return vstatus;
     }
-    
+
     public String createCSVFile(Object patientDetail) throws Exception {
         Object aa = patientDetail;
         String bb = patientDetail.toString();
 
         ObjectMapper mapper = new ObjectMapper();
-        LinkedHashMap<String, String> patientDetails = mapper.readValue((String)patientDetail, LinkedHashMap.class);
+        LinkedHashMap<String, String> patientDetails = mapper.readValue((String) patientDetail, LinkedHashMap.class);
 
 
         String vstatus = "";
 
 
 //            LinkedHashMap<String, String> patientDetails = (LinkedHashMap) patientDetail;
-            patientDetails.remove("address1"); //Address1 is long complete text with number street city and country
-            patientDetails.remove("txtCSVText");
-            String firstName = patientDetails.get("txtGivenName");
-            String lastName = patientDetails.get("txtSurname");
-            String contextName = "RestWiz";
+        patientDetails.remove("address1"); //Address1 is long complete text with number street city and country
+        patientDetails.remove("txtCSVText");
+        String firstName = patientDetails.get("txtGivenName");
+        String lastName = patientDetails.get("txtSurname");
+        String contextName = "RestWiz";
 
-            String detail = patientDetail.toString();
+        String detail = patientDetail.toString();
 
-            String uploadDir = getArchivePath(contextName, firstName, lastName);
+        String uploadDir = getArchivePath(contextName, firstName, lastName);
 
-            String filenme = generateFileName(firstName, lastName) + ".csv";
-            String outputFile = uploadDir + "/" + filenme;
-            // before we open the file check to see if it already exists
-            boolean alreadyExists = new File(outputFile).exists();
+        String filenme = generateFileName(firstName, lastName) + ".csv";
+        String outputFile = uploadDir + "/" + filenme;
+        // before we open the file check to see if it already exists
+        boolean alreadyExists = new File(outputFile).exists();
 
-            try {
-                if (!alreadyExists) {
-                    //  TO-DO
+        try {
+            if (!alreadyExists) {
+                //  TO-DO
 //                    writeToFile(flatJson, outputFile);
-                    writeToFile(detail, outputFile);
+                Path path = writeToFile(detail, outputFile);
 
+                if (path != null) {
                     vstatus = "Success";
-
                 } else {
-                    //File already exists so that data can be appended.  But not for this project- DK
                     vstatus = "UnSuccess";
                 }
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                vstatus = "Error" + e;
-                e.printStackTrace();
+
+            } else {
+                //File already exists so that data can be appended.  But not for this project- DK
+                vstatus = "UnSuccess";
             }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            vstatus = "Error" + e;
+            e.printStackTrace();
+        }
 
 
         return vstatus;
