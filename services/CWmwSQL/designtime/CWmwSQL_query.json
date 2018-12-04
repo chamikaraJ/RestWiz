@@ -167,8 +167,8 @@
     "name" : "qryGetAllJsonText",
     "description" : "get all json text",
     "version" : "V2",
-    "queryString" : "select * from JSONTextTemp",
-    "countQueryString" : "select count(*) from (select * from JSONTextTemp) wmTempTable",
+    "queryString" : "select * from JSONTextTemp where isFormComplete = 1",
+    "countQueryString" : "select count(*) from (select * from JSONTextTemp where isFormComplete = 1) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -199,6 +199,60 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "personalData",
+        "fieldName" : "personalData",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fundDetails",
+        "fieldName" : "fundDetails",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "nextOfkin",
+        "fieldName" : "nextOfkin",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "medicalHistory",
+        "fieldName" : "medicalHistory",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "patient_no",
+        "fieldName" : "patientNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "isFormComplete",
+        "fieldName" : "isFormComplete",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
           "list" : false
         }
       } ]

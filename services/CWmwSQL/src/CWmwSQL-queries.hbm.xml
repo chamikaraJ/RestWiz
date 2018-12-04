@@ -803,13 +803,13 @@ postcode = :t_postcode where accountno = :t_accountno
 
     <sql-query name="qryGetAllJsonText">
         <![CDATA[
-        select * from JSONTextTemp
+        select * from JSONTextTemp where isFormComplete = 1
         ]]>
     </sql-query>
 
     <sql-query name="qryGetAllJsonText__count">
         <![CDATA[
-        select count(*) from (select * from JSONTextTemp) wmTempTable
+        select count(*) from (select * from JSONTextTemp where isFormComplete = 1) wmTempTable
         ]]>
     </sql-query>
 

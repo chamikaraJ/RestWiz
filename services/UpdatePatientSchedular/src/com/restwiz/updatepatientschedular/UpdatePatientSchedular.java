@@ -86,7 +86,7 @@ public class UpdatePatientSchedular {
             for (int i = 0; i < content.size(); i++) {
                 result = savePatientData(content.get(i).getJsonText());
                 if (result.length() > 0) {
-                    tempService.delete(content.get(i).getId());
+                    // tempService.delete(content.get(i).getId());
                 }
             }
         }
