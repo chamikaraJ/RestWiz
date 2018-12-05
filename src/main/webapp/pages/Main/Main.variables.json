@@ -1,4 +1,30 @@
 {
+  "jsvJsonTextSave" : {
+    "_id" : "wm-jsvJsonTextSave-wm.ServiceVariable-1544013708428",
+    "name" : "jsvJsonTextSave",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "isList" : false,
+      "target" : "String",
+      "value" : "bind:Widgets.txajson.datavalue"
+    } ],
+    "type" : "com.restwiz.cwmwsql.JsontextTemp",
+    "service" : "JSONTextSave",
+    "operation" : "saveText",
+    "operationId" : "JSONTextSaveController_saveText",
+    "operationType" : "post",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "JSONTextSave"
+  },
   "jsvSaveBase64File" : {
     "_id" : "wm-jsvSaveBase64File-wm.ServiceVariable-1543551495841",
     "name" : "jsvSaveBase64File",
