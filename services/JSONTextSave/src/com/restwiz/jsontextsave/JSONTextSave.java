@@ -75,7 +75,7 @@ public class JSONTextSave {
             if (json.get("medHistory") != null)
                 medHistory = json.get("medHistory").toString();
             if (json.get("patientNo") != null)
-                patientNo = json.get("patientNo").toString();
+                patientNo = json.get("patientNo").toString().trim();
             if (json.get("claimData") != null)
                 claimData = json.get("claimData").toString();
 
@@ -93,6 +93,10 @@ public class JSONTextSave {
         temp.setNextOfkin(nextofkin);
         temp.setMedicalHistory(medHistory);
         temp.setPatientNo(patientNo);
+        
+if(patientNo!=null){
+    
+    logger.warn("Data find for Patient No : "+ patientNo);
 
         Page<QryGetJsonTextByPatientNoResponse> qryResponses = queryService.executeQryGetJsonTextByPatientNo(patientNo, pageable);
         List<QryGetJsonTextByPatientNoResponse> content = qryResponses.getContent();
@@ -104,6 +108,7 @@ public class JSONTextSave {
                 result = tempService.create(temp);
             }
         }
+}
         return result;
     }
 }
