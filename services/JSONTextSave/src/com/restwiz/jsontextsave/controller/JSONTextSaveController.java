@@ -22,10 +22,10 @@ public class JSONTextSaveController {
     @Autowired
     private JSONTextSave jSONTextSave;
 
-    @RequestMapping(value = "/saveText", method = RequestMethod.GET)
+    @RequestMapping(value = "/saveText", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public JsontextTemp saveText(@RequestParam(value = "text", required = false) String text) {
+    public JsontextTemp saveText(@RequestBody String text) {
         return jSONTextSave.saveText(text);
     }
 }
