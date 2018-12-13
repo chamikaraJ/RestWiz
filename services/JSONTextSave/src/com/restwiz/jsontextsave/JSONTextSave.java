@@ -56,6 +56,7 @@ public class JSONTextSave {
     private String medHistory = null;
     private String patientNo = null;
     private String claimData = null;
+    private Boolean formComplete = null;
 
     public JsontextTemp saveText(String text) {
 
@@ -78,6 +79,8 @@ public class JSONTextSave {
                 patientNo = json.get("patientNo").toString().trim();
             if (json.get("claimData") != null)
                 claimData = json.get("claimData").toString();
+            if(json.get("formComplete") != null)
+                formComplete = new Boolean(json.get("formComplete").toString());
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -93,6 +96,7 @@ public class JSONTextSave {
         temp.setNextOfkin(nextofkin);
         temp.setMedicalHistory(medHistory);
         temp.setPatientNo(patientNo);
+        temp.setIsFormComplete(formComplete);
         
 if(patientNo!=null){
     
