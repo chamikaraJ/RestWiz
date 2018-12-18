@@ -255,6 +255,15 @@
           "typeRef" : "java.lang.Boolean",
           "list" : false
         }
+      }, {
+        "name" : "refData",
+        "fieldName" : "refData",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
       } ]
     }
   },

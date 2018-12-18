@@ -38,6 +38,9 @@ public class QryGetAllJsonTextResponse implements Serializable {
     @ColumnAlias("isFormComplete")
     private Boolean isFormComplete;
 
+    @ColumnAlias("refData")
+    private String refData;
+
     public Integer getId() {
         return this.id;
     }
@@ -102,6 +105,14 @@ public class QryGetAllJsonTextResponse implements Serializable {
         this.isFormComplete = isFormComplete;
     }
 
+    public String getRefData() {
+        return this.refData;
+    }
+
+    public void setRefData(String refData) {
+        this.refData = refData;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,7 +125,8 @@ public class QryGetAllJsonTextResponse implements Serializable {
                 Objects.equals(getNextOfkin(), qryGetAllJsonTextResponse.getNextOfkin()) &&
                 Objects.equals(getMedicalHistory(), qryGetAllJsonTextResponse.getMedicalHistory()) &&
                 Objects.equals(getPatientNo(), qryGetAllJsonTextResponse.getPatientNo()) &&
-                Objects.equals(getIsFormComplete(), qryGetAllJsonTextResponse.getIsFormComplete());
+                Objects.equals(getIsFormComplete(), qryGetAllJsonTextResponse.getIsFormComplete()) &&
+                Objects.equals(getRefData(), qryGetAllJsonTextResponse.getRefData());
     }
 
     @Override
@@ -126,6 +138,7 @@ public class QryGetAllJsonTextResponse implements Serializable {
                 getNextOfkin(),
                 getMedicalHistory(),
                 getPatientNo(),
-                getIsFormComplete());
+                getIsFormComplete(),
+                getRefData());
     }
 }
