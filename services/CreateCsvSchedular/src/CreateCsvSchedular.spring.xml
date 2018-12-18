@@ -17,10 +17,9 @@ http://www.springframework.org/schema/security/spring-security.xsd"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <bean class="com.restwiz.createcsvschedular.CreateCsvSchedular" scope="singleton" lazy-init="true" id="CreateCsvSchedular"/>
     <bean class="com.restwiz.createcsvschedular.controller.CreateCsvSchedularController" id="CreateCsvSchedularController"/>
-    <!--TO-DO-->
-    <!--<task:scheduled-tasks >-->
-    <!--    <task:scheduled cron="*/5 * * * * ?" method="startCsvJob" ref="CreateCsvSchedular"/>-->
-    <!--</task:scheduled-tasks>-->
+    <task:scheduled-tasks >
+        <task:scheduled cron="*/5 * * * * ?" method="startCsvJob" ref="CreateCsvSchedular"/>
+    </task:scheduled-tasks>
 </beans>
 
 
