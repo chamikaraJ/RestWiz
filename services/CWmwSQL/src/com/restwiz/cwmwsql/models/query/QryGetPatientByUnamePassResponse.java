@@ -174,6 +174,12 @@ public class QryGetPatientByUnamePassResponse implements Serializable {
     @ColumnAlias("base64ImageUrl")
     private String base64imageUrl;
 
+    @ColumnAlias("ptregidno")
+    private Integer ptregidno;
+
+    @ColumnAlias("loginid")
+    private Integer loginid;
+
     @ColumnAlias("middleName")
     private String middleName;
 
@@ -604,6 +610,22 @@ public class QryGetPatientByUnamePassResponse implements Serializable {
         this.base64imageUrl = base64imageUrl;
     }
 
+    public Integer getPtregidno() {
+        return this.ptregidno;
+    }
+
+    public void setPtregidno(Integer ptregidno) {
+        this.ptregidno = ptregidno;
+    }
+
+    public Integer getLoginid() {
+        return this.loginid;
+    }
+
+    public void setLoginid(Integer loginid) {
+        this.loginid = loginid;
+    }
+
     public String getMiddleName() {
         return this.middleName;
     }
@@ -678,6 +700,8 @@ public class QryGetPatientByUnamePassResponse implements Serializable {
                 Objects.equals(getNokContactNo(), qryGetPatientByUnamePassResponse.getNokContactNo()) &&
                 Objects.equals(getSigText(), qryGetPatientByUnamePassResponse.getSigText()) &&
                 Objects.equals(getBase64imageUrl(), qryGetPatientByUnamePassResponse.getBase64imageUrl()) &&
+                Objects.equals(getPtregidno(), qryGetPatientByUnamePassResponse.getPtregidno()) &&
+                Objects.equals(getLoginid(), qryGetPatientByUnamePassResponse.getLoginid()) &&
                 Objects.equals(getMiddleName(), qryGetPatientByUnamePassResponse.getMiddleName()) &&
                 Objects.equals(getPreferedName(), qryGetPatientByUnamePassResponse.getPreferedName());
     }
@@ -737,6 +761,8 @@ public class QryGetPatientByUnamePassResponse implements Serializable {
                 getNokContactNo(),
                 getSigText(),
                 getBase64imageUrl(),
+                getPtregidno(),
+                getLoginid(),
                 getMiddleName(),
                 getPreferedName());
     }

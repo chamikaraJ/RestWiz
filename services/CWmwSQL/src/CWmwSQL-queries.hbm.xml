@@ -210,8 +210,10 @@ ptreg.nokRelationship,
 ptreg.nokContactNo,
 ptreg.sigText,
 ptreg.base64ImageUrl,
+ptreg.idno as ptregidno,
+lg.IdNo as loginid,
 ptchar.midname as middleName,
-ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = (select patient_no from x0152578 where userid = :t_username and password = :t_pass)
+ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no left join x0152578 lg on pt.patient_no = lg.patient_no where userid = :t_username and password = :t_pass
         ]]>
     <query-param name="t_username" type="java.lang.String"/>
     <query-param name="t_pass" type="java.lang.String"/>
@@ -272,8 +274,10 @@ ptreg.nokRelationship,
 ptreg.nokContactNo,
 ptreg.sigText,
 ptreg.base64ImageUrl,
+ptreg.idno as ptregidno,
+lg.IdNo as loginid,
 ptchar.midname as middleName,
-ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no where pt.patient_no = (select patient_no from x0152578 where userid = :t_username and password = :t_pass)) wmTempTable
+ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no left join x0152578 lg on pt.patient_no = lg.patient_no where userid = :t_username and password = :t_pass) wmTempTable
         ]]>
     <query-param name="t_username" type="java.lang.String"/>
     <query-param name="t_pass" type="java.lang.String"/>
