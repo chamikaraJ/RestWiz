@@ -66,7 +66,7 @@ public class PatientRegSchedular {
             }
         
             
-            //Get Patient list to be saved
+            //Get Patient list from patient_reg table to be saved
             Page<QryGetVerifiedPatientsResponse> resultSet =  queryExecutorService.executeQryGetVerifiedPatients(pageable);
             
             if(resultSet.getContent().size()>0){

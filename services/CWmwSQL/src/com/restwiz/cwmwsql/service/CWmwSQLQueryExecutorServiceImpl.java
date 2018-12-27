@@ -574,6 +574,30 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
 
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
+    public Page<QryGetLoginDetailsByUnameAndPassResponse> executeQryGetLoginDetailsByUnameAndPass(String tusername, String tpass, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(2);
+
+        params.put("t_username", tusername);
+        params.put("t_pass", tpass);
+
+        return queryExecutor.executeNamedQuery("qryGetLoginDetailsByUnameAndPass", params, QryGetLoginDetailsByUnameAndPassResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetLoginDetailsByUnameAndPass(String tusername, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(2);
+
+        params.put("t_username", tusername);
+        params.put("t_pass", tpass);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetLoginDetailsByUnameAndPass", params, QryGetLoginDetailsByUnameAndPassResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
     public Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, Pageable pageable) {
         Map<String, Object> params = new HashMap<>(1);
 

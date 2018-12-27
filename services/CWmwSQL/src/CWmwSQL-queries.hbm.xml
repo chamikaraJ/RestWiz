@@ -788,6 +788,22 @@ postcode = :t_postcode where accountno = :t_accountno
     <query-param name="t_idCode" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetLoginDetailsByUnameAndPass">
+        <![CDATA[
+        select * from x0152578 where userid = :t_username and password = :t_pass
+        ]]>
+    <query-param name="t_username" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetLoginDetailsByUnameAndPass__count">
+        <![CDATA[
+        select count(*) from (select * from x0152578 where userid = :t_username and password = :t_pass) wmTempTable
+        ]]>
+    <query-param name="t_username" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetUserAuth">
         <![CDATA[
         select patient_no from  x0152578 where userid = :t_userid

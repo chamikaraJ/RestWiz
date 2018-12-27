@@ -364,7 +364,7 @@ public class Createcsv {
         patientDetails.remove("refDraddress1");
         patientDetails.remove("txt64bitImageUrl");
         patientDetails.remove("txtSigText");
-        
+
         String firstName = patientDetails.get("txtGivenName");
         String lastName = patientDetails.get("txtSurname");
         String contextName = "RestWiz";
@@ -373,6 +373,8 @@ public class Createcsv {
         String detail = patientDetail.toString()
                 .replaceAll("=", "\":\"")
                 .replaceAll(",", "\",\"")
+                .replaceAll("]\"", "\"]")
+                .replaceAll("\"\\[", "[\"")
                 .replace("}", "\"}")
                 .replace("{", "{\"");
 
@@ -387,7 +389,7 @@ public class Createcsv {
             if (!alreadyExists) {
                 //Convert json string to csv string
                 String flatJson = getCSVString(detail);
-                
+
                 //Write file to disk
                 Path path = writeToFile(flatJson, outputFile);
 

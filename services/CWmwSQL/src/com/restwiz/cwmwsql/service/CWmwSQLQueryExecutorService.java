@@ -98,6 +98,10 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryUpdateNextPtGenCode(QryUpdateNextPtGenCodeRequest qryUpdateNextPtGenCodeRequest);
 
+    Page<QryGetLoginDetailsByUnameAndPassResponse> executeQryGetLoginDetailsByUnameAndPass(String tusername, String tpass, Pageable pageable);
+
+    void exportQryGetLoginDetailsByUnameAndPass(String tusername, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, Pageable pageable);
 
     void exportQryGetUserAuth(String tuserid, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);

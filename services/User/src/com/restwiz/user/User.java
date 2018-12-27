@@ -19,6 +19,8 @@ package com.restwiz.user;
         import org.springframework.data.domain.Pageable;
 
         import java.util.List;
+        import java.util.HashMap;
+        import java.util.Map;
 
 //import com.restwiz.user.model.*;
 
@@ -45,8 +47,11 @@ public class User {
 
 
     // public QryGetPatientByPatientNoResponse getPatient(String patientAuth) {
-         public QryGetPatientByUnamePassResponse getPatient(String patientAuth) {
+        //  public QryGetPatientByUnamePassResponse getPatient(String patientAuth) {
+        public Object getPatient(String patientAuth) {
         String patientNo = "patient not found";
+        
+        Object result = "Login details not found";
 
         Pageable pageable = new PageRequest(0, 10);
         Ptdetail pt = new Ptdetail();
@@ -55,7 +60,8 @@ public class User {
         JSONObject json = new JSONObject();
         // QryGetPatientByPatientNoResponse qryGetPatientByPatientNoResponse = null;
         
-        QryGetPatientByUnamePassResponse qryGetPatientByPatientNoResponse = null;
+        // QryGetPatientByUnamePassResponse qryGetPatientByPatientNoResponse = null;
+        Object qryGetPatientByPatientNoResponse = null;
         
         
         try {
@@ -75,17 +81,35 @@ public class User {
             // qryGetPatientByPatientNoResponse = content1.get(0);
             
             
-            Page<QryGetPatientByUnamePassResponse> qryGetPatientByPatientNoResponses = cWmwSQLQueryExecutorService.executeQryGetPatientByUnamePass(tuserid,tpass,pageable);
-            List<QryGetPatientByUnamePassResponse> content1 = qryGetPatientByPatientNoResponses.getContent();
-            if(content1.size()>0) {
-                qryGetPatientByPatientNoResponse = content1.get(0);
+       
+            Page<QryGetLoginDetailsByUnameAndPassResponse> logindetails =  cWmwSQLQueryExecutorService.executeQryGetLoginDetailsByUnameAndPass(tuserid,tpass,pageable);
+            List<QryGetLoginDetailsByUnameAndPassResponse> contLoginDtl = logindetails.getContent();
+            if(contLoginDtl.size()>0) {
+                QryGetLoginDetailsByUnameAndPassResponse res = contLoginDtl.get(0);
+                
+                if(res.getPatientNo()!=null){
+                    Page<QryGetPatientByUnamePassResponse> qryGetPatientByPatientNoResponses = cWmwSQLQueryExecutorService.executeQryGetPatientByUnamePass(tuserid,tpass,pageable);
+                        List<QryGetPatientByUnamePassResponse> content1 = qryGetPatientByPatientNoResponses.getContent();
+                    if(content1.size()>0) {
+                        result = content1.get(0);
+                    }else{
+                        result = null;
+                    }
+                    // return qryGetPatientByPatientNoResponse;
+                    
+                }else{
+                    Map<String, String> map = new HashMap<>();
+                    map.put("given",res.getUserid());
+                    map.put("message" , "Your details are in verification process!");
+                    result =map; 
+                }
             }else{
-                qryGetPatientByPatientNoResponse = null;
+                result = "Login details not found";
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return qryGetPatientByPatientNoResponse;
+        return result;
     }
 
 }
