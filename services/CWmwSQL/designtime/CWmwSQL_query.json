@@ -3851,6 +3851,244 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryUpdatePtdetailRegByEmail" : {
+    "name" : "qryUpdatePtdetailRegByEmail",
+    "description" : "qryUpdatePtdetailRegByEmail",
+    "version" : "V2",
+    "queryString" : "update ptdetail_reg set famDrTitle = :t_famdrtitle,\nfamDrGiven = :t_famdrgiven,\nfamDrSurname = :t_famdrSurname,\nfamDrProviderNo = :t_famdrProNo,\nfamDrMedicareCenter = :t_famdrMedCenter,\nfamDrAdr1 = :t_famdrAdd1,\nfamDrAdr2 = :t_famdrAdd2,\nfamDrSuburb = :t_famdrsuburb,\nfamDrState = :t_famdrstate,\nfamDrPostCode = :t_famdrpostcode,\nrefDrTitle = :t_refdrtitle,\nrefDrGiven = :t_refdrgiven,\nrefDrSurname = :t_refdrSurname,\nrefDrProviderNo = :t_refdrProNo,\nrefDrMedicareCenter = :t_refdrMedCenter,\nrefDrAdr1 = :t_refdrAdd1,\nrefDrAdr2 = :t_refdrAdd2,\nrefDrSuburb = :t_refdrsuburb,\nrefDrState = :t_refdrstate,\nrefDrPostCode = :t_refdrpostcode,\nnokGiven = :t_nokgiven,\nnokSUrname = :t_noksurname,\nnokRelationship = :t_nokrelationship,\nnokContactNo = :t_nokcontactno,\nsigText = :t_sigText,\nbase64ImageUrl = :t_base64imageurl\nwhere email = :t_email",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "t_famdrtitle",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_famdrgiven",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_famdrSurname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_famdrProNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_famdrMedCenter",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_famdrAdd1",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_famdrAdd2",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_famdrsuburb",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_famdrstate",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_famdrpostcode",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_refdrtitle",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_refdrgiven",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_refdrSurname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_refdrProNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_refdrMedCenter",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_refdrAdd1",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_refdrAdd2",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_refdrsuburb",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_refdrstate",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_refdrpostcode",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_nokgiven",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_noksurname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_nokrelationship",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_nokcontactno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_sigText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_base64imageurl",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "a",
+      "required" : false
+    }, {
+      "name" : "t_email",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "cj@aa.aa",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdatePtdetailRegByEmailRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "qryUpdateptdetailReg" : {
     "name" : "qryUpdateptdetailReg",
     "description" : "update ptdetailreg table",

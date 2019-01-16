@@ -301,6 +301,16 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryUpdatePtdetailRegByEmail", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "qryUpdatePtdetailRegByEmail")
+    public IntegerWrapper executeQryUpdatePtdetailRegByEmail(@Valid @RequestBody QryUpdatePtdetailRegByEmailRequest qryUpdatePtdetailRegByEmailRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryUpdatePtdetailRegByEmail");
+        Integer _result = queryService.executeQryUpdatePtdetailRegByEmail(qryUpdatePtdetailRegByEmailRequest);
+        LOGGER.debug("got the result for named query: qryUpdatePtdetailRegByEmail, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/qryGetClinCatDatByCode", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get clinCatDat by code")

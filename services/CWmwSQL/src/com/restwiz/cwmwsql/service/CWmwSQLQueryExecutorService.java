@@ -56,6 +56,8 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetVerifiedPatients(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Integer executeQryUpdatePtdetailRegByEmail(QryUpdatePtdetailRegByEmailRequest qryUpdatePtdetailRegByEmailRequest);
+
     Page<QryGetClinCatDatByCodeResponse> executeQryGetClinCatDatByCode(String tcode, Pageable pageable);
 
     void exportQryGetClinCatDatByCode(String tcode, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);

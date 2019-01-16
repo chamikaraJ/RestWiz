@@ -490,6 +490,65 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
         ]]>
     </sql-query>
 
+    <sql-query name="qryUpdatePtdetailRegByEmail">
+        <![CDATA[
+        update ptdetail_reg set famDrTitle = :t_famdrtitle,
+famDrGiven = :t_famdrgiven,
+famDrSurname = :t_famdrSurname,
+famDrProviderNo = :t_famdrProNo,
+famDrMedicareCenter = :t_famdrMedCenter,
+famDrAdr1 = :t_famdrAdd1,
+famDrAdr2 = :t_famdrAdd2,
+famDrSuburb = :t_famdrsuburb,
+famDrState = :t_famdrstate,
+famDrPostCode = :t_famdrpostcode,
+refDrTitle = :t_refdrtitle,
+refDrGiven = :t_refdrgiven,
+refDrSurname = :t_refdrSurname,
+refDrProviderNo = :t_refdrProNo,
+refDrMedicareCenter = :t_refdrMedCenter,
+refDrAdr1 = :t_refdrAdd1,
+refDrAdr2 = :t_refdrAdd2,
+refDrSuburb = :t_refdrsuburb,
+refDrState = :t_refdrstate,
+refDrPostCode = :t_refdrpostcode,
+nokGiven = :t_nokgiven,
+nokSUrname = :t_noksurname,
+nokRelationship = :t_nokrelationship,
+nokContactNo = :t_nokcontactno,
+sigText = :t_sigText,
+base64ImageUrl = :t_base64imageurl
+where email = :t_email
+        ]]>
+    <query-param name="t_famdrtitle" type="java.lang.String"/>
+    <query-param name="t_famdrgiven" type="java.lang.String"/>
+    <query-param name="t_famdrSurname" type="java.lang.String"/>
+    <query-param name="t_famdrProNo" type="java.lang.String"/>
+    <query-param name="t_famdrMedCenter" type="java.lang.String"/>
+    <query-param name="t_famdrAdd1" type="java.lang.String"/>
+    <query-param name="t_famdrAdd2" type="java.lang.String"/>
+    <query-param name="t_famdrsuburb" type="java.lang.String"/>
+    <query-param name="t_famdrstate" type="java.lang.String"/>
+    <query-param name="t_famdrpostcode" type="java.lang.String"/>
+    <query-param name="t_refdrtitle" type="java.lang.String"/>
+    <query-param name="t_refdrgiven" type="java.lang.String"/>
+    <query-param name="t_refdrSurname" type="java.lang.String"/>
+    <query-param name="t_refdrProNo" type="java.lang.String"/>
+    <query-param name="t_refdrMedCenter" type="java.lang.String"/>
+    <query-param name="t_refdrAdd1" type="java.lang.String"/>
+    <query-param name="t_refdrAdd2" type="java.lang.String"/>
+    <query-param name="t_refdrsuburb" type="java.lang.String"/>
+    <query-param name="t_refdrstate" type="java.lang.String"/>
+    <query-param name="t_refdrpostcode" type="java.lang.String"/>
+    <query-param name="t_nokgiven" type="java.lang.String"/>
+    <query-param name="t_noksurname" type="java.lang.String"/>
+    <query-param name="t_nokrelationship" type="java.lang.String"/>
+    <query-param name="t_nokcontactno" type="java.lang.String"/>
+    <query-param name="t_sigText" type="java.lang.String"/>
+    <query-param name="t_base64imageurl" type="java.lang.String"/>
+    <query-param name="t_email" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetClinCatDatByCode">
         <![CDATA[
         select * from clinCatDat where code = :t_code

@@ -315,6 +315,42 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryUpdatePtdetailRegByEmail(QryUpdatePtdetailRegByEmailRequest qryUpdatePtdetailRegByEmailRequest) {
+        Map<String, Object> params = new HashMap<>(27);
+
+        params.put("t_famdrtitle", qryUpdatePtdetailRegByEmailRequest.getTfamdrtitle());
+        params.put("t_famdrgiven", qryUpdatePtdetailRegByEmailRequest.getTfamdrgiven());
+        params.put("t_famdrSurname", qryUpdatePtdetailRegByEmailRequest.getTfamdrSurname());
+        params.put("t_famdrProNo", qryUpdatePtdetailRegByEmailRequest.getTfamdrProNo());
+        params.put("t_famdrMedCenter", qryUpdatePtdetailRegByEmailRequest.getTfamdrMedCenter());
+        params.put("t_famdrAdd1", qryUpdatePtdetailRegByEmailRequest.getTfamdrAdd1());
+        params.put("t_famdrAdd2", qryUpdatePtdetailRegByEmailRequest.getTfamdrAdd2());
+        params.put("t_famdrsuburb", qryUpdatePtdetailRegByEmailRequest.getTfamdrsuburb());
+        params.put("t_famdrstate", qryUpdatePtdetailRegByEmailRequest.getTfamdrstate());
+        params.put("t_famdrpostcode", qryUpdatePtdetailRegByEmailRequest.getTfamdrpostcode());
+        params.put("t_refdrtitle", qryUpdatePtdetailRegByEmailRequest.getTrefdrtitle());
+        params.put("t_refdrgiven", qryUpdatePtdetailRegByEmailRequest.getTrefdrgiven());
+        params.put("t_refdrSurname", qryUpdatePtdetailRegByEmailRequest.getTrefdrSurname());
+        params.put("t_refdrProNo", qryUpdatePtdetailRegByEmailRequest.getTrefdrProNo());
+        params.put("t_refdrMedCenter", qryUpdatePtdetailRegByEmailRequest.getTrefdrMedCenter());
+        params.put("t_refdrAdd1", qryUpdatePtdetailRegByEmailRequest.getTrefdrAdd1());
+        params.put("t_refdrAdd2", qryUpdatePtdetailRegByEmailRequest.getTrefdrAdd2());
+        params.put("t_refdrsuburb", qryUpdatePtdetailRegByEmailRequest.getTrefdrsuburb());
+        params.put("t_refdrstate", qryUpdatePtdetailRegByEmailRequest.getTrefdrstate());
+        params.put("t_refdrpostcode", qryUpdatePtdetailRegByEmailRequest.getTrefdrpostcode());
+        params.put("t_nokgiven", qryUpdatePtdetailRegByEmailRequest.getTnokgiven());
+        params.put("t_noksurname", qryUpdatePtdetailRegByEmailRequest.getTnoksurname());
+        params.put("t_nokrelationship", qryUpdatePtdetailRegByEmailRequest.getTnokrelationship());
+        params.put("t_nokcontactno", qryUpdatePtdetailRegByEmailRequest.getTnokcontactno());
+        params.put("t_sigText", qryUpdatePtdetailRegByEmailRequest.getTsigText());
+        params.put("t_base64imageurl", qryUpdatePtdetailRegByEmailRequest.getTbase64imageurl());
+        params.put("t_email", qryUpdatePtdetailRegByEmailRequest.getTemail());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryUpdatePtdetailRegByEmail", params);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
     public Page<QryGetClinCatDatByCodeResponse> executeQryGetClinCatDatByCode(String tcode, Pageable pageable) {

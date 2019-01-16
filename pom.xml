@@ -69,6 +69,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/UpdatePatientByEmail/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/UpdatePatientSchedular/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -184,6 +191,7 @@
                                 <source>services/Patient/src</source>
                                 <source>services/PatientRegSchedular/src</source>
                                 <source>services/SaveBase64File/src</source>
+                                <source>services/UpdatePatientByEmail/src</source>
                                 <source>services/UpdatePatientSchedular/src</source>
                                 <source>services/User/src</source>
                                 <source>services/clinicalobs/src</source>
@@ -384,16 +392,16 @@
             <version>2.9.7</version>
         </dependency>
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
+        <dependency>
             <groupId>sqljdbc42</groupId>
             <artifactId>sqljdbc42</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.lib.directory}/sqljdbc42.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.38</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
