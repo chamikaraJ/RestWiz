@@ -61,8 +61,6 @@ public class UpdatePatientByEmail {
      */
 public String updatePatientData(String patienData) {
     
-    System.out.println(patienData);
-
         Pageable pageable = new PageRequest(0, 10);
         String output = "";
         JSONParser parser = new JSONParser();
@@ -100,7 +98,6 @@ public String updatePatientData(String patienData) {
             regRequest.setTnoksurname(json.get("txtLastName") != null ? json.get("txtLastName").toString().trim() : "");
             regRequest.setTnokrelationship(json.get("slcRelationship") != null ? json.get("slcRelationship").toString().trim() : "");
             regRequest.setTnokcontactno(json.get("txtContctNo") != null ? json.get("txtContctNo").toString().trim() : "");
-            System.out.println("email is "+json.get("txtEmail").toString().trim());
             regRequest.setTemail(json.get("txtEmail").toString().trim());
             regRequest.setTsigText(json.get("txtSigText").toString());
             regRequest.setTbase64imageurl(json.get("txt64bitImageUrl") !=null ?json.get("txt64bitImageUrl").toString():"");

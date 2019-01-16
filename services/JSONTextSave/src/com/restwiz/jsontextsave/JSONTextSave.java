@@ -54,7 +54,8 @@ public class JSONTextSave {
     private String refDetails = null;
     private String nextofkin = null;
     private String medHistory = null;
-    private String patientNo = null;
+    private String patientNo = null; //Replace by email
+    private String email = null;
     private String claimData = null;
     private Boolean formComplete = null;
 
@@ -77,10 +78,13 @@ public class JSONTextSave {
                 medHistory = json.get("medHistory").toString();
             if (json.get("patientNo") != null)
                 patientNo = json.get("patientNo").toString().trim();
+            if (json.get("email") != null)
+                email = json.get("email").toString().trim();
             if (json.get("claimData") != null)
                 claimData = json.get("claimData").toString();
             if(json.get("formComplete") != null)
                 formComplete = new Boolean(json.get("formComplete").toString());
+                
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -96,13 +100,14 @@ public class JSONTextSave {
         temp.setNextOfkin(nextofkin);
         temp.setMedicalHistory(medHistory);
         temp.setPatientNo(patientNo);
+        temp.setEmail(email);
         temp.setIsFormComplete(formComplete);
         
-if(patientNo!=null){
+// if(patientNo!=null){
     
-    logger.warn("Data find for Patient No : "+ patientNo);
+    // logger.warn("Data find for Patient No : "+ patientNo);
 
-        Page<QryGetJsonTextByPatientNoResponse> qryResponses = queryService.executeQryGetJsonTextByPatientNo(patientNo, pageable);
+        Page<QryGetJsonTextByPatientNoResponse> qryResponses = queryService.executeQryGetJsonTextByPatientNo(email, pageable);
         List<QryGetJsonTextByPatientNoResponse> content = qryResponses.getContent();
         if (content != null) {
             String dataExist = content.get(0).getDataExist();
@@ -112,7 +117,7 @@ if(patientNo!=null){
                 result = tempService.create(temp);
             }
         }
-}
+// }
         return result;
     }
 }

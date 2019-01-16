@@ -31,6 +31,7 @@ public class JsontextTemp implements Serializable {
     private String patientNo;
     private Boolean isFormComplete;
     private String refData;
+    private String email;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -113,6 +114,15 @@ public class JsontextTemp implements Serializable {
 
     public void setRefData(String refData) {
         this.refData = refData;
+    }
+
+    @Column(name = "`email`", nullable = true, length = 255)
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 

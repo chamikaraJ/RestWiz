@@ -87,7 +87,7 @@ public class User {
             if(contLoginDtl.size()>0) {
                 QryGetLoginDetailsByUnameAndPassResponse res = contLoginDtl.get(0);
                 
-                if(res.getPatientNo()!=null){
+                if(res.getPatientNo()!=null && !res.getPatientNo().equals("")){
                     Page<QryGetPatientByUnamePassResponse> qryGetPatientByPatientNoResponses = cWmwSQLQueryExecutorService.executeQryGetPatientByUnamePass(tuserid,tpass,pageable);
                         List<QryGetPatientByUnamePassResponse> content1 = qryGetPatientByPatientNoResponses.getContent();
                     if(content1.size()>0) {

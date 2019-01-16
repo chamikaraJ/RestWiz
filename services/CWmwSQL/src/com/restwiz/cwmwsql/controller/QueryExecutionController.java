@@ -219,7 +219,7 @@ public class QueryExecutionController {
 
     @RequestMapping(value = "/queries/qryGetJsonTextByPatientNo", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "get json text by patient number for update")
+    @ApiOperation(value = "get json text by patient number for update - replace patient number by email")
     public Page<QryGetJsonTextByPatientNoResponse> executeQryGetJsonTextByPatientNo(@RequestParam(value = "t_patientno") String tpatientno, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: qryGetJsonTextByPatientNo");
         Page<QryGetJsonTextByPatientNoResponse> _result = queryService.executeQryGetJsonTextByPatientNo(tpatientno, pageable);

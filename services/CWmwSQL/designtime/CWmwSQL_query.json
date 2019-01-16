@@ -264,6 +264,15 @@
           "typeRef" : "java.lang.String",
           "list" : false
         }
+      }, {
+        "name" : "email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
       } ]
     }
   },
@@ -403,10 +412,10 @@
   },
   "qryGetJsonTextByPatientNo" : {
     "name" : "qryGetJsonTextByPatientNo",
-    "description" : "get json text by patient number for update",
+    "description" : "get json text by patient number for update - replace patient number by email",
     "version" : "V2",
-    "queryString" : "select case when count(ID)>0 then 'true' when count(ID)=0 then 'false'  end as dataExist from JSONTextTemp where patient_no = :t_patientno",
-    "countQueryString" : "select count(*) from (select case when count(ID)>0 then 'true' when count(ID)=0 then 'false'  end as dataExist from JSONTextTemp where patient_no = :t_patientno) wmTempTable",
+    "queryString" : "select case when count(ID)>0 then 'true' when count(ID)=0 then 'false'  end as dataExist from JSONTextTemp where email = :t_patientno",
+    "countQueryString" : "select count(*) from (select case when count(ID)>0 then 'true' when count(ID)=0 then 'false'  end as dataExist from JSONTextTemp where email = :t_patientno) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
