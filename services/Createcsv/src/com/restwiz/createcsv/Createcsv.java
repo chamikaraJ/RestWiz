@@ -46,7 +46,6 @@ public class Createcsv {
         logger.info("Come to parseJsonDao");
 
         List<KeyValueDao> flatJson = null;
-        System.out.println(json);
         try {
             logger.info("Ready to Create Json Object");
             JSONObject jsonObject = new JSONObject(json);
@@ -159,10 +158,6 @@ public class Createcsv {
     }
 
     public static String getCSVString(String json) {
-        logger.info("Come to getCSVString");
-        
-        System.out.println("json String before flat : "+json);
-
         String csvString;
         List<KeyValueDao> flatJson = parseJsonDao(json);
 
@@ -181,7 +176,7 @@ public class Createcsv {
             }
         }
         csvString = csvString + "\n";
-
+            logger.info("CSVString Created");
         return csvString;
     }
 
@@ -409,6 +404,7 @@ public class Createcsv {
 
                 if (path != null) {
                     vstatus = "Success";
+                    logger.info("CSV Saved in Disk");
                 } else {
                     vstatus = "UnSuccess";
                 }
