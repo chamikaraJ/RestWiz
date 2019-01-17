@@ -5,9 +5,9 @@ package com.restwiz.createcsv.controller;
 
 import com.restwiz.createcsv.Createcsv;
 import java.lang.Object;
+import javax.servlet.http.HttpServletRequest;
 import java.lang.Exception;
 import java.lang.String;
-import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import org.json.JSONObject;
 import com.restwiz.keyvaluedao.KeyValueDao;
@@ -29,18 +29,18 @@ public class CreatecsvController {
     @Autowired
     private Createcsv createcsv;
 
-    @RequestMapping(value = "/cscfile", produces = "application/json", method = RequestMethod.POST)
+    @RequestMapping(value = "/cSVFile", produces = "application/json", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String createCSVFile(@RequestBody Object patientDetail) throws Exception {
-        return createcsv.createCSVFile(patientDetail);
+    public String createCSVFile(@RequestBody Object patientDetail, HttpServletRequest request) throws Exception {
+        return createcsv.createCSVFile(patientDetail, request);
     }
 
     @RequestMapping(value = "/cSVFile_1", produces = "application/json", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String createCSVFile_1(@RequestBody Object patientDetail, HttpServletRequest request) throws Exception {
-        return createcsv.createCSVFile(patientDetail, request);
+    public String createCSVFile_1(@RequestBody Object patientDetail) throws Exception {
+        return createcsv.createCSVFile(patientDetail);
     }
 
     @RequestMapping(value = "/cSVFile_2", produces = "application/json", method = RequestMethod.POST)

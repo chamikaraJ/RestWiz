@@ -96,6 +96,9 @@ public class QryGetPatientByUnamePassResponse implements Serializable {
     @ColumnAlias("dvacardtyp")
     private Byte dvacardtyp;
 
+    @ColumnAlias("sex")
+    private String sex;
+
     @ColumnAlias("famDrTitle")
     private String famDrTitle;
 
@@ -402,6 +405,14 @@ public class QryGetPatientByUnamePassResponse implements Serializable {
         this.dvacardtyp = dvacardtyp;
     }
 
+    public String getSex() {
+        return this.sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     public String getFamDrTitle() {
         return this.famDrTitle;
     }
@@ -674,6 +685,7 @@ public class QryGetPatientByUnamePassResponse implements Serializable {
                 Objects.equals(getFeepositn(), qryGetPatientByUnamePassResponse.getFeepositn()) &&
                 Objects.equals(getDatejoined(), qryGetPatientByUnamePassResponse.getDatejoined()) &&
                 Objects.equals(getDvacardtyp(), qryGetPatientByUnamePassResponse.getDvacardtyp()) &&
+                Objects.equals(getSex(), qryGetPatientByUnamePassResponse.getSex()) &&
                 Objects.equals(getFamDrTitle(), qryGetPatientByUnamePassResponse.getFamDrTitle()) &&
                 Objects.equals(getFamDrGiven(), qryGetPatientByUnamePassResponse.getFamDrGiven()) &&
                 Objects.equals(getFamDrSurname(), qryGetPatientByUnamePassResponse.getFamDrSurname()) &&
@@ -735,6 +747,7 @@ public class QryGetPatientByUnamePassResponse implements Serializable {
                 getFeepositn(),
                 getDatejoined(),
                 getDvacardtyp(),
+                getSex(),
                 getFamDrTitle(),
                 getFamDrGiven(),
                 getFamDrSurname(),
