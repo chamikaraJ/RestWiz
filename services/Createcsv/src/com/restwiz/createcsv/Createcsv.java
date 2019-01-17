@@ -23,6 +23,7 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import com.google.gson.Gson;
 
 @ExposeToClient
 public class Createcsv {
@@ -172,7 +173,12 @@ public class Createcsv {
         csvString = csvString + "\n";
 
         for (KeyValueDao map : flatJson) {
-            csvString = csvString + map.getValue() + ",";
+            // csvString = csvString + map.getValue() + ",";
+            if(map.getValue().contains(",")){
+                csvString = csvString +"\""+ map.getValue() +"\""+ ",";
+            }else{
+                csvString = csvString + map.getValue() + ",";
+            }
         }
         csvString = csvString + "\n";
 
@@ -271,7 +277,7 @@ public class Createcsv {
             if (!alreadyExists) {
                 vstatus = "Success";
                 
-                System.out.println("detail String :"+ detail);
+                
 
                 String jsonString = detail.replace(", ,", ", ").replace("=", "\":\"").replace(",", "\",\"").replace("\",\" ", "\", \"").replace("\"[", "[\"").replace("]\"", "\"]").replace("{", "{\"").replace("}", "\"}");
 
@@ -373,14 +379,18 @@ public class Createcsv {
         String lastName = patientDetails.get("txtSurname");
         String contextName = "RestWiz";
 
+        
         //convert hashmap to json format
-        String detail = patientDetail.toString()
-                .replaceAll("=", "\":\"")
-                .replaceAll(",", "\",\"")
-                .replaceAll("]\"", "\"]")
-                .replaceAll("\"\\[", "[\"")
-                .replace("}", "\"}")
-                .replace("{", "{\"");
+        Gson gson = new Gson();
+        String detail = gson.toJson(patientDetail);
+        
+        // String detail = patientDetail.toString()
+        //         .replaceAll("=", "\":\"")
+        //         .replaceAll(",", "\",\"")
+        //         .replaceAll("]\"", "\"]")
+        //         .replaceAll("\"\\[", "[\"")
+        //         .replace("}", "\"}")
+        //         .replace("{", "{\"");
 
         String uploadDir = getArchivePath(contextName, firstName, lastName);
 
