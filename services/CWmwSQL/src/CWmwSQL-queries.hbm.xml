@@ -691,6 +691,20 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
     <query-param name="t_medicareno" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetAllSmsByPatientno">
+        <![CDATA[
+        select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetAllSmsByPatientno__count">
+        <![CDATA[
+        select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno) wmTempTable
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryUpdatePatientNo">
         <![CDATA[
         update x0152578 set patient_no = :patientNo where userid = :email

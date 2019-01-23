@@ -111,5 +111,16 @@ public class User {
         }
         return result;
     }
+    
+    public Object getAllSMS(String patientno){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 10);
+        Page<QryGetAllSmsByPatientnoResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllSmsByPatientno(patientno, pageable);
+        List<QryGetAllSmsByPatientnoResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
 
 }

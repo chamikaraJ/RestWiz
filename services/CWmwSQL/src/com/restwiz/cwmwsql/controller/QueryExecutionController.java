@@ -367,6 +367,34 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryGetAllSmsByPatientno", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get all sms by patient no")
+    public Page<QryGetAllSmsByPatientnoResponse> executeQryGetAllSmsByPatientno(@RequestParam(value = "t_patientno") String tpatientno, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetAllSmsByPatientno");
+        Page<QryGetAllSmsByPatientnoResponse> _result = queryService.executeQryGetAllSmsByPatientno(tpatientno, pageable);
+        LOGGER.debug("got the result for named query: qryGetAllSmsByPatientno, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetAllSmsByPatientno")
+    @RequestMapping(value = "/queries/qryGetAllSmsByPatientno/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetAllSmsByPatientno(@RequestParam(value = "t_patientno") String tpatientno, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetAllSmsByPatientno");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetAllSmsByPatientno";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetAllSmsByPatientno(tpatientno,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryUpdatePatientNo", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "update patient number to login table")

@@ -22,6 +22,13 @@ public class UserController {
     @Autowired
     private User user;
 
+    @RequestMapping(value = "/allSMS", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getAllSMS(@RequestParam(value = "patientno", required = false) String patientno) {
+        return user.getAllSMS(patientno);
+    }
+
     @RequestMapping(value = "/patient", produces = "application/json", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
