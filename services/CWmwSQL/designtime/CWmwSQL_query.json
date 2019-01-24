@@ -509,91 +509,6 @@
       } ]
     }
   },
-  "qryGetAppointmentByPatientNo" : {
-    "name" : "qryGetAppointmentByPatientNo",
-    "description" : "Get apointment by patyient no",
-    "version" : "V2",
-    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno",
-    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "patientno",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "06510",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetAppointmentByPatientNoResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "b_date",
-        "fieldName" : "bdate",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.time.LocalDateTime",
-          "list" : false
-        }
-      }, {
-        "name" : "b_time",
-        "fieldName" : "btime",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "e_time",
-        "fieldName" : "etime",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "cal_desc",
-        "fieldName" : "calDesc",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "apmadeon",
-        "fieldName" : "apmadeon",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.time.LocalDateTime",
-          "list" : false
-        }
-      }, {
-        "name" : "apmadeat",
-        "fieldName" : "apmadeat",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      } ]
-    }
-  },
   "qryGetClinCatDatByCode" : {
     "name" : "qryGetClinCatDatByCode",
     "description" : "get clinCatDat by code",
@@ -719,6 +634,99 @@
       }, {
         "name" : "desc",
         "fieldName" : "_desc",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "qryGetFutureAppointmentByPatientNo" : {
+    "name" : "qryGetFutureAppointmentByPatientNo",
+    "description" : "Future appointment",
+    "version" : "V2",
+    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date > :today",
+    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date > :today) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "patientno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "06510",
+      "required" : true
+    }, {
+      "name" : "today",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2019-01-24",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetFutureAppointmentByPatientNoResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "b_date",
+        "fieldName" : "bdate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "b_time",
+        "fieldName" : "btime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "e_time",
+        "fieldName" : "etime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "cal_desc",
+        "fieldName" : "calDesc",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "apmadeon",
+        "fieldName" : "apmadeon",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "apmadeat",
+        "fieldName" : "apmadeat",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -995,6 +1003,99 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Long",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "qryGetPastAppointmentByPatientNo" : {
+    "name" : "qryGetPastAppointmentByPatientNo",
+    "description" : "Get past apointment by patyient no",
+    "version" : "V2",
+    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date < :today",
+    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date < :today) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "patientno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "06510",
+      "required" : true
+    }, {
+      "name" : "today",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2019-01-24",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetPastAppointmentByPatientNoResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "b_date",
+        "fieldName" : "bdate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "b_time",
+        "fieldName" : "btime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "e_time",
+        "fieldName" : "etime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "cal_desc",
+        "fieldName" : "calDesc",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "apmadeon",
+        "fieldName" : "apmadeon",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "apmadeat",
+        "fieldName" : "apmadeat",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       } ]

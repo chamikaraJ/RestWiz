@@ -22,13 +22,6 @@ public class CommonController {
     @Autowired
     private Common common;
 
-    @RequestMapping(value = "/allAppointmentByPatientNo", produces = "application/json", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public Object getAllAppointmentByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
-        return common.getAllAppointmentByPatientNo(patientno);
-    }
-
     @RequestMapping(value = "/allEmailByPatientNo", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
@@ -41,6 +34,18 @@ public class CommonController {
     @ApiOperation(value = "")
     public Object getAllSMSByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
         return common.getAllSMSByPatientNo(patientno);
+    }
+
+    @RequestMapping(value = "/futureAppointmentByPatientNo", produces = "application/json", method = RequestMethod.GET)
+    public Object getFutureAppointmentByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
+        return common.getFutureAppointmentByPatientNo(patientno);
+    }
+
+    @RequestMapping(value = "/pastAppointmentBypatientNo", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getPastAppointmentByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
+        return common.getPastAppointmentByPatientNo(patientno);
     }
 
     @RequestMapping(value = "/preAndpostCommsBycommmainid", produces = "application/json", method = RequestMethod.GET)

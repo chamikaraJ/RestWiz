@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class QryGetAppointmentByPatientNoResponse implements Serializable {
+public class QryGetFutureAppointmentByPatientNoResponse implements Serializable {
 
 
     @ColumnAlias("b_date")
@@ -84,14 +84,14 @@ public class QryGetAppointmentByPatientNoResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof QryGetAppointmentByPatientNoResponse)) return false;
-        final QryGetAppointmentByPatientNoResponse qryGetAppointmentByPatientNoResponse = (QryGetAppointmentByPatientNoResponse) o;
-        return Objects.equals(getBdate(), qryGetAppointmentByPatientNoResponse.getBdate()) &&
-                Objects.equals(getBtime(), qryGetAppointmentByPatientNoResponse.getBtime()) &&
-                Objects.equals(getEtime(), qryGetAppointmentByPatientNoResponse.getEtime()) &&
-                Objects.equals(getCalDesc(), qryGetAppointmentByPatientNoResponse.getCalDesc()) &&
-                Objects.equals(getApmadeon(), qryGetAppointmentByPatientNoResponse.getApmadeon()) &&
-                Objects.equals(getApmadeat(), qryGetAppointmentByPatientNoResponse.getApmadeat());
+        if (!(o instanceof QryGetFutureAppointmentByPatientNoResponse)) return false;
+        final QryGetFutureAppointmentByPatientNoResponse qryGetFutureAppointmentByPatientNoResponse = (QryGetFutureAppointmentByPatientNoResponse) o;
+        return Objects.equals(getBdate(), qryGetFutureAppointmentByPatientNoResponse.getBdate()) &&
+                Objects.equals(getBtime(), qryGetFutureAppointmentByPatientNoResponse.getBtime()) &&
+                Objects.equals(getEtime(), qryGetFutureAppointmentByPatientNoResponse.getEtime()) &&
+                Objects.equals(getCalDesc(), qryGetFutureAppointmentByPatientNoResponse.getCalDesc()) &&
+                Objects.equals(getApmadeon(), qryGetFutureAppointmentByPatientNoResponse.getApmadeon()) &&
+                Objects.equals(getApmadeat(), qryGetFutureAppointmentByPatientNoResponse.getApmadeat());
     }
 
     @Override

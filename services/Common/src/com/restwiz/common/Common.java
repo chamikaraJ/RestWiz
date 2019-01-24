@@ -17,9 +17,9 @@ package com.restwiz.common;
         import org.json.simple.parser.JSONParser;
         import org.json.simple.parser.ParseException;
 
-        import java.util.List;
-        import java.util.HashMap;
-        import java.util.Map;
+        import java.util.*;
+        import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 //import com.restwiz.common.model.*;
 
@@ -104,11 +104,25 @@ public class Common {
         return result;
     }
     
-    public Object getAllAppointmentByPatientNo(String patientno){
+    public Object getPastAppointmentByPatientNo(String patientno){
         Object result = "Data not fount";
         Pageable pageable = new PageRequest(0, 10);
-        Page<QryGetAppointmentByPatientNoResponse> response = cWmwSQLQueryExecutorService.executeQryGetAppointmentByPatientNo(patientno, pageable);
-        List<QryGetAppointmentByPatientNoResponse> resList = response.getContent();
+        java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        
+        Page<QryGetPastAppointmentByPatientNoResponse> response = cWmwSQLQueryExecutorService.executeQryGetPastAppointmentByPatientNo(patientno,sqlDate, pageable);
+        List<QryGetPastAppointmentByPatientNoResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
+    public Object getFutureAppointmentByPatientNo(String patientno){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 10);
+         java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        Page<QryGetFutureAppointmentByPatientNoResponse> response = cWmwSQLQueryExecutorService.executeQryGetFutureAppointmentByPatientNo(patientno,sqlDate, pageable);
+        List<QryGetFutureAppointmentByPatientNoResponse> resList = response.getContent();
         if(resList.size()>0){
             result = resList;
         }

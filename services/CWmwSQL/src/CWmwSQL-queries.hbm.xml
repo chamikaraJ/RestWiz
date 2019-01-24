@@ -132,6 +132,22 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
     <query-param name="t_patient_no" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetFutureAppointmentByPatientNo">
+        <![CDATA[
+        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date > :today
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    <query-param name="today" type="java.sql.Date"/>
+    </sql-query>
+
+    <sql-query name="qryGetFutureAppointmentByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date > :today) wmTempTable
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    <query-param name="today" type="java.sql.Date"/>
+    </sql-query>
+
     <sql-query name="qryGetPatientNoAndRole">
         <![CDATA[
         select patient_no,role from  x0152578 where userid = :t_userid and password = :t_pass
@@ -551,20 +567,6 @@ where email = :t_email
     <query-param name="t_email" type="java.lang.String"/>
     </sql-query>
 
-    <sql-query name="qryGetAppointmentByPatientNo">
-        <![CDATA[
-        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno
-        ]]>
-    <query-param name="patientno" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetAppointmentByPatientNo__count">
-        <![CDATA[
-        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno) wmTempTable
-        ]]>
-    <query-param name="patientno" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="qryGetClinCatDatByCode">
         <![CDATA[
         select * from clinCatDat where code = :t_code
@@ -577,6 +579,22 @@ where email = :t_email
         select count(*) from (select * from clinCatDat where code = :t_code) wmTempTable
         ]]>
     <query-param name="t_code" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPastAppointmentByPatientNo">
+        <![CDATA[
+        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date < :today
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    <query-param name="today" type="java.sql.Date"/>
+    </sql-query>
+
+    <sql-query name="qryGetPastAppointmentByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date < :today) wmTempTable
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    <query-param name="today" type="java.sql.Date"/>
     </sql-query>
 
     <sql-query name="qryGetPatientByUnamePassMed">
