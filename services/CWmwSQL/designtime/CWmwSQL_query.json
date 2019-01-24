@@ -163,6 +163,118 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryGetAllEmailByPatientNo" : {
+    "name" : "qryGetAllEmailByPatientNo",
+    "description" : "get All email by patient no",
+    "version" : "V2",
+    "queryString" : "select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL'",
+    "countQueryString" : "select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL') wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "t_patientno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "00000",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetAllEmailByPatientNoResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "report_dte",
+        "fieldName" : "reportDte",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "report_tme",
+        "fieldName" : "reportTme",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "srvcno",
+        "fieldName" : "srvcno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "status",
+        "fieldName" : "status",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "report_txt",
+        "fieldName" : "reportTxt",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "mobileno",
+        "fieldName" : "mobileno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "messageid",
+        "fieldName" : "messageid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "replymsgid",
+        "fieldName" : "replymsgid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "sms_inoout",
+        "fieldName" : "smsInoout",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetAllJsonText" : {
     "name" : "qryGetAllJsonText",
     "description" : "get all json text",
@@ -280,8 +392,8 @@
     "name" : "qryGetAllSmsByPatientno",
     "description" : "get all sms by patient no",
     "version" : "V2",
-    "queryString" : "select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno",
-    "countQueryString" : "select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno) wmTempTable",
+    "queryString" : "select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')",
+    "countQueryString" : "select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -379,6 +491,100 @@
       }, {
         "name" : "sms_inoout",
         "fieldName" : "smsInoout",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "msg_type",
+        "fieldName" : "msgType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "qryGetAppointmentByPatientNo" : {
+    "name" : "qryGetAppointmentByPatientNo",
+    "description" : "Get apointment by patyient no",
+    "version" : "V2",
+    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno",
+    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "patientno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "06510",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetAppointmentByPatientNoResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "b_date",
+        "fieldName" : "bdate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "b_time",
+        "fieldName" : "btime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "e_time",
+        "fieldName" : "etime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "cal_desc",
+        "fieldName" : "calDesc",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "apmadeon",
+        "fieldName" : "apmadeon",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "apmadeat",
+        "fieldName" : "apmadeat",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -2568,6 +2774,190 @@
       } ]
     }
   },
+  "qryGetPreandpostcommsByCommainid" : {
+    "name" : "qryGetPreandpostcommsByCommainid",
+    "description" : "get preandpostcomms by commmainis",
+    "version" : "V2",
+    "queryString" : "select * from preandpostcomms where commstype = 'EMAIL' and commmainid =:commmainid",
+    "countQueryString" : "select count(*) from (select * from preandpostcomms where commstype = 'EMAIL' and commmainid =:commmainid) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "commmainid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "COLGM001",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetPreandpostcommsByCommainidResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "commmainid",
+        "fieldName" : "commmainid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "idno",
+        "fieldName" : "idno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "shortname",
+        "fieldName" : "shortname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "longname",
+        "fieldName" : "longname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "seqno",
+        "fieldName" : "seqno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Float",
+          "list" : false
+        }
+      }, {
+        "name" : "heading",
+        "fieldName" : "heading",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "commstype",
+        "fieldName" : "commstype",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "whn2trigd",
+        "fieldName" : "whn2trigd",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "whn2trigh",
+        "fieldName" : "whn2trigh",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "trgfromwhn",
+        "fieldName" : "trgfromwhn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "whn2trigt",
+        "fieldName" : "whn2trigt",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "whn2trigr",
+        "fieldName" : "whn2trigr",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "extracond",
+        "fieldName" : "extracond",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "notrigcond",
+        "fieldName" : "notrigcond",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "mesge2send",
+        "fieldName" : "mesge2send",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "docuid2snd",
+        "fieldName" : "docuid2snd",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "doct_id",
+        "fieldName" : "doctId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetReferralSrc" : {
     "name" : "qryGetReferralSrc",
     "description" : "get referral source",
@@ -3224,6 +3614,100 @@
     "request" : {
       "wrapped" : true,
       "typeRef" : "com.restwiz.cwmwsql.models.query.QryInsertPatientDetailsRequest",
+      "method" : "POST"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "qryInsertPreandpostcomms" : {
+    "name" : "qryInsertPreandpostcomms",
+    "description" : "Insert pre and post comms",
+    "version" : "V2",
+    "queryString" : "insert into preandpostcomms(commmainid,shortname,longname,heading,commstype,whn2trigd,trgfromwhn,whn2trigt,mesge2send) values(:commmainid,:shortname,:longname,:heading,:commstype,:whn2trigd,:trgfromwhn,:whn2trigt,:mesge2send)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "commmainid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "COLGM001",
+      "required" : false
+    }, {
+      "name" : "shortname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "COL",
+      "required" : false
+    }, {
+      "name" : "longname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Colonoscopy",
+      "required" : false
+    }, {
+      "name" : "heading",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "First Test Email",
+      "required" : false
+    }, {
+      "name" : "commstype",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "EMAIL",
+      "required" : false
+    }, {
+      "name" : "whn2trigd",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "-7",
+      "required" : false
+    }, {
+      "name" : "trgfromwhn",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "PROCDATE",
+      "required" : false
+    }, {
+      "name" : "whn2trigt",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "13:00",
+      "required" : false
+    }, {
+      "name" : "mesge2send",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Dear Patient, This is the test email",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryInsertPreandpostcommsRequest",
       "method" : "POST"
     },
     "identifiers" : [ ],

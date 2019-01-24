@@ -353,6 +353,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
 
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
+    public Page<QryGetAppointmentByPatientNoResponse> executeQryGetAppointmentByPatientNo(String patientno, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("patientno", patientno);
+
+        return queryExecutor.executeNamedQuery("qryGetAppointmentByPatientNo", params, QryGetAppointmentByPatientNoResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetAppointmentByPatientNo(String patientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("patientno", patientno);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetAppointmentByPatientNo", params, QryGetAppointmentByPatientNoResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
     public Page<QryGetClinCatDatByCodeResponse> executeQryGetClinCatDatByCode(String tcode, Pageable pageable) {
         Map<String, Object> params = new HashMap<>(1);
 
@@ -417,6 +439,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_patientno", tpatientno);
 
         QueryProcedureInput queryInput = new QueryProcedureInput("qryGetAllSmsByPatientno", params, QryGetAllSmsByPatientnoResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetPreandpostcommsByCommainidResponse> executeQryGetPreandpostcommsByCommainid(String commmainid, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("commmainid", commmainid);
+
+        return queryExecutor.executeNamedQuery("qryGetPreandpostcommsByCommainid", params, QryGetPreandpostcommsByCommainidResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetPreandpostcommsByCommainid(String commmainid, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("commmainid", commmainid);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetPreandpostcommsByCommainid", params, QryGetPreandpostcommsByCommainidResponse.class);
 
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }
@@ -656,6 +700,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
 
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
+    public Page<QryGetAllEmailByPatientNoResponse> executeQryGetAllEmailByPatientNo(String tpatientno, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_patientno", tpatientno);
+
+        return queryExecutor.executeNamedQuery("qryGetAllEmailByPatientNo", params, QryGetAllEmailByPatientNoResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetAllEmailByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_patientno", tpatientno);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetAllEmailByPatientNo", params, QryGetAllEmailByPatientNoResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
     public Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, Pageable pageable) {
         Map<String, Object> params = new HashMap<>(1);
 
@@ -714,6 +780,24 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         QueryProcedureInput queryInput = new QueryProcedureInput("qryGetAllJsonText", params, QryGetAllJsonTextResponse.class);
 
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryInsertPreandpostcomms(QryInsertPreandpostcommsRequest qryInsertPreandpostcommsRequest) {
+        Map<String, Object> params = new HashMap<>(9);
+
+        params.put("commmainid", qryInsertPreandpostcommsRequest.getCommmainid());
+        params.put("shortname", qryInsertPreandpostcommsRequest.getShortname());
+        params.put("longname", qryInsertPreandpostcommsRequest.getLongname());
+        params.put("heading", qryInsertPreandpostcommsRequest.getHeading());
+        params.put("commstype", qryInsertPreandpostcommsRequest.getCommstype());
+        params.put("whn2trigd", qryInsertPreandpostcommsRequest.getWhn2trigd());
+        params.put("trgfromwhn", qryInsertPreandpostcommsRequest.getTrgfromwhn());
+        params.put("whn2trigt", qryInsertPreandpostcommsRequest.getWhn2trigt());
+        params.put("mesge2send", qryInsertPreandpostcommsRequest.getMesge2send());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryInsertPreandpostcomms", params);
     }
 
     @Transactional(value = "CWmwSQLTransactionManager")

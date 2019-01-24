@@ -58,6 +58,10 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryUpdatePtdetailRegByEmail(QryUpdatePtdetailRegByEmailRequest qryUpdatePtdetailRegByEmailRequest);
 
+    Page<QryGetAppointmentByPatientNoResponse> executeQryGetAppointmentByPatientNo(String patientno, Pageable pageable);
+
+    void exportQryGetAppointmentByPatientNo(String patientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetClinCatDatByCodeResponse> executeQryGetClinCatDatByCode(String tcode, Pageable pageable);
 
     void exportQryGetClinCatDatByCode(String tcode, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
@@ -69,6 +73,10 @@ public interface CWmwSQLQueryExecutorService {
     Page<QryGetAllSmsByPatientnoResponse> executeQryGetAllSmsByPatientno(String tpatientno, Pageable pageable);
 
     void exportQryGetAllSmsByPatientno(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Page<QryGetPreandpostcommsByCommainidResponse> executeQryGetPreandpostcommsByCommainid(String commmainid, Pageable pageable);
+
+    void exportQryGetPreandpostcommsByCommainid(String commmainid, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
     Integer executeQryUpdatePatientNo(QryUpdatePatientNoRequest qryUpdatePatientNoRequest);
 
@@ -108,6 +116,10 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetLoginDetailsByUnameAndPass(String tusername, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Page<QryGetAllEmailByPatientNoResponse> executeQryGetAllEmailByPatientNo(String tpatientno, Pageable pageable);
+
+    void exportQryGetAllEmailByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, Pageable pageable);
 
     void exportQryGetUserAuth(String tuserid, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
@@ -117,6 +129,8 @@ public interface CWmwSQLQueryExecutorService {
     Page<QryGetAllJsonTextResponse> executeQryGetAllJsonText(Pageable pageable);
 
     void exportQryGetAllJsonText(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Integer executeQryInsertPreandpostcomms(QryInsertPreandpostcommsRequest qryInsertPreandpostcommsRequest);
 
     Integer executeQryUpdatePtCharacter(QryUpdatePtCharacterRequest qryUpdatePtCharacterRequest);
 

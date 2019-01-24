@@ -551,6 +551,20 @@ where email = :t_email
     <query-param name="t_email" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetAppointmentByPatientNo">
+        <![CDATA[
+        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetAppointmentByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno) wmTempTable
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetClinCatDatByCode">
         <![CDATA[
         select * from clinCatDat where code = :t_code
@@ -693,16 +707,30 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
 
     <sql-query name="qryGetAllSmsByPatientno">
         <![CDATA[
-        select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno
+        select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')
         ]]>
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetAllSmsByPatientno__count">
         <![CDATA[
-        select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno) wmTempTable
+        select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')) wmTempTable
         ]]>
     <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPreandpostcommsByCommainid">
+        <![CDATA[
+        select * from preandpostcomms where commstype = 'EMAIL' and commmainid =:commmainid
+        ]]>
+    <query-param name="commmainid" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPreandpostcommsByCommainid__count">
+        <![CDATA[
+        select count(*) from (select * from preandpostcomms where commstype = 'EMAIL' and commmainid =:commmainid) wmTempTable
+        ]]>
+    <query-param name="commmainid" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryUpdatePatientNo">
@@ -879,6 +907,20 @@ postcode = :t_postcode where accountno = :t_accountno
     <query-param name="t_pass" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetAllEmailByPatientNo">
+        <![CDATA[
+        select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL'
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetAllEmailByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL') wmTempTable
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetUserAuth">
         <![CDATA[
         select patient_no from  x0152578 where userid = :t_userid
@@ -920,6 +962,21 @@ postcode = :t_postcode where accountno = :t_accountno
         <![CDATA[
         select count(*) from (select * from JSONTextTemp where isFormComplete = 1) wmTempTable
         ]]>
+    </sql-query>
+
+    <sql-query name="qryInsertPreandpostcomms">
+        <![CDATA[
+        insert into preandpostcomms(commmainid,shortname,longname,heading,commstype,whn2trigd,trgfromwhn,whn2trigt,mesge2send) values(:commmainid,:shortname,:longname,:heading,:commstype,:whn2trigd,:trgfromwhn,:whn2trigt,:mesge2send)
+        ]]>
+    <query-param name="commmainid" type="java.lang.String"/>
+    <query-param name="shortname" type="java.lang.String"/>
+    <query-param name="longname" type="java.lang.String"/>
+    <query-param name="heading" type="java.lang.String"/>
+    <query-param name="commstype" type="java.lang.String"/>
+    <query-param name="whn2trigd" type="java.lang.String"/>
+    <query-param name="trgfromwhn" type="java.lang.String"/>
+    <query-param name="whn2trigt" type="java.lang.String"/>
+    <query-param name="mesge2send" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryUpdatePtCharacter">

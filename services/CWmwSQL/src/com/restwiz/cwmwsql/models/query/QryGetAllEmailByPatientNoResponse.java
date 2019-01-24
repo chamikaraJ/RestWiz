@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class QryGetAllSmsByPatientnoResponse implements Serializable {
+public class QryGetAllEmailByPatientNoResponse implements Serializable {
 
 
     @ColumnAlias("report_dte")
@@ -41,9 +41,6 @@ public class QryGetAllSmsByPatientnoResponse implements Serializable {
 
     @ColumnAlias("sms_inoout")
     private String smsInoout;
-
-    @ColumnAlias("msg_type")
-    private String msgType;
 
     public LocalDateTime getReportDte() {
         return this.reportDte;
@@ -117,29 +114,20 @@ public class QryGetAllSmsByPatientnoResponse implements Serializable {
         this.smsInoout = smsInoout;
     }
 
-    public String getMsgType() {
-        return this.msgType;
-    }
-
-    public void setMsgType(String msgType) {
-        this.msgType = msgType;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof QryGetAllSmsByPatientnoResponse)) return false;
-        final QryGetAllSmsByPatientnoResponse qryGetAllSmsByPatientnoResponse = (QryGetAllSmsByPatientnoResponse) o;
-        return Objects.equals(getReportDte(), qryGetAllSmsByPatientnoResponse.getReportDte()) &&
-                Objects.equals(getReportTme(), qryGetAllSmsByPatientnoResponse.getReportTme()) &&
-                Objects.equals(getSrvcno(), qryGetAllSmsByPatientnoResponse.getSrvcno()) &&
-                Objects.equals(getStatus(), qryGetAllSmsByPatientnoResponse.getStatus()) &&
-                Objects.equals(getReportTxt(), qryGetAllSmsByPatientnoResponse.getReportTxt()) &&
-                Objects.equals(getMobileno(), qryGetAllSmsByPatientnoResponse.getMobileno()) &&
-                Objects.equals(getMessageid(), qryGetAllSmsByPatientnoResponse.getMessageid()) &&
-                Objects.equals(getReplymsgid(), qryGetAllSmsByPatientnoResponse.getReplymsgid()) &&
-                Objects.equals(getSmsInoout(), qryGetAllSmsByPatientnoResponse.getSmsInoout()) &&
-                Objects.equals(getMsgType(), qryGetAllSmsByPatientnoResponse.getMsgType());
+        if (!(o instanceof QryGetAllEmailByPatientNoResponse)) return false;
+        final QryGetAllEmailByPatientNoResponse qryGetAllEmailByPatientNoResponse = (QryGetAllEmailByPatientNoResponse) o;
+        return Objects.equals(getReportDte(), qryGetAllEmailByPatientNoResponse.getReportDte()) &&
+                Objects.equals(getReportTme(), qryGetAllEmailByPatientNoResponse.getReportTme()) &&
+                Objects.equals(getSrvcno(), qryGetAllEmailByPatientNoResponse.getSrvcno()) &&
+                Objects.equals(getStatus(), qryGetAllEmailByPatientNoResponse.getStatus()) &&
+                Objects.equals(getReportTxt(), qryGetAllEmailByPatientNoResponse.getReportTxt()) &&
+                Objects.equals(getMobileno(), qryGetAllEmailByPatientNoResponse.getMobileno()) &&
+                Objects.equals(getMessageid(), qryGetAllEmailByPatientNoResponse.getMessageid()) &&
+                Objects.equals(getReplymsgid(), qryGetAllEmailByPatientNoResponse.getReplymsgid()) &&
+                Objects.equals(getSmsInoout(), qryGetAllEmailByPatientNoResponse.getSmsInoout());
     }
 
     @Override
@@ -152,7 +140,6 @@ public class QryGetAllSmsByPatientnoResponse implements Serializable {
                 getMobileno(),
                 getMessageid(),
                 getReplymsgid(),
-                getSmsInoout(),
-                getMsgType());
+                getSmsInoout());
     }
 }
