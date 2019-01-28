@@ -171,6 +171,18 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
     <query-param name="idno" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="qryGetAllDoctorList">
+        <![CDATA[
+        Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetAllDoctorList__count">
+        <![CDATA[
+        select count(*) from (Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0) wmTempTable
+        ]]>
+    </sql-query>
+
     <sql-query name="qryGetPatientByUnamePass">
         <![CDATA[
         select pt.patient_no,

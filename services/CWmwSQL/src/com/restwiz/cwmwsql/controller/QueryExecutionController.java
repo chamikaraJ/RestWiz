@@ -208,6 +208,34 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/qryGetAllDoctorList", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get all doctor list")
+    public Page<QryGetAllDoctorListResponse> executeQryGetAllDoctorList(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetAllDoctorList");
+        Page<QryGetAllDoctorListResponse> _result = queryService.executeQryGetAllDoctorList(pageable);
+        LOGGER.debug("got the result for named query: qryGetAllDoctorList, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetAllDoctorList")
+    @RequestMapping(value = "/queries/qryGetAllDoctorList/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetAllDoctorList(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetAllDoctorList");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetAllDoctorList";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetAllDoctorList( exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryGetPatientByUnamePass", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get patient by username and password")

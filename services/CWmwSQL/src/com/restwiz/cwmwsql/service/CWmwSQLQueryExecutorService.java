@@ -43,6 +43,10 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryDeleteptDetailRegByIdno(Integer idno);
 
+    Page<QryGetAllDoctorListResponse> executeQryGetAllDoctorList(Pageable pageable);
+
+    void exportQryGetAllDoctorList(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetPatientByUnamePassResponse> executeQryGetPatientByUnamePass(String tusername, String tpass, Pageable pageable);
 
     void exportQryGetPatientByUnamePass(String tusername, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);

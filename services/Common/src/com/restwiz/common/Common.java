@@ -128,4 +128,15 @@ public class Common {
         }
         return result;
     }
+    
+    public Object getAllDoctorList(){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 10);
+        Page<QryGetAllDoctorListResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllDoctorList(pageable);
+        List<QryGetAllDoctorListResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
 }

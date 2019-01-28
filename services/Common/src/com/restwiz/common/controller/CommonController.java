@@ -4,8 +4,8 @@
 package com.restwiz.common.controller;
 
 import com.restwiz.common.Common;
-import java.lang.String;
 import java.lang.Object;
+import java.lang.String;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,11 @@ public class CommonController {
     @Autowired
     private Common common;
 
+    @RequestMapping(value = "/allDoctorList", produces = "application/json", method = RequestMethod.GET)
+    public Object getAllDoctorList() {
+        return common.getAllDoctorList();
+    }
+
     @RequestMapping(value = "/allEmailByPatientNo", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
@@ -37,6 +42,8 @@ public class CommonController {
     }
 
     @RequestMapping(value = "/futureAppointmentByPatientNo", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public Object getFutureAppointmentByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
         return common.getFutureAppointmentByPatientNo(patientno);
     }
