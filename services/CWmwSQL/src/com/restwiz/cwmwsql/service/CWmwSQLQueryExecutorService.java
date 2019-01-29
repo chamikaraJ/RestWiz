@@ -21,6 +21,12 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryInsertPrescriptionHeader(QryInsertPrescriptionHeaderRequest qryInsertPrescriptionHeaderRequest);
 
+    Page<QryGetAllLocationsResponse> executeQryGetAllLocations(Pageable pageable);
+
+    void exportQryGetAllLocations(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Integer executeQryInsertAppointment(QryInsertAppointmentRequest qryInsertAppointmentRequest);
+
     Integer executeQryInsertPrescriptionDtl(QryInsertPrescriptionDtlRequest qryInsertPrescriptionDtlRequest);
 
     Page<QryGetPatientNumberByUnamePassResponse> executeQryGetPatientNumberByUnamePass(String tuserid, String tpass, Pageable pageable);

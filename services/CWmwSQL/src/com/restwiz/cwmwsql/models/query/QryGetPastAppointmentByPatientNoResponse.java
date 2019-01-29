@@ -33,6 +33,15 @@ public class QryGetPastAppointmentByPatientNoResponse implements Serializable {
     @ColumnAlias("apmadeat")
     private String apmadeat;
 
+    @ColumnAlias("title")
+    private String title;
+
+    @ColumnAlias("given")
+    private String given;
+
+    @ColumnAlias("surname")
+    private String surname;
+
     public LocalDateTime getBdate() {
         return this.bdate;
     }
@@ -81,6 +90,30 @@ public class QryGetPastAppointmentByPatientNoResponse implements Serializable {
         this.apmadeat = apmadeat;
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getGiven() {
+        return this.given;
+    }
+
+    public void setGiven(String given) {
+        this.given = given;
+    }
+
+    public String getSurname() {
+        return this.surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,7 +124,10 @@ public class QryGetPastAppointmentByPatientNoResponse implements Serializable {
                 Objects.equals(getEtime(), qryGetPastAppointmentByPatientNoResponse.getEtime()) &&
                 Objects.equals(getCalDesc(), qryGetPastAppointmentByPatientNoResponse.getCalDesc()) &&
                 Objects.equals(getApmadeon(), qryGetPastAppointmentByPatientNoResponse.getApmadeon()) &&
-                Objects.equals(getApmadeat(), qryGetPastAppointmentByPatientNoResponse.getApmadeat());
+                Objects.equals(getApmadeat(), qryGetPastAppointmentByPatientNoResponse.getApmadeat()) &&
+                Objects.equals(getTitle(), qryGetPastAppointmentByPatientNoResponse.getTitle()) &&
+                Objects.equals(getGiven(), qryGetPastAppointmentByPatientNoResponse.getGiven()) &&
+                Objects.equals(getSurname(), qryGetPastAppointmentByPatientNoResponse.getSurname());
     }
 
     @Override
@@ -101,6 +137,9 @@ public class QryGetPastAppointmentByPatientNoResponse implements Serializable {
                 getEtime(),
                 getCalDesc(),
                 getApmadeon(),
-                getApmadeat());
+                getApmadeat(),
+                getTitle(),
+                getGiven(),
+                getSurname());
     }
 }

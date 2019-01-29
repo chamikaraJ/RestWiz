@@ -33,6 +33,15 @@ public class QryGetFutureAppointmentByPatientNoResponse implements Serializable 
     @ColumnAlias("apmadeat")
     private String apmadeat;
 
+    @ColumnAlias("title")
+    private String title;
+
+    @ColumnAlias("given")
+    private String given;
+
+    @ColumnAlias("surname")
+    private String surname;
+
     public LocalDateTime getBdate() {
         return this.bdate;
     }
@@ -81,6 +90,30 @@ public class QryGetFutureAppointmentByPatientNoResponse implements Serializable 
         this.apmadeat = apmadeat;
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getGiven() {
+        return this.given;
+    }
+
+    public void setGiven(String given) {
+        this.given = given;
+    }
+
+    public String getSurname() {
+        return this.surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,7 +124,10 @@ public class QryGetFutureAppointmentByPatientNoResponse implements Serializable 
                 Objects.equals(getEtime(), qryGetFutureAppointmentByPatientNoResponse.getEtime()) &&
                 Objects.equals(getCalDesc(), qryGetFutureAppointmentByPatientNoResponse.getCalDesc()) &&
                 Objects.equals(getApmadeon(), qryGetFutureAppointmentByPatientNoResponse.getApmadeon()) &&
-                Objects.equals(getApmadeat(), qryGetFutureAppointmentByPatientNoResponse.getApmadeat());
+                Objects.equals(getApmadeat(), qryGetFutureAppointmentByPatientNoResponse.getApmadeat()) &&
+                Objects.equals(getTitle(), qryGetFutureAppointmentByPatientNoResponse.getTitle()) &&
+                Objects.equals(getGiven(), qryGetFutureAppointmentByPatientNoResponse.getGiven()) &&
+                Objects.equals(getSurname(), qryGetFutureAppointmentByPatientNoResponse.getSurname());
     }
 
     @Override
@@ -101,6 +137,9 @@ public class QryGetFutureAppointmentByPatientNoResponse implements Serializable 
                 getEtime(),
                 getCalDesc(),
                 getApmadeon(),
-                getApmadeat());
+                getApmadeat(),
+                getTitle(),
+                getGiven(),
+                getSurname());
     }
 }

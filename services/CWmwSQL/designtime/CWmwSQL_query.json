@@ -492,6 +492,47 @@
       } ]
     }
   },
+  "qryGetAllLocations" : {
+    "name" : "qryGetAllLocations",
+    "description" : "qryGetAllLocations",
+    "version" : "V2",
+    "queryString" : "select surname,resorce_id from Resource WHERE resrcetype = 'LOCATION' AND INVALIDREC =0",
+    "countQueryString" : "select count(*) from (select surname,resorce_id from Resource WHERE resrcetype = 'LOCATION' AND INVALIDREC =0) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetAllLocationsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "surname",
+        "fieldName" : "surname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "resorce_id",
+        "fieldName" : "resorceId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetAllSmsByPatientno" : {
     "name" : "qryGetAllSmsByPatientno",
     "description" : "get all sms by patient no",
@@ -751,8 +792,8 @@
     "name" : "qryGetFutureAppointmentByPatientNo",
     "description" : "Future appointment",
     "version" : "V2",
-    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date > :today",
-    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date > :today) wmTempTable",
+    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and cal.b_date >= :today and res.resrcetype = 'DOCTOR'",
+    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and cal.b_date >= :today and res.resrcetype = 'DOCTOR') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -762,7 +803,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "06510",
+      "testValue" : "80095",
       "required" : true
     }, {
       "name" : "today",
@@ -770,7 +811,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "2019-01-24",
+      "testValue" : "2019-01-29",
       "required" : true
     } ],
     "request" : {
@@ -831,6 +872,33 @@
       }, {
         "name" : "apmadeat",
         "fieldName" : "apmadeat",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "title",
+        "fieldName" : "title",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "given",
+        "fieldName" : "given",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "surname",
+        "fieldName" : "surname",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1116,8 +1184,8 @@
     "name" : "qryGetPastAppointmentByPatientNo",
     "description" : "Get past apointment by patyient no",
     "version" : "V2",
-    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date < :today",
-    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date < :today) wmTempTable",
+    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and cal.b_date < :today and res.resrcetype = 'DOCTOR'",
+    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and cal.b_date < :today and res.resrcetype = 'DOCTOR') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -1196,6 +1264,33 @@
       }, {
         "name" : "apmadeat",
         "fieldName" : "apmadeat",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "title",
+        "fieldName" : "title",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "given",
+        "fieldName" : "given",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "surname",
+        "fieldName" : "surname",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -3749,6 +3844,140 @@
     "request" : {
       "wrapped" : true,
       "typeRef" : "com.restwiz.cwmwsql.models.query.QryInsertAccountRequest",
+      "method" : "POST"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "qryInsertAppointment" : {
+    "name" : "qryInsertAppointment",
+    "description" : "save new Appointment",
+    "version" : "V2",
+    "queryString" : "insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "uniqcalid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "55s5665LRX",
+      "required" : true
+    }, {
+      "name" : "b_date",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2019-02-07",
+      "required" : true
+    }, {
+      "name" : "b_time",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "10:15",
+      "required" : true
+    }, {
+      "name" : "user_id",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "5",
+      "required" : true
+    }, {
+      "name" : "last",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "jay",
+      "required" : true
+    }, {
+      "name" : "first",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "see",
+      "required" : true
+    }, {
+      "name" : "title",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Mr",
+      "required" : true
+    }, {
+      "name" : "medicareno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "123456",
+      "required" : true
+    }, {
+      "name" : "bday",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2001-01-01",
+      "required" : true
+    }, {
+      "name" : "patient_no",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "06510",
+      "required" : true
+    }, {
+      "name" : "apmadeon",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2019-01-29",
+      "required" : true
+    }, {
+      "name" : "apmadeat",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "14:10",
+      "required" : true
+    }, {
+      "name" : "apmadeby",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "CJ",
+      "required" : true
+    }, {
+      "name" : "resorce_id",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "5",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryInsertAppointmentRequest",
       "method" : "POST"
     },
     "identifiers" : [ ],

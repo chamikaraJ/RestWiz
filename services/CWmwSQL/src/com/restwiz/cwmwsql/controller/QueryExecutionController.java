@@ -66,6 +66,44 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/qryGetAllLocations", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "qryGetAllLocations")
+    public Page<QryGetAllLocationsResponse> executeQryGetAllLocations(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetAllLocations");
+        Page<QryGetAllLocationsResponse> _result = queryService.executeQryGetAllLocations(pageable);
+        LOGGER.debug("got the result for named query: qryGetAllLocations, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetAllLocations")
+    @RequestMapping(value = "/queries/qryGetAllLocations/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetAllLocations(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetAllLocations");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetAllLocations";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetAllLocations( exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
+    @RequestMapping(value = "/queries/qryInsertAppointment", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "save new Appointment")
+    public IntegerWrapper executeQryInsertAppointment(@Valid @RequestBody QryInsertAppointmentRequest qryInsertAppointmentRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryInsertAppointment");
+        Integer _result = queryService.executeQryInsertAppointment(qryInsertAppointmentRequest);
+        LOGGER.debug("got the result for named query: qryInsertAppointment, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/qryInsertPrescriptionDtl", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "insert prescription details")

@@ -61,6 +61,49 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("qryInsertPrescriptionHeader", params);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetAllLocationsResponse> executeQryGetAllLocations(Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        return queryExecutor.executeNamedQuery("qryGetAllLocations", params, QryGetAllLocationsResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetAllLocations(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetAllLocations", params, QryGetAllLocationsResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryInsertAppointment(QryInsertAppointmentRequest qryInsertAppointmentRequest) {
+        Map<String, Object> params = new HashMap<>(14);
+
+        params.put("uniqcalid", qryInsertAppointmentRequest.getUniqcalid());
+        params.put("b_date", qryInsertAppointmentRequest.getBdate());
+        params.put("b_time", qryInsertAppointmentRequest.getBtime());
+        params.put("user_id", qryInsertAppointmentRequest.getUserId());
+        params.put("last", qryInsertAppointmentRequest.getLast());
+        params.put("first", qryInsertAppointmentRequest.getFirst());
+        params.put("title", qryInsertAppointmentRequest.getTitle());
+        params.put("medicareno", qryInsertAppointmentRequest.getMedicareno());
+        params.put("bday", qryInsertAppointmentRequest.getBday());
+        params.put("patient_no", qryInsertAppointmentRequest.getPatientNo());
+        params.put("apmadeon", qryInsertAppointmentRequest.getApmadeon());
+        params.put("apmadeat", qryInsertAppointmentRequest.getApmadeat());
+        params.put("apmadeby", qryInsertAppointmentRequest.getApmadeby());
+        params.put("resorce_id", qryInsertAppointmentRequest.getResorceId());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryInsertAppointment", params);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryInsertPrescriptionDtl(QryInsertPrescriptionDtlRequest qryInsertPrescriptionDtlRequest) {

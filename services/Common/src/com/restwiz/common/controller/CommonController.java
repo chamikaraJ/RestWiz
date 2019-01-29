@@ -6,6 +6,7 @@ package com.restwiz.common.controller;
 import com.restwiz.common.Common;
 import java.lang.Object;
 import java.lang.String;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class CommonController {
     private Common common;
 
     @RequestMapping(value = "/allDoctorList", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public Object getAllDoctorList() {
         return common.getAllDoctorList();
     }
@@ -32,6 +35,13 @@ public class CommonController {
     @ApiOperation(value = "")
     public Object getAllEmailByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
         return common.getAllEmailByPatientNo(patientno);
+    }
+
+    @RequestMapping(value = "/allLocationList", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getAllLocationList() {
+        return common.getAllLocationList();
     }
 
     @RequestMapping(value = "/allSMSByPatientNo", produces = "application/json", method = RequestMethod.GET)
@@ -60,6 +70,20 @@ public class CommonController {
     @ApiOperation(value = "")
     public Object getPreAndPostCommsBycommmainid(@RequestParam(value = "commmainid", required = false) String commmainid) {
         return common.getPreAndPostCommsBycommmainid(commmainid);
+    }
+
+    @RequestMapping(value = "/nextNumber", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public String nextNumber(Pageable pageable) {
+        return common.nextNumber(pageable);
+    }
+
+    @RequestMapping(value = "/saveAppointment", produces = "application/json", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public String saveAppointment(@RequestBody String req) {
+        return common.saveAppointment(req);
     }
 
     @RequestMapping(value = "/savePreAndPostComms", produces = "application/json", method = RequestMethod.POST)

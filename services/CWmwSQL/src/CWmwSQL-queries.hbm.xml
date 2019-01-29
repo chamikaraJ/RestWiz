@@ -27,6 +27,38 @@
     <query-param name="t_patndetls" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetAllLocations">
+        <![CDATA[
+        select surname,resorce_id from Resource WHERE resrcetype = 'LOCATION' AND INVALIDREC =0
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetAllLocations__count">
+        <![CDATA[
+        select count(*) from (select surname,resorce_id from Resource WHERE resrcetype = 'LOCATION' AND INVALIDREC =0) wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryInsertAppointment">
+        <![CDATA[
+        insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id)
+        ]]>
+    <query-param name="uniqcalid" type="java.lang.String"/>
+    <query-param name="b_date" type="java.sql.Date"/>
+    <query-param name="b_time" type="java.lang.String"/>
+    <query-param name="user_id" type="java.lang.String"/>
+    <query-param name="last" type="java.lang.String"/>
+    <query-param name="first" type="java.lang.String"/>
+    <query-param name="title" type="java.lang.String"/>
+    <query-param name="medicareno" type="java.lang.String"/>
+    <query-param name="bday" type="java.sql.Date"/>
+    <query-param name="patient_no" type="java.lang.String"/>
+    <query-param name="apmadeon" type="java.sql.Date"/>
+    <query-param name="apmadeat" type="java.lang.String"/>
+    <query-param name="apmadeby" type="java.lang.String"/>
+    <query-param name="resorce_id" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryInsertPrescriptionDtl">
         <![CDATA[
         insert into prscrpdt(
@@ -134,7 +166,9 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
 
     <sql-query name="qryGetFutureAppointmentByPatientNo">
         <![CDATA[
-        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date > :today
+        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
+left join resource res on cal.user_id = res. schedlr_id
+where cal.patient_no = :patientno and cal.b_date >= :today and res.resrcetype = 'DOCTOR'
         ]]>
     <query-param name="patientno" type="java.lang.String"/>
     <query-param name="today" type="java.sql.Date"/>
@@ -142,7 +176,9 @@ nextofkin=:t_nextofkin where patient_no = :t_patient_no
 
     <sql-query name="qryGetFutureAppointmentByPatientNo__count">
         <![CDATA[
-        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date > :today) wmTempTable
+        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
+left join resource res on cal.user_id = res. schedlr_id
+where cal.patient_no = :patientno and cal.b_date >= :today and res.resrcetype = 'DOCTOR') wmTempTable
         ]]>
     <query-param name="patientno" type="java.lang.String"/>
     <query-param name="today" type="java.sql.Date"/>
@@ -595,7 +631,9 @@ where email = :t_email
 
     <sql-query name="qryGetPastAppointmentByPatientNo">
         <![CDATA[
-        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date < :today
+        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
+left join resource res on cal.user_id = res. schedlr_id
+where cal.patient_no = :patientno and cal.b_date < :today and res.resrcetype = 'DOCTOR'
         ]]>
     <query-param name="patientno" type="java.lang.String"/>
     <query-param name="today" type="java.sql.Date"/>
@@ -603,7 +641,9 @@ where email = :t_email
 
     <sql-query name="qryGetPastAppointmentByPatientNo__count">
         <![CDATA[
-        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat from calendar where patient_no = :patientno and b_date < :today) wmTempTable
+        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
+left join resource res on cal.user_id = res. schedlr_id
+where cal.patient_no = :patientno and cal.b_date < :today and res.resrcetype = 'DOCTOR') wmTempTable
         ]]>
     <query-param name="patientno" type="java.lang.String"/>
     <query-param name="today" type="java.sql.Date"/>

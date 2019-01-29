@@ -19,7 +19,10 @@ package com.restwiz.common;
 
         import java.util.*;
         import java.sql.Date;
+        import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.lang.*;
+import org.apache.commons.lang3.*;
 
 //import com.restwiz.common.model.*;
 
@@ -138,5 +141,111 @@ public class Common {
             result = resList;
         }
         return result;
+    }
+    
+    public Object getAllLocationList(){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 10);
+        Page<QryGetAllLocationsResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllLocations(pageable);
+        List<QryGetAllLocationsResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
+    public String nextNumber(Pageable pageable){
+             //When issue the next to be used  this will generate the next number also
+            String nextPatientNo = "Patient No. not found";
+            Page<QryGetNextPatientNoResponse> res = cWmwSQLQueryExecutorService.executeQryGetNextPatientNo("CAL",pageable);
+    
+            if(res.getContent().size()>0){
+              Long numVal = res.getContent().get(0).getNumValue();
+              String prefix = res.getContent().get(0).getCurPreFix();
+              int numLength = res.getContent().get(0).getGenNumLen().intValue();
+                if(prefix==null || prefix==""){
+                    nextPatientNo = StringUtils.leftPad(numVal+"",numLength,"0");
+                }else{
+                    nextPatientNo = prefix.trim()+StringUtils.leftPad(numVal+"",numLength-1,"0");
+                }
+    
+              QryUpdateNextPtGenCodeRequest updateReq = new QryUpdateNextPtGenCodeRequest();
+              updateReq.setNextNo(numVal+1+"");
+              updateReq.setPrefix(prefix);
+              updateReq.setTidCode("CAL");
+              int i = cWmwSQLQueryExecutorService.executeQryUpdateNextPtGenCode(updateReq);
+            }
+            return nextPatientNo;
+        }
+        
+    public String saveAppointment(String req){
+        Pageable pageable = new PageRequest(0, 10);
+        JSONParser parser = new JSONParser();
+        JSONObject json = new JSONObject();
+        String result = "";
+        
+        try {
+             json = (JSONObject) parser.parse(req.toString());
+            
+             QryInsertAppointmentRequest request = new QryInsertAppointmentRequest();
+             String nextNo = nextNumber(pageable);
+                request.setUniqcalid(nextNo);
+                request.setBdate(getSqlDate(json.get("b_date").toString()+ "T00:00:00"));
+                request.setBtime(json.get("b_time").toString());
+                request.setUserId(json.get("user_id").toString());
+                request.setLast(json.get("last").toString());
+                request.setFirst(json.get("first").toString());
+                request.setTitle(json.get("title").toString());
+                request.setMedicareno(json.get("medicareno").toString());
+                request.setBday(getSqlDate(json.get("bday").toString()));
+                request.setPatientNo(json.get("patient_no").toString());
+                
+                 Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                 java.util.Date d = new java.util.Date();
+                 String sTime = sdf.format(d);
+                request.setApmadeon(sqlDate);
+                request.setApmadeat(sTime);
+                request.setApmadeby(json.get("first").toString());
+                request.setResorceId(json.get("resorce_id").toString());
+
+             Integer i = cWmwSQLQueryExecutorService.executeQryInsertAppointment(request);
+                if(i==1){
+                    result = "Appointment saved Succesfuly";
+                }else{
+                    result = "Appointment saving falied";
+                }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
+        }
+        
+    private Date getSqlDate(String sdate) {
+
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        java.util.Date date = null;
+        try {
+            date = sdf1.parse(sdate);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        return sqlDate;
+    }
+    
+    private Time getSqlTime(String stime){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        Time t = null;
+         try {
+            long ms = sdf.parse(stime).getTime();
+             t= new Time(ms);
+         } catch (java.text.ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+        return t;
     }
 }
