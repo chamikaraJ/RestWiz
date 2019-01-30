@@ -88,6 +88,18 @@
     <query-param name="t_pass" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetAllBlueprint">
+        <![CDATA[
+        SELECT blp_id,longname FROM [dbo].[blueprnt] where blptype = 'CONSULT'
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetAllBlueprint__count">
+        <![CDATA[
+        select count(*) from (SELECT blp_id,longname FROM [dbo].[blueprnt] where blptype = 'CONSULT') wmTempTable
+        ]]>
+    </sql-query>
+
     <sql-query name="qryGetPatientByMedicareno">
         <![CDATA[
         select patient_no from ptdetail where medicareno = :t_medicareno

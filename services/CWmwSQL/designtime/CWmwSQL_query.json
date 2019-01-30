@@ -163,6 +163,47 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryGetAllBlueprint" : {
+    "name" : "qryGetAllBlueprint",
+    "description" : "get all blueprint name list",
+    "version" : "V2",
+    "queryString" : "SELECT blp_id,longname FROM [dbo].[blueprnt] where blptype = 'CONSULT'",
+    "countQueryString" : "select count(*) from (SELECT blp_id,longname FROM [dbo].[blueprnt] where blptype = 'CONSULT') wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetAllBlueprintResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "blp_id",
+        "fieldName" : "blpId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "longname",
+        "fieldName" : "longname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetAllDoctorList" : {
     "name" : "qryGetAllDoctorList",
     "description" : "get all doctor list",

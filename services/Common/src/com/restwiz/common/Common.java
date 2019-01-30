@@ -248,4 +248,27 @@ public class Common {
         
         return t;
     }
+    
+  public Object getAllBlueprintList(){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 10);
+        Page<QryGetAllBlueprintResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllBlueprint(pageable);
+        List<QryGetAllBlueprintResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
+    // public Object getAppointmentData(){
+    //     List<QryGetAllDoctorListResponse> doctor = getAllDoctorList();
+    //     List<QryGetAllLocationsResponse> location = getAllLocationList();
+    //     // List<QryGetAllBlueprintResponse> 
+        
+    //     Map<String, List<>> map = new HashMap<>();
+    //     map.put("Doctor",res.getUserid());
+        
+    //     return map;
+    // }
+    
 }

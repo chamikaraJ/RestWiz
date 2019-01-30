@@ -142,6 +142,34 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryGetAllBlueprint", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get all blueprint name list")
+    public Page<QryGetAllBlueprintResponse> executeQryGetAllBlueprint(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetAllBlueprint");
+        Page<QryGetAllBlueprintResponse> _result = queryService.executeQryGetAllBlueprint(pageable);
+        LOGGER.debug("got the result for named query: qryGetAllBlueprint, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetAllBlueprint")
+    @RequestMapping(value = "/queries/qryGetAllBlueprint/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetAllBlueprint(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetAllBlueprint");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetAllBlueprint";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetAllBlueprint( exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryGetPatientByMedicareno", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get patient by medicare no")

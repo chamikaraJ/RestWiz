@@ -23,6 +23,13 @@ public class CommonController {
     @Autowired
     private Common common;
 
+    @RequestMapping(value = "/allBlueprintList", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getAllBlueprintList() {
+        return common.getAllBlueprintList();
+    }
+
     @RequestMapping(value = "/allDoctorList", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

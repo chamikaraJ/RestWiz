@@ -33,6 +33,10 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetPatientNumberByUnamePass(String tuserid, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Page<QryGetAllBlueprintResponse> executeQryGetAllBlueprint(Pageable pageable);
+
+    void exportQryGetAllBlueprint(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetPatientByMedicarenoResponse> executeQryGetPatientByMedicareno(String tmedicareno, Pageable pageable);
 
     void exportQryGetPatientByMedicareno(String tmedicareno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
