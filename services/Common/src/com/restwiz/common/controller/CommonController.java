@@ -58,6 +58,13 @@ public class CommonController {
         return common.getAllSMSByPatientNo(patientno);
     }
 
+    @RequestMapping(value = "/appointmentData", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getAppointmentData() {
+        return common.getAppointmentData();
+    }
+
     @RequestMapping(value = "/futureAppointmentByPatientNo", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

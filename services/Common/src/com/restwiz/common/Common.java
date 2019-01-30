@@ -260,15 +260,17 @@ public class Common {
         return result;
     }
     
-    // public Object getAppointmentData(){
-    //     List<QryGetAllDoctorListResponse> doctor = getAllDoctorList();
-    //     List<QryGetAllLocationsResponse> location = getAllLocationList();
-    //     // List<QryGetAllBlueprintResponse> 
+    public Object getAppointmentData(){
+        List<QryGetAllDoctorListResponse> doctor = (List<QryGetAllDoctorListResponse>)getAllDoctorList();
+        List<QryGetAllLocationsResponse> location = (List<QryGetAllLocationsResponse>)getAllLocationList();
+        List<QryGetAllBlueprintResponse> blueprint = (List<QryGetAllBlueprintResponse>)getAllBlueprintList();
         
-    //     Map<String, List<>> map = new HashMap<>();
-    //     map.put("Doctor",res.getUserid());
+        Map<String, Object> map = new HashMap<>();
+        map.put("doctor",doctor);
+        map.put("location",location);
+        map.put("blueprint",blueprint);
         
-    //     return map;
-    // }
+        return map;
+    }
     
 }
