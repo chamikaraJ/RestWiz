@@ -695,6 +695,74 @@
       } ]
     }
   },
+  "qryGetBookedSlots" : {
+    "name" : "qryGetBookedSlots",
+    "description" : "get booked slots for next 14 days",
+    "version" : "V2",
+    "queryString" : "select b_date,b_time,e_time,user_id,blueprntcd  from calendar where b_date BETWEEN GETDATE() and GETDATE()+14",
+    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,user_id,blueprntcd  from calendar where b_date BETWEEN GETDATE() and GETDATE()+14) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetBookedSlotsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "b_date",
+        "fieldName" : "bdate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "b_time",
+        "fieldName" : "btime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "e_time",
+        "fieldName" : "etime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "user_id",
+        "fieldName" : "userId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "blueprntcd",
+        "fieldName" : "blueprntcd",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetClinCatDatByCode" : {
     "name" : "qryGetClinCatDatByCode",
     "description" : "get clinCatDat by code",
@@ -3353,6 +3421,74 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "qryGetRosterSlots" : {
+    "name" : "qryGetRosterSlots",
+    "description" : "get roster slots for next 14 days",
+    "version" : "V2",
+    "queryString" : "select b_date,b_time,e_time,user_id,blueprntcd from rosterslots \r\nwhere b_date BETWEEN GETDATE() and GETDATE()+14",
+    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,user_id,blueprntcd from rosterslots \r\nwhere b_date BETWEEN GETDATE() and GETDATE()+14) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetRosterSlotsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "b_date",
+        "fieldName" : "bdate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "b_time",
+        "fieldName" : "btime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "e_time",
+        "fieldName" : "etime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "user_id",
+        "fieldName" : "userId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "blueprntcd",
+        "fieldName" : "blueprntcd",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       } ]

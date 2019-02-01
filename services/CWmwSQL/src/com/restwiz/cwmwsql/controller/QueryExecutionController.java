@@ -46,6 +46,34 @@ public class QueryExecutionController {
     @Autowired
 	private ExportedFileManager exportedFileManager;
 
+    @RequestMapping(value = "/queries/qryGetBookedSlots", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get booked slots for next 14 days")
+    public Page<QryGetBookedSlotsResponse> executeQryGetBookedSlots(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetBookedSlots");
+        Page<QryGetBookedSlotsResponse> _result = queryService.executeQryGetBookedSlots(pageable);
+        LOGGER.debug("got the result for named query: qryGetBookedSlots, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetBookedSlots")
+    @RequestMapping(value = "/queries/qryGetBookedSlots/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetBookedSlots(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetBookedSlots");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetBookedSlots";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetBookedSlots( exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryInsertPtCharacter", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "insert ptCharacter")
@@ -326,6 +354,34 @@ public class QueryExecutionController {
 
         String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
                         outputStream -> queryService.exportQryGetPatientByUnamePass(tusername, tpass,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
+    @RequestMapping(value = "/queries/qryGetRosterSlots", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get roster slots for next 14 days")
+    public Page<QryGetRosterSlotsResponse> executeQryGetRosterSlots(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetRosterSlots");
+        Page<QryGetRosterSlotsResponse> _result = queryService.executeQryGetRosterSlots(pageable);
+        LOGGER.debug("got the result for named query: qryGetRosterSlots, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetRosterSlots")
+    @RequestMapping(value = "/queries/qryGetRosterSlots/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetRosterSlots(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetRosterSlots");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetRosterSlots";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetRosterSlots( exportOptions, pageable, outputStream));
 
         return new StringWrapper(exportedUrl);
     }

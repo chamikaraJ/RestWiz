@@ -17,6 +17,10 @@ import com.restwiz.cwmwsql.models.query.*;
 
 public interface CWmwSQLQueryExecutorService {
 
+    Page<QryGetBookedSlotsResponse> executeQryGetBookedSlots(Pageable pageable);
+
+    void exportQryGetBookedSlots(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Integer executeQryInsertPtCharacter(QryInsertPtCharacterRequest qryInsertPtCharacterRequest);
 
     Integer executeQryInsertPrescriptionHeader(QryInsertPrescriptionHeaderRequest qryInsertPrescriptionHeaderRequest);
@@ -60,6 +64,10 @@ public interface CWmwSQLQueryExecutorService {
     Page<QryGetPatientByUnamePassResponse> executeQryGetPatientByUnamePass(String tusername, String tpass, Pageable pageable);
 
     void exportQryGetPatientByUnamePass(String tusername, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Page<QryGetRosterSlotsResponse> executeQryGetRosterSlots(Pageable pageable);
+
+    void exportQryGetRosterSlots(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
     Integer executeQryUpdateptdetailReg(QryUpdateptdetailRegRequest qryUpdateptdetailRegRequest);
 

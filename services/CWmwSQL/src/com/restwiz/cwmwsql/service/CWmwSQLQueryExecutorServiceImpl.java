@@ -34,6 +34,26 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
     @Qualifier("CWmwSQLWMQueryExecutor")
     private WMQueryExecutor queryExecutor;
 
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetBookedSlotsResponse> executeQryGetBookedSlots(Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        return queryExecutor.executeNamedQuery("qryGetBookedSlots", params, QryGetBookedSlotsResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetBookedSlots(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetBookedSlots", params, QryGetBookedSlotsResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryInsertPtCharacter(QryInsertPtCharacterRequest qryInsertPtCharacterRequest) {
@@ -319,6 +339,26 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_pass", tpass);
 
         QueryProcedureInput queryInput = new QueryProcedureInput("qryGetPatientByUnamePass", params, QryGetPatientByUnamePassResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetRosterSlotsResponse> executeQryGetRosterSlots(Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        return queryExecutor.executeNamedQuery("qryGetRosterSlots", params, QryGetRosterSlotsResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetRosterSlots(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(0);
+
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetRosterSlots", params, QryGetRosterSlotsResponse.class);
 
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }

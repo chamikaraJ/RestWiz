@@ -2,6 +2,18 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+    <sql-query name="qryGetBookedSlots">
+        <![CDATA[
+        select b_date,b_time,e_time,user_id,blueprntcd  from calendar where b_date BETWEEN GETDATE() and GETDATE()+14
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetBookedSlots__count">
+        <![CDATA[
+        select count(*) from (select b_date,b_time,e_time,user_id,blueprntcd  from calendar where b_date BETWEEN GETDATE() and GETDATE()+14) wmTempTable
+        ]]>
+    </sql-query>
+
     <sql-query name="qryInsertPtCharacter">
         <![CDATA[
         insert into ptcharacters(patient_no,midname,agiven) values(:t_patientNo,:t_midname,:t_preferredName)
@@ -359,6 +371,20 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
         ]]>
     <query-param name="t_username" type="java.lang.String"/>
     <query-param name="t_pass" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetRosterSlots">
+        <![CDATA[
+        select b_date,b_time,e_time,user_id,blueprntcd from rosterslots 
+where b_date BETWEEN GETDATE() and GETDATE()+14
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetRosterSlots__count">
+        <![CDATA[
+        select count(*) from (select b_date,b_time,e_time,user_id,blueprntcd from rosterslots 
+where b_date BETWEEN GETDATE() and GETDATE()+14) wmTempTable
+        ]]>
     </sql-query>
 
     <sql-query name="qryUpdateptdetailReg">

@@ -51,6 +51,13 @@ public class CommonController {
         return common.getAllLocationList();
     }
 
+    @RequestMapping(value = "/allRosterSlotList", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getAllRosterSlotList() {
+        return common.getAllRosterSlotList();
+    }
+
     @RequestMapping(value = "/allSMSByPatientNo", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
@@ -63,6 +70,11 @@ public class CommonController {
     @ApiOperation(value = "")
     public Object getAppointmentData() {
         return common.getAppointmentData();
+    }
+
+    @RequestMapping(value = "/bookedRosterSlotList", produces = "application/json", method = RequestMethod.GET)
+    public Object getBookedRosterSlotList() {
+        return common.getBookedRosterSlotList();
     }
 
     @RequestMapping(value = "/futureAppointmentByPatientNo", produces = "application/json", method = RequestMethod.GET)

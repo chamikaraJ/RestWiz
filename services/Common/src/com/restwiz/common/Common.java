@@ -260,16 +260,41 @@ public class Common {
         return result;
     }
     
+      public Object getAllRosterSlotList(){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 10);
+        Page<QryGetRosterSlotsResponse> response = cWmwSQLQueryExecutorService.executeQryGetRosterSlots(pageable);
+        List<QryGetRosterSlotsResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
+          public Object getBookedRosterSlotList(){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 10);
+        Page<QryGetBookedSlotsResponse> response = cWmwSQLQueryExecutorService.executeQryGetBookedSlots(pageable);
+        List<QryGetBookedSlotsResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
     public Object getAppointmentData(){
         List<QryGetAllDoctorListResponse> doctor = (List<QryGetAllDoctorListResponse>)getAllDoctorList();
         List<QryGetAllLocationsResponse> location = (List<QryGetAllLocationsResponse>)getAllLocationList();
         List<QryGetAllBlueprintResponse> blueprint = (List<QryGetAllBlueprintResponse>)getAllBlueprintList();
+        List<QryGetBookedSlotsResponse> bookedslots = (List<QryGetBookedSlotsResponse>)getBookedRosterSlotList();
+         List<QryGetRosterSlotsResponse> allslots = (List<QryGetRosterSlotsResponse>)getAllRosterSlotList();
         
         Map<String, Object> map = new HashMap<>();
         map.put("doctor",doctor);
         map.put("location",location);
         map.put("blueprint",blueprint);
-        
+        map.put("bookedslots",bookedslots);
+        map.put("allslots",allslots);
         return map;
     }
     
