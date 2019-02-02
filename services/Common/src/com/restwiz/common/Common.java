@@ -48,7 +48,7 @@ public class Common {
     private CWmwSQLQueryExecutorService cWmwSQLQueryExecutorService;
 
   public Object getPreAndPostCommsBycommmainid(String commmainid){
-         Pageable pageable = new PageRequest(0, 10);
+         Pageable pageable = new PageRequest(0, 1000);
          Object result = "Data not fount";
         Page<QryGetPreandpostcommsByCommainidResponse> response = cWmwSQLQueryExecutorService.executeQryGetPreandpostcommsByCommainid(commmainid, pageable);
          List<QryGetPreandpostcommsByCommainidResponse> resList = response.getContent();
@@ -59,7 +59,7 @@ public class Common {
     }
     
     public String savePreAndPostComms(String req){
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
         JSONParser parser = new JSONParser();
         JSONObject json = new JSONObject();
         String result = "";
@@ -87,7 +87,7 @@ public class Common {
     
     public Object getAllSMSByPatientNo(String patientno){
         Object result = "Data not fount";
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
         Page<QryGetAllSmsByPatientnoResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllSmsByPatientno(patientno, pageable);
         List<QryGetAllSmsByPatientnoResponse> resList = response.getContent();
         if(resList.size()>0){
@@ -98,7 +98,7 @@ public class Common {
     
     public Object getAllEmailByPatientNo(String patientno){
         Object result = "Data not fount";
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
         Page<QryGetAllEmailByPatientNoResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllEmailByPatientNo(patientno, pageable);
         List<QryGetAllEmailByPatientNoResponse> resList = response.getContent();
         if(resList.size()>0){
@@ -109,7 +109,7 @@ public class Common {
     
     public Object getPastAppointmentByPatientNo(String patientno){
         Object result = "Data not fount";
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
         java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         
         Page<QryGetPastAppointmentByPatientNoResponse> response = cWmwSQLQueryExecutorService.executeQryGetPastAppointmentByPatientNo(patientno,sqlDate, pageable);
@@ -122,7 +122,7 @@ public class Common {
     
     public Object getFutureAppointmentByPatientNo(String patientno){
         Object result = "Data not fount";
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
          java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         Page<QryGetFutureAppointmentByPatientNoResponse> response = cWmwSQLQueryExecutorService.executeQryGetFutureAppointmentByPatientNo(patientno,sqlDate, pageable);
         List<QryGetFutureAppointmentByPatientNoResponse> resList = response.getContent();
@@ -134,7 +134,7 @@ public class Common {
     
     public Object getAllAppointmentByPatientNo(String patientno){
         Object result = "Data not fount";
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
          java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         Page<QryGetAllAppointmentByPatientNoResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllAppointmentByPatientNo(patientno, pageable);
         List<QryGetAllAppointmentByPatientNoResponse> resList = response.getContent();
@@ -146,7 +146,7 @@ public class Common {
     
     public Object getAllDoctorList(){
         Object result = "Data not fount";
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
         Page<QryGetAllDoctorListResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllDoctorList(pageable);
         List<QryGetAllDoctorListResponse> resList = response.getContent();
         if(resList.size()>0){
@@ -157,7 +157,7 @@ public class Common {
     
     public Object getAllLocationList(){
         Object result = "Data not fount";
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
         Page<QryGetAllLocationsResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllLocations(pageable);
         List<QryGetAllLocationsResponse> resList = response.getContent();
         if(resList.size()>0){
@@ -191,7 +191,7 @@ public class Common {
         }
         
     public String saveAppointment(String req){
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
         JSONParser parser = new JSONParser();
         JSONObject json = new JSONObject();
         String result = "";
@@ -220,6 +220,10 @@ public class Common {
                 request.setApmadeat(sTime);
                 request.setApmadeby(json.get("first").toString());
                 request.setResorceId(json.get("resorce_id").toString());
+                request.setCalDesc(json.get("cal_desc").toString());
+                
+
+                // caldesc
 
              Integer i = cWmwSQLQueryExecutorService.executeQryInsertAppointment(request);
                 if(i==1){
@@ -263,7 +267,7 @@ public class Common {
     
   public Object getAllBlueprintList(){
         Object result = "Data not fount";
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
         Page<QryGetAllBlueprintResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllBlueprint(pageable);
         List<QryGetAllBlueprintResponse> resList = response.getContent();
         if(resList.size()>0){
@@ -274,7 +278,7 @@ public class Common {
     
       public Object getAllRosterSlotList(){
         Object result = "Data not fount";
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
         Page<QryGetRosterSlotsResponse> response = cWmwSQLQueryExecutorService.executeQryGetRosterSlots(pageable);
         List<QryGetRosterSlotsResponse> resList = response.getContent();
         if(resList.size()>0){
@@ -285,7 +289,7 @@ public class Common {
     
           public Object getBookedRosterSlotList(){
         Object result = "Data not fount";
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = new PageRequest(0, 1000);
         Page<QryGetBookedSlotsResponse> response = cWmwSQLQueryExecutorService.executeQryGetBookedSlots(pageable);
         List<QryGetBookedSlotsResponse> resList = response.getContent();
         if(resList.size()>0){

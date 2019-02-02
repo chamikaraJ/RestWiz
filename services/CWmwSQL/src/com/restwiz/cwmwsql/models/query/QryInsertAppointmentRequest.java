@@ -73,6 +73,10 @@ public class QryInsertAppointmentRequest implements Serializable {
     @NotNull
     private String resorceId;
 
+    @JsonProperty("cal_desc")
+    @NotNull
+    private String calDesc;
+
     public String getUniqcalid() {
         return this.uniqcalid;
     }
@@ -185,6 +189,14 @@ public class QryInsertAppointmentRequest implements Serializable {
         this.resorceId = resorceId;
     }
 
+    public String getCalDesc() {
+        return this.calDesc;
+    }
+
+    public void setCalDesc(String calDesc) {
+        this.calDesc = calDesc;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -203,7 +215,8 @@ public class QryInsertAppointmentRequest implements Serializable {
                 Objects.equals(getApmadeon(), qryInsertAppointmentRequest.getApmadeon()) &&
                 Objects.equals(getApmadeat(), qryInsertAppointmentRequest.getApmadeat()) &&
                 Objects.equals(getApmadeby(), qryInsertAppointmentRequest.getApmadeby()) &&
-                Objects.equals(getResorceId(), qryInsertAppointmentRequest.getResorceId());
+                Objects.equals(getResorceId(), qryInsertAppointmentRequest.getResorceId()) &&
+                Objects.equals(getCalDesc(), qryInsertAppointmentRequest.getCalDesc());
     }
 
     @Override
@@ -221,6 +234,7 @@ public class QryInsertAppointmentRequest implements Serializable {
                 getApmadeon(),
                 getApmadeat(),
                 getApmadeby(),
-                getResorceId());
+                getResorceId(),
+                getCalDesc());
     }
 }

@@ -320,8 +320,8 @@
     "name" : "qryGetAllDoctorList",
     "description" : "get all doctor list",
     "version" : "V2",
-    "queryString" : "Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0",
-    "countQueryString" : "select count(*) from (Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0) wmTempTable",
+    "queryString" : "Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0 and schedlr_id > ' '",
+    "countQueryString" : "select count(*) from (Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0 and schedlr_id > ' ') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -3542,8 +3542,8 @@
     "name" : "qryGetRosterSlots",
     "description" : "get roster slots for next 14 days",
     "version" : "V2",
-    "queryString" : "select b_date,b_time,e_time,user_id,blueprntcd from rosterslots \r\nwhere b_date BETWEEN GETDATE() and GETDATE()+14",
-    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,user_id,blueprntcd from rosterslots \r\nwhere b_date BETWEEN GETDATE() and GETDATE()+14) wmTempTable",
+    "queryString" : "select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id from rosterslots r,roster b \r\nwhere r.roster_id=b.roster_id and  r.b_date BETWEEN GETDATE() and GETDATE()+14",
+    "countQueryString" : "select count(*) from (select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id from rosterslots r,roster b \r\nwhere r.roster_id=b.roster_id and  r.b_date BETWEEN GETDATE() and GETDATE()+14) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -3597,6 +3597,15 @@
       }, {
         "name" : "blueprntcd",
         "fieldName" : "blueprntcd",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "locatn1_id",
+        "fieldName" : "locatn1Id",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4146,7 +4155,7 @@
     "name" : "qryInsertAppointment",
     "description" : "save new Appointment",
     "version" : "V2",
-    "queryString" : "insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id)",
+    "queryString" : "insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -4157,7 +4166,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "55s5665LRX",
+      "testValue" : "55234LRX",
       "required" : true
     }, {
       "name" : "b_date",
@@ -4262,6 +4271,14 @@
       "variableType" : "PROMPT",
       "variableName" : "",
       "testValue" : "5",
+      "required" : true
+    }, {
+      "name" : "cal_desc",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "asdads",
       "required" : true
     } ],
     "request" : {

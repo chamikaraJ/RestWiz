@@ -53,7 +53,7 @@
 
     <sql-query name="qryInsertAppointment">
         <![CDATA[
-        insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id)
+        insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc)
         ]]>
     <query-param name="uniqcalid" type="java.lang.String"/>
     <query-param name="b_date" type="java.sql.Date"/>
@@ -69,6 +69,7 @@
     <query-param name="apmadeat" type="java.lang.String"/>
     <query-param name="apmadeby" type="java.lang.String"/>
     <query-param name="resorce_id" type="java.lang.String"/>
+    <query-param name="cal_desc" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryInsertPrescriptionDtl">
@@ -233,13 +234,13 @@ where cal.patient_no = :patientno and cal.b_date >= :today and res.resrcetype = 
 
     <sql-query name="qryGetAllDoctorList">
         <![CDATA[
-        Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0
+        Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0 and schedlr_id > ' '
         ]]>
     </sql-query>
 
     <sql-query name="qryGetAllDoctorList__count">
         <![CDATA[
-        select count(*) from (Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0) wmTempTable
+        select count(*) from (Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0 and schedlr_id > ' ') wmTempTable
         ]]>
     </sql-query>
 
@@ -375,15 +376,15 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
 
     <sql-query name="qryGetRosterSlots">
         <![CDATA[
-        select b_date,b_time,e_time,user_id,blueprntcd from rosterslots 
-where b_date BETWEEN GETDATE() and GETDATE()+14
+        select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id from rosterslots r,roster b 
+where r.roster_id=b.roster_id and  r.b_date BETWEEN GETDATE() and GETDATE()+14
         ]]>
     </sql-query>
 
     <sql-query name="qryGetRosterSlots__count">
         <![CDATA[
-        select count(*) from (select b_date,b_time,e_time,user_id,blueprntcd from rosterslots 
-where b_date BETWEEN GETDATE() and GETDATE()+14) wmTempTable
+        select count(*) from (select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id from rosterslots r,roster b 
+where r.roster_id=b.roster_id and  r.b_date BETWEEN GETDATE() and GETDATE()+14) wmTempTable
         ]]>
     </sql-query>
 

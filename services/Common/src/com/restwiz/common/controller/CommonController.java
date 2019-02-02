@@ -24,6 +24,8 @@ public class CommonController {
     private Common common;
 
     @RequestMapping(value = "/allappointmentByPatientNo", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public Object getAllAppointmentByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
         return common.getAllAppointmentByPatientNo(patientno);
     }

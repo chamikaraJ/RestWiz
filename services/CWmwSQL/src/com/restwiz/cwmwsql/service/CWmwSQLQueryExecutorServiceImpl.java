@@ -104,7 +104,7 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryInsertAppointment(QryInsertAppointmentRequest qryInsertAppointmentRequest) {
-        Map<String, Object> params = new HashMap<>(14);
+        Map<String, Object> params = new HashMap<>(15);
 
         params.put("uniqcalid", qryInsertAppointmentRequest.getUniqcalid());
         params.put("b_date", qryInsertAppointmentRequest.getBdate());
@@ -120,6 +120,7 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("apmadeat", qryInsertAppointmentRequest.getApmadeat());
         params.put("apmadeby", qryInsertAppointmentRequest.getApmadeby());
         params.put("resorce_id", qryInsertAppointmentRequest.getResorceId());
+        params.put("cal_desc", qryInsertAppointmentRequest.getCalDesc());
 
         return queryExecutor.executeNamedQueryForUpdate("qryInsertAppointment", params);
     }
