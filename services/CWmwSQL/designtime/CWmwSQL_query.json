@@ -163,6 +163,118 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryGetAllAppointmentByPatientNo" : {
+    "name" : "qryGetAllAppointmentByPatientNo",
+    "description" : "get all appointment by patient number",
+    "version" : "V2",
+    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'",
+    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "patientno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80095",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetAllAppointmentByPatientNoResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "b_date",
+        "fieldName" : "bdate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "b_time",
+        "fieldName" : "btime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "e_time",
+        "fieldName" : "etime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "cal_desc",
+        "fieldName" : "calDesc",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "apmadeon",
+        "fieldName" : "apmadeon",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "apmadeat",
+        "fieldName" : "apmadeat",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "title",
+        "fieldName" : "title",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "given",
+        "fieldName" : "given",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "surname",
+        "fieldName" : "surname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetAllBlueprint" : {
     "name" : "qryGetAllBlueprint",
     "description" : "get all blueprint name list",

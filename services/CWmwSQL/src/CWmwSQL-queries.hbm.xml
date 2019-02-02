@@ -387,6 +387,24 @@ where b_date BETWEEN GETDATE() and GETDATE()+14) wmTempTable
         ]]>
     </sql-query>
 
+    <sql-query name="qryGetAllAppointmentByPatientNo">
+        <![CDATA[
+        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
+left join resource res on cal.user_id = res. schedlr_id
+where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetAllAppointmentByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
+left join resource res on cal.user_id = res. schedlr_id
+where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryUpdateptdetailReg">
         <![CDATA[
         update ptdetail_reg set famDrTitle = :t_famdrtitle,

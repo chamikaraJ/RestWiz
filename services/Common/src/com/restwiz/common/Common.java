@@ -132,6 +132,18 @@ public class Common {
         return result;
     }
     
+    public Object getAllAppointmentByPatientNo(String patientno){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 10);
+         java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        Page<QryGetAllAppointmentByPatientNoResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllAppointmentByPatientNo(patientno, pageable);
+        List<QryGetAllAppointmentByPatientNoResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
     public Object getAllDoctorList(){
         Object result = "Data not fount";
         Pageable pageable = new PageRequest(0, 10);

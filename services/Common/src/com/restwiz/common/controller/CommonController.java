@@ -4,8 +4,8 @@
 package com.restwiz.common.controller;
 
 import com.restwiz.common.Common;
-import java.lang.Object;
 import java.lang.String;
+import java.lang.Object;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
@@ -22,6 +22,11 @@ public class CommonController {
 
     @Autowired
     private Common common;
+
+    @RequestMapping(value = "/allappointmentByPatientNo", produces = "application/json", method = RequestMethod.GET)
+    public Object getAllAppointmentByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
+        return common.getAllAppointmentByPatientNo(patientno);
+    }
 
     @RequestMapping(value = "/allBlueprintList", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -73,6 +78,8 @@ public class CommonController {
     }
 
     @RequestMapping(value = "/bookedRosterSlotList", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public Object getBookedRosterSlotList() {
         return common.getBookedRosterSlotList();
     }

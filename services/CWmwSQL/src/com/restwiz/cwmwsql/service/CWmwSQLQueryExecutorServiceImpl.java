@@ -363,6 +363,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetAllAppointmentByPatientNoResponse> executeQryGetAllAppointmentByPatientNo(String patientno, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("patientno", patientno);
+
+        return queryExecutor.executeNamedQuery("qryGetAllAppointmentByPatientNo", params, QryGetAllAppointmentByPatientNoResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetAllAppointmentByPatientNo(String patientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("patientno", patientno);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetAllAppointmentByPatientNo", params, QryGetAllAppointmentByPatientNoResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdateptdetailReg(QryUpdateptdetailRegRequest qryUpdateptdetailRegRequest) {

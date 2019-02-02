@@ -386,6 +386,34 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryGetAllAppointmentByPatientNo", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get all appointment by patient number")
+    public Page<QryGetAllAppointmentByPatientNoResponse> executeQryGetAllAppointmentByPatientNo(@RequestParam(value = "patientno") String patientno, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetAllAppointmentByPatientNo");
+        Page<QryGetAllAppointmentByPatientNoResponse> _result = queryService.executeQryGetAllAppointmentByPatientNo(patientno, pageable);
+        LOGGER.debug("got the result for named query: qryGetAllAppointmentByPatientNo, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetAllAppointmentByPatientNo")
+    @RequestMapping(value = "/queries/qryGetAllAppointmentByPatientNo/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetAllAppointmentByPatientNo(@RequestParam(value = "patientno") String patientno, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetAllAppointmentByPatientNo");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetAllAppointmentByPatientNo";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetAllAppointmentByPatientNo(patientno,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryUpdateptdetailReg", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "update ptdetailreg table")

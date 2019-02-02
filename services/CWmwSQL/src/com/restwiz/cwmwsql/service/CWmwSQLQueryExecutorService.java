@@ -69,6 +69,10 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetRosterSlots(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Page<QryGetAllAppointmentByPatientNoResponse> executeQryGetAllAppointmentByPatientNo(String patientno, Pageable pageable);
+
+    void exportQryGetAllAppointmentByPatientNo(String patientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Integer executeQryUpdateptdetailReg(QryUpdateptdetailRegRequest qryUpdateptdetailRegRequest);
 
     Page<QryGetJsonTextByPatientNoResponse> executeQryGetJsonTextByPatientNo(String tpatientno, Pageable pageable);
