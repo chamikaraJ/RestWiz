@@ -221,9 +221,9 @@ public class Common {
                 request.setApmadeby(json.get("first").toString());
                 request.setResorceId(json.get("resorce_id").toString());
                 request.setCalDesc(json.get("cal_desc").toString());
-                
-
-                // caldesc
+                request.setOpnotes(json.get("opnotes").toString());
+                request.setBlueprntcd("APREQ");
+                // caldesc blueprntcd
 
              Integer i = cWmwSQLQueryExecutorService.executeQryInsertAppointment(request);
                 if(i==1){

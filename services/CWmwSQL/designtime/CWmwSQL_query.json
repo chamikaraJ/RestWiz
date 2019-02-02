@@ -167,8 +167,8 @@
     "name" : "qryGetAllAppointmentByPatientNo",
     "description" : "get all appointment by patient number",
     "version" : "V2",
-    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'",
-    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable",
+    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'",
+    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -239,6 +239,15 @@
       }, {
         "name" : "apmadeat",
         "fieldName" : "apmadeat",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "opnotes",
+        "fieldName" : "opnotes",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4155,7 +4164,7 @@
     "name" : "qryInsertAppointment",
     "description" : "save new Appointment",
     "version" : "V2",
-    "queryString" : "insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc)",
+    "queryString" : "insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc,opnotes,blueprntcd) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc,:opnotes,:blueprntcd)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -4166,7 +4175,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "55234LRX",
+      "testValue" : "5Td34LRX",
       "required" : true
     }, {
       "name" : "b_date",
@@ -4279,6 +4288,22 @@
       "variableType" : "PROMPT",
       "variableName" : "",
       "testValue" : "asdads",
+      "required" : true
+    }, {
+      "name" : "opnotes",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "ASFGFSDG",
+      "required" : true
+    }, {
+      "name" : "blueprntcd",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "APREQ",
       "required" : true
     } ],
     "request" : {

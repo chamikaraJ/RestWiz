@@ -77,6 +77,14 @@ public class QryInsertAppointmentRequest implements Serializable {
     @NotNull
     private String calDesc;
 
+    @JsonProperty("opnotes")
+    @NotNull
+    private String opnotes;
+
+    @JsonProperty("blueprntcd")
+    @NotNull
+    private String blueprntcd;
+
     public String getUniqcalid() {
         return this.uniqcalid;
     }
@@ -197,6 +205,22 @@ public class QryInsertAppointmentRequest implements Serializable {
         this.calDesc = calDesc;
     }
 
+    public String getOpnotes() {
+        return this.opnotes;
+    }
+
+    public void setOpnotes(String opnotes) {
+        this.opnotes = opnotes;
+    }
+
+    public String getBlueprntcd() {
+        return this.blueprntcd;
+    }
+
+    public void setBlueprntcd(String blueprntcd) {
+        this.blueprntcd = blueprntcd;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -216,7 +240,9 @@ public class QryInsertAppointmentRequest implements Serializable {
                 Objects.equals(getApmadeat(), qryInsertAppointmentRequest.getApmadeat()) &&
                 Objects.equals(getApmadeby(), qryInsertAppointmentRequest.getApmadeby()) &&
                 Objects.equals(getResorceId(), qryInsertAppointmentRequest.getResorceId()) &&
-                Objects.equals(getCalDesc(), qryInsertAppointmentRequest.getCalDesc());
+                Objects.equals(getCalDesc(), qryInsertAppointmentRequest.getCalDesc()) &&
+                Objects.equals(getOpnotes(), qryInsertAppointmentRequest.getOpnotes()) &&
+                Objects.equals(getBlueprntcd(), qryInsertAppointmentRequest.getBlueprntcd());
     }
 
     @Override
@@ -235,6 +261,8 @@ public class QryInsertAppointmentRequest implements Serializable {
                 getApmadeat(),
                 getApmadeby(),
                 getResorceId(),
-                getCalDesc());
+                getCalDesc(),
+                getOpnotes(),
+                getBlueprntcd());
     }
 }

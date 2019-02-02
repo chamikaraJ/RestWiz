@@ -33,6 +33,9 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
     @ColumnAlias("apmadeat")
     private String apmadeat;
 
+    @ColumnAlias("opnotes")
+    private String opnotes;
+
     @ColumnAlias("title")
     private String title;
 
@@ -90,6 +93,14 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
         this.apmadeat = apmadeat;
     }
 
+    public String getOpnotes() {
+        return this.opnotes;
+    }
+
+    public void setOpnotes(String opnotes) {
+        this.opnotes = opnotes;
+    }
+
     public String getTitle() {
         return this.title;
     }
@@ -125,6 +136,7 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
                 Objects.equals(getCalDesc(), qryGetAllAppointmentByPatientNoResponse.getCalDesc()) &&
                 Objects.equals(getApmadeon(), qryGetAllAppointmentByPatientNoResponse.getApmadeon()) &&
                 Objects.equals(getApmadeat(), qryGetAllAppointmentByPatientNoResponse.getApmadeat()) &&
+                Objects.equals(getOpnotes(), qryGetAllAppointmentByPatientNoResponse.getOpnotes()) &&
                 Objects.equals(getTitle(), qryGetAllAppointmentByPatientNoResponse.getTitle()) &&
                 Objects.equals(getGiven(), qryGetAllAppointmentByPatientNoResponse.getGiven()) &&
                 Objects.equals(getSurname(), qryGetAllAppointmentByPatientNoResponse.getSurname());
@@ -138,6 +150,7 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
                 getCalDesc(),
                 getApmadeon(),
                 getApmadeat(),
+                getOpnotes(),
                 getTitle(),
                 getGiven(),
                 getSurname());

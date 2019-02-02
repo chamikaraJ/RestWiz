@@ -53,7 +53,7 @@
 
     <sql-query name="qryInsertAppointment">
         <![CDATA[
-        insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc)
+        insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc,opnotes,blueprntcd) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc,:opnotes,:blueprntcd)
         ]]>
     <query-param name="uniqcalid" type="java.lang.String"/>
     <query-param name="b_date" type="java.sql.Date"/>
@@ -70,6 +70,8 @@
     <query-param name="apmadeby" type="java.lang.String"/>
     <query-param name="resorce_id" type="java.lang.String"/>
     <query-param name="cal_desc" type="java.lang.String"/>
+    <query-param name="opnotes" type="java.lang.String"/>
+    <query-param name="blueprntcd" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryInsertPrescriptionDtl">
@@ -390,7 +392,7 @@ where r.roster_id=b.roster_id and  r.b_date BETWEEN GETDATE() and GETDATE()+14) 
 
     <sql-query name="qryGetAllAppointmentByPatientNo">
         <![CDATA[
-        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
+        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname from calendar cal
 left join resource res on cal.user_id = res. schedlr_id
 where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'
         ]]>
@@ -399,7 +401,7 @@ where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'
 
     <sql-query name="qryGetAllAppointmentByPatientNo__count">
         <![CDATA[
-        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
+        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname from calendar cal
 left join resource res on cal.user_id = res. schedlr_id
 where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable
         ]]>
