@@ -167,8 +167,8 @@
     "name" : "qryGetAllAppointmentByPatientNo",
     "description" : "get all appointment by patient number",
     "version" : "V2",
-    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'",
-    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable",
+    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nleft join blueprnt blp on cal.blueprntcd = blp.shortname\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'",
+    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nleft join blueprnt blp on cal.blueprntcd = blp.shortname\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -275,6 +275,24 @@
       }, {
         "name" : "surname",
         "fieldName" : "surname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "blueprntcd",
+        "fieldName" : "blueprntcd",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "longname",
+        "fieldName" : "longname",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",

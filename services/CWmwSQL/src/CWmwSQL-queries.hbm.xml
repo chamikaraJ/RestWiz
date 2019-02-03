@@ -392,8 +392,9 @@ where r.roster_id=b.roster_id and  r.b_date BETWEEN GETDATE() and GETDATE()+14) 
 
     <sql-query name="qryGetAllAppointmentByPatientNo">
         <![CDATA[
-        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname from calendar cal
+        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname from calendar cal
 left join resource res on cal.user_id = res. schedlr_id
+left join blueprnt blp on cal.blueprntcd = blp.shortname
 where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'
         ]]>
     <query-param name="patientno" type="java.lang.String"/>
@@ -401,8 +402,9 @@ where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'
 
     <sql-query name="qryGetAllAppointmentByPatientNo__count">
         <![CDATA[
-        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname from calendar cal
+        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname from calendar cal
 left join resource res on cal.user_id = res. schedlr_id
+left join blueprnt blp on cal.blueprntcd = blp.shortname
 where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable
         ]]>
     <query-param name="patientno" type="java.lang.String"/>

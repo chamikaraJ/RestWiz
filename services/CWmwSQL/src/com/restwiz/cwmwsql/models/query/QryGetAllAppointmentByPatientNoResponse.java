@@ -45,6 +45,12 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
     @ColumnAlias("surname")
     private String surname;
 
+    @ColumnAlias("blueprntcd")
+    private String blueprntcd;
+
+    @ColumnAlias("longname")
+    private String longname;
+
     public LocalDateTime getBdate() {
         return this.bdate;
     }
@@ -125,6 +131,22 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
         this.surname = surname;
     }
 
+    public String getBlueprntcd() {
+        return this.blueprntcd;
+    }
+
+    public void setBlueprntcd(String blueprntcd) {
+        this.blueprntcd = blueprntcd;
+    }
+
+    public String getLongname() {
+        return this.longname;
+    }
+
+    public void setLongname(String longname) {
+        this.longname = longname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -139,7 +161,9 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
                 Objects.equals(getOpnotes(), qryGetAllAppointmentByPatientNoResponse.getOpnotes()) &&
                 Objects.equals(getTitle(), qryGetAllAppointmentByPatientNoResponse.getTitle()) &&
                 Objects.equals(getGiven(), qryGetAllAppointmentByPatientNoResponse.getGiven()) &&
-                Objects.equals(getSurname(), qryGetAllAppointmentByPatientNoResponse.getSurname());
+                Objects.equals(getSurname(), qryGetAllAppointmentByPatientNoResponse.getSurname()) &&
+                Objects.equals(getBlueprntcd(), qryGetAllAppointmentByPatientNoResponse.getBlueprntcd()) &&
+                Objects.equals(getLongname(), qryGetAllAppointmentByPatientNoResponse.getLongname());
     }
 
     @Override
@@ -153,6 +177,8 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
                 getOpnotes(),
                 getTitle(),
                 getGiven(),
-                getSurname());
+                getSurname(),
+                getBlueprntcd(),
+                getLongname());
     }
 }
