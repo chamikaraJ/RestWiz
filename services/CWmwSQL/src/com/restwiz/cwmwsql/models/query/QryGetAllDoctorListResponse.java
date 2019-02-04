@@ -38,8 +38,8 @@ public class QryGetAllDoctorListResponse implements Serializable {
     @ColumnAlias("sortorder")
     private Float sortorder;
 
-    @ColumnAlias("can_dblbuk")
-    private Boolean canDblbuk;
+    @ColumnAlias("specialty1")
+    private String specialty1;
 
     public String getResorceId() {
         return this.resorceId;
@@ -105,12 +105,12 @@ public class QryGetAllDoctorListResponse implements Serializable {
         this.sortorder = sortorder;
     }
 
-    public Boolean getCanDblbuk() {
-        return this.canDblbuk;
+    public String getSpecialty1() {
+        return this.specialty1;
     }
 
-    public void setCanDblbuk(Boolean canDblbuk) {
-        this.canDblbuk = canDblbuk;
+    public void setSpecialty1(String specialty1) {
+        this.specialty1 = specialty1;
     }
 
     @Override
@@ -126,7 +126,7 @@ public class QryGetAllDoctorListResponse implements Serializable {
                 Objects.equals(getUsualdurtn(), qryGetAllDoctorListResponse.getUsualdurtn()) &&
                 Objects.equals(getSchedlrId(), qryGetAllDoctorListResponse.getSchedlrId()) &&
                 Objects.equals(getSortorder(), qryGetAllDoctorListResponse.getSortorder()) &&
-                Objects.equals(getCanDblbuk(), qryGetAllDoctorListResponse.getCanDblbuk());
+                Objects.equals(getSpecialty1(), qryGetAllDoctorListResponse.getSpecialty1());
     }
 
     @Override
@@ -139,6 +139,6 @@ public class QryGetAllDoctorListResponse implements Serializable {
                 getUsualdurtn(),
                 getSchedlrId(),
                 getSortorder(),
-                getCanDblbuk());
+                getSpecialty1());
     }
 }

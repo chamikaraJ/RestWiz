@@ -223,8 +223,9 @@ public class Common {
                 request.setCalDesc(json.get("cal_desc").toString());
                 request.setOpnotes(json.get("opnotes").toString());
                 request.setBlueprntcd("APREQ");
-                // caldesc blueprntcd
-
+                request.setEtime(json.get("e_time").toString());
+                request.setDuration(json.get("duration").toString());
+                request.setColor(json.get("color").toString());
              Integer i = cWmwSQLQueryExecutorService.executeQryInsertAppointment(request);
                 if(i==1){
                     result = "Appointment saved Succesfuly";

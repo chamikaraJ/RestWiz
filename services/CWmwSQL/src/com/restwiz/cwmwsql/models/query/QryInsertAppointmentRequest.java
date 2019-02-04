@@ -85,6 +85,18 @@ public class QryInsertAppointmentRequest implements Serializable {
     @NotNull
     private String blueprntcd;
 
+    @JsonProperty("e_time")
+    @NotNull
+    private String etime;
+
+    @JsonProperty("duration")
+    @NotNull
+    private String duration;
+
+    @JsonProperty("color")
+    @NotNull
+    private String color;
+
     public String getUniqcalid() {
         return this.uniqcalid;
     }
@@ -221,6 +233,30 @@ public class QryInsertAppointmentRequest implements Serializable {
         this.blueprntcd = blueprntcd;
     }
 
+    public String getEtime() {
+        return this.etime;
+    }
+
+    public void setEtime(String etime) {
+        this.etime = etime;
+    }
+
+    public String getDuration() {
+        return this.duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getColor() {
+        return this.color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -242,7 +278,10 @@ public class QryInsertAppointmentRequest implements Serializable {
                 Objects.equals(getResorceId(), qryInsertAppointmentRequest.getResorceId()) &&
                 Objects.equals(getCalDesc(), qryInsertAppointmentRequest.getCalDesc()) &&
                 Objects.equals(getOpnotes(), qryInsertAppointmentRequest.getOpnotes()) &&
-                Objects.equals(getBlueprntcd(), qryInsertAppointmentRequest.getBlueprntcd());
+                Objects.equals(getBlueprntcd(), qryInsertAppointmentRequest.getBlueprntcd()) &&
+                Objects.equals(getEtime(), qryInsertAppointmentRequest.getEtime()) &&
+                Objects.equals(getDuration(), qryInsertAppointmentRequest.getDuration()) &&
+                Objects.equals(getColor(), qryInsertAppointmentRequest.getColor());
     }
 
     @Override
@@ -263,6 +302,9 @@ public class QryInsertAppointmentRequest implements Serializable {
                 getResorceId(),
                 getCalDesc(),
                 getOpnotes(),
-                getBlueprntcd());
+                getBlueprntcd(),
+                getEtime(),
+                getDuration(),
+                getColor());
     }
 }

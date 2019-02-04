@@ -33,6 +33,9 @@ public class QryGetRosterSlotsResponse implements Serializable {
     @ColumnAlias("locatn1_id")
     private String locatn1Id;
 
+    @ColumnAlias("duration")
+    private Short duration;
+
     public LocalDateTime getBdate() {
         return this.bdate;
     }
@@ -81,6 +84,14 @@ public class QryGetRosterSlotsResponse implements Serializable {
         this.locatn1Id = locatn1Id;
     }
 
+    public Short getDuration() {
+        return this.duration;
+    }
+
+    public void setDuration(Short duration) {
+        this.duration = duration;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,7 +102,8 @@ public class QryGetRosterSlotsResponse implements Serializable {
                 Objects.equals(getEtime(), qryGetRosterSlotsResponse.getEtime()) &&
                 Objects.equals(getUserId(), qryGetRosterSlotsResponse.getUserId()) &&
                 Objects.equals(getBlueprntcd(), qryGetRosterSlotsResponse.getBlueprntcd()) &&
-                Objects.equals(getLocatn1Id(), qryGetRosterSlotsResponse.getLocatn1Id());
+                Objects.equals(getLocatn1Id(), qryGetRosterSlotsResponse.getLocatn1Id()) &&
+                Objects.equals(getDuration(), qryGetRosterSlotsResponse.getDuration());
     }
 
     @Override
@@ -101,6 +113,7 @@ public class QryGetRosterSlotsResponse implements Serializable {
                 getEtime(),
                 getUserId(),
                 getBlueprntcd(),
-                getLocatn1Id());
+                getLocatn1Id(),
+                getDuration());
     }
 }

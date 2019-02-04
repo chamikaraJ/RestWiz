@@ -347,8 +347,8 @@
     "name" : "qryGetAllDoctorList",
     "description" : "get all doctor list",
     "version" : "V2",
-    "queryString" : "Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0 and schedlr_id > ' '",
-    "countQueryString" : "select count(*) from (Select resorce_id,Title,given,surname, Idno,usualdurtn,schedlr_id,sortorder,can_dblbuk from RESOURCE Where resrcetype='DOCTOR' and notincalnd=0 and INVALIDREC=0 and schedlr_id > ' ') wmTempTable",
+    "queryString" : "Select r.resorce_id,r.Title,r.given,r.surname, r.Idno,r.usualdurtn,r.schedlr_id,r.sortorder,d.specialty1 from RESOURCE r left join doctor d on r.resorce_id= d.resorce_id Where r.resrcetype='DOCTOR' \r\nand r.notincalnd=0 and r.INVALIDREC=0 \r\nand r.schedlr_id > ' ' \r\nand r.showinpp = 'true'",
+    "countQueryString" : "select count(*) from (Select r.resorce_id,r.Title,r.given,r.surname, r.Idno,r.usualdurtn,r.schedlr_id,r.sortorder,d.specialty1 from RESOURCE r left join doctor d on r.resorce_id= d.resorce_id Where r.resrcetype='DOCTOR' \r\nand r.notincalnd=0 and r.INVALIDREC=0 \r\nand r.schedlr_id > ' ' \r\nand r.showinpp = 'true') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -436,12 +436,12 @@
           "list" : false
         }
       }, {
-        "name" : "can_dblbuk",
-        "fieldName" : "canDblbuk",
+        "name" : "specialty1",
+        "fieldName" : "specialty1",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       } ]
@@ -3569,8 +3569,8 @@
     "name" : "qryGetRosterSlots",
     "description" : "get roster slots for next 14 days",
     "version" : "V2",
-    "queryString" : "select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id from rosterslots r,roster b \r\nwhere r.roster_id=b.roster_id and  r.b_date BETWEEN GETDATE() and GETDATE()+14",
-    "countQueryString" : "select count(*) from (select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id from rosterslots r,roster b \r\nwhere r.roster_id=b.roster_id and  r.b_date BETWEEN GETDATE() and GETDATE()+14) wmTempTable",
+    "queryString" : "select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id,r.duration from rosterslots r, roster b,  resource res  \r\nwhere  r.roster_id =  b.roster_id and res.resorce_id = b.locatn1_id  and\r\n (b.rostrdate BETWEEN GETDATE() and GETDATE()+14) and res.typedetl = 'OUT'",
+    "countQueryString" : "select count(*) from (select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id,r.duration from rosterslots r, roster b,  resource res  \r\nwhere  r.roster_id =  b.roster_id and res.resorce_id = b.locatn1_id  and\r\n (b.rostrdate BETWEEN GETDATE() and GETDATE()+14) and res.typedetl = 'OUT') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -3637,6 +3637,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "duration",
+        "fieldName" : "duration",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
           "list" : false
         }
       } ]
@@ -4182,7 +4191,7 @@
     "name" : "qryInsertAppointment",
     "description" : "save new Appointment",
     "version" : "V2",
-    "queryString" : "insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc,opnotes,blueprntcd) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc,:opnotes,:blueprntcd)",
+    "queryString" : "insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc,opnotes,blueprntcd,e_time,duration,color) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc,:opnotes,:blueprntcd,:e_time,:duration,:color)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -4193,7 +4202,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "5Td34LRX",
+      "testValue" : "5tt43LRX",
       "required" : true
     }, {
       "name" : "b_date",
@@ -4322,6 +4331,30 @@
       "variableType" : "PROMPT",
       "variableName" : "",
       "testValue" : "APREQ",
+      "required" : true
+    }, {
+      "name" : "e_time",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "10:30",
+      "required" : true
+    }, {
+      "name" : "duration",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "15",
+      "required" : true
+    }, {
+      "name" : "color",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "15",
       "required" : true
     } ],
     "request" : {
