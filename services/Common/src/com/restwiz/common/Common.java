@@ -288,7 +288,7 @@ public class Common {
         return result;
     }
     
-          public Object getBookedRosterSlotList(){
+    public Object  getBookedRosterSlotList(){
         Object result = "Data not fount";
         Pageable pageable = new PageRequest(0, 1000);
         Page<QryGetBookedSlotsResponse> response = cWmwSQLQueryExecutorService.executeQryGetBookedSlots(pageable);
@@ -300,12 +300,36 @@ public class Common {
     }
     
     public Object getAppointmentData(){
-        List<QryGetAllDoctorListResponse> doctor = (List<QryGetAllDoctorListResponse>)getAllDoctorList();
-        List<QryGetAllLocationsResponse> location = (List<QryGetAllLocationsResponse>)getAllLocationList();
-        List<QryGetAllBlueprintResponse> blueprint = (List<QryGetAllBlueprintResponse>)getAllBlueprintList();
-        List<QryGetBookedSlotsResponse> bookedslots = (List<QryGetBookedSlotsResponse>)getBookedRosterSlotList();
-         List<QryGetRosterSlotsResponse> allslots = (List<QryGetRosterSlotsResponse>)getAllRosterSlotList();
+        List<QryGetAllDoctorListResponse> doctor =null;
+        List<QryGetAllLocationsResponse> location = null;
+        List<QryGetAllBlueprintResponse> blueprint = null;
+        List<QryGetBookedSlotsResponse> bookedslots = null;
+         List<QryGetRosterSlotsResponse> allslots =null;
+         
+         if(!getAllDoctorList().equals("Data not fount")){
+             doctor = (List<QryGetAllDoctorListResponse>)getAllDoctorList();
+         }
+         if(!getAllLocationList().equals("Data not fount")){
+             location = (List<QryGetAllLocationsResponse>)getAllLocationList();
+         }
+         if(!getAllBlueprintList().equals("Data not fount")){
+             blueprint = (List<QryGetAllBlueprintResponse>)getAllBlueprintList();
+         }
+         if(!getBookedRosterSlotList().equals("Data not fount")){
+             bookedslots = (List<QryGetBookedSlotsResponse>)getBookedRosterSlotList();
+         }
+         if(!getAllRosterSlotList().equals("Data not fount")){
+             allslots = (List<QryGetRosterSlotsResponse>)getAllRosterSlotList();
+         }
         
+        // List<QryGetAllDoctorListResponse> doctor = (List<QryGetAllDoctorListResponse>)getAllDoctorList();
+        // List<QryGetAllLocationsResponse> location = (List<QryGetAllLocationsResponse>)getAllLocationList();
+        // List<QryGetAllBlueprintResponse> blueprint = (List<QryGetAllBlueprintResponse>)getAllBlueprintList();
+        // List<QryGetBookedSlotsResponse> bookedslots = (List<QryGetBookedSlotsResponse>)getBookedRosterSlotList();
+        //  List<QryGetRosterSlotsResponse> allslots = (List<QryGetRosterSlotsResponse>)getAllRosterSlotList();
+         
+          
+         
         Map<String, Object> map = new HashMap<>();
         map.put("doctor",doctor);
         map.put("location",location);
