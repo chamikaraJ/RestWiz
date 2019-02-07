@@ -41,6 +41,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/EmailService/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/JSONTextSave/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -194,6 +201,7 @@
                                 <source>services/Common/src</source>
                                 <source>services/CreateCsvSchedular/src</source>
                                 <source>services/Createcsv/src</source>
+                                <source>services/EmailService/src</source>
                                 <source>services/JSONTextSave/src</source>
                                 <source>services/KeyValueDao/src</source>
                                 <source>services/Patient/src</source>
@@ -415,6 +423,11 @@
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.lib.directory}/sqljdbc42.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.6</version>
         </dependency>
     </dependencies>
     <dependencyManagement>

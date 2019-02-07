@@ -4,6 +4,7 @@
     <import resource="classpath:Common.spring.xml"/>
     <import resource="classpath:CreateCsvSchedular.spring.xml"/>
     <import resource="classpath:Createcsv.spring.xml"/>
+    <import resource="classpath:EmailService.spring.xml"/>
     <import resource="classpath:JSONTextSave.spring.xml"/>
     <import resource="classpath:KeyValueDao.spring.xml"/>
     <import resource="classpath:Patient.spring.xml"/>

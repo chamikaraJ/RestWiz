@@ -135,7 +135,6 @@ public class Common {
     public Object getAllAppointmentByPatientNo(String patientno){
         Object result = "Data not fount";
         Pageable pageable = new PageRequest(0, 1000);
-         java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         Page<QryGetAllAppointmentByPatientNoResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllAppointmentByPatientNo(patientno, pageable);
         List<QryGetAllAppointmentByPatientNoResponse> resList = response.getContent();
         if(resList.size()>0){
@@ -337,6 +336,49 @@ public class Common {
         map.put("bookedslots",bookedslots);
         map.put("allslots",allslots);
         return map;
+    }
+    
+    // Page<QryGetRecalsByPatientNoResponse> executeQryGetRecalsByPatientNo(String patientNo, Pageable pageable);
+    public Object getFutureRecallsByPatientNo(String patientno){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 1000);
+        Page<QryGetRecalsByPatientNoResponse> response = cWmwSQLQueryExecutorService.executeQryGetRecalsByPatientNo(patientno, pageable);
+        List<QryGetRecalsByPatientNoResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
+    
+    public Object getAllAppointmentsAndRecallsByPatientNo(String patientno){
+        
+        List<QryGetAllAppointmentByPatientNoResponse> appintment = null;
+        List<QryGetRecalsByPatientNoResponse> recalls = null;
+        if(!getAllAppointmentByPatientNo(patientno).equals("Data not fount")){
+            appintment =(List<QryGetAllAppointmentByPatientNoResponse>) getAllAppointmentByPatientNo(patientno);
+        }
+        if(!getFutureRecallsByPatientNo(patientno).equals("Data not fount")){
+            recalls =(List<QryGetRecalsByPatientNoResponse>) getFutureRecallsByPatientNo(patientno);
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("appintment",appintment);
+        map.put("recalls",recalls);
+        return map;
+        
+    }
+    
+    public String updateSmsReadStatus(String msgdata ){
+        int i = 0;
+             QryUpdateSmsreadStatusRequest req = new QryUpdateSmsreadStatusRequest();
+               req.setMessageid(msgdata);
+             i = cWmwSQLQueryExecutorService.executeQryUpdateSMSReadStatus(req);
+     
+        if(i==1){
+            return "Message Status Updated";
+        }else{
+           return "Message Status Update failed";
+        }
     }
     
 }

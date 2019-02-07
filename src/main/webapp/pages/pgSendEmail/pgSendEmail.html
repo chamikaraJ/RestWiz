@@ -1,0 +1,25 @@
+<wm-page data-ng-controller="pgSendEmailPageController" pagetitle="Pg Send Email" name="page1">
+    <wm-content name="content1">
+        <wm-page-content columnwidth="12" name="page_content1">
+            <wm-composite name="composite1">
+                <wm-label class="col-md-3 control-label" name="label1" caption="To"></wm-label>
+                <wm-container class="col-md-9" name="container1">
+                    <wm-text name="txtTo"></wm-text>
+                </wm-container>
+            </wm-composite>
+            <wm-composite name="composite2">
+                <wm-label class="col-md-3 control-label" name="label2" caption="Subject"></wm-label>
+                <wm-container class="col-md-9" name="container2">
+                    <wm-text name="txtSubject"></wm-text>
+                </wm-container>
+            </wm-composite>
+            <wm-composite name="composite3">
+                <wm-label class="col-md-3 control-label" name="label3" caption="Message"></wm-label>
+                <wm-container class="col-md-9" name="container3">
+                    <wm-textarea name="txaMessage"></wm-textarea>
+                </wm-container>
+            </wm-composite>
+            <wm-button class="btn-default" caption="Send" type="button" margin="unset 0.5em" name="button1" on-click="Variables.svSendEmail.invoke()"></wm-button>
+        </wm-page-content>
+    </wm-content>
+</wm-page>

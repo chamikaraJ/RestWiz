@@ -471,6 +471,16 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryUpdateSMSReadStatus(QryUpdateSmsreadStatusRequest qryUpdateSmsreadStatusRequest) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("messageid", qryUpdateSmsreadStatusRequest.getMessageid());
+
+        return queryExecutor.executeNamedQueryForUpdate("qryUpdateSMSReadStatus", params);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
     public Page<QryGetVerifiedPatientsResponse> executeQryGetVerifiedPatients(Pageable pageable) {
@@ -894,6 +904,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         params.put("t_patientno", tpatientno);
 
         QueryProcedureInput queryInput = new QueryProcedureInput("qryGetAllEmailByPatientNo", params, QryGetAllEmailByPatientNoResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetRecalsByPatientNoResponse> executeQryGetRecalsByPatientNo(String patientNo, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("patientNo", patientNo);
+
+        return queryExecutor.executeNamedQuery("qryGetRecalsByPatientNo", params, QryGetRecalsByPatientNoResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetRecalsByPatientNo(String patientNo, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("patientNo", patientNo);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetRecalsByPatientNo", params, QryGetRecalsByPatientNoResponse.class);
 
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }

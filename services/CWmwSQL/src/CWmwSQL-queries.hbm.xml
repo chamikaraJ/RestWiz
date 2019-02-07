@@ -616,6 +616,13 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryUpdateSMSReadStatus">
+        <![CDATA[
+        update ptsms set readinpp = 1 where messageid = :messageid
+        ]]>
+    <query-param name="messageid" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetVerifiedPatients">
         <![CDATA[
         select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED' and ptdetailStatus is null
@@ -849,14 +856,14 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
 
     <sql-query name="qryGetAllSmsByPatientno">
         <![CDATA[
-        select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')
+        select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type,readinpp from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')
         ]]>
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetAllSmsByPatientno__count">
         <![CDATA[
-        select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')) wmTempTable
+        select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type,readinpp from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')) wmTempTable
         ]]>
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
@@ -1061,6 +1068,26 @@ postcode = :t_postcode where accountno = :t_accountno
         select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL') wmTempTable
         ]]>
     <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetRecalsByPatientNo">
+        <![CDATA[
+        SELECT details,treatmnt,tests,date,d.title,d.given,d.surname FROM ptinddet r inner join doctor d on r.doctor_id = d.doctor_id
+where masticode = 'RECALLS' 
+and [date] > GETDATE()
+and patient_no = :patientNo
+        ]]>
+    <query-param name="patientNo" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetRecalsByPatientNo__count">
+        <![CDATA[
+        select count(*) from (SELECT details,treatmnt,tests,date,d.title,d.given,d.surname FROM ptinddet r inner join doctor d on r.doctor_id = d.doctor_id
+where masticode = 'RECALLS' 
+and [date] > GETDATE()
+and patient_no = :patientNo) wmTempTable
+        ]]>
+    <query-param name="patientNo" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetUserAuth">

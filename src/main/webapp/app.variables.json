@@ -23,6 +23,17 @@
     "operation" : "gotoPage",
     "pageName" : "Main"
   },
+  "goToPage_pgSendEmail" : {
+    "_id" : "wm-goToPage_pgSendEmail-wm.NavigationVariable-1549528021867",
+    "name" : "goToPage_pgSendEmail",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "pgSendEmail",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
   "loggedInUser" : {
     "_id" : "wm-loggedInUser-wm.Variable-1539440660025",
     "name" : "loggedInUser",

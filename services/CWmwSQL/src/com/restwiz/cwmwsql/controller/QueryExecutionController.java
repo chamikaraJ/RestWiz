@@ -480,6 +480,16 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryUpdateSMSReadStatus", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "update sms read status")
+    public IntegerWrapper executeQryUpdateSMSReadStatus(@Valid @RequestBody QryUpdateSmsreadStatusRequest qryUpdateSmsreadStatusRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryUpdateSMSReadStatus");
+        Integer _result = queryService.executeQryUpdateSMSReadStatus(qryUpdateSmsreadStatusRequest);
+        LOGGER.debug("got the result for named query: qryUpdateSMSReadStatus, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/qryGetVerifiedPatients", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get verified patients")
@@ -920,6 +930,34 @@ public class QueryExecutionController {
 
         String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
                         outputStream -> queryService.exportQryGetAllEmailByPatientNo(tpatientno,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
+    @RequestMapping(value = "/queries/qryGetRecalsByPatientNo", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get Recalls by patient no")
+    public Page<QryGetRecalsByPatientNoResponse> executeQryGetRecalsByPatientNo(@RequestParam(value = "patientNo") String patientNo, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetRecalsByPatientNo");
+        Page<QryGetRecalsByPatientNoResponse> _result = queryService.executeQryGetRecalsByPatientNo(patientNo, pageable);
+        LOGGER.debug("got the result for named query: qryGetRecalsByPatientNo, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetRecalsByPatientNo")
+    @RequestMapping(value = "/queries/qryGetRecalsByPatientNo/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetRecalsByPatientNo(@RequestParam(value = "patientNo") String patientNo, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetRecalsByPatientNo");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetRecalsByPatientNo";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetRecalsByPatientNo(patientNo,  exportOptions, pageable, outputStream));
 
         return new StringWrapper(exportedUrl);
     }

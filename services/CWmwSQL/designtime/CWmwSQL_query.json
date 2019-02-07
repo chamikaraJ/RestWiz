@@ -717,8 +717,8 @@
     "name" : "qryGetAllSmsByPatientno",
     "description" : "get all sms by patient no",
     "version" : "V2",
-    "queryString" : "select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')",
-    "countQueryString" : "select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')) wmTempTable",
+    "queryString" : "select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type,readinpp from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')",
+    "countQueryString" : "select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type,readinpp from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -829,6 +829,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "readinpp",
+        "fieldName" : "readinpp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
           "list" : false
         }
       } ]
@@ -3506,6 +3515,100 @@
       } ]
     }
   },
+  "qryGetRecalsByPatientNo" : {
+    "name" : "qryGetRecalsByPatientNo",
+    "description" : "get Recalls by patient no",
+    "version" : "V2",
+    "queryString" : "SELECT details,treatmnt,tests,date,d.title,d.given,d.surname FROM ptinddet r inner join doctor d on r.doctor_id = d.doctor_id\r\nwhere masticode = 'RECALLS' \r\nand [date] > GETDATE()\r\nand patient_no = :patientNo",
+    "countQueryString" : "select count(*) from (SELECT details,treatmnt,tests,date,d.title,d.given,d.surname FROM ptinddet r inner join doctor d on r.doctor_id = d.doctor_id\r\nwhere masticode = 'RECALLS' \r\nand [date] > GETDATE()\r\nand patient_no = :patientNo) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "patientNo",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80095",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetRecalsByPatientNoResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "details",
+        "fieldName" : "details",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "treatmnt",
+        "fieldName" : "treatmnt",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "tests",
+        "fieldName" : "tests",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "date",
+        "fieldName" : "date",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "title",
+        "fieldName" : "title",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "given",
+        "fieldName" : "given",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "surname",
+        "fieldName" : "surname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetReferralSrc" : {
     "name" : "qryGetReferralSrc",
     "description" : "get referral source",
@@ -5510,6 +5613,36 @@
     "request" : {
       "wrapped" : true,
       "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdatePtdetailRegByEmailRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "qryUpdateSMSReadStatus" : {
+    "name" : "qryUpdateSMSReadStatus",
+    "description" : "update sms read status",
+    "version" : "V2",
+    "queryString" : "update ptsms set readinpp = 1 where messageid = :messageid",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "messageid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "0000000001",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdateSmsreadStatusRequest",
       "method" : "PUT"
     },
     "identifiers" : [ ],

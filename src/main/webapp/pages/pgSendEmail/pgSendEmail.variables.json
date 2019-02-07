@@ -1,0 +1,39 @@
+{
+  "svSendEmail" : {
+    "_id" : "wm-svSendEmail-wm.ServiceVariable-1549528137860",
+    "name" : "svSendEmail",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "toEmailAddress",
+      "value" : "bind:Widgets.txtTo.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "emailSubject",
+      "value" : "bind:Widgets.txtSubject.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "emailMessage",
+      "value" : "bind:Widgets.txaMessage.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "object",
+    "service" : "EmailService",
+    "operation" : "sendEmail",
+    "operationId" : "EmailController_sendEmail",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onSuccess" : "svSendEmailonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Email",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Sending..."
+  }
+}

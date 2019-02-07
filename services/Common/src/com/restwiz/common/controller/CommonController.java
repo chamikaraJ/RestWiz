@@ -30,6 +30,13 @@ public class CommonController {
         return common.getAllAppointmentByPatientNo(patientno);
     }
 
+    @RequestMapping(value = "/allappointmentsandRecallsByPatientNo", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getAllAppointmentsAndRecallsByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
+        return common.getAllAppointmentsAndRecallsByPatientNo(patientno);
+    }
+
     @RequestMapping(value = "/allBlueprintList", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
@@ -93,6 +100,13 @@ public class CommonController {
         return common.getFutureAppointmentByPatientNo(patientno);
     }
 
+    @RequestMapping(value = "/futureRecallsByPatientNo", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getFutureRecallsByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
+        return common.getFutureRecallsByPatientNo(patientno);
+    }
+
     @RequestMapping(value = "/pastAppointmentBypatientNo", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
@@ -126,5 +140,12 @@ public class CommonController {
     @ApiOperation(value = "")
     public String savePreAndPostComms(@RequestBody String req) {
         return common.savePreAndPostComms(req);
+    }
+
+    @RequestMapping(value = "/smsReadstatus", produces = "application/json", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public String updateSmsReadStatus(@RequestBody String msgdata) {
+        return common.updateSmsReadStatus(msgdata);
     }
 }

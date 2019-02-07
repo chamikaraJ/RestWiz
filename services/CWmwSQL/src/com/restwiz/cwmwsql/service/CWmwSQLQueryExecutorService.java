@@ -83,6 +83,8 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetPatientByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Integer executeQryUpdateSMSReadStatus(QryUpdateSmsreadStatusRequest qryUpdateSmsreadStatusRequest);
+
     Page<QryGetVerifiedPatientsResponse> executeQryGetVerifiedPatients(Pageable pageable);
 
     void exportQryGetVerifiedPatients(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
@@ -150,6 +152,10 @@ public interface CWmwSQLQueryExecutorService {
     Page<QryGetAllEmailByPatientNoResponse> executeQryGetAllEmailByPatientNo(String tpatientno, Pageable pageable);
 
     void exportQryGetAllEmailByPatientNo(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
+    Page<QryGetRecalsByPatientNoResponse> executeQryGetRecalsByPatientNo(String patientNo, Pageable pageable);
+
+    void exportQryGetRecalsByPatientNo(String patientNo, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
     Page<QryGetUserAuthResponse> executeQryGetUserAuth(String tuserid, Pageable pageable);
 

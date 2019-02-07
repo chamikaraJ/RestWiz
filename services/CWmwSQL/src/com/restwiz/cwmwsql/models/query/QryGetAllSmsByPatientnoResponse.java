@@ -45,6 +45,9 @@ public class QryGetAllSmsByPatientnoResponse implements Serializable {
     @ColumnAlias("msg_type")
     private String msgType;
 
+    @ColumnAlias("readinpp")
+    private Boolean readinpp;
+
     public LocalDateTime getReportDte() {
         return this.reportDte;
     }
@@ -125,6 +128,14 @@ public class QryGetAllSmsByPatientnoResponse implements Serializable {
         this.msgType = msgType;
     }
 
+    public Boolean getReadinpp() {
+        return this.readinpp;
+    }
+
+    public void setReadinpp(Boolean readinpp) {
+        this.readinpp = readinpp;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -139,7 +150,8 @@ public class QryGetAllSmsByPatientnoResponse implements Serializable {
                 Objects.equals(getMessageid(), qryGetAllSmsByPatientnoResponse.getMessageid()) &&
                 Objects.equals(getReplymsgid(), qryGetAllSmsByPatientnoResponse.getReplymsgid()) &&
                 Objects.equals(getSmsInoout(), qryGetAllSmsByPatientnoResponse.getSmsInoout()) &&
-                Objects.equals(getMsgType(), qryGetAllSmsByPatientnoResponse.getMsgType());
+                Objects.equals(getMsgType(), qryGetAllSmsByPatientnoResponse.getMsgType()) &&
+                Objects.equals(getReadinpp(), qryGetAllSmsByPatientnoResponse.getReadinpp());
     }
 
     @Override
@@ -153,6 +165,7 @@ public class QryGetAllSmsByPatientnoResponse implements Serializable {
                 getMessageid(),
                 getReplymsgid(),
                 getSmsInoout(),
-                getMsgType());
+                getMsgType(),
+                getReadinpp());
     }
 }
