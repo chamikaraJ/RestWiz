@@ -14,6 +14,439 @@
         ]]>
     </sql-query>
 
+    <sql-query name="qryInsertPrescriptionDtl">
+        <![CDATA[
+        insert into prscrpdt(
+[prscrp_no]
+      ,[patient_no]
+      ,[drugdesc],[drugcode]) values(:t_presscno,:t_patientNo,:t_drugdesc,:t_drugcode)
+        ]]>
+    <query-param name="t_presscno" type="java.lang.String"/>
+    <query-param name="t_patientNo" type="java.lang.String"/>
+    <query-param name="t_drugdesc" type="java.lang.String"/>
+    <query-param name="t_drugcode" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetAllBlueprint">
+        <![CDATA[
+        SELECT blp_id,longname FROM [dbo].[blueprnt] where blptype = 'CONSULT'
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetAllBlueprint__count">
+        <![CDATA[
+        select count(*) from (SELECT blp_id,longname FROM [dbo].[blueprnt] where blptype = 'CONSULT') wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetPatientByMedicareno">
+        <![CDATA[
+        select patient_no from ptdetail where medicareno = :t_medicareno
+        ]]>
+    <query-param name="t_medicareno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPatientByMedicareno__count">
+        <![CDATA[
+        select count(*) from (select patient_no from ptdetail where medicareno = :t_medicareno) wmTempTable
+        ]]>
+    <query-param name="t_medicareno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPatientNoAndRole">
+        <![CDATA[
+        select patient_no,role from  x0152578 where userid = :t_userid and password = :t_pass
+        ]]>
+    <query-param name="t_userid" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPatientNoAndRole__count">
+        <![CDATA[
+        select count(*) from (select patient_no,role from  x0152578 where userid = :t_userid and password = :t_pass) wmTempTable
+        ]]>
+    <query-param name="t_userid" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetRosterSlots">
+        <![CDATA[
+        select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id,r.duration from rosterslots r, roster b,  resource res  
+where  r.roster_id =  b.roster_id and res.resorce_id = b.locatn1_id  and
+ (b.rostrdate BETWEEN GETDATE() and GETDATE()+14) and res.typedetl = 'OUT'
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetRosterSlots__count">
+        <![CDATA[
+        select count(*) from (select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id,r.duration from rosterslots r, roster b,  resource res  
+where  r.roster_id =  b.roster_id and res.resorce_id = b.locatn1_id  and
+ (b.rostrdate BETWEEN GETDATE() and GETDATE()+14) and res.typedetl = 'OUT') wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryUpdateptdetailReg">
+        <![CDATA[
+        update ptdetail_reg set famDrTitle = :t_famdrtitle,
+famDrGiven = :t_famdrgiven,
+famDrSurname = :t_famdrSurname,
+famDrProviderNo = :t_famdrProNo,
+famDrMedicareCenter = :t_famdrMedCenter,
+famDrAdr1 = :t_famdrAdd1,
+famDrAdr2 = :t_famdrAdd2,
+famDrSuburb = :t_famdrsuburb,
+famDrState = :t_famdrstate,
+famDrPostCode = :t_famdrpostcode,
+refDrTitle = :t_refdrtitle,
+refDrGiven = :t_refdrgiven,
+refDrSurname = :t_refdrSurname,
+refDrProviderNo = :t_refdrProNo,
+refDrMedicareCenter = :t_refdrMedCenter,
+refDrAdr1 = :t_refdrAdd1,
+refDrAdr2 = :t_refdrAdd2,
+refDrSuburb = :t_refdrsuburb,
+refDrState = :t_refdrstate,
+refDrPostCode = :t_refdrpostcode,
+nokGiven = :t_nokgiven,
+nokSUrname = :t_noksurname,
+nokRelationship = :t_nokrelationship,
+nokContactNo = :t_nokcontactno,
+sigText = :t_sigText,
+base64ImageUrl = :t_base64imageurl
+where patient_no = :t_patientno
+        ]]>
+    <query-param name="t_famdrtitle" type="java.lang.String"/>
+    <query-param name="t_famdrgiven" type="java.lang.String"/>
+    <query-param name="t_famdrSurname" type="java.lang.String"/>
+    <query-param name="t_famdrProNo" type="java.lang.String"/>
+    <query-param name="t_famdrMedCenter" type="java.lang.String"/>
+    <query-param name="t_famdrAdd1" type="java.lang.String"/>
+    <query-param name="t_famdrAdd2" type="java.lang.String"/>
+    <query-param name="t_famdrsuburb" type="java.lang.String"/>
+    <query-param name="t_famdrstate" type="java.lang.String"/>
+    <query-param name="t_famdrpostcode" type="java.lang.String"/>
+    <query-param name="t_refdrtitle" type="java.lang.String"/>
+    <query-param name="t_refdrgiven" type="java.lang.String"/>
+    <query-param name="t_refdrSurname" type="java.lang.String"/>
+    <query-param name="t_refdrProNo" type="java.lang.String"/>
+    <query-param name="t_refdrMedCenter" type="java.lang.String"/>
+    <query-param name="t_refdrAdd1" type="java.lang.String"/>
+    <query-param name="t_refdrAdd2" type="java.lang.String"/>
+    <query-param name="t_refdrsuburb" type="java.lang.String"/>
+    <query-param name="t_refdrstate" type="java.lang.String"/>
+    <query-param name="t_refdrpostcode" type="java.lang.String"/>
+    <query-param name="t_nokgiven" type="java.lang.String"/>
+    <query-param name="t_noksurname" type="java.lang.String"/>
+    <query-param name="t_nokrelationship" type="java.lang.String"/>
+    <query-param name="t_nokcontactno" type="java.lang.String"/>
+    <query-param name="t_sigText" type="java.lang.String"/>
+    <query-param name="t_base64imageurl" type="java.lang.String"/>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetJsonTextByPatientNo">
+        <![CDATA[
+        select case when count(ID)>0 then 'true' when count(ID)=0 then 'false'  end as dataExist from JSONTextTemp where email = :t_patientno
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetJsonTextByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select case when count(ID)>0 then 'true' when count(ID)=0 then 'false'  end as dataExist from JSONTextTemp where email = :t_patientno) wmTempTable
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryUpdateSMSReadStatus">
+        <![CDATA[
+        update ptsms set readinpp = 1 where messageid = :messageid
+        ]]>
+    <query-param name="messageid" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetVerifiedPatients">
+        <![CDATA[
+        select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED' and ptdetailStatus is null
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetVerifiedPatients__count">
+        <![CDATA[
+        select count(*) from (select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED' and ptdetailStatus is null) wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryUpdatePtdetailRegByEmail">
+        <![CDATA[
+        update ptdetail_reg set famDrTitle = :t_famdrtitle,
+famDrGiven = :t_famdrgiven,
+famDrSurname = :t_famdrSurname,
+famDrProviderNo = :t_famdrProNo,
+famDrMedicareCenter = :t_famdrMedCenter,
+famDrAdr1 = :t_famdrAdd1,
+famDrAdr2 = :t_famdrAdd2,
+famDrSuburb = :t_famdrsuburb,
+famDrState = :t_famdrstate,
+famDrPostCode = :t_famdrpostcode,
+refDrTitle = :t_refdrtitle,
+refDrGiven = :t_refdrgiven,
+refDrSurname = :t_refdrSurname,
+refDrProviderNo = :t_refdrProNo,
+refDrMedicareCenter = :t_refdrMedCenter,
+refDrAdr1 = :t_refdrAdd1,
+refDrAdr2 = :t_refdrAdd2,
+refDrSuburb = :t_refdrsuburb,
+refDrState = :t_refdrstate,
+refDrPostCode = :t_refdrpostcode,
+nokGiven = :t_nokgiven,
+nokSUrname = :t_noksurname,
+nokRelationship = :t_nokrelationship,
+nokContactNo = :t_nokcontactno,
+sigText = :t_sigText,
+base64ImageUrl = :t_base64imageurl
+where email = :t_email
+        ]]>
+    <query-param name="t_famdrtitle" type="java.lang.String"/>
+    <query-param name="t_famdrgiven" type="java.lang.String"/>
+    <query-param name="t_famdrSurname" type="java.lang.String"/>
+    <query-param name="t_famdrProNo" type="java.lang.String"/>
+    <query-param name="t_famdrMedCenter" type="java.lang.String"/>
+    <query-param name="t_famdrAdd1" type="java.lang.String"/>
+    <query-param name="t_famdrAdd2" type="java.lang.String"/>
+    <query-param name="t_famdrsuburb" type="java.lang.String"/>
+    <query-param name="t_famdrstate" type="java.lang.String"/>
+    <query-param name="t_famdrpostcode" type="java.lang.String"/>
+    <query-param name="t_refdrtitle" type="java.lang.String"/>
+    <query-param name="t_refdrgiven" type="java.lang.String"/>
+    <query-param name="t_refdrSurname" type="java.lang.String"/>
+    <query-param name="t_refdrProNo" type="java.lang.String"/>
+    <query-param name="t_refdrMedCenter" type="java.lang.String"/>
+    <query-param name="t_refdrAdd1" type="java.lang.String"/>
+    <query-param name="t_refdrAdd2" type="java.lang.String"/>
+    <query-param name="t_refdrsuburb" type="java.lang.String"/>
+    <query-param name="t_refdrstate" type="java.lang.String"/>
+    <query-param name="t_refdrpostcode" type="java.lang.String"/>
+    <query-param name="t_nokgiven" type="java.lang.String"/>
+    <query-param name="t_noksurname" type="java.lang.String"/>
+    <query-param name="t_nokrelationship" type="java.lang.String"/>
+    <query-param name="t_nokcontactno" type="java.lang.String"/>
+    <query-param name="t_sigText" type="java.lang.String"/>
+    <query-param name="t_base64imageurl" type="java.lang.String"/>
+    <query-param name="t_email" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPastAppointmentByPatientNo">
+        <![CDATA[
+        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
+left join resource res on cal.user_id = res. schedlr_id
+where cal.patient_no = :patientno and cal.b_date < :today and res.resrcetype = 'DOCTOR'
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    <query-param name="today" type="java.sql.Date"/>
+    </sql-query>
+
+    <sql-query name="qryGetPastAppointmentByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
+left join resource res on cal.user_id = res. schedlr_id
+where cal.patient_no = :patientno and cal.b_date < :today and res.resrcetype = 'DOCTOR') wmTempTable
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    <query-param name="today" type="java.sql.Date"/>
+    </sql-query>
+
+    <sql-query name="qryGetPreandpostcommsByCommainid">
+        <![CDATA[
+        select * from preandpostcomms where commstype = 'EMAIL' and commmainid =:commmainid
+        ]]>
+    <query-param name="commmainid" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPreandpostcommsByCommainid__count">
+        <![CDATA[
+        select count(*) from (select * from preandpostcomms where commstype = 'EMAIL' and commmainid =:commmainid) wmTempTable
+        ]]>
+    <query-param name="commmainid" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryUpdatePatientNo">
+        <![CDATA[
+        update x0152578 set patient_no = :patientNo where userid = :email
+        ]]>
+    <query-param name="patientNo" type="java.lang.String"/>
+    <query-param name="email" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetReferralSrc">
+        <![CDATA[
+        select * from refrlsrc
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetReferralSrc__count">
+        <![CDATA[
+        select count(*) from (select * from refrlsrc) wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryUpdatePtDetailRegStatus">
+        <![CDATA[
+        update ptdetail_reg set ptdetailStatus=:t_ptdetailStatus,patient_no = :t_patientno where idno =:t_idno
+        ]]>
+    <query-param name="t_ptdetailStatus" type="java.lang.String"/>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    <query-param name="t_idno" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="qryGetCountryCode">
+        <![CDATA[
+        select code,[desc] from country where [desc]  = :countryName
+        ]]>
+    <query-param name="countryName" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetCountryCode__count">
+        <![CDATA[
+        select count(*) from (select code,[desc] from country where [desc]  = :countryName) wmTempTable
+        ]]>
+    <query-param name="countryName" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetUserLogin">
+        <![CDATA[
+        select patient_no from  x0152578 where userid = :t_userid and password = :t_pass
+        ]]>
+    <query-param name="t_userid" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetUserLogin__count">
+        <![CDATA[
+        select count(*) from (select patient_no from  x0152578 where userid = :t_userid and password = :t_pass) wmTempTable
+        ]]>
+    <query-param name="t_userid" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryUpdateAccount">
+        <![CDATA[
+        update account set 
+ac_name= :t_ac_name,
+accescode = :t_accescode,
+contact = :t_contact,
+phone_ah = :t_phone_ah,
+phone_bh = :t_phone_bh,
+address1 = :t_address1,
+address2 = :t_address2,
+suburb = :t_suburb,
+state =:t_state,
+postcode = :t_postcode where accountno = :t_accountno
+        ]]>
+    <query-param name="t_ac_name" type="java.lang.String"/>
+    <query-param name="t_accescode" type="java.lang.String"/>
+    <query-param name="t_contact" type="java.lang.String"/>
+    <query-param name="t_phone_ah" type="java.lang.String"/>
+    <query-param name="t_phone_bh" type="java.lang.String"/>
+    <query-param name="t_address1" type="java.lang.String"/>
+    <query-param name="t_address2" type="java.lang.String"/>
+    <query-param name="t_suburb" type="java.lang.String"/>
+    <query-param name="t_state" type="java.lang.String"/>
+    <query-param name="t_postcode" type="java.lang.String"/>
+    <query-param name="t_accountno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetNextPatientNo">
+        <![CDATA[
+        select * from NoGenCon where idCode = :t_idCode
+        ]]>
+    <query-param name="t_idCode" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetNextPatientNo__count">
+        <![CDATA[
+        select count(*) from (select * from NoGenCon where idCode = :t_idCode) wmTempTable
+        ]]>
+    <query-param name="t_idCode" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetLoginDetailsByUnameAndPass">
+        <![CDATA[
+        select * from x0152578 where userid = :t_username and password = :t_pass
+        ]]>
+    <query-param name="t_username" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetLoginDetailsByUnameAndPass__count">
+        <![CDATA[
+        select count(*) from (select * from x0152578 where userid = :t_username and password = :t_pass) wmTempTable
+        ]]>
+    <query-param name="t_username" type="java.lang.String"/>
+    <query-param name="t_pass" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetAllEmailByPatientNo">
+        <![CDATA[
+        select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,readinpp from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL'
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetAllEmailByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,readinpp from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL') wmTempTable
+        ]]>
+    <query-param name="t_patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetRecalsByPatientNo">
+        <![CDATA[
+        SELECT details,treatmnt,tests,date,d.title,d.given,d.surname FROM ptinddet r inner join doctor d on r.doctor_id = d.doctor_id
+where masticode = 'RECALLS' 
+and [date] > GETDATE()
+and patient_no = :patientNo
+        ]]>
+    <query-param name="patientNo" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetRecalsByPatientNo__count">
+        <![CDATA[
+        select count(*) from (SELECT details,treatmnt,tests,date,d.title,d.given,d.surname FROM ptinddet r inner join doctor d on r.doctor_id = d.doctor_id
+where masticode = 'RECALLS' 
+and [date] > GETDATE()
+and patient_no = :patientNo) wmTempTable
+        ]]>
+    <query-param name="patientNo" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetAllJsonText">
+        <![CDATA[
+        select * from JSONTextTemp where isFormComplete = 1
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryGetAllJsonText__count">
+        <![CDATA[
+        select count(*) from (select * from JSONTextTemp where isFormComplete = 1) wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="qryInsertPreandpostcomms">
+        <![CDATA[
+        insert into preandpostcomms(commmainid,shortname,longname,heading,commstype,whn2trigd,trgfromwhn,whn2trigt,mesge2send) values(:commmainid,:shortname,:longname,:heading,:commstype,:whn2trigd,:trgfromwhn,:whn2trigt,:mesge2send)
+        ]]>
+    <query-param name="commmainid" type="java.lang.String"/>
+    <query-param name="shortname" type="java.lang.String"/>
+    <query-param name="longname" type="java.lang.String"/>
+    <query-param name="heading" type="java.lang.String"/>
+    <query-param name="commstype" type="java.lang.String"/>
+    <query-param name="whn2trigd" type="java.lang.String"/>
+    <query-param name="trgfromwhn" type="java.lang.String"/>
+    <query-param name="whn2trigt" type="java.lang.String"/>
+    <query-param name="mesge2send" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryInsertPtCharacter">
         <![CDATA[
         insert into ptcharacters(patient_no,midname,agiven) values(:t_patientNo,:t_midname,:t_preferredName)
@@ -77,17 +510,18 @@
     <query-param name="color" type="java.lang.String"/>
     </sql-query>
 
-    <sql-query name="qryInsertPrescriptionDtl">
+    <sql-query name="qryUnreadSmsAndAppointmentCount">
         <![CDATA[
-        insert into prscrpdt(
-[prscrp_no]
-      ,[patient_no]
-      ,[drugdesc],[drugcode]) values(:t_presscno,:t_patientNo,:t_drugdesc,:t_drugcode)
+        select count(messageid) as unreadsms from ptsms where readinpp=0 and patient_no = :patientno
         ]]>
-    <query-param name="t_presscno" type="java.lang.String"/>
-    <query-param name="t_patientNo" type="java.lang.String"/>
-    <query-param name="t_drugdesc" type="java.lang.String"/>
-    <query-param name="t_drugcode" type="java.lang.String"/>
+    <query-param name="patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryUnreadSmsAndAppointmentCount__count">
+        <![CDATA[
+        select count(*) from (select count(messageid) as unreadsms from ptsms where readinpp=0 and patient_no = :patientno) wmTempTable
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetPatientNumberByUnamePass">
@@ -104,32 +538,6 @@
         ]]>
     <query-param name="t_userid" type="java.lang.String"/>
     <query-param name="t_pass" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetAllBlueprint">
-        <![CDATA[
-        SELECT blp_id,longname FROM [dbo].[blueprnt] where blptype = 'CONSULT'
-        ]]>
-    </sql-query>
-
-    <sql-query name="qryGetAllBlueprint__count">
-        <![CDATA[
-        select count(*) from (SELECT blp_id,longname FROM [dbo].[blueprnt] where blptype = 'CONSULT') wmTempTable
-        ]]>
-    </sql-query>
-
-    <sql-query name="qryGetPatientByMedicareno">
-        <![CDATA[
-        select patient_no from ptdetail where medicareno = :t_medicareno
-        ]]>
-    <query-param name="t_medicareno" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetPatientByMedicareno__count">
-        <![CDATA[
-        select count(*) from (select patient_no from ptdetail where medicareno = :t_medicareno) wmTempTable
-        ]]>
-    <query-param name="t_medicareno" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryUpdatePatient">
@@ -212,22 +620,6 @@ where cal.patient_no = :patientno and cal.b_date >= :today and res.resrcetype = 
         ]]>
     <query-param name="patientno" type="java.lang.String"/>
     <query-param name="today" type="java.sql.Date"/>
-    </sql-query>
-
-    <sql-query name="qryGetPatientNoAndRole">
-        <![CDATA[
-        select patient_no,role from  x0152578 where userid = :t_userid and password = :t_pass
-        ]]>
-    <query-param name="t_userid" type="java.lang.String"/>
-    <query-param name="t_pass" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetPatientNoAndRole__count">
-        <![CDATA[
-        select count(*) from (select patient_no,role from  x0152578 where userid = :t_userid and password = :t_pass) wmTempTable
-        ]]>
-    <query-param name="t_userid" type="java.lang.String"/>
-    <query-param name="t_pass" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryDeleteptDetailRegByIdno">
@@ -385,22 +777,6 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
     <query-param name="t_pass" type="java.lang.String"/>
     </sql-query>
 
-    <sql-query name="qryGetRosterSlots">
-        <![CDATA[
-        select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id,r.duration from rosterslots r, roster b,  resource res  
-where  r.roster_id =  b.roster_id and res.resorce_id = b.locatn1_id  and
- (b.rostrdate BETWEEN GETDATE() and GETDATE()+14) and res.typedetl = 'OUT'
-        ]]>
-    </sql-query>
-
-    <sql-query name="qryGetRosterSlots__count">
-        <![CDATA[
-        select count(*) from (select r.b_date,r.b_time,r.e_time,r.user_id,r.blueprntcd,b.locatn1_id,r.duration from rosterslots r, roster b,  resource res  
-where  r.roster_id =  b.roster_id and res.resorce_id = b.locatn1_id  and
- (b.rostrdate BETWEEN GETDATE() and GETDATE()+14) and res.typedetl = 'OUT') wmTempTable
-        ]]>
-    </sql-query>
-
     <sql-query name="qryGetAllAppointmentByPatientNo">
         <![CDATA[
         select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname from calendar cal
@@ -419,79 +795,6 @@ left join blueprnt blp on cal.blueprntcd = blp.shortname
 where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable
         ]]>
     <query-param name="patientno" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryUpdateptdetailReg">
-        <![CDATA[
-        update ptdetail_reg set famDrTitle = :t_famdrtitle,
-famDrGiven = :t_famdrgiven,
-famDrSurname = :t_famdrSurname,
-famDrProviderNo = :t_famdrProNo,
-famDrMedicareCenter = :t_famdrMedCenter,
-famDrAdr1 = :t_famdrAdd1,
-famDrAdr2 = :t_famdrAdd2,
-famDrSuburb = :t_famdrsuburb,
-famDrState = :t_famdrstate,
-famDrPostCode = :t_famdrpostcode,
-refDrTitle = :t_refdrtitle,
-refDrGiven = :t_refdrgiven,
-refDrSurname = :t_refdrSurname,
-refDrProviderNo = :t_refdrProNo,
-refDrMedicareCenter = :t_refdrMedCenter,
-refDrAdr1 = :t_refdrAdd1,
-refDrAdr2 = :t_refdrAdd2,
-refDrSuburb = :t_refdrsuburb,
-refDrState = :t_refdrstate,
-refDrPostCode = :t_refdrpostcode,
-nokGiven = :t_nokgiven,
-nokSUrname = :t_noksurname,
-nokRelationship = :t_nokrelationship,
-nokContactNo = :t_nokcontactno,
-sigText = :t_sigText,
-base64ImageUrl = :t_base64imageurl
-where patient_no = :t_patientno
-        ]]>
-    <query-param name="t_famdrtitle" type="java.lang.String"/>
-    <query-param name="t_famdrgiven" type="java.lang.String"/>
-    <query-param name="t_famdrSurname" type="java.lang.String"/>
-    <query-param name="t_famdrProNo" type="java.lang.String"/>
-    <query-param name="t_famdrMedCenter" type="java.lang.String"/>
-    <query-param name="t_famdrAdd1" type="java.lang.String"/>
-    <query-param name="t_famdrAdd2" type="java.lang.String"/>
-    <query-param name="t_famdrsuburb" type="java.lang.String"/>
-    <query-param name="t_famdrstate" type="java.lang.String"/>
-    <query-param name="t_famdrpostcode" type="java.lang.String"/>
-    <query-param name="t_refdrtitle" type="java.lang.String"/>
-    <query-param name="t_refdrgiven" type="java.lang.String"/>
-    <query-param name="t_refdrSurname" type="java.lang.String"/>
-    <query-param name="t_refdrProNo" type="java.lang.String"/>
-    <query-param name="t_refdrMedCenter" type="java.lang.String"/>
-    <query-param name="t_refdrAdd1" type="java.lang.String"/>
-    <query-param name="t_refdrAdd2" type="java.lang.String"/>
-    <query-param name="t_refdrsuburb" type="java.lang.String"/>
-    <query-param name="t_refdrstate" type="java.lang.String"/>
-    <query-param name="t_refdrpostcode" type="java.lang.String"/>
-    <query-param name="t_nokgiven" type="java.lang.String"/>
-    <query-param name="t_noksurname" type="java.lang.String"/>
-    <query-param name="t_nokrelationship" type="java.lang.String"/>
-    <query-param name="t_nokcontactno" type="java.lang.String"/>
-    <query-param name="t_sigText" type="java.lang.String"/>
-    <query-param name="t_base64imageurl" type="java.lang.String"/>
-    <query-param name="t_patientno" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetJsonTextByPatientNo">
-        <![CDATA[
-        select case when count(ID)>0 then 'true' when count(ID)=0 then 'false'  end as dataExist from JSONTextTemp where email = :t_patientno
-        ]]>
-    <query-param name="t_patientno" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetJsonTextByPatientNo__count">
-        <![CDATA[
-        select count(*) from (select case when count(ID)>0 then 'true' when count(ID)=0 then 'false'  end as dataExist from JSONTextTemp where email = :t_patientno) wmTempTable
-        ]]>
-    <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetPatientByPatientNo">
@@ -616,84 +919,6 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 
-    <sql-query name="qryUpdateSMSReadStatus">
-        <![CDATA[
-        update ptsms set readinpp = 1 where messageid = :messageid
-        ]]>
-    <query-param name="messageid" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetVerifiedPatients">
-        <![CDATA[
-        select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED' and ptdetailStatus is null
-        ]]>
-    </sql-query>
-
-    <sql-query name="qryGetVerifiedPatients__count">
-        <![CDATA[
-        select count(*) from (select * from ptdetail_reg where ptStatus = 'MEDICARE_NO_VERIFIED' and ptdetailStatus is null) wmTempTable
-        ]]>
-    </sql-query>
-
-    <sql-query name="qryUpdatePtdetailRegByEmail">
-        <![CDATA[
-        update ptdetail_reg set famDrTitle = :t_famdrtitle,
-famDrGiven = :t_famdrgiven,
-famDrSurname = :t_famdrSurname,
-famDrProviderNo = :t_famdrProNo,
-famDrMedicareCenter = :t_famdrMedCenter,
-famDrAdr1 = :t_famdrAdd1,
-famDrAdr2 = :t_famdrAdd2,
-famDrSuburb = :t_famdrsuburb,
-famDrState = :t_famdrstate,
-famDrPostCode = :t_famdrpostcode,
-refDrTitle = :t_refdrtitle,
-refDrGiven = :t_refdrgiven,
-refDrSurname = :t_refdrSurname,
-refDrProviderNo = :t_refdrProNo,
-refDrMedicareCenter = :t_refdrMedCenter,
-refDrAdr1 = :t_refdrAdd1,
-refDrAdr2 = :t_refdrAdd2,
-refDrSuburb = :t_refdrsuburb,
-refDrState = :t_refdrstate,
-refDrPostCode = :t_refdrpostcode,
-nokGiven = :t_nokgiven,
-nokSUrname = :t_noksurname,
-nokRelationship = :t_nokrelationship,
-nokContactNo = :t_nokcontactno,
-sigText = :t_sigText,
-base64ImageUrl = :t_base64imageurl
-where email = :t_email
-        ]]>
-    <query-param name="t_famdrtitle" type="java.lang.String"/>
-    <query-param name="t_famdrgiven" type="java.lang.String"/>
-    <query-param name="t_famdrSurname" type="java.lang.String"/>
-    <query-param name="t_famdrProNo" type="java.lang.String"/>
-    <query-param name="t_famdrMedCenter" type="java.lang.String"/>
-    <query-param name="t_famdrAdd1" type="java.lang.String"/>
-    <query-param name="t_famdrAdd2" type="java.lang.String"/>
-    <query-param name="t_famdrsuburb" type="java.lang.String"/>
-    <query-param name="t_famdrstate" type="java.lang.String"/>
-    <query-param name="t_famdrpostcode" type="java.lang.String"/>
-    <query-param name="t_refdrtitle" type="java.lang.String"/>
-    <query-param name="t_refdrgiven" type="java.lang.String"/>
-    <query-param name="t_refdrSurname" type="java.lang.String"/>
-    <query-param name="t_refdrProNo" type="java.lang.String"/>
-    <query-param name="t_refdrMedCenter" type="java.lang.String"/>
-    <query-param name="t_refdrAdd1" type="java.lang.String"/>
-    <query-param name="t_refdrAdd2" type="java.lang.String"/>
-    <query-param name="t_refdrsuburb" type="java.lang.String"/>
-    <query-param name="t_refdrstate" type="java.lang.String"/>
-    <query-param name="t_refdrpostcode" type="java.lang.String"/>
-    <query-param name="t_nokgiven" type="java.lang.String"/>
-    <query-param name="t_noksurname" type="java.lang.String"/>
-    <query-param name="t_nokrelationship" type="java.lang.String"/>
-    <query-param name="t_nokcontactno" type="java.lang.String"/>
-    <query-param name="t_sigText" type="java.lang.String"/>
-    <query-param name="t_base64imageurl" type="java.lang.String"/>
-    <query-param name="t_email" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="qryGetClinCatDatByCode">
         <![CDATA[
         select * from clinCatDat where code = :t_code
@@ -706,26 +931,6 @@ where email = :t_email
         select count(*) from (select * from clinCatDat where code = :t_code) wmTempTable
         ]]>
     <query-param name="t_code" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetPastAppointmentByPatientNo">
-        <![CDATA[
-        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
-left join resource res on cal.user_id = res. schedlr_id
-where cal.patient_no = :patientno and cal.b_date < :today and res.resrcetype = 'DOCTOR'
-        ]]>
-    <query-param name="patientno" type="java.lang.String"/>
-    <query-param name="today" type="java.sql.Date"/>
-    </sql-query>
-
-    <sql-query name="qryGetPastAppointmentByPatientNo__count">
-        <![CDATA[
-        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat, res.title,res.given, res.surname from calendar cal
-left join resource res on cal.user_id = res. schedlr_id
-where cal.patient_no = :patientno and cal.b_date < :today and res.resrcetype = 'DOCTOR') wmTempTable
-        ]]>
-    <query-param name="patientno" type="java.lang.String"/>
-    <query-param name="today" type="java.sql.Date"/>
     </sql-query>
 
     <sql-query name="qryGetPatientByUnamePassMed">
@@ -868,28 +1073,6 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
     <query-param name="t_patientno" type="java.lang.String"/>
     </sql-query>
 
-    <sql-query name="qryGetPreandpostcommsByCommainid">
-        <![CDATA[
-        select * from preandpostcomms where commstype = 'EMAIL' and commmainid =:commmainid
-        ]]>
-    <query-param name="commmainid" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetPreandpostcommsByCommainid__count">
-        <![CDATA[
-        select count(*) from (select * from preandpostcomms where commstype = 'EMAIL' and commmainid =:commmainid) wmTempTable
-        ]]>
-    <query-param name="commmainid" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryUpdatePatientNo">
-        <![CDATA[
-        update x0152578 set patient_no = :patientNo where userid = :email
-        ]]>
-    <query-param name="patientNo" type="java.lang.String"/>
-    <query-param name="email" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="qryInsertPatientDetails">
         <![CDATA[
         insert into ptdetail(patient_no,given,surname,email,medicareno,dob) values(:patient_no,:given,:surname,:email,:medicareno,:dob)
@@ -902,16 +1085,12 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
     <query-param name="dob" type="java.sql.Date"/>
     </sql-query>
 
-    <sql-query name="qryGetReferralSrc">
+    <sql-query name="qryUpdatePatientPassword">
         <![CDATA[
-        select * from refrlsrc
+        update x0152578 set password = :pass where patient_no = :patientno
         ]]>
-    </sql-query>
-
-    <sql-query name="qryGetReferralSrc__count">
-        <![CDATA[
-        select count(*) from (select * from refrlsrc) wmTempTable
-        ]]>
+    <query-param name="pass" type="java.lang.String"/>
+    <query-param name="patientno" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryUpdateAccountNo">
@@ -920,45 +1099,6 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
         ]]>
     <query-param name="t_accountNo" type="java.lang.String"/>
     <query-param name="t_patientNo" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryUpdatePtDetailRegStatus">
-        <![CDATA[
-        update ptdetail_reg set ptdetailStatus=:t_ptdetailStatus,patient_no = :t_patientno where idno =:t_idno
-        ]]>
-    <query-param name="t_ptdetailStatus" type="java.lang.String"/>
-    <query-param name="t_patientno" type="java.lang.String"/>
-    <query-param name="t_idno" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="qryGetCountryCode">
-        <![CDATA[
-        select code,[desc] from country where [desc]  = :countryName
-        ]]>
-    <query-param name="countryName" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetCountryCode__count">
-        <![CDATA[
-        select count(*) from (select code,[desc] from country where [desc]  = :countryName) wmTempTable
-        ]]>
-    <query-param name="countryName" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetUserLogin">
-        <![CDATA[
-        select patient_no from  x0152578 where userid = :t_userid and password = :t_pass
-        ]]>
-    <query-param name="t_userid" type="java.lang.String"/>
-    <query-param name="t_pass" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetUserLogin__count">
-        <![CDATA[
-        select count(*) from (select patient_no from  x0152578 where userid = :t_userid and password = :t_pass) wmTempTable
-        ]]>
-    <query-param name="t_userid" type="java.lang.String"/>
-    <query-param name="t_pass" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="QryInsertClinicalConclutions">
@@ -990,47 +1130,6 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
     <query-param name="t_userid" type="java.lang.String"/>
     </sql-query>
 
-    <sql-query name="qryUpdateAccount">
-        <![CDATA[
-        update account set 
-ac_name= :t_ac_name,
-accescode = :t_accescode,
-contact = :t_contact,
-phone_ah = :t_phone_ah,
-phone_bh = :t_phone_bh,
-address1 = :t_address1,
-address2 = :t_address2,
-suburb = :t_suburb,
-state =:t_state,
-postcode = :t_postcode where accountno = :t_accountno
-        ]]>
-    <query-param name="t_ac_name" type="java.lang.String"/>
-    <query-param name="t_accescode" type="java.lang.String"/>
-    <query-param name="t_contact" type="java.lang.String"/>
-    <query-param name="t_phone_ah" type="java.lang.String"/>
-    <query-param name="t_phone_bh" type="java.lang.String"/>
-    <query-param name="t_address1" type="java.lang.String"/>
-    <query-param name="t_address2" type="java.lang.String"/>
-    <query-param name="t_suburb" type="java.lang.String"/>
-    <query-param name="t_state" type="java.lang.String"/>
-    <query-param name="t_postcode" type="java.lang.String"/>
-    <query-param name="t_accountno" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetNextPatientNo">
-        <![CDATA[
-        select * from NoGenCon where idCode = :t_idCode
-        ]]>
-    <query-param name="t_idCode" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetNextPatientNo__count">
-        <![CDATA[
-        select count(*) from (select * from NoGenCon where idCode = :t_idCode) wmTempTable
-        ]]>
-    <query-param name="t_idCode" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="qryUpdateNextPtGenCode">
         <![CDATA[
         update NoGenCon set NumValue = :nextNo, CurPreFix = :prefix where idCode = :t_idCode
@@ -1038,56 +1137,6 @@ postcode = :t_postcode where accountno = :t_accountno
     <query-param name="nextNo" type="java.lang.String"/>
     <query-param name="prefix" type="java.lang.String"/>
     <query-param name="t_idCode" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetLoginDetailsByUnameAndPass">
-        <![CDATA[
-        select * from x0152578 where userid = :t_username and password = :t_pass
-        ]]>
-    <query-param name="t_username" type="java.lang.String"/>
-    <query-param name="t_pass" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetLoginDetailsByUnameAndPass__count">
-        <![CDATA[
-        select count(*) from (select * from x0152578 where userid = :t_username and password = :t_pass) wmTempTable
-        ]]>
-    <query-param name="t_username" type="java.lang.String"/>
-    <query-param name="t_pass" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetAllEmailByPatientNo">
-        <![CDATA[
-        select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL'
-        ]]>
-    <query-param name="t_patientno" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetAllEmailByPatientNo__count">
-        <![CDATA[
-        select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL') wmTempTable
-        ]]>
-    <query-param name="t_patientno" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetRecalsByPatientNo">
-        <![CDATA[
-        SELECT details,treatmnt,tests,date,d.title,d.given,d.surname FROM ptinddet r inner join doctor d on r.doctor_id = d.doctor_id
-where masticode = 'RECALLS' 
-and [date] > GETDATE()
-and patient_no = :patientNo
-        ]]>
-    <query-param name="patientNo" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetRecalsByPatientNo__count">
-        <![CDATA[
-        select count(*) from (SELECT details,treatmnt,tests,date,d.title,d.given,d.surname FROM ptinddet r inner join doctor d on r.doctor_id = d.doctor_id
-where masticode = 'RECALLS' 
-and [date] > GETDATE()
-and patient_no = :patientNo) wmTempTable
-        ]]>
-    <query-param name="patientNo" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetUserAuth">
@@ -1119,33 +1168,6 @@ and patient_no = :patientNo) wmTempTable
     <query-param name="t_suburb" type="java.lang.String"/>
     <query-param name="t_state" type="java.lang.String"/>
     <query-param name="t_postcode" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="qryGetAllJsonText">
-        <![CDATA[
-        select * from JSONTextTemp where isFormComplete = 1
-        ]]>
-    </sql-query>
-
-    <sql-query name="qryGetAllJsonText__count">
-        <![CDATA[
-        select count(*) from (select * from JSONTextTemp where isFormComplete = 1) wmTempTable
-        ]]>
-    </sql-query>
-
-    <sql-query name="qryInsertPreandpostcomms">
-        <![CDATA[
-        insert into preandpostcomms(commmainid,shortname,longname,heading,commstype,whn2trigd,trgfromwhn,whn2trigt,mesge2send) values(:commmainid,:shortname,:longname,:heading,:commstype,:whn2trigd,:trgfromwhn,:whn2trigt,:mesge2send)
-        ]]>
-    <query-param name="commmainid" type="java.lang.String"/>
-    <query-param name="shortname" type="java.lang.String"/>
-    <query-param name="longname" type="java.lang.String"/>
-    <query-param name="heading" type="java.lang.String"/>
-    <query-param name="commstype" type="java.lang.String"/>
-    <query-param name="whn2trigd" type="java.lang.String"/>
-    <query-param name="trgfromwhn" type="java.lang.String"/>
-    <query-param name="whn2trigt" type="java.lang.String"/>
-    <query-param name="mesge2send" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryUpdatePtCharacter">

@@ -451,8 +451,8 @@
     "name" : "qryGetAllEmailByPatientNo",
     "description" : "get All email by patient no",
     "version" : "V2",
-    "queryString" : "select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL'",
-    "countQueryString" : "select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL') wmTempTable",
+    "queryString" : "select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,readinpp from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL'",
+    "countQueryString" : "select count(*) from (select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,readinpp from ptsms where patient_no = :t_patientno and msg_type = 'EMAIL') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -554,6 +554,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "readinpp",
+        "fieldName" : "readinpp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
           "list" : false
         }
       } ]
@@ -4806,6 +4815,46 @@
       "responseType" : "SINGLE"
     }
   },
+  "qryUnreadSmsAndAppointmentCount" : {
+    "name" : "qryUnreadSmsAndAppointmentCount",
+    "description" : "get unread sms and appointment count",
+    "version" : "V2",
+    "queryString" : "select count(messageid) as unreadsms from ptsms where readinpp=0 and patient_no = :patientno",
+    "countQueryString" : "select count(*) from (select count(messageid) as unreadsms from ptsms where readinpp=0 and patient_no = :patientno) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "patientno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "00000",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryUnreadSmsAndAppointmentCountResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "unreadsms",
+        "fieldName" : "unreadsms",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryUpdateAccount" : {
     "name" : "qryUpdateAccount",
     "description" : "Update Account",
@@ -5283,6 +5332,44 @@
     "request" : {
       "wrapped" : true,
       "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdatePatientNoRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "qryUpdatePatientPassword" : {
+    "name" : "qryUpdatePatientPassword",
+    "description" : "update user password",
+    "version" : "V2",
+    "queryString" : "update x0152578 set password = :pass where patient_no = :patientno",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "pass",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Pleasechange@1",
+      "required" : true
+    }, {
+      "name" : "patientno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80095",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryUpdatePatientPasswordRequest",
       "method" : "PUT"
     },
     "identifiers" : [ ],

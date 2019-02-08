@@ -121,6 +121,11 @@ public class CommonController {
         return common.getPreAndPostCommsBycommmainid(commmainid);
     }
 
+    @RequestMapping(value = "/unreadMsgCountByPatientNo", produces = "application/json", method = RequestMethod.GET)
+    public Object getUnreadMsgCountByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
+        return common.getUnreadMsgCountByPatientNo(patientno);
+    }
+
     @RequestMapping(value = "/nextNumber", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

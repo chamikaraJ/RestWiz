@@ -35,4 +35,11 @@ public class UserController {
     public Object getPatient(@RequestBody String patientAuth) {
         return user.getPatient(patientAuth);
     }
+
+    @RequestMapping(value = "/password", produces = "application/json", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public String updatePassword(@RequestBody String req) {
+        return user.updatePassword(req);
+    }
 }

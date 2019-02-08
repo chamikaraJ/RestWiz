@@ -124,5 +124,38 @@ public class User {
     }
     
     
+    public String updatePassword(String req){
+        String result = "";
+        JSONParser parser = new JSONParser();
+        JSONObject json = new JSONObject();
+        Pageable pageable = new PageRequest(0, 10);
+        
+        try {
+            json = (JSONObject) parser.parse(req.toString());
+            String newpass = (String) json.get("newpass");
+            String currentpass = (String) json.get("currentpass");
+            String patientno = (String) json.get("patientno");
+            String userid = (String) json.get("userid");
+            
+            Page<QryGetLoginDetailsByUnameAndPassResponse> logindetails =  cWmwSQLQueryExecutorService.executeQryGetLoginDetailsByUnameAndPass(userid,currentpass,pageable);
+            List<QryGetLoginDetailsByUnameAndPassResponse> contLoginDtl = logindetails.getContent();
+            if(contLoginDtl.size()>0) {
+                QryUpdatePatientPasswordRequest passreq = new QryUpdatePatientPasswordRequest();
+                passreq.setPass(newpass);
+                passreq.setPatientno(patientno);
+                int i = cWmwSQLQueryExecutorService.executeQryUpdatePatientPassword(passreq);
+                if(i==1){
+                    result = "Password changed";
+                }else{
+                    result = "Password change failed";
+                }
+            }else{
+                result = "Password change failed";
+            }
+        } catch (ParseException e) {
+             e.printStackTrace();
+        }
+        return result;
+    }
 
 }

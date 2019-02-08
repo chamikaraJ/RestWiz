@@ -381,4 +381,15 @@ public class Common {
         }
     }
     
+    public Object getUnreadMsgCountByPatientNo(String patientno){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 1000);
+        Page<QryUnreadSmsAndAppointmentCountResponse> response = cWmwSQLQueryExecutorService.executeQryUnreadSmsAndAppointmentCount(patientno, pageable);
+        List<QryUnreadSmsAndAppointmentCountResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
 }

@@ -7,7 +7,6 @@ package com.restwiz.cwmwsql.models.query;
 
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
