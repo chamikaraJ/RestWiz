@@ -82,7 +82,7 @@ public class SaveBase64File {
                 String fileExtension = mime.substring(extentionStartIndex + 1, extensionEndIndex);
 
                 String docName = name + "_" + i + "."+fileExtension;
-                String uploadDir = getArchivePath(context);
+                String uploadDir = getArchivePath(context,name);
                 String outputFile = uploadDir + "/" + docName;
 
 //                writeToFile(arr.get(i).toString(), outputFile);
@@ -94,14 +94,14 @@ public class SaveBase64File {
         }
     }
 
-    public String getArchivePath(String context) {
+    public String getArchivePath(String context,String name) {
 
         StringBuilder sb = new StringBuilder();
         sb.append(System.getProperty("user.home"));
         if (context != null && context != "") {
             sb.append("/" + context);
         }
-        sb.append("/csv");
+        sb.append("/csv/"+name);
         String uploadDir = sb.toString();
 
         try {

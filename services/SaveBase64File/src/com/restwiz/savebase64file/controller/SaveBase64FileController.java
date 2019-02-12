@@ -22,6 +22,8 @@ public class SaveBase64FileController {
     private SaveBase64File saveBase64File;
 
     @RequestMapping(value = "/decoder", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public void decoder(@RequestParam(value = "base64Image", required = false) String base64Image, @RequestParam(value = "pathFile", required = false) String pathFile) {
         saveBase64File.decoder(base64Image, pathFile);
     }
@@ -29,8 +31,8 @@ public class SaveBase64FileController {
     @RequestMapping(value = "/archivePath", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String getArchivePath(@RequestParam(value = "context", required = false) String context) {
-        return saveBase64File.getArchivePath(context);
+    public String getArchivePath(@RequestParam(value = "context", required = false) String context, @RequestParam(value = "name", required = false) String name) {
+        return saveBase64File.getArchivePath(context, name);
     }
 
     @RequestMapping(value = "/saveBase64File", method = RequestMethod.POST)
