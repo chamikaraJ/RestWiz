@@ -30,6 +30,9 @@
     "table" : "ptdetail_field_data",
     "schema" : "dbo"
   }, {
+    "table" : "pteducation",
+    "schema" : "dbo"
+  }, {
     "table" : "x0152578",
     "schema" : "dbo"
   } ],

@@ -51,11 +51,23 @@ public class CommonController {
         return common.getAllDoctorList();
     }
 
+    @RequestMapping(value = "/allEducationMaterials", produces = "application/json", method = RequestMethod.GET)
+    public Object getAllEducationMaterials() {
+        return common.getAllEducationMaterials();
+    }
+
     @RequestMapping(value = "/allEmailByPatientNo", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
     public Object getAllEmailByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
         return common.getAllEmailByPatientNo(patientno);
+    }
+
+    @RequestMapping(value = "/allHealthFunds", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getAllHealthFunds() {
+        return common.getAllHealthFunds();
     }
 
     @RequestMapping(value = "/allLocationList", produces = "application/json", method = RequestMethod.GET)
@@ -122,6 +134,8 @@ public class CommonController {
     }
 
     @RequestMapping(value = "/unreadMsgCountByPatientNo", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public Object getUnreadMsgCountByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
         return common.getUnreadMsgCountByPatientNo(patientno);
     }

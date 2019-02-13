@@ -79,6 +79,10 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryUpdateAccount(QryUpdateAccountRequest qryUpdateAccountRequest);
 
+    Page<QryGetAllHealthFundsResponse> executeQryGetAllHealthFunds(Pageable pageable);
+
+    void exportQryGetAllHealthFunds(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetNextPatientNoResponse> executeQryGetNextPatientNo(String tidCode, Pageable pageable);
 
     void exportQryGetNextPatientNo(String tidCode, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
@@ -160,6 +164,10 @@ public interface CWmwSQLQueryExecutorService {
     Integer executeQryUpdatePatientPassword(QryUpdatePatientPasswordRequest qryUpdatePatientPasswordRequest);
 
     Integer executeQryUpdateAccountNo(QryUpdateAccountNoRequest qryUpdateAccountNoRequest);
+
+    Page<QryGetAllEducationMaterialsResponse> executeQryGetAllEducationMaterials(Pageable pageable);
+
+    void exportQryGetAllEducationMaterials(ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
     Integer executeQryInsertClinicalConclutions(QryInsertClinicalConclutionsRequest qryInsertClinicalConclutionsRequest);
 

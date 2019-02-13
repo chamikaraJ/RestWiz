@@ -129,6 +129,7 @@ public class Ptdetail implements Serializable {
     private LocalDateTime datecreate;
     private LocalDateTime hlthcrdexp;
     private int idNo;
+    private boolean optout;
 
     @Id
     @Column(name = "`patient_no`", nullable = false, length = 14)
@@ -770,7 +771,7 @@ public class Ptdetail implements Serializable {
         this.pnumval02 = pnumval02;
     }
 
-    @Column(name = "`pcharval01`", nullable = false, length = 20)
+    @Column(name = "`pcharval01`", nullable = false, length = 30)
     public String getPcharval01() {
         return this.pcharval01;
     }
@@ -779,7 +780,7 @@ public class Ptdetail implements Serializable {
         this.pcharval01 = pcharval01;
     }
 
-    @Column(name = "`pcharval02`", nullable = false, length = 10)
+    @Column(name = "`pcharval02`", nullable = false, length = 30)
     public String getPcharval02() {
         return this.pcharval02;
     }
@@ -788,7 +789,7 @@ public class Ptdetail implements Serializable {
         this.pcharval02 = pcharval02;
     }
 
-    @Column(name = "`pcharval03`", nullable = false, length = 10)
+    @Column(name = "`pcharval03`", nullable = false, length = 30)
     public String getPcharval03() {
         return this.pcharval03;
     }
@@ -1101,6 +1102,15 @@ public class Ptdetail implements Serializable {
 
     public void setIdNo(int idNo) {
         this.idNo = idNo;
+    }
+
+    @Column(name = "`optout`", nullable = false)
+    public boolean isOptout() {
+        return this.optout;
+    }
+
+    public void setOptout(boolean optout) {
+        this.optout = optout;
     }
 
 

@@ -452,6 +452,34 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/qryGetAllHealthFunds", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get all health funds")
+    public Page<QryGetAllHealthFundsResponse> executeQryGetAllHealthFunds(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetAllHealthFunds");
+        Page<QryGetAllHealthFundsResponse> _result = queryService.executeQryGetAllHealthFunds(pageable);
+        LOGGER.debug("got the result for named query: qryGetAllHealthFunds, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetAllHealthFunds")
+    @RequestMapping(value = "/queries/qryGetAllHealthFunds/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetAllHealthFunds(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetAllHealthFunds");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetAllHealthFunds";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetAllHealthFunds( exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryGetNextPatientNo", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get next patient No")
@@ -988,6 +1016,34 @@ public class QueryExecutionController {
         Integer _result = queryService.executeQryUpdateAccountNo(qryUpdateAccountNoRequest);
         LOGGER.debug("got the result for named query: qryUpdateAccountNo, result:{}", _result);
         return new IntegerWrapper(_result);
+    }
+
+    @RequestMapping(value = "/queries/qryGetAllEducationMaterials", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get Education materials")
+    public Page<QryGetAllEducationMaterialsResponse> executeQryGetAllEducationMaterials(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetAllEducationMaterials");
+        Page<QryGetAllEducationMaterialsResponse> _result = queryService.executeQryGetAllEducationMaterials(pageable);
+        LOGGER.debug("got the result for named query: qryGetAllEducationMaterials, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetAllEducationMaterials")
+    @RequestMapping(value = "/queries/qryGetAllEducationMaterials/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetAllEducationMaterials(@RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetAllEducationMaterials");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetAllEducationMaterials";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetAllEducationMaterials( exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
     }
 
     @RequestMapping(value = "/queries/QryInsertClinicalConclutions", method = RequestMethod.POST)

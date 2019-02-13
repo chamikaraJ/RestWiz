@@ -392,4 +392,26 @@ public class Common {
         return result;
     }
     
+    public Object  getAllHealthFunds(){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 1000);
+        Page<QryGetAllHealthFundsResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllHealthFunds(pageable);
+        List<QryGetAllHealthFundsResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
+     public Object  getAllEducationMaterials(){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 1000);
+        Page<QryGetAllEducationMaterialsResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllEducationMaterials(pageable);
+        List<QryGetAllEducationMaterialsResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
 }
