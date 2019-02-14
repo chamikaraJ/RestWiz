@@ -415,4 +415,65 @@ public class Common {
         return result;
     }
     
+    public Object  getPatientEducationByPatientno(String patientno){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 1000);
+        Page<QryGetAllPtEducationByPatientnoResponse> response = cWmwSQLQueryExecutorService.executeQryGetAllPtEducationByPatientno(patientno,pageable);
+        List<QryGetAllPtEducationByPatientnoResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
+    public Object getPatientEducation(String patientno){
+        List<QryGetAllEducationMaterialsResponse> educationList = null;
+        List<QryGetAllPtEducationByPatientnoResponse> ptEducation = null;
+        
+        if(!getAllEducationMaterials().equals("Data not fount")){
+            educationList =(List<QryGetAllEducationMaterialsResponse>) getAllEducationMaterials();
+        }
+        if(!getPatientEducationByPatientno(patientno).equals("Data not fount")){
+            ptEducation =(List<QryGetAllPtEducationByPatientnoResponse>) getPatientEducationByPatientno(patientno);
+        }
+        
+        List<Map<String, Object>> eduList = new ArrayList();
+        
+        if(educationList.size()>0){
+            for(QryGetAllEducationMaterialsResponse res : educationList){
+                Map<String, Object> map = new HashMap<>();
+                
+                map.put("title",res.getTitle());
+                map.put("descrption",res.getDescrption());
+                map.put("typeMetral",res.getTypeMetral());
+                map.put("linkto",res.getLinkto());
+                map.put("shortname",res.getShortname());
+                map.put("longname",res.getLongname());
+                map.put("blpId",res.getBlpId());
+                
+                String patient_no = null;
+                Boolean readinpp = false;
+                String comment = null;
+                java.time.LocalDateTime viewat = null;
+                
+                for(QryGetAllPtEducationByPatientnoResponse ptres : ptEducation){
+                    if(res.getIdno() == Integer.parseInt(ptres.getEduidno())) {
+                        patient_no = ptres.getPatientNo();
+                        readinpp = ptres.getReadinpp();
+                        comment = ptres.getComment();
+                        viewat = ptres.getViewat();
+                    }
+                }
+                map.put("patient_no",patient_no);
+                map.put("readinpp",readinpp);
+                map.put("comment",comment);
+                map.put("viewat",viewat);
+                
+                eduList.add(map);
+
+            }
+        }
+        return eduList;
+    }
+    
 }

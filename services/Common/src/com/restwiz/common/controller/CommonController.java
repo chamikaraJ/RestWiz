@@ -128,6 +128,20 @@ public class CommonController {
         return common.getPastAppointmentByPatientNo(patientno);
     }
 
+    @RequestMapping(value = "/patientEducation", produces = "application/json", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getPatientEducation(@RequestBody String patientno) {
+        return common.getPatientEducation(patientno);
+    }
+
+    @RequestMapping(value = "/patientEducationBypatientno", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getPatientEducationByPatientno(@RequestParam(value = "patientno", required = false) String patientno) {
+        return common.getPatientEducationByPatientno(patientno);
+    }
+
     @RequestMapping(value = "/preAndpostCommsBycommmainid", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

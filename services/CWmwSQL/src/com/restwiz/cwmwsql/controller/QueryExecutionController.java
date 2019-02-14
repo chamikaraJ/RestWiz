@@ -960,6 +960,34 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryGetAllPtEducationByPatientno", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get patient education by patientno")
+    public Page<QryGetAllPtEducationByPatientnoResponse> executeQryGetAllPtEducationByPatientno(@RequestParam(value = "patientno") String patientno, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetAllPtEducationByPatientno");
+        Page<QryGetAllPtEducationByPatientnoResponse> _result = queryService.executeQryGetAllPtEducationByPatientno(patientno, pageable);
+        LOGGER.debug("got the result for named query: qryGetAllPtEducationByPatientno, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetAllPtEducationByPatientno")
+    @RequestMapping(value = "/queries/qryGetAllPtEducationByPatientno/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetAllPtEducationByPatientno(@RequestParam(value = "patientno") String patientno, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetAllPtEducationByPatientno");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetAllPtEducationByPatientno";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetAllPtEducationByPatientno(patientno,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryGetAllSmsByPatientno", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get all sms by patient no")

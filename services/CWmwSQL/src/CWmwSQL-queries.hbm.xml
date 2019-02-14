@@ -1072,6 +1072,20 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
     <query-param name="t_medicareno" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetAllPtEducationByPatientno">
+        <![CDATA[
+        select * from pteducation where patient_no = :patientno
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetAllPtEducationByPatientno__count">
+        <![CDATA[
+        select count(*) from (select * from pteducation where patient_no = :patientno) wmTempTable
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetAllSmsByPatientno">
         <![CDATA[
         select report_dte,report_tme,srvcno,status,report_txt,mobileno,messageid,replymsgid,sms_inoout,msg_type,readinpp from ptsms where patient_no = :t_patientno and (msg_type = '' or msg_type = 'SMS')

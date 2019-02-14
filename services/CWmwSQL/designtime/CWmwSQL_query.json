@@ -867,6 +867,91 @@
       } ]
     }
   },
+  "qryGetAllPtEducationByPatientno" : {
+    "name" : "qryGetAllPtEducationByPatientno",
+    "description" : "get patient education by patientno",
+    "version" : "V2",
+    "queryString" : "select * from pteducation where patient_no = :patientno",
+    "countQueryString" : "select count(*) from (select * from pteducation where patient_no = :patientno) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "patientno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "80095",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.QryGetAllPtEducationByPatientnoResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "idno",
+        "fieldName" : "idno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "patient_no",
+        "fieldName" : "patientNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "eduidno",
+        "fieldName" : "eduidno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "readinpp",
+        "fieldName" : "readinpp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "comment",
+        "fieldName" : "comment",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "viewat",
+        "fieldName" : "viewat",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.time.LocalDateTime",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetAllSmsByPatientno" : {
     "name" : "qryGetAllSmsByPatientno",
     "description" : "get all sms by patient no",

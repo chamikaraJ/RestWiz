@@ -155,6 +155,10 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetPatientByUnamePassMed(String tusername, String tpass, String tmedicareno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Page<QryGetAllPtEducationByPatientnoResponse> executeQryGetAllPtEducationByPatientno(String patientno, Pageable pageable);
+
+    void exportQryGetAllPtEducationByPatientno(String patientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetAllSmsByPatientnoResponse> executeQryGetAllSmsByPatientno(String tpatientno, Pageable pageable);
 
     void exportQryGetAllSmsByPatientno(String tpatientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
