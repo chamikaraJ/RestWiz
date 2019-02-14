@@ -29,6 +29,15 @@ public class QryGetAllEducationMaterialsResponse implements Serializable {
     @ColumnAlias("linkto")
     private String linkto;
 
+    @ColumnAlias("shortname")
+    private String shortname;
+
+    @ColumnAlias("longname")
+    private String longname;
+
+    @ColumnAlias("blp_id")
+    private Integer blpId;
+
     public Integer getIdno() {
         return this.idno;
     }
@@ -69,6 +78,30 @@ public class QryGetAllEducationMaterialsResponse implements Serializable {
         this.linkto = linkto;
     }
 
+    public String getShortname() {
+        return this.shortname;
+    }
+
+    public void setShortname(String shortname) {
+        this.shortname = shortname;
+    }
+
+    public String getLongname() {
+        return this.longname;
+    }
+
+    public void setLongname(String longname) {
+        this.longname = longname;
+    }
+
+    public Integer getBlpId() {
+        return this.blpId;
+    }
+
+    public void setBlpId(Integer blpId) {
+        this.blpId = blpId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,7 +111,10 @@ public class QryGetAllEducationMaterialsResponse implements Serializable {
                 Objects.equals(getTitle(), qryGetAllEducationMaterialsResponse.getTitle()) &&
                 Objects.equals(getDescrption(), qryGetAllEducationMaterialsResponse.getDescrption()) &&
                 Objects.equals(getTypeMetral(), qryGetAllEducationMaterialsResponse.getTypeMetral()) &&
-                Objects.equals(getLinkto(), qryGetAllEducationMaterialsResponse.getLinkto());
+                Objects.equals(getLinkto(), qryGetAllEducationMaterialsResponse.getLinkto()) &&
+                Objects.equals(getShortname(), qryGetAllEducationMaterialsResponse.getShortname()) &&
+                Objects.equals(getLongname(), qryGetAllEducationMaterialsResponse.getLongname()) &&
+                Objects.equals(getBlpId(), qryGetAllEducationMaterialsResponse.getBlpId());
     }
 
     @Override
@@ -87,6 +123,9 @@ public class QryGetAllEducationMaterialsResponse implements Serializable {
                 getTitle(),
                 getDescrption(),
                 getTypeMetral(),
-                getLinkto());
+                getLinkto(),
+                getShortname(),
+                getLongname(),
+                getBlpId());
     }
 }

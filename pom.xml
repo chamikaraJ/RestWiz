@@ -418,16 +418,16 @@
             <version>2.8.5</version>
         </dependency>
         <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+        <dependency>
             <groupId>sqljdbc42</groupId>
             <artifactId>sqljdbc42</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.lib.directory}/sqljdbc42.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.5.6</version>
         </dependency>
     </dependencies>
     <dependencyManagement>

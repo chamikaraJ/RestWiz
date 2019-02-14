@@ -1115,13 +1115,17 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
 
     <sql-query name="qryGetAllEducationMaterials">
         <![CDATA[
-        select * from EduOpt
+        SELECT e.*,bp.shortname,bp.longname, bp.blp_id FROM EduOpt e 
+left JOIN BlpEduOpt b on e.idno=b.EduIdNum 
+inner join blueprnt bp on b.blp_id = bp.blp_id
         ]]>
     </sql-query>
 
     <sql-query name="qryGetAllEducationMaterials__count">
         <![CDATA[
-        select count(*) from (select * from EduOpt) wmTempTable
+        select count(*) from (SELECT e.*,bp.shortname,bp.longname, bp.blp_id FROM EduOpt e 
+left JOIN BlpEduOpt b on e.idno=b.EduIdNum 
+inner join blueprnt bp on b.blp_id = bp.blp_id) wmTempTable
         ]]>
     </sql-query>
 

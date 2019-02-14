@@ -451,8 +451,8 @@
     "name" : "qryGetAllEducationMaterials",
     "description" : "get Education materials",
     "version" : "V2",
-    "queryString" : "select * from EduOpt",
-    "countQueryString" : "select count(*) from (select * from EduOpt) wmTempTable",
+    "queryString" : "SELECT e.*,bp.shortname,bp.longname, bp.blp_id FROM EduOpt e \r\nleft JOIN BlpEduOpt b on e.idno=b.EduIdNum \r\ninner join blueprnt bp on b.blp_id = bp.blp_id",
+    "countQueryString" : "select count(*) from (SELECT e.*,bp.shortname,bp.longname, bp.blp_id FROM EduOpt e \r\nleft JOIN BlpEduOpt b on e.idno=b.EduIdNum \r\ninner join blueprnt bp on b.blp_id = bp.blp_id) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -510,6 +510,33 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "shortname",
+        "fieldName" : "shortname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "longname",
+        "fieldName" : "longname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "blp_id",
+        "fieldName" : "blpId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       } ]
