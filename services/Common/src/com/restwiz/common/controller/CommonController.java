@@ -52,6 +52,8 @@ public class CommonController {
     }
 
     @RequestMapping(value = "/allEducationMaterials", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public Object getAllEducationMaterials() {
         return common.getAllEducationMaterials();
     }

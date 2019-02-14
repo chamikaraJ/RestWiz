@@ -97,6 +97,10 @@ public class QryInsertAppointmentRequest implements Serializable {
     @NotNull
     private String color;
 
+    @JsonProperty("cal_type")
+    @NotNull
+    private String calType;
+
     public String getUniqcalid() {
         return this.uniqcalid;
     }
@@ -257,6 +261,14 @@ public class QryInsertAppointmentRequest implements Serializable {
         this.color = color;
     }
 
+    public String getCalType() {
+        return this.calType;
+    }
+
+    public void setCalType(String calType) {
+        this.calType = calType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -281,7 +293,8 @@ public class QryInsertAppointmentRequest implements Serializable {
                 Objects.equals(getBlueprntcd(), qryInsertAppointmentRequest.getBlueprntcd()) &&
                 Objects.equals(getEtime(), qryInsertAppointmentRequest.getEtime()) &&
                 Objects.equals(getDuration(), qryInsertAppointmentRequest.getDuration()) &&
-                Objects.equals(getColor(), qryInsertAppointmentRequest.getColor());
+                Objects.equals(getColor(), qryInsertAppointmentRequest.getColor()) &&
+                Objects.equals(getCalType(), qryInsertAppointmentRequest.getCalType());
     }
 
     @Override
@@ -305,6 +318,7 @@ public class QryInsertAppointmentRequest implements Serializable {
                 getBlueprntcd(),
                 getEtime(),
                 getDuration(),
-                getColor());
+                getColor(),
+                getCalType());
     }
 }

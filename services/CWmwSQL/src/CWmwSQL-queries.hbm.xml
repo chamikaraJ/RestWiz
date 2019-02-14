@@ -498,7 +498,7 @@ and patient_no = :patientNo) wmTempTable
 
     <sql-query name="qryInsertAppointment">
         <![CDATA[
-        insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc,opnotes,blueprntcd,e_time,duration,color) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc,:opnotes,:blueprntcd,:e_time,:duration,:color)
+        insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc,opnotes,blueprntcd,e_time,duration,color,cal_type) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc,:opnotes,:blueprntcd,:e_time,:duration,:color,:cal_type)
         ]]>
     <query-param name="uniqcalid" type="java.lang.String"/>
     <query-param name="b_date" type="java.sql.Date"/>
@@ -520,6 +520,7 @@ and patient_no = :patientNo) wmTempTable
     <query-param name="e_time" type="java.lang.String"/>
     <query-param name="duration" type="java.lang.String"/>
     <query-param name="color" type="java.lang.String"/>
+    <query-param name="cal_type" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryUnreadSmsAndAppointmentCount">

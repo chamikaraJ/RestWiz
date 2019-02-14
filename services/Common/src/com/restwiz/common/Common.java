@@ -225,6 +225,7 @@ public class Common {
                 request.setEtime(json.get("e_time").toString());
                 request.setDuration(json.get("duration").toString());
                 request.setColor(json.get("color").toString());
+                request.setCalType("S");
              Integer i = cWmwSQLQueryExecutorService.executeQryInsertAppointment(request);
                 if(i==1){
                     result = "Appointment saved Succesfuly";

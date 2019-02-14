@@ -4448,7 +4448,7 @@
     "name" : "qryInsertAppointment",
     "description" : "save new Appointment",
     "version" : "V2",
-    "queryString" : "insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc,opnotes,blueprntcd,e_time,duration,color) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc,:opnotes,:blueprntcd,:e_time,:duration,:color)",
+    "queryString" : "insert into calendar(uniqcalid,b_date,b_time,user_id,[last],[first],title,medicareno,bday,patient_no,apmadeon,apmadeat,apmadeby,resorce_id,cal_desc,opnotes,blueprntcd,e_time,duration,color,cal_type) VALUES(:uniqcalid,:b_date,:b_time,:user_id,:last,:first,:title,:medicareno,:bday,:patient_no,:apmadeon,:apmadeat,:apmadeby,:resorce_id,:cal_desc,:opnotes,:blueprntcd,:e_time,:duration,:color,:cal_type)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -4459,7 +4459,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "5tt43LRX",
+      "testValue" : "5tt4eLRX",
       "required" : true
     }, {
       "name" : "b_date",
@@ -4612,6 +4612,14 @@
       "variableType" : "PROMPT",
       "variableName" : "",
       "testValue" : "15",
+      "required" : true
+    }, {
+      "name" : "cal_type",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "S",
       "required" : true
     } ],
     "request" : {
