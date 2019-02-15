@@ -2,6 +2,20 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+    <sql-query name="qryGetOperationStatusByPatientNo">
+        <![CDATA[
+        select newStatus from ObsptStatus where  isActive = true and fkObsPatient =(select obsptid from obspatients where patient_no = :patientno)
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetOperationStatusByPatientNo__count">
+        <![CDATA[
+        select count(*) from (select newStatus from ObsptStatus where  isActive = true and fkObsPatient =(select obsptid from obspatients where patient_no = :patientno)) wmTempTable
+        ]]>
+    <query-param name="patientno" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetPtStatusByPatinetNo">
         <![CDATA[
         select ptstatus from obspatients where patient_no = :t_patientNo

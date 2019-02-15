@@ -1,4 +1,44 @@
 {
+  "qryGetOperationStatusByPatientNo" : {
+    "name" : "qryGetOperationStatusByPatientNo",
+    "description" : "get Operation status by patient no",
+    "version" : "V2",
+    "queryString" : "select newStatus from ObsptStatus where  isActive = true and fkObsPatient =(select obsptid from obspatients where patient_no = :patientno)",
+    "countQueryString" : "select count(*) from (select newStatus from ObsptStatus where  isActive = true and fkObsPatient =(select obsptid from obspatients where patient_no = :patientno)) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "patientno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "86125",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.clinicalobs.models.query.QryGetOperationStatusByPatientNoResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "newStatus",
+        "fieldName" : "newStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryGetPtStatusByPatinetNo" : {
     "name" : "qryGetPtStatusByPatinetNo",
     "description" : "get patient status by patient no",

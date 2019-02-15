@@ -36,6 +36,13 @@ public class UserController {
         return user.getPatient(patientAuth);
     }
 
+    @RequestMapping(value = "/ptOperationStatus", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getPtOperationStatus(@RequestParam(value = "patientno", required = false) String patientno) {
+        return user.getPtOperationStatus(patientno);
+    }
+
     @RequestMapping(value = "/password", produces = "application/json", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

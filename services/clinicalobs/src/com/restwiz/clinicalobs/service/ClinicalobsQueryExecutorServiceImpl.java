@@ -35,6 +35,28 @@ public class ClinicalobsQueryExecutorServiceImpl implements ClinicalobsQueryExec
 
     @Transactional(value = "clinicalobsTransactionManager", readOnly = true)
     @Override
+    public Page<QryGetOperationStatusByPatientNoResponse> executeQryGetOperationStatusByPatientNo(String patientno, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("patientno", patientno);
+
+        return queryExecutor.executeNamedQuery("qryGetOperationStatusByPatientNo", params, QryGetOperationStatusByPatientNoResponse.class, pageable);
+    }
+
+    @Transactional(value = "clinicalobsTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetOperationStatusByPatientNo(String patientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("patientno", patientno);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetOperationStatusByPatientNo", params, QryGetOperationStatusByPatientNoResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
+    @Transactional(value = "clinicalobsTransactionManager", readOnly = true)
+    @Override
     public Page<QryGetPtStatusByPatinetNoResponse> executeQryGetPtStatusByPatinetNo(String tpatientNo, Pageable pageable) {
         Map<String, Object> params = new HashMap<>(1);
 

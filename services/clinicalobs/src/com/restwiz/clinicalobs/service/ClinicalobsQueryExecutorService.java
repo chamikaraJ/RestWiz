@@ -16,6 +16,10 @@ import com.restwiz.clinicalobs.models.query.*;
 
 public interface ClinicalobsQueryExecutorService {
 
+    Page<QryGetOperationStatusByPatientNoResponse> executeQryGetOperationStatusByPatientNo(String patientno, Pageable pageable);
+
+    void exportQryGetOperationStatusByPatientNo(String patientno, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetPtStatusByPatinetNoResponse> executeQryGetPtStatusByPatinetNo(String tpatientNo, Pageable pageable);
 
     void exportQryGetPtStatusByPatinetNo(String tpatientNo, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);

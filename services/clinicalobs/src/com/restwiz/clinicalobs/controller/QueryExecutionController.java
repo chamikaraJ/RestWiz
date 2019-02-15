@@ -43,6 +43,34 @@ public class QueryExecutionController {
     @Autowired
 	private ExportedFileManager exportedFileManager;
 
+    @RequestMapping(value = "/queries/qryGetOperationStatusByPatientNo", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get Operation status by patient no")
+    public Page<QryGetOperationStatusByPatientNoResponse> executeQryGetOperationStatusByPatientNo(@RequestParam(value = "patientno") String patientno, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetOperationStatusByPatientNo");
+        Page<QryGetOperationStatusByPatientNoResponse> _result = queryService.executeQryGetOperationStatusByPatientNo(patientno, pageable);
+        LOGGER.debug("got the result for named query: qryGetOperationStatusByPatientNo, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetOperationStatusByPatientNo")
+    @RequestMapping(value = "/queries/qryGetOperationStatusByPatientNo/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetOperationStatusByPatientNo(@RequestParam(value = "patientno") String patientno, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetOperationStatusByPatientNo");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetOperationStatusByPatientNo";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetOperationStatusByPatientNo(patientno,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryGetPtStatusByPatinetNo", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get patient status by patient no")

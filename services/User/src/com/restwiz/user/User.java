@@ -6,6 +6,8 @@ package com.restwiz.user;
         import com.restwiz.cwmwsql.Ptdetail;
         import com.restwiz.cwmwsql.models.query.*;
         import com.restwiz.cwmwsql.service.CWmwSQLQueryExecutorService;
+        import com.restwiz.clinicalobs.service.ClinicalobsQueryExecutorService;
+        import com.restwiz.clinicalobs.models.query.*;
         import com.wavemaker.runtime.security.SecurityService;
         import com.wavemaker.runtime.service.annotations.ExposeToClient;
         import org.json.simple.JSONObject;
@@ -44,6 +46,15 @@ public class User {
 
     @Autowired
     private CWmwSQLQueryExecutorService cWmwSQLQueryExecutorService;
+    
+     @Autowired
+    private ClinicalobsQueryExecutorService clinicalobsQueryExecutorService;
+    
+    
+//     com.restwiz.clinicalobs.service
+// ClinicalobsQueryExecutorService
+    
+    
 
 
     // public QryGetPatientByPatientNoResponse getPatient(String patientAuth) {
@@ -157,5 +168,18 @@ public class User {
         }
         return result;
     }
+    
+    public Object getPtOperationStatus(String patientno){
+        Object result = "Data not fount";
+        Pageable pageable = new PageRequest(0, 10);
+        Page<QryGetOperationStatusByPatientNoResponse> response = clinicalobsQueryExecutorService.executeQryGetOperationStatusByPatientNo(patientno, pageable);
+        List<QryGetOperationStatusByPatientNoResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result =resList;
+        }
+        return result;
+    }
+    
+    // Page<QryGetOperationStatusByPatientNoResponse> executeQryGetOperationStatusByPatientNo(String patientno, Pageable pageable);
 
 }
