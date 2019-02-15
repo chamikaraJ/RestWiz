@@ -455,13 +455,14 @@ public class Common {
                 Boolean readinpp = false;
                 String comment = null;
                 java.time.LocalDateTime viewat = null;
-                
-                for(QryGetAllPtEducationByPatientnoResponse ptres : ptEducation){
-                    if(res.getIdno() == Integer.parseInt(ptres.getEduidno())) {
-                        patient_no = ptres.getPatientNo();
-                        readinpp = ptres.getReadinpp();
-                        comment = ptres.getComment();
-                        viewat = ptres.getViewat();
+                if(ptEducation !=null){
+                    for(QryGetAllPtEducationByPatientnoResponse ptres : ptEducation){
+                        if(res.getIdno() == Integer.parseInt(ptres.getEduidno())) {
+                            patient_no = ptres.getPatientNo();
+                            readinpp = ptres.getReadinpp();
+                            comment = ptres.getComment();
+                            viewat = ptres.getViewat();
+                        }
                     }
                 }
                 map.put("patient_no",patient_no);

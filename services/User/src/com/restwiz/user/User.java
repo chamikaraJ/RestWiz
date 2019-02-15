@@ -172,8 +172,12 @@ public class User {
     public Object getPtOperationStatus(String patientno){
         Object result = "Data not fount";
         Pageable pageable = new PageRequest(0, 10);
-        Page<QryGetOperationStatusByPatientNoResponse> response = clinicalobsQueryExecutorService.executeQryGetOperationStatusByPatientNo(patientno, pageable);
-        List<QryGetOperationStatusByPatientNoResponse> resList = response.getContent();
+        // Page<QryGetOperationStatusByPatientNoResponse> response = clinicalobsQueryExecutorService.executeQryGetOperationStatusByPatientNo(patientno, pageable);
+        // List<QryGetOperationStatusByPatientNoResponse> resList = response.getContent();
+        
+        Page<QryGetPtStatusByPatinetNoResponse> response = clinicalobsQueryExecutorService.executeQryGetPtStatusByPatinetNo(patientno, pageable);
+        List<QryGetPtStatusByPatinetNoResponse> resList = response.getContent();
+        
         if(resList.size()>0){
             result =resList;
         }
