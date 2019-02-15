@@ -635,6 +635,20 @@ where cal.patient_no = :patientno and cal.b_date >= :today and res.resrcetype = 
     <query-param name="today" type="java.sql.Date"/>
     </sql-query>
 
+    <sql-query name="qryGetLoginDetailsByUname">
+        <![CDATA[
+        select * from x0152578 where userid = :t_username
+        ]]>
+    <query-param name="t_username" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetLoginDetailsByUname__count">
+        <![CDATA[
+        select count(*) from (select * from x0152578 where userid = :t_username) wmTempTable
+        ]]>
+    <query-param name="t_username" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryDeleteptDetailRegByIdno">
         <![CDATA[
         delete from ptdetail_reg where idno = :idno

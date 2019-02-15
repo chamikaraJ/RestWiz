@@ -765,6 +765,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<QryGetLoginDetailsByUnameResponse> executeQryGetLoginDetailsByUname(String tusername, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_username", tusername);
+
+        return queryExecutor.executeNamedQuery("qryGetLoginDetailsByUname", params, QryGetLoginDetailsByUnameResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportQryGetLoginDetailsByUname(String tusername, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("t_username", tusername);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("qryGetLoginDetailsByUname", params, QryGetLoginDetailsByUnameResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryDeleteptDetailRegByIdno(Integer idno) {

@@ -93,10 +93,17 @@ public class User {
             
             
        
-            Page<QryGetLoginDetailsByUnameAndPassResponse> logindetails =  cWmwSQLQueryExecutorService.executeQryGetLoginDetailsByUnameAndPass(tuserid,tpass,pageable);
-            List<QryGetLoginDetailsByUnameAndPassResponse> contLoginDtl = logindetails.getContent();
+            // Page<QryGetLoginDetailsByUnameAndPassResponse> logindetails =  cWmwSQLQueryExecutorService.executeQryGetLoginDetailsByUnameAndPass(tuserid,tpass,pageable);
+            // List<QryGetLoginDetailsByUnameAndPassResponse> contLoginDtl = logindetails.getContent();
+            // if(contLoginDtl.size()>0) {
+            //     QryGetLoginDetailsByUnameAndPassResponse res = contLoginDtl.get(0);
+            
+            Page<QryGetLoginDetailsByUnameResponse> logindetails =  cWmwSQLQueryExecutorService.executeQryGetLoginDetailsByUname(tuserid,pageable);
+            List<QryGetLoginDetailsByUnameResponse> contLoginDtl = logindetails.getContent();
             if(contLoginDtl.size()>0) {
-                QryGetLoginDetailsByUnameAndPassResponse res = contLoginDtl.get(0);
+                QryGetLoginDetailsByUnameResponse res = contLoginDtl.get(0);
+                
+                tpass = res.getPassword();
                 
                 if(res.getPatientNo()!=null && !res.getPatientNo().equals("")){
                     Page<QryGetPatientByUnamePassResponse> qryGetPatientByPatientNoResponses = cWmwSQLQueryExecutorService.executeQryGetPatientByUnamePass(tuserid,tpass,pageable);

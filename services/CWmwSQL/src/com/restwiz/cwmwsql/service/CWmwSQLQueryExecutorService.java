@@ -129,6 +129,10 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetFutureAppointmentByPatientNo(String patientno, Date today, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Page<QryGetLoginDetailsByUnameResponse> executeQryGetLoginDetailsByUname(String tusername, Pageable pageable);
+
+    void exportQryGetLoginDetailsByUname(String tusername, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Integer executeQryDeleteptDetailRegByIdno(Integer idno);
 
     Page<QryGetAllDoctorListResponse> executeQryGetAllDoctorList(Pageable pageable);

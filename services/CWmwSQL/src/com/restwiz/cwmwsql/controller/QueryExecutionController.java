@@ -782,6 +782,34 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryGetLoginDetailsByUname", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "qryGetLoginDetailsByUname")
+    public Page<QryGetLoginDetailsByUnameResponse> executeQryGetLoginDetailsByUname(@RequestParam(value = "t_username") String tusername, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetLoginDetailsByUname");
+        Page<QryGetLoginDetailsByUnameResponse> _result = queryService.executeQryGetLoginDetailsByUname(tusername, pageable);
+        LOGGER.debug("got the result for named query: qryGetLoginDetailsByUname, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetLoginDetailsByUname")
+    @RequestMapping(value = "/queries/qryGetLoginDetailsByUname/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetLoginDetailsByUname(@RequestParam(value = "t_username") String tusername, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetLoginDetailsByUname");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetLoginDetailsByUname";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetLoginDetailsByUname(tusername,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryDeleteptDetailRegByIdno", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "delete saved patient from reg file")
