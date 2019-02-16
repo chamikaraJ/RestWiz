@@ -191,6 +191,92 @@ public class User {
         return result;
     }
     
-    // Page<QryGetOperationStatusByPatientNoResponse> executeQryGetOperationStatusByPatientNo(String patientno, Pageable pageable);
+    public Object getUnreadMsgCountByPatientNo(String patientno){
+        Object result = "Data not found";
+        Pageable pageable = new PageRequest(0, 1000);
+        Page<QryUnreadSmsAndAppointmentCountResponse> response = cWmwSQLQueryExecutorService.executeQryUnreadSmsAndAppointmentCount(patientno, pageable);
+        List<QryUnreadSmsAndAppointmentCountResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
+    // Page<QryGetReferralSrcResponse> executeQryGetReferralSrc(Pageable pageable);
+    public Object getRefaralSrc(){
+        Object result = "Data not found";
+        Pageable pageable = new PageRequest(0, 1000);
+        Page<QryGetReferralSrcResponse> response = cWmwSQLQueryExecutorService.executeQryGetReferralSrc(pageable);
+        List<QryGetReferralSrcResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
+    
+    public Object patientData(String patientAuth){
+        Object result = "Data not found";
+        
+        Pageable pageable = new PageRequest(0, 10);
+        // JSONParser parser = new JSONParser();
+        // JSONObject json = new JSONObject();
+        
+        //  try {
+        //     json = (JSONObject) parser.parse(patientAuth.toString());
+        //     String tuserid = (String) json.get("t_userid");
+            String tuserid = patientAuth;
+            
+            Object patient = null;
+            String patientno = null;
+            
+            // Page<QryGetLoginDetailsByUnameResponse> logindetails =  cWmwSQLQueryExecutorService.executeQryGetLoginDetailsByUname(tuserid,pageable);
+            // List<QryGetLoginDetailsByUnameResponse> contLoginDtl = logindetails.getContent();
+            // if(contLoginDtl.size()>0) {
+            //     QryGetLoginDetailsByUnameResponse res = contLoginDtl.get(0);
+                
+            //     String tpass  = res.getPassword();
+                
+                // if(res.getPatientNo()!=null && !res.getPatientNo().equals("")){
+                    // patientno = res.getPatientNo();
+                    Page<QryGetPatientByUnameResponse> qryGetPatientByPatientNoResponses = cWmwSQLQueryExecutorService.executeQryGetPatientByUname(tuserid,pageable);
+                        List<QryGetPatientByUnameResponse> content1 = qryGetPatientByPatientNoResponses.getContent();
+                    if(content1.size()>0) {
+                        patient = content1.get(0);
+                        
+                        // Object unreadMsgCount = getUnreadMsgCountByPatientNo(patientno);
+                        // Object refaralSrc = getRefaralSrc();
+                    
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("patient",patient);
+                        // map.put("unreadMsgCount",unreadMsgCount);
+                        // map.put("refaralSrc",refaralSrc);
+                        result = map;
+                        
+                    }else{
+                        Map<String, String> map = new HashMap<>();
+                        map.put("given","");
+                        map.put("message" , "Your details are in verification process!");
+                        result =map; 
+                    }
+                    
+                    
+                    
+                    
+                // }else{
+                //     Map<String, String> map = new HashMap<>();
+                //     map.put("given",res.getUserid());
+                //     map.put("message" , "Your details are in verification process!");
+                //     result =map; 
+                // }
+            // }else{
+            //     result = "Login details not found";
+            // }
+        // } catch (ParseException e) {
+        //     e.printStackTrace();
+        // }
+        
+        
+        return result;
+    }
 
 }

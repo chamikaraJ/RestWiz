@@ -43,6 +43,27 @@ public class UserController {
         return user.getPtOperationStatus(patientno);
     }
 
+    @RequestMapping(value = "/refaralSrc", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getRefaralSrc() {
+        return user.getRefaralSrc();
+    }
+
+    @RequestMapping(value = "/unreadMsgCountByPatientNo", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getUnreadMsgCountByPatientNo(@RequestParam(value = "patientno", required = false) String patientno) {
+        return user.getUnreadMsgCountByPatientNo(patientno);
+    }
+
+    @RequestMapping(value = "/patientData", produces = "application/json", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object patientData(@RequestBody String patientAuth) {
+        return user.patientData(patientAuth);
+    }
+
     @RequestMapping(value = "/password", produces = "application/json", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
