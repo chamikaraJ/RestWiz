@@ -900,8 +900,8 @@
     "name" : "qryGetAllDoctorList",
     "description" : "get all doctor list",
     "version" : "V2",
-    "queryString" : "Select r.resorce_id,r.Title,r.given,r.surname, r.Idno,r.usualdurtn,r.schedlr_id,r.sortorder,d.specialty1 from RESOURCE r left join doctor d on r.resorce_id= d.resorce_id Where r.resrcetype='DOCTOR' \r\nand r.notincalnd=0 and r.INVALIDREC=0 \r\nand r.schedlr_id > ' ' \r\nand r.showinpp = 'true'",
-    "countQueryString" : "select count(*) from (Select r.resorce_id,r.Title,r.given,r.surname, r.Idno,r.usualdurtn,r.schedlr_id,r.sortorder,d.specialty1 from RESOURCE r left join doctor d on r.resorce_id= d.resorce_id Where r.resrcetype='DOCTOR' \r\nand r.notincalnd=0 and r.INVALIDREC=0 \r\nand r.schedlr_id > ' ' \r\nand r.showinpp = 'true') wmTempTable",
+    "queryString" : "Select r.resorce_id,r.Title,r.given,r.surname, r.Idno,r.usualdurtn,r.schedlr_id,r.sortorder,d.specialty1,CONCAT(r.Title,' ',r.given,' ',r.surname)as fullname from RESOURCE r left join doctor d on r.resorce_id= d.resorce_id Where r.resrcetype='DOCTOR' \r\nand r.notincalnd=0 and r.INVALIDREC=0 \r\nand r.schedlr_id > ' ' \r\nand r.showinpp = 'true'",
+    "countQueryString" : "select count(*) from (Select r.resorce_id,r.Title,r.given,r.surname, r.Idno,r.usualdurtn,r.schedlr_id,r.sortorder,d.specialty1,CONCAT(r.Title,' ',r.given,' ',r.surname)as fullname from RESOURCE r left join doctor d on r.resorce_id= d.resorce_id Where r.resrcetype='DOCTOR' \r\nand r.notincalnd=0 and r.INVALIDREC=0 \r\nand r.schedlr_id > ' ' \r\nand r.showinpp = 'true') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -991,6 +991,15 @@
       }, {
         "name" : "specialty1",
         "fieldName" : "specialty1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fullname",
+        "fieldName" : "fullname",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",

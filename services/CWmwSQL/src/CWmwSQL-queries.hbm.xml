@@ -658,7 +658,7 @@ where cal.patient_no = :patientno and cal.b_date >= :today and res.resrcetype = 
 
     <sql-query name="qryGetAllDoctorList">
         <![CDATA[
-        Select r.resorce_id,r.Title,r.given,r.surname, r.Idno,r.usualdurtn,r.schedlr_id,r.sortorder,d.specialty1 from RESOURCE r left join doctor d on r.resorce_id= d.resorce_id Where r.resrcetype='DOCTOR' 
+        Select r.resorce_id,r.Title,r.given,r.surname, r.Idno,r.usualdurtn,r.schedlr_id,r.sortorder,d.specialty1,CONCAT(r.Title,' ',r.given,' ',r.surname)as fullname from RESOURCE r left join doctor d on r.resorce_id= d.resorce_id Where r.resrcetype='DOCTOR' 
 and r.notincalnd=0 and r.INVALIDREC=0 
 and r.schedlr_id > ' ' 
 and r.showinpp = 'true'
@@ -667,7 +667,7 @@ and r.showinpp = 'true'
 
     <sql-query name="qryGetAllDoctorList__count">
         <![CDATA[
-        select count(*) from (Select r.resorce_id,r.Title,r.given,r.surname, r.Idno,r.usualdurtn,r.schedlr_id,r.sortorder,d.specialty1 from RESOURCE r left join doctor d on r.resorce_id= d.resorce_id Where r.resrcetype='DOCTOR' 
+        select count(*) from (Select r.resorce_id,r.Title,r.given,r.surname, r.Idno,r.usualdurtn,r.schedlr_id,r.sortorder,d.specialty1,CONCAT(r.Title,' ',r.given,' ',r.surname)as fullname from RESOURCE r left join doctor d on r.resorce_id= d.resorce_id Where r.resrcetype='DOCTOR' 
 and r.notincalnd=0 and r.INVALIDREC=0 
 and r.schedlr_id > ' ' 
 and r.showinpp = 'true') wmTempTable

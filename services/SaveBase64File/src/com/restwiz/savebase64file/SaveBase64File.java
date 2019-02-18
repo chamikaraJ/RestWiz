@@ -16,8 +16,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Base64;
+import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 //import com.restwiz.savebase64file.model.*;
 
@@ -101,7 +102,16 @@ public class SaveBase64File {
         if (context != null && context != "") {
             sb.append("/" + context);
         }
-        sb.append("/csv/"+name);
+        // sb.append("/csv/"+name);
+        
+        sb.append("/csv");
+
+        Date today = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String formatDate = sdf.format(today);
+
+        sb.append("/").append(formatDate).append("_").append(name);
+        
         String uploadDir = sb.toString();
 
         try {

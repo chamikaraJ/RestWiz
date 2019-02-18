@@ -41,6 +41,9 @@ public class QryGetAllDoctorListResponse implements Serializable {
     @ColumnAlias("specialty1")
     private String specialty1;
 
+    @ColumnAlias("fullname")
+    private String fullname;
+
     public String getResorceId() {
         return this.resorceId;
     }
@@ -113,6 +116,14 @@ public class QryGetAllDoctorListResponse implements Serializable {
         this.specialty1 = specialty1;
     }
 
+    public String getFullname() {
+        return this.fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -126,7 +137,8 @@ public class QryGetAllDoctorListResponse implements Serializable {
                 Objects.equals(getUsualdurtn(), qryGetAllDoctorListResponse.getUsualdurtn()) &&
                 Objects.equals(getSchedlrId(), qryGetAllDoctorListResponse.getSchedlrId()) &&
                 Objects.equals(getSortorder(), qryGetAllDoctorListResponse.getSortorder()) &&
-                Objects.equals(getSpecialty1(), qryGetAllDoctorListResponse.getSpecialty1());
+                Objects.equals(getSpecialty1(), qryGetAllDoctorListResponse.getSpecialty1()) &&
+                Objects.equals(getFullname(), qryGetAllDoctorListResponse.getFullname());
     }
 
     @Override
@@ -139,6 +151,7 @@ public class QryGetAllDoctorListResponse implements Serializable {
                 getUsualdurtn(),
                 getSchedlrId(),
                 getSortorder(),
-                getSpecialty1());
+                getSpecialty1(),
+                getFullname());
     }
 }

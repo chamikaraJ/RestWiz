@@ -223,7 +223,7 @@ public class Createcsv {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String formatDate = sdf.format(today);
 
-        // sb.append("/").append(formatDate).append("_").append(firstName).append("_").append(lastName);
+        sb.append("/").append(formatDate).append("_").append(firstName).append("_").append(lastName);
 
         String uploadDir = sb.toString();
 
