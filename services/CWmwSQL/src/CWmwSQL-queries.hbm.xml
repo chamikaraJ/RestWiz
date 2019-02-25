@@ -806,7 +806,7 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
 
     <sql-query name="qryGetAllAppointmentByPatientNo">
         <![CDATA[
-        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname from calendar cal
+        select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname,blp.shortname,cal.IdNo from calendar cal
 left join resource res on cal.user_id = res. schedlr_id
 left join blueprnt blp on cal.blueprntcd = blp.shortname
 where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'
@@ -816,7 +816,7 @@ where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'
 
     <sql-query name="qryGetAllAppointmentByPatientNo__count">
         <![CDATA[
-        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname from calendar cal
+        select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname,blp.shortname,cal.IdNo from calendar cal
 left join resource res on cal.user_id = res. schedlr_id
 left join blueprnt blp on cal.blueprntcd = blp.shortname
 where cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable
@@ -1072,6 +1072,13 @@ ptchar.midname as middleName,
 ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on pt.patient_no = ptreg.patient_no left join ptcharacters ptchar on pt.patient_no = ptchar.patient_no left join x0152578 lg on pt.patient_no = lg.patient_no where userid = :t_username) wmTempTable
         ]]>
     <query-param name="t_username" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryDeleteAppointmentByIdno">
+        <![CDATA[
+        delete from calendar where idNo = :idno
+        ]]>
+    <query-param name="idno" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="qryGetClinCatDatByCode">

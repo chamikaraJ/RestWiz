@@ -907,6 +907,16 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager")
+    @Override
+    public Integer executeQryDeleteAppointmentByIdno(String idno) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("idno", idno);
+
+        return queryExecutor.executeNamedQueryForUpdate("qryDeleteAppointmentByIdno", params);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
     @Override
     public Page<QryGetClinCatDatByCodeResponse> executeQryGetClinCatDatByCode(String tcode, Pageable pageable) {

@@ -686,6 +686,36 @@
       } ]
     }
   },
+  "qryDeleteAppointmentByIdno" : {
+    "name" : "qryDeleteAppointmentByIdno",
+    "description" : "delete not confirmed appointment by idno",
+    "version" : "V2",
+    "queryString" : "delete from calendar where idNo = :idno",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "DELETE",
+    "parameters" : [ {
+      "name" : "idno",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "123456",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "DELETE"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "qryDeleteptDetailRegByIdno" : {
     "name" : "qryDeleteptDetailRegByIdno",
     "description" : "delete saved patient from reg file",
@@ -720,8 +750,8 @@
     "name" : "qryGetAllAppointmentByPatientNo",
     "description" : "get all appointment by patient number",
     "version" : "V2",
-    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nleft join blueprnt blp on cal.blueprntcd = blp.shortname\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'",
-    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nleft join blueprnt blp on cal.blueprntcd = blp.shortname\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable",
+    "queryString" : "select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname,blp.shortname,cal.IdNo from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nleft join blueprnt blp on cal.blueprntcd = blp.shortname\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR'",
+    "countQueryString" : "select count(*) from (select b_date,b_time,e_time,cal_desc, apmadeon,apmadeat,opnotes, res.title,res.given, res.surname,blueprntcd,blp.longname,blp.shortname,cal.IdNo from calendar cal\nleft join resource res on cal.user_id = res. schedlr_id\nleft join blueprnt blp on cal.blueprntcd = blp.shortname\nwhere cal.patient_no = :patientno and res.resrcetype = 'DOCTOR') wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -850,6 +880,24 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "shortname",
+        "fieldName" : "shortname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "IdNo",
+        "fieldName" : "idNo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       } ]

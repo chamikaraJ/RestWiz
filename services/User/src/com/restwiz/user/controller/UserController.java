@@ -5,6 +5,7 @@ package com.restwiz.user.controller;
 
 import com.restwiz.user.User;
 import java.lang.String;
+import java.lang.Integer;
 import java.lang.Object;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
@@ -21,6 +22,13 @@ public class UserController {
 
     @Autowired
     private User user;
+
+    @RequestMapping(value = "/deleteAppointmentByPatientNo", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Integer deleteAppointmentByPatientNo(@RequestParam(value = "idno", required = false) String idno) {
+        return user.deleteAppointmentByPatientNo(idno);
+    }
 
     @RequestMapping(value = "/allSMS", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)

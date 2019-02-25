@@ -960,6 +960,16 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/qryDeleteAppointmentByIdno", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "delete not confirmed appointment by idno")
+    public IntegerWrapper executeQryDeleteAppointmentByIdno(@RequestParam(value = "idno") String idno, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryDeleteAppointmentByIdno");
+        Integer _result = queryService.executeQryDeleteAppointmentByIdno(idno);
+        LOGGER.debug("got the result for named query: qryDeleteAppointmentByIdno, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/qryGetClinCatDatByCode", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get clinCatDat by code")

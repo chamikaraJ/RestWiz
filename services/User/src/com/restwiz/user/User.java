@@ -217,6 +217,8 @@ public class User {
     public Object patientData(String patientAuth){
         Object result = "Data not found";
         
+        System.out.println("Request data for "+patientAuth);
+        
         Pageable pageable = new PageRequest(0, 10);
         // JSONParser parser = new JSONParser();
         // JSONObject json = new JSONObject();
@@ -242,6 +244,8 @@ public class User {
                         List<QryGetPatientByUnameResponse> content1 = qryGetPatientByPatientNoResponses.getContent();
                     if(content1.size()>0) {
                         patient = content1.get(0);
+                        
+                        System.out.println("Data found "+patient);
                         
                         // Object unreadMsgCount = getUnreadMsgCountByPatientNo(patientno);
                         // Object refaralSrc = getRefaralSrc();
@@ -278,5 +282,10 @@ public class User {
         
         return result;
     }
+    
+    public Integer deleteAppointmentByPatientNo(String idno){
+        return cWmwSQLQueryExecutorService.executeQryDeleteAppointmentByIdno(idno);
+    }
+    
 
 }

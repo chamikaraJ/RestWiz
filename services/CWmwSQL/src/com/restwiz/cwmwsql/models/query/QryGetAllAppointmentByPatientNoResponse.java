@@ -51,6 +51,12 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
     @ColumnAlias("longname")
     private String longname;
 
+    @ColumnAlias("shortname")
+    private String shortname;
+
+    @ColumnAlias("IdNo")
+    private Integer idNo;
+
     public LocalDateTime getBdate() {
         return this.bdate;
     }
@@ -147,6 +153,22 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
         this.longname = longname;
     }
 
+    public String getShortname() {
+        return this.shortname;
+    }
+
+    public void setShortname(String shortname) {
+        this.shortname = shortname;
+    }
+
+    public Integer getIdNo() {
+        return this.idNo;
+    }
+
+    public void setIdNo(Integer idNo) {
+        this.idNo = idNo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -163,7 +185,9 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
                 Objects.equals(getGiven(), qryGetAllAppointmentByPatientNoResponse.getGiven()) &&
                 Objects.equals(getSurname(), qryGetAllAppointmentByPatientNoResponse.getSurname()) &&
                 Objects.equals(getBlueprntcd(), qryGetAllAppointmentByPatientNoResponse.getBlueprntcd()) &&
-                Objects.equals(getLongname(), qryGetAllAppointmentByPatientNoResponse.getLongname());
+                Objects.equals(getLongname(), qryGetAllAppointmentByPatientNoResponse.getLongname()) &&
+                Objects.equals(getShortname(), qryGetAllAppointmentByPatientNoResponse.getShortname()) &&
+                Objects.equals(getIdNo(), qryGetAllAppointmentByPatientNoResponse.getIdNo());
     }
 
     @Override
@@ -179,6 +203,8 @@ public class QryGetAllAppointmentByPatientNoResponse implements Serializable {
                 getGiven(),
                 getSurname(),
                 getBlueprntcd(),
-                getLongname());
+                getLongname(),
+                getShortname(),
+                getIdNo());
     }
 }
