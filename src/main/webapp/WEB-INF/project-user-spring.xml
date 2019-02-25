@@ -7,7 +7,10 @@ and is an ideal location for end-users to put any code they need.
 <beans xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:task="http://www.springframework.org/schema/task"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+        xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task-4.0.xsd">
     <task:annotation-driven scheduler="taskScheduler" />
     <task:scheduler id="taskScheduler" pool-size="5" />
     <!--<task:scheduled-tasks >-->

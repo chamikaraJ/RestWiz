@@ -58,6 +58,13 @@ public class UserController {
         return user.getRefaralSrc();
     }
 
+    @RequestMapping(value = "/signupDatByEmail", produces = "application/json", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public Object getSignupDatByEmail(@RequestBody String email) {
+        return user.getSignupDatByEmail(email);
+    }
+
     @RequestMapping(value = "/unreadMsgCountByPatientNo", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

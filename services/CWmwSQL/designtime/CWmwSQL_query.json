@@ -646,6 +646,82 @@
       "responseType" : "SINGLE"
     }
   },
+  "getSignupDataByEmail" : {
+    "name" : "getSignupDataByEmail",
+    "description" : "get Signup data by email",
+    "version" : "V2",
+    "queryString" : "select given,surname,email,medicareno,dob from ptdetail_reg where email=:email",
+    "countQueryString" : "select count(*) from (select given,surname,email,medicareno,dob from ptdetail_reg where email=:email) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "email",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "nadia@gmail.com",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.restwiz.cwmwsql.models.query.GetSignupDataByEmailResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "given",
+        "fieldName" : "given",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "surname",
+        "fieldName" : "surname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "medicareno",
+        "fieldName" : "medicareno",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "dob",
+        "fieldName" : "dob",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Date",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "qryCheckUsernameExist" : {
     "name" : "qryCheckUsernameExist",
     "description" : "check the username is exist",

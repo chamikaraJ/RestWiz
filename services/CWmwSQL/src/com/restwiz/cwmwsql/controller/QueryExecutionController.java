@@ -744,6 +744,34 @@ public class QueryExecutionController {
         return new StringWrapper(exportedUrl);
     }
 
+    @RequestMapping(value = "/queries/getSignupDataByEmail", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get Signup data by email")
+    public Page<GetSignupDataByEmailResponse> executeGetSignupDataByEmail(@RequestParam(value = "email") String email, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: getSignupDataByEmail");
+        Page<GetSignupDataByEmailResponse> _result = queryService.executeGetSignupDataByEmail(email, pageable);
+        LOGGER.debug("got the result for named query: getSignupDataByEmail, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query getSignupDataByEmail")
+    @RequestMapping(value = "/queries/getSignupDataByEmail/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportGetSignupDataByEmail(@RequestParam(value = "email") String email, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getSignupDataByEmail");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "getSignupDataByEmail";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportGetSignupDataByEmail(email,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryUpdatePatient", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Update Patient Details")

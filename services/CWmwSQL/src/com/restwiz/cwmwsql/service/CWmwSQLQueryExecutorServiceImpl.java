@@ -703,6 +703,28 @@ public class CWmwSQLQueryExecutorServiceImpl implements CWmwSQLQueryExecutorServ
         queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
     }
 
+    @Transactional(value = "CWmwSQLTransactionManager", readOnly = true)
+    @Override
+    public Page<GetSignupDataByEmailResponse> executeGetSignupDataByEmail(String email, Pageable pageable) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("email", email);
+
+        return queryExecutor.executeNamedQuery("getSignupDataByEmail", params, GetSignupDataByEmailResponse.class, pageable);
+    }
+
+    @Transactional(value = "CWmwSQLTransactionManager", timeout = 300, readOnly = true)
+    @Override
+    public void exportGetSignupDataByEmail(String email, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream) {
+        Map<String, Object> params = new HashMap<>(1);
+
+        params.put("email", email);
+
+        QueryProcedureInput queryInput = new QueryProcedureInput("getSignupDataByEmail", params, GetSignupDataByEmailResponse.class);
+
+        queryExecutor.exportNamedQueryData(queryInput, exportOptions, pageable, outputStream);
+    }
+
     @Transactional(value = "CWmwSQLTransactionManager")
     @Override
     public Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest) {

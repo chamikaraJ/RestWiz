@@ -124,6 +124,8 @@ public class User {
             }else{
                 result = "Login details not found";
             }
+
+            
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -287,5 +289,15 @@ public class User {
         return cWmwSQLQueryExecutorService.executeQryDeleteAppointmentByIdno(idno);
     }
     
+     public Object getSignupDatByEmail(String email){
+        Object result = "Data not found";
+        Pageable pageable = new PageRequest(0, 1000);
+        Page<GetSignupDataByEmailResponse> response = cWmwSQLQueryExecutorService.executeGetSignupDataByEmail(email, pageable);
+        List<GetSignupDataByEmailResponse> resList = response.getContent();
+        if(resList.size()>0){
+            result = resList;
+        }
+        return result;
+    }
 
 }

@@ -553,6 +553,20 @@ and patient_no = :patientNo) wmTempTable
     <query-param name="t_pass" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="getSignupDataByEmail">
+        <![CDATA[
+        select given,surname,email,medicareno,dob from ptdetail_reg where email=:email
+        ]]>
+    <query-param name="email" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="getSignupDataByEmail__count">
+        <![CDATA[
+        select count(*) from (select given,surname,email,medicareno,dob from ptdetail_reg where email=:email) wmTempTable
+        ]]>
+    <query-param name="email" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryUpdatePatient">
         <![CDATA[
         update ptdetail set title = :t_title, 

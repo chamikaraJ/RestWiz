@@ -123,6 +123,10 @@ public interface CWmwSQLQueryExecutorService {
 
     void exportQryGetPatientNumberByUnamePass(String tuserid, String tpass, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
 
+    Page<GetSignupDataByEmailResponse> executeGetSignupDataByEmail(String email, Pageable pageable);
+
+    void exportGetSignupDataByEmail(String email, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Integer executeQryUpdatePatient(QryUpdatePatientRequest qryUpdatePatientRequest);
 
     Page<QryGetFutureAppointmentByPatientNoResponse> executeQryGetFutureAppointmentByPatientNo(String patientno, Date today, Pageable pageable);
