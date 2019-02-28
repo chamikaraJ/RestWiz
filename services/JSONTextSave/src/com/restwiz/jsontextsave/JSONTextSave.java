@@ -112,12 +112,16 @@ public class JSONTextSave {
             } else {
                 result = tempService.create(temp);
             }
+            
+            if(result!=null){
+                updatePtdetailReg(json);
+            }
         }
 
         return result;
     }
     
     private void updatePtdetailReg(JSONObject json){
-        
+        System.out.println(json);
     }
 }

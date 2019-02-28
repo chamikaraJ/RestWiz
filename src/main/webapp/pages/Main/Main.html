@@ -35,12 +35,12 @@
             </wm-composite>
             <wm-button class="btn-default" caption="save base64 to file" type="button" margin="unset 0.5em" name="button4_1" on-click="button4_1Click($event, $scope)"></wm-button>
             <wm-composite name="composite4">
-                <wm-label class="col-md-3 control-label" name="label4"></wm-label>
+                <wm-label class="col-md-3 control-label" name="label4" caption="Json Text"></wm-label>
                 <wm-container class="col-md-9" name="container4">
                     <wm-textarea name="txajson"></wm-textarea>
                 </wm-container>
             </wm-composite>
-            <wm-button class="btn-default" caption="Button" type="button" margin="unset 0.5em" name="button5" on-click="Variables.jsvJsonTextSave.invoke()"></wm-button>
+            <wm-button class="btn-default" caption="Save Json Text" type="button" margin="unset 0.5em" name="button5" on-click="Variables.jsvJsonTextSave.invoke()"></wm-button>
         </wm-page-content>
         <wm-right-panel columnwidth="2" name="rightpanel" content="rightnav"></wm-right-panel>
     </wm-content>
