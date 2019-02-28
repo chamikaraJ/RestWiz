@@ -259,9 +259,15 @@ public class User {
                         result = map;
                         
                     }else{
-                        Map<String, String> map = new HashMap<>();
+                        Page<QryGetPtdetailRegByEmailResponse> req = cWmwSQLQueryExecutorService.executeQryGetPtdetailRegByEmail(tuserid,pageable);
+                        List<QryGetPtdetailRegByEmailResponse> resList = req.getContent();
+                            if(resList.size()>0){
+                                patient = resList.get(0);
+                            }
+                        Map<String, Object> map = new HashMap<>();
                         map.put("given","");
                         map.put("message" , "Your details are in verification process!");
+                        map.put("patient",patient);
                         result =map; 
                     }
                     

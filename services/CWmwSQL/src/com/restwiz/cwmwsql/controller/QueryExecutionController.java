@@ -998,6 +998,34 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/qryGetPtdetailRegByEmail", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get ptdetails_reg by email")
+    public Page<QryGetPtdetailRegByEmailResponse> executeQryGetPtdetailRegByEmail(@RequestParam(value = "email") String email, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: qryGetPtdetailRegByEmail");
+        Page<QryGetPtdetailRegByEmailResponse> _result = queryService.executeQryGetPtdetailRegByEmail(email, pageable);
+        LOGGER.debug("got the result for named query: qryGetPtdetailRegByEmail, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file url for query qryGetPtdetailRegByEmail")
+    @RequestMapping(value = "/queries/qryGetPtdetailRegByEmail/export", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public StringWrapper exportQryGetPtdetailRegByEmail(@RequestParam(value = "email") String email, @RequestBody ExportOptions exportOptions, Pageable pageable) {
+        LOGGER.debug("Exporting named query: qryGetPtdetailRegByEmail");
+
+        String exportedFileName = exportOptions.getFileName();
+        if(exportedFileName == null || exportedFileName.isEmpty()) {
+            exportedFileName = "qryGetPtdetailRegByEmail";
+        }
+        exportedFileName += exportOptions.getExportType().getExtension();
+
+        String exportedUrl = exportedFileManager.registerAndGetURL(exportedFileName,
+                        outputStream -> queryService.exportQryGetPtdetailRegByEmail(email,  exportOptions, pageable, outputStream));
+
+        return new StringWrapper(exportedUrl);
+    }
+
     @RequestMapping(value = "/queries/qryGetClinCatDatByCode", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "get clinCatDat by code")

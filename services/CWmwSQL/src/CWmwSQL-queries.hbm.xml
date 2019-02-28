@@ -1095,6 +1095,20 @@ ptchar.agiven as preferedName from ptdetail pt left join ptdetail_reg ptreg on p
     <query-param name="idno" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="qryGetPtdetailRegByEmail">
+        <![CDATA[
+        select * from ptdetail_reg where email=:email
+        ]]>
+    <query-param name="email" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="qryGetPtdetailRegByEmail__count">
+        <![CDATA[
+        select count(*) from (select * from ptdetail_reg where email=:email) wmTempTable
+        ]]>
+    <query-param name="email" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="qryGetClinCatDatByCode">
         <![CDATA[
         select * from clinCatDat where code = :t_code

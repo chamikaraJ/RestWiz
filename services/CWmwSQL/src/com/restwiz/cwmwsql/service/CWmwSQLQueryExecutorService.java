@@ -161,6 +161,10 @@ public interface CWmwSQLQueryExecutorService {
 
     Integer executeQryDeleteAppointmentByIdno(String idno);
 
+    Page<QryGetPtdetailRegByEmailResponse> executeQryGetPtdetailRegByEmail(String email, Pageable pageable);
+
+    void exportQryGetPtdetailRegByEmail(String email, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);
+
     Page<QryGetClinCatDatByCodeResponse> executeQryGetClinCatDatByCode(String tcode, Pageable pageable);
 
     void exportQryGetClinCatDatByCode(String tcode, ExportOptions exportOptions, Pageable pageable, OutputStream outputStream);

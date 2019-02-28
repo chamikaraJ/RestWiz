@@ -102,10 +102,6 @@ public class JSONTextSave {
         temp.setPatientNo(patientNo);
         temp.setEmail(email);
         temp.setIsFormComplete(formComplete);
-        
-// if(patientNo!=null){
-    
-    // logger.warn("Data find for Patient No : "+ patientNo);
 
         Page<QryGetJsonTextByPatientNoResponse> qryResponses = queryService.executeQryGetJsonTextByPatientNo(email, pageable);
         List<QryGetJsonTextByPatientNoResponse> content = qryResponses.getContent();
@@ -117,7 +113,11 @@ public class JSONTextSave {
                 result = tempService.create(temp);
             }
         }
-// }
+
         return result;
+    }
+    
+    private void updatePtdetailReg(JSONObject json){
+        
     }
 }
